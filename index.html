@@ -482,6 +482,14 @@ footer {
   <span class="cart-count" id="cart-count" style="display:none">0</span>
 </button>
 
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('es')">ES</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('de')">DE</button>
+  <button class="lang-btn" onclick="setLang('cs')">CZ</button>
+</div>
+
 <!-- CART PANEL -->
 <div class="cart-panel" id="cart-panel">
   <div class="cart-header">
@@ -491,7 +499,7 @@ footer {
   <div class="cart-items" id="cart-items">
     <div class="cart-empty">
       <div class="cart-empty-icon">🍫</div>
-      <p>Tu carrito está vacío.<br>Agrega productos del catálogo.</p>
+      <p data-key="cart_empty">Tu carrito está vacío.<br>Agrega productos del catálogo.</p>
     </div>
   </div>
   <div class="cart-footer" id="cart-footer" style="display:none">
@@ -500,9 +508,9 @@ footer {
       <span id="cart-total">€0.00</span>
     </div>
     <button class="btn-wa" style="width:100%;justify-content:center;" onclick="sendWhatsApp()">
-      <span>📱</span> Pedir por WhatsApp
+      <span>📱</span> <span data-key="cart_wa">Pedir por WhatsApp</span>
     </button>
-    <p class="cart-note">Te contactaremos para confirmar disponibilidad, envío y método de pago.</p>
+    <p class="cart-note" data-key="cart_note">Te contactaremos para confirmar disponibilidad, envío y método de pago.</p>
   </div>
 </div>
 
@@ -513,11 +521,11 @@ footer {
     <span>by Aurum Origins</span>
   </div>
   <ul class="nav-links">
-    <li><a onclick="scrollTo_('#manifesto')">Filosofía</a></li>
-    <li><a onclick="scrollTo_('#products')">Catálogo</a></li>
-    <li><a onclick="scrollTo_('#farmers')">Productores</a></li>
-    <li><a onclick="scrollTo_('#process')">Proceso</a></li>
-    <li><a onclick="scrollTo_('#contact')">Contacto</a></li>
+    <li><a onclick="scrollTo_('#manifesto')" data-key="nav_manifesto">Filosofía</a></li>
+    <li><a onclick="scrollTo_('#products')" data-key="nav_products">Catálogo</a></li>
+    <li><a onclick="scrollTo_('#farmers')" data-key="nav_farmers">Productores</a></li>
+    <li><a onclick="scrollTo_('#process')" data-key="nav_process">Proceso</a></li>
+    <li><a onclick="scrollTo_('#contact')" data-key="nav_contact">Contacto</a></li>
   </ul>
   <a class="nav-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN" target="_blank">
     📱 WhatsApp
@@ -528,11 +536,11 @@ footer {
 <!-- MOB NAV MENU -->
 <div id="mob-nav" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:600;background:rgba(13,5,0,0.97);flex-direction:column;align-items:center;justify-content:center;gap:32px;">
   <button onclick="toggleMobNav()" style="position:absolute;top:24px;right:24px;background:none;border:none;color:var(--copper);font-size:24px;cursor:pointer;">✕</button>
-  <a onclick="scrollTo_('#manifesto');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;">Filosofía</a>
-  <a onclick="scrollTo_('#products');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;">Catálogo</a>
-  <a onclick="scrollTo_('#farmers');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;">Productores</a>
-  <a onclick="scrollTo_('#process');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;">Proceso</a>
-  <a onclick="scrollTo_('#contact');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;">Contacto</a>
+  <a onclick="scrollTo_('#manifesto');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;" data-key="nav_manifesto">Filosofía</a>
+  <a onclick="scrollTo_('#products');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;" data-key="nav_products">Catálogo</a>
+  <a onclick="scrollTo_('#farmers');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;" data-key="nav_farmers">Productores</a>
+  <a onclick="scrollTo_('#process');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;" data-key="nav_process">Proceso</a>
+  <a onclick="scrollTo_('#contact');toggleMobNav()" style="font-size:28px;font-family:'Cormorant Garamond',serif;color:var(--cream);text-decoration:none;cursor:pointer;" data-key="nav_contact">Contacto</a>
 </div>
 
 <!-- HERO -->
@@ -542,15 +550,15 @@ footer {
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Café de Especialidad · Perú</p>
+    <p class="hero-eyebrow" data-key="hero_eyebrow">Café de Especialidad · Perú</p>
     <h1 class="hero-title">
       HOLZEN
-      <em>Del árbol al alma</em>
+      <em data-key="hero_sub_em">Del árbol al alma</em>
     </h1>
-    <p class="hero-sub">Café de origen único, cultivado en los valles más puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con propósito.</p>
+    <p class="hero-sub" data-key="hero_sub">Café de origen único, cultivado en los valles más puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con propósito.</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="scrollTo_('#products')">Ver Catálogo</button>
-      <button class="btn-outline" onclick="scrollTo_('#farmers')">Nuestros Productores</button>
+      <button class="btn-primary" onclick="scrollTo_('#products')" data-key="hero_btn1">Ver Catálogo</button>
+      <button class="btn-outline" onclick="scrollTo_('#farmers')" data-key="hero_btn2">Nuestros Productores</button>
     </div>
   </div>
   <div class="hero-scroll">
@@ -563,15 +571,15 @@ footer {
 <section id="manifesto">
   <div class="manifesto-grid">
     <div>
-      <p class="eyebrow">Nuestra Filosofía</p>
-      <h2 class="section-title">El café como arte,<br>no como <em>commodity</em></h2>
+      <p class="eyebrow" data-key="manifesto_eyebrow">Nuestra Filosofía</p>
+      <h2 class="section-title" data-key="manifesto_title">El café como arte,<br>no como <em>commodity</em></h2>
       <p>HOLZEN nace de la convicción de que el café peruano merece el mismo reconocimiento que el mejor café etíope o colombiano. Las variedades nativas del Perú son tesoros genéticos únicos en el mundo.</p>
       <p>Trabajamos con cooperativas que respetan el ciclo natural de la planta, el proceso artesanal y el secado solar. Cada lote tiene nombre de productor, coordenadas GPS y perfil de cata documentado.</p>
       <div class="manifesto-stats">
-        <div class="stat"><div class="stat-n">86+</div><div class="stat-l">Puntos SCA mínimo</div></div>
-        <div class="stat"><div class="stat-n">≤7%</div><div class="stat-l">Humedad máx.</div></div>
-        <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Trazabilidad EUDR</div></div>
-        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Variedades premium</div></div>
+        <div class="stat"><div class="stat-n">86+</div><div class="stat-l" data-key="stat1">Puntos SCA mínimo</div></div>
+        <div class="stat"><div class="stat-n">≤7%</div><div class="stat-l" data-key="stat2">Humedad máx.</div></div>
+        <div class="stat"><div class="stat-n">100%</div><div class="stat-l" data-key="stat3">Trazabilidad EUDR</div></div>
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l" data-key="stat4">Variedades premium</div></div>
       </div>
     </div>
     <div class="manifesto-img">
@@ -584,8 +592,8 @@ footer {
 <!-- PRODUCTS -->
 <section id="products">
   <div class="products-intro">
-    <p class="eyebrow">Catálogo</p>
-    <h2 class="section-title">Nuestros<br><em>Cafés</em></h2>
+    <p class="eyebrow" data-key="prod_eyebrow">Catálogo</p>
+    <h2 class="section-title" data-key="prod_title">Nuestros<br><em>Cafés</em></h2>
     <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:16px;">Selecciona los productos que te interesan y envíanos tu pedido por WhatsApp. Respondemos en menos de 24 horas.</p>
   </div>
   <div class="products-grid">
@@ -610,7 +618,7 @@ footer {
           <li><span>Precio</span><span style="color:var(--copper)">€6.50 / kg</span></li>
         </ul>
         <button class="btn-add" onclick="addToCart('Café Geisha Washed','€28.00/kg',28.00,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773435430/b5dcee5858d308c712cc1e53229f35e6_gc2rqw.jpg',this)">
-          <span>+</span> Agregar al pedido
+          <span data-key="btn_add">+</span> <span data-key="btn_add_txt">Agregar al pedido</span>
         </button>
       </div>
     </div>
@@ -635,7 +643,7 @@ footer {
           <li><span>Precio</span><span style="color:var(--copper)">€4.20 / kg</span></li>
         </ul>
         <button class="btn-add" onclick="addToCart('Café Natural Bourbon','€18.00/kg',18.00,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg',this)">
-          <span>+</span> Agregar al pedido
+          <span data-key="btn_add">+</span> <span data-key="btn_add_txt">Agregar al pedido</span>
         </button>
       </div>
     </div>
@@ -660,7 +668,7 @@ footer {
           <li><span>Precio</span><span style="color:var(--copper)">€5.80 / kg</span></li>
         </ul>
         <button class="btn-add" onclick="addToCart('Café Honey Amarillo','€22.00/kg',22.00,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773431769/6a7b9a09d97a0e0a5a6496ae7ee378a3_ehcb75.jpg',this)">
-          <span>+</span> Agregar al pedido
+          <span data-key="btn_add">+</span> <span data-key="btn_add_txt">Agregar al pedido</span>
         </button>
       </div>
     </div>
@@ -671,8 +679,8 @@ footer {
 <!-- FARMERS SLIDER — foto arriba centrada, historia abajo -->
 <section id="farmers" style="padding:0;">
   <div style="padding:80px 80px 40px;background:var(--bark);">
-    <p class="eyebrow" style="color:var(--copper);">Historias de Vida</p>
-    <h2 class="section-title" style="color:var(--cream);">La historia detrás de<br><em>cada grano</em></h2>
+    <p class="eyebrow" style="color:var(--copper);" data-key="farmers_eyebrow">Historias de Vida</p>
+    <h2 class="section-title" style="color:var(--cream);" data-key="farmers_title">La historia detrás de<br><em>cada grano</em></h2>
   </div>
 
   <div class="farmers-track" id="farmers-track">
@@ -691,7 +699,7 @@ footer {
           <div class="farmer-name">Cooperativa<br>Quillabamba</div>
           <div class="farmer-region">Valle del Urubamba · 900 msnm</div>
         </div>
-        <p class="farmer-story">Tres generaciones cuidando el café Geisha nativo, considerado uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa. Hoy exportan directamente gracias a HOLZEN.</p>
+        <p class="farmer-story" data-key="farmer1_story">Tres generaciones cuidando el café Geisha nativo, considerado uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa. Hoy exportan directamente gracias a HOLZEN.</p>
       </div>
     </div>
 
@@ -709,7 +717,7 @@ footer {
           <div class="farmer-name">Asociación<br>San Martín</div>
           <div class="farmer-region">Tarapoto · 450 msnm</div>
         </div>
-        <p class="farmer-story">Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN accedieron a certificación especialidad y triplicaron sus ingresos en dos años. Cada saco que envían a Europa lleva el sello de su esfuerzo.</p>
+        <p class="farmer-story" data-key="farmer2_story">Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN accedieron a certificación especialidad y triplicaron sus ingresos en dos años. Cada saco que envían a Europa lleva el sello de su esfuerzo.</p>
       </div>
     </div>
 
@@ -727,7 +735,7 @@ footer {
           <div class="farmer-name">Agro Monzón<br>Heritage</div>
           <div class="farmer-region">Valle Monzón · 800 msnm</div>
         </div>
-        <p class="farmer-story">En el corazón del Valle Monzón, este grupo mantiene viva la tradición del proceso natural. Cada lote es un reflejo de su dedicación y del microclima único de este valle. Su café tiene un perfil de cata inconfundible.</p>
+        <p class="farmer-story" data-key="farmer3_story">En el corazón del Valle Monzón, este grupo mantiene viva la tradición del proceso natural. Cada lote es un reflejo de su dedicación y del microclima único de este valle. Su café tiene un perfil de cata inconfundible.</p>
       </div>
     </div>
 
@@ -745,32 +753,32 @@ footer {
 
 <!-- PROCESS -->
 <section id="process">
-  <p class="eyebrow">Nuestro Proceso</p>
-  <h2 class="section-title">De la parcela a<br><em>tu mesa</em></h2>
+  <p class="eyebrow" data-key="proc_eyebrow">Nuestro Proceso</p>
+  <h2 class="section-title" data-key="proc_title">De la parcela a<br><em>tu mesa</em></h2>
   <div class="process-grid">
     <div class="process-step">
       <div class="process-n">01</div>
       <div class="process-icon">🌱</div>
-      <div class="process-title">Cosecha Selectiva</div>
-      <p class="process-desc">Solo mazorcas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.</p>
+      <div class="process-title" data-key="proc1_t">Cosecha Selectiva</div>
+      <p class="process-desc" data-key="proc1_d">Solo cerezas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.</p>
     </div>
     <div class="process-step">
       <div class="process-n">02</div>
       <div class="process-icon">🫙</div>
-      <div class="process-title">Procesado Artesanal</div>
-      <p class="process-desc">48-72 horas de procesado controlada. El proceso que desarrolla los precursores de sabor únicos del café peruano.</p>
+      <div class="process-title" data-key="proc2_t">Procesado Artesanal</div>
+      <p class="process-desc" data-key="proc2_d">48-72 horas de procesado controlado. El proceso que desarrolla los precursores de sabor únicos del café peruano.</p>
     </div>
     <div class="process-step">
       <div class="process-n">03</div>
       <div class="process-icon">☀️</div>
-      <div class="process-title">Secado Solar</div>
-      <p class="process-desc">Bajo el sol andino durante 7 a 10 días. Humedad final ≤7%. Sin secado artificial que altere el perfil sensorial.</p>
+      <div class="process-title" data-key="proc3_t">Secado Solar</div>
+      <p class="process-desc" data-key="proc3_d">Bajo el sol andino durante 7 a 10 días. Humedad final ≤7%. Sin secado artificial que altere el perfil sensorial.</p>
     </div>
     <div class="process-step">
       <div class="process-n">04</div>
       <div class="process-icon">📦</div>
-      <div class="process-title">Control & Envío</div>
-      <p class="process-desc">Análisis de laboratorio, certificados EUDR y empaque en sacos GrainPro. De Lima a tu destino en Europa.</p>
+      <div class="process-title" data-key="proc4_t">Control &amp; Envío</div>
+      <p class="process-desc" data-key="proc4_d">Análisis de laboratorio, certificados EUDR y empaque en sacos GrainPro. De Lima a tu destino en Europa.</p>
     </div>
   </div>
 </section>
@@ -778,9 +786,9 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
-    <p class="eyebrow" style="justify-content:center;">¿Te interesa?</p>
-    <h2 class="section-title">Hablemos de<br><em>café</em></h2>
-    <p>Trabajamos con tostadores, pasteleros y distribuidores B2B en Europa y Perú. Mínimo de pedido: 25 kg por variedad. Respondemos en menos de 24 horas.</p>
+    <p class="eyebrow" style="justify-content:center;" data-key="contact_eyebrow">¿Te interesa?</p>
+    <h2 class="section-title" data-key="contact_title">Hablemos de<br><em>café</em></h2>
+    <p data-key="contact_body">Trabajamos con tostadores y distribuidores B2B en Europa y Perú. Mínimo de pedido: 25 kg por variedad. Respondemos en menos de 24 horas.</p>
     <div class="contact-options">
       <a class="btn-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN.%20Quisiera%20más%20información." target="_blank">
         📱 WhatsApp
@@ -797,10 +805,10 @@ footer {
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo">HOLZEN<span>by Aurum Origins</span></div>
-      <p>Café premium de origen peruano.<br>Lima, Perú — Europa.</p>
+      <p data-key="footer_desc">Café premium de origen peruano.<br>Lima, Perú — Europa.</p>
     </div>
     <div class="footer-col">
-      <h5>Productos</h5>
+      <h5 data-key="footer_products">Productos</h5>
       <ul>
         <li><a onclick="scrollTo_('#products')">Café Chuncho del Cusco</a></li>
         <li><a onclick="scrollTo_('#products')">CCN-51 Premium</a></li>
@@ -808,22 +816,163 @@ footer {
       </ul>
     </div>
     <div class="footer-col">
-      <h5>Empresa</h5>
+      <h5 data-key="footer_company">Empresa</h5>
       <ul>
         <li><a onclick="scrollTo_('#manifesto')">Nuestra Filosofía</a></li>
-        <li><a onclick="scrollTo_('#farmers')">Productores</a></li>
-        <li><a onclick="scrollTo_('#process')">Proceso</a></li>
-        <li><a onclick="scrollTo_('#contact')">Contacto</a></li>
+        <li><a onclick="scrollTo_('#farmers')" data-key="nav_farmers">Productores</a></li>
+        <li><a onclick="scrollTo_('#process')" data-key="nav_process">Proceso</a></li>
+        <li><a onclick="scrollTo_('#contact')" data-key="nav_contact">Contacto</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 HOLZEN · Aurum Origins. Todos los derechos reservados.</p>
+    <p data-key="footer_copy">© 2025 HOLZEN · Aurum Origins. Todos los derechos reservados.</p>
     <a href="https://wa.me/51XXXXXXXXX" target="_blank">📱 WhatsApp</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+// ── TRANSLATIONS ─────────────────────────
+var TH = {
+  es: {
+    nav_manifesto:'Filosofía', nav_products:'Catálogo', nav_farmers:'Productores', nav_process:'Proceso', nav_contact:'Contacto',
+    hero_eyebrow:'Café de Especialidad · Perú',
+    hero_sub_em:'Del árbol al alma',
+    hero_sub:'Café de origen único, cultivado en los valles más puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con propósito.',
+    hero_btn1:'Ver Catálogo', hero_btn2:'Nuestros Productores',
+    manifesto_eyebrow:'Nuestra Filosofía',
+    manifesto_title:'El café como arte,<br>no como <em>commodity</em>',
+    stat1:'Puntos SCA mínimo', stat2:'Humedad máx.', stat3:'Trazabilidad EUDR', stat4:'Variedades premium',
+    prod_eyebrow:'Catálogo', prod_title:'Nuestros<br><em>Cafés</em>',
+    btn_add_txt:'Agregar al pedido',
+    farmers_eyebrow:'Historias de Vida',
+    farmers_title:'La historia detrás de<br><em>cada grano</em>',
+    farmer1_story:'Tres generaciones cuidando el café Geisha nativo, considerado uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa. Hoy exportan directamente gracias a HOLZEN.',
+    farmer2_story:'Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN accedieron a certificación especialidad y triplicaron sus ingresos en dos años. Cada saco que envían a Europa lleva el sello de su esfuerzo.',
+    farmer3_story:'En el corazón del Valle Monzón, este grupo mantiene viva la tradición del proceso natural. Cada lote es un reflejo de su dedicación y del microclima único de este valle. Su café tiene un perfil de cata inconfundible.',
+    proc_eyebrow:'Nuestro Proceso', proc_title:'De la parcela a<br><em>tu mesa</em>',
+    proc1_t:'Cosecha Selectiva', proc1_d:'Solo cerezas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.',
+    proc2_t:'Procesado Artesanal', proc2_d:'48-72 horas de procesado controlado. El proceso que desarrolla los precursores de sabor únicos del café peruano.',
+    proc3_t:'Secado Solar', proc3_d:'Bajo el sol andino durante 7 a 10 días. Humedad final ≤7%. Sin secado artificial que altere el perfil sensorial.',
+    proc4_t:'Control & Envío', proc4_d:'Análisis de laboratorio, certificados EUDR y empaque en sacos GrainPro. De Lima a tu destino en Europa.',
+    contact_eyebrow:'¿Te interesa?', contact_title:'Hablemos de<br><em>café</em>',
+    contact_body:'Trabajamos con tostadores y distribuidores B2B en Europa y Perú. Mínimo de pedido: 25 kg por variedad. Respondemos en menos de 24 horas.',
+    footer_desc:'Café premium de origen peruano.<br>Lima, Perú — Europa.',
+    footer_products:'Productos', footer_company:'Empresa',
+    footer_copy:'© 2025 HOLZEN · Aurum Origins. Todos los derechos reservados.',
+    cart_empty:'Tu carrito está vacío.<br>Agrega productos del catálogo.',
+    cart_wa:'Pedir por WhatsApp',
+    cart_note:'Te contactaremos para confirmar disponibilidad, envío y método de pago.'
+  },
+  en: {
+    nav_manifesto:'Philosophy', nav_products:'Catalogue', nav_farmers:'Farmers', nav_process:'Process', nav_contact:'Contact',
+    hero_eyebrow:'Specialty Coffee · Peru',
+    hero_sub_em:'From the tree to your soul',
+    hero_sub:'Single-origin coffee, grown in the purest valleys of the Peruvian Andes. Processed by hand, sun-dried, delivered with purpose.',
+    hero_btn1:'View Catalogue', hero_btn2:'Our Farmers',
+    manifesto_eyebrow:'Our Philosophy',
+    manifesto_title:'Coffee as art,<br>not as <em>commodity</em>',
+    stat1:'SCA points minimum', stat2:'Max. moisture', stat3:'EUDR traceability', stat4:'Premium varieties',
+    prod_eyebrow:'Catalogue', prod_title:'Our<br><em>Coffees</em>',
+    btn_add_txt:'Add to order',
+    farmers_eyebrow:'Life Stories',
+    farmers_title:'The story behind<br><em>every bean</em>',
+    farmer1_story:'Three generations tending native Geisha coffee, considered one of the finest in the world. Their fight to preserve this ancestral variety opened the doors to the best roasters in Europe. Today they export directly thanks to HOLZEN.',
+    farmer2_story:'Families who turned abandoned land into productive coffee farms. With HOLZEN's support they achieved specialty certification and tripled their income in two years. Every sack they send to Europe carries the seal of their effort.',
+    farmer3_story:'At the heart of the Monzon Valley, this group keeps the tradition of natural processing alive. Each lot reflects their dedication and the unique microclimate of this valley. Their coffee has an unmistakable cupping profile.',
+    proc_eyebrow:'Our Process', proc_title:'From the farm<br><em>to your table</em>',
+    proc1_t:'Selective Harvest', proc1_d:'Only cherries at peak ripeness, hand-picked by our producers.',
+    proc2_t:'Artisan Processing', proc2_d:'48-72 hours of controlled processing. The step that develops the unique flavor precursors of Peruvian coffee.',
+    proc3_t:'Solar Drying', proc3_d:'Under the Andean sun for 7 to 10 days. Final moisture below 7%. No artificial drying.',
+    proc4_t:'Quality Control & Shipping', proc4_d:'Lab analysis, EUDR certificates and GrainPro sack packaging. From Lima to your destination in Europe.',
+    contact_eyebrow:'Interested?', contact_title:'Let's talk<br><em>coffee</em>',
+    contact_body:'We work with roasters and B2B distributors in Europe and Peru. Minimum order: 25 kg per variety. We respond in less than 24 hours.',
+    footer_desc:'Premium single-origin coffee.<br>Lima, Peru — Europe.',
+    footer_products:'Products', footer_company:'Company',
+    footer_copy:'© 2025 HOLZEN · Aurum Origins. All rights reserved.',
+    cart_empty:'Your cart is empty.<br>Add products from the catalogue.',
+    cart_wa:'Order via WhatsApp',
+    cart_note:'We will contact you to confirm availability, shipping and payment method.'
+  },
+  de: {
+    nav_manifesto:'Philosophie', nav_products:'Katalog', nav_farmers:'Erzeuger', nav_process:'Prozess', nav_contact:'Kontakt',
+    hero_eyebrow:'Spezialitätenkaffee · Peru',
+    hero_sub_em:'Vom Baum zur Seele',
+    hero_sub:'Single-Origin-Kaffee aus den reinsten Tälern der peruanischen Anden. Handverarbeitet, sonnengetrocknet, mit Zweck geliefert.',
+    hero_btn1:'Katalog ansehen', hero_btn2:'Unsere Erzeuger',
+    manifesto_eyebrow:'Unsere Philosophie',
+    manifesto_title:'Kaffee als Kunst,<br>nicht als <em>Massenware</em>',
+    stat1:'SCA-Punkte Minimum', stat2:'Max. Feuchtigkeit', stat3:'EUDR-Ruckverfolgung', stat4:'Premium-Sorten',
+    prod_eyebrow:'Katalog', prod_title:'Unsere<br><em>Kaffees</em>',
+    btn_add_txt:'Zur Bestellung hinzufugen',
+    farmers_eyebrow:'Lebensgeschichten',
+    farmers_title:'Die Geschichte hinter<br><em>jeder Bohne</em>',
+    farmer1_story:'Drei Generationen pflegen nativen Geisha-Kaffee, einer der feinsten der Welt. Ihr Kampf um diese Sorte offnete die Turen der besten Rostereien Europas. Heute exportieren sie dank HOLZEN direkt.',
+    farmer2_story:'Familien, die brachliegendes Land in produktive Kaffeeplantagen verwandelten. Mit HOLZEN erreichten sie Specialty-Zertifizierung und verdreifachten ihre Einnahmen in zwei Jahren.',
+    farmer3_story:'Im Herzen des Monzon-Tals halt diese Gruppe die Tradition der Naturverarbeitung lebendig. Jede Charge spiegelt ihre Hingabe und das einzigartige Mikroklima wider.',
+    proc_eyebrow:'Unser Prozess', proc_title:'Von der Parzelle<br><em>zu Ihrem Tisch</em>',
+    proc1_t:'Selektive Ernte', proc1_d:'Nur Kirschen auf dem Hohepunkt der Reife, von Hand gepfluckt.',
+    proc2_t:'Handwerkliche Verarbeitung', proc2_d:'48-72 Stunden kontrollierte Verarbeitung. Der Schritt, der die einzigartigen Geschmacksprekursoren entwickelt.',
+    proc3_t:'Solartrocknung', proc3_d:'Unter der Andensonne 7 bis 10 Tage. Endfeuchte unter 7%. Keine kunstliche Trocknung.',
+    proc4_t:'Qualitätskontrolle & Versand', proc4_d:'Laboranalyse, EUDR-Zertifikate und GrainPro-Sacke. Von Lima zu Ihrem Ziel in Europa.',
+    contact_eyebrow:'Interesse?', contact_title:'Sprechen wir uber<br><em>Kaffee</em>',
+    contact_body:'Wir arbeiten mit Rostern und B2B-Distributoren in Europa und Peru. Mindestbestellung: 25 kg pro Sorte. Antwort in weniger als 24 Stunden.',
+    footer_desc:'Premium Single-Origin-Kaffee.<br>Lima, Peru — Europa.',
+    footer_products:'Produkte', footer_company:'Unternehmen',
+    footer_copy:'© 2025 HOLZEN · Aurum Origins. Alle Rechte vorbehalten.',
+    cart_empty:'Ihr Warenkorb ist leer.<br>Produkte aus dem Katalog hinzufugen.',
+    cart_wa:'Per WhatsApp bestellen',
+    cart_note:'Wir kontaktieren Sie zur Bestatigung von Verfugbarkeit, Versand und Zahlungsmethode.'
+  },
+  cs: {
+    nav_manifesto:'Filozofie', nav_products:'Katalog', nav_farmers:'Pestitelé', nav_process:'Proces', nav_contact:'Kontakt',
+    hero_eyebrow:'Specialty kava · Peru',
+    hero_sub_em:'Ze stromu do duse',
+    hero_sub:'Kava jedineho puvodu, pestovana v nejcistejsich udolich peruanskych And. Zpracovana rucne, susena na slunci, dodavana s ucelem.',
+    hero_btn1:'Zobrazit katalog', hero_btn2:'Nasi pestitelé',
+    manifesto_eyebrow:'Nase filozofie',
+    manifesto_title:'Kava jako umeni,<br>ne jako <em>komodita</em>',
+    stat1:'Body SCA minimum', stat2:'Max. vlhkost', stat3:'Sledovatelnost EUDR', stat4:'Prémiové odrůdy',
+    prod_eyebrow:'Katalog', prod_title:'Nase<br><em>Kavy</em>',
+    btn_add_txt:'Pridat do objednávky',
+    farmers_eyebrow:'Zivotni pribehy',
+    farmers_title:'Pribeh za<br><em>kazdym zrnem</em>',
+    farmer1_story:'Tri generace pecuji o nativni kavu Geisha, povazovanou za jednu z nejjemnejsich na svete. Jejich boj o zachovani teto pradavné odrudy otevrél dvere nejlepsim prazírnam Evropy. Dnes exportuji priméo díky HOLZEN.',
+    farmer2_story:'Rodiny, které promenily opustená pole na produktivní kavové plantáze. S podporou HOLZEN dosáhly certifikace specialty a za dva roky ztrojnásobily príjmy.',
+    farmer3_story:'V srdci údolí Monzón tato skupina udruje tradici prírodního zpracování. Kazda várka odráí jejich oddanost a jedinecné mikroklima tohoto údolí.',
+    proc_eyebrow:'Nas proces', proc_title:'Z farmy<br><em>na vas stul</em>',
+    proc1_t:'Selektivní sklizen', proc1_d:'Pouze tresne na vrcholu zralosti, rucne sbírane nasimi pestiteli.',
+    proc2_t:'Remeselné zpracování', proc2_d:'48-72 hodin kontrolovaného zpracování. Krok, který rozvíjí jedinecné precursory chuti peruanské kavy.',
+    proc3_t:'Solární susení', proc3_d:'Pod andským sluncem 7 az 10 dní. Konecná vlhkost pod 7%. Zadné umelé susení.',
+    proc4_t:'Kontrola kvality & Odeslání', proc4_d:'Laboratorní analýza, certifikáty EUDR a balení do vaku GrainPro. Z Limy do vaseho cíle v Evrope.',
+    contact_eyebrow:'Máte zájem?', contact_title:'Mluvme o<br><em>kave</em>',
+    contact_body:'Pracujeme s prazírnami a B2B distributory v Evrope a Peru. Minimální objednávka: 25 kg na odrudu. Odpovídáme do 24 hodin.',
+    footer_desc:'Prémiová kava jedineného puvodu.<br>Lima, Peru — Evropa.',
+    footer_products:'Produkty', footer_company:'Spolecnost',
+    footer_copy:'© 2025 HOLZEN · Aurum Origins. Vsechna práva vyhrazena.',
+    cart_empty:'Vás kosík je prázdný.<br>Pridejte produkty z katalogu.',
+    cart_wa:'Objednat pres WhatsApp',
+    cart_note:'Kontaktujeme vás pro potvrzení dostupnosti, dopravy a zpusobu platby.'
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.remove('active');
+    var code = b.textContent.trim();
+    if (code === lang.toUpperCase() || (lang === 'cs' && code === 'CZ')) {
+      b.classList.add('active');
+    }
+  });
+  var t = TH[lang];
+  if (!t) return;
+  document.querySelectorAll('[data-key]').forEach(function(el) {
+    var k = el.getAttribute('data-key');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+}
+
+</script><script>
 // ══ NAV SCROLL ══
 window.addEventListener('scroll',function(){
   document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>80);
@@ -911,7 +1060,7 @@ function renderCart(){
   }
 
   if(cart.length===0){
-    itemsEl.innerHTML='<div class="cart-empty"><div class="cart-empty-icon">🍫</div><p>Tu carrito está vacío.<br>Agrega productos del catálogo.</p></div>';
+    itemsEl.innerHTML='<div class="cart-empty"><div class="cart-empty-icon">🍫</div><p data-key="cart_empty">Tu carrito está vacío.<br>Agrega productos del catálogo.</p></div>';
     footerEl.style.display='none';
     return;
   }
