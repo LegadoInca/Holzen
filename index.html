@@ -469,18 +469,21 @@ footer {
   .hero-title { font-size:56px; }
   .footer-grid { grid-template-columns:1fr; }
 }
+/* ═══ LANGUAGE BAR ═══ */
+.lang-bar{position:fixed;top:0;right:0;z-index:900;display:flex;background:rgba(13,5,0,0.97);border-bottom-left-radius:6px;border:1px solid rgba(185,140,60,0.25);border-top:none;border-right:none;}
+.lang-btn{padding:8px 13px;background:none;border:none;color:rgba(240,228,204,0.45);font-family:'Space Mono',monospace;font-size:10px;cursor:pointer;transition:all 0.3s;letter-spacing:1px;}
+.lang-btn:hover,.lang-btn.active{color:#B98C3C;background:rgba(185,140,60,0.1);}
+
 </style>
 </head>
 <body>
-<!-- LANG BAR -->
+<!-- LANGUAGE BAR -->
 <div class="lang-bar">
   <button class="lang-btn active" onclick="setLang('es')">ES</button>
   <button class="lang-btn" onclick="setLang('en')">EN</button>
   <button class="lang-btn" onclick="setLang('de')">DE</button>
   <button class="lang-btn" onclick="setLang('cs')">CZ</button>
 </div>
-
-
 
 <!-- CART BACKDROP -->
 <div class="cart-backdrop" id="cart-backdrop" onclick="closeCart()"></div>
