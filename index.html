@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>HOLZEN — Cacao Premium del Perú</title>
+<title>HOLZEN — Café de Especialidad del Perú</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <!-- PWA -->
-<meta name="application-name" content="HOLZEN Cacao">
+<meta name="application-name" content="HOLZEN Café">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="HOLZEN">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1C0A00">
-<meta name="description" content="Cacao premium de origen peruano. Variedades únicas, fermentación artesanal, trazabilidad total.">
+<meta name="description" content="Café de especialidad de origen peruano. Variedades únicas, proceso artesanal, trazabilidad total.">
 <link rel="manifest" href="manifest-holzen.json">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%231C0A00'/%3E%3Ctext x='256' y='340' font-size='260' text-anchor='middle' fill='%23C8954A' font-family='Georgia,serif'%3EH%3C/text%3E%3C/svg%3E">
 
 <style>
 /* ═══════════════════════════════════════════
    HOLZEN — DESIGN TOKENS
-   Aesthetic: Refined luxury · Dark chocolate · Editorial
+   Aesthetic: Refined luxury · Dark café de especialidad · Editorial
 ═══════════════════════════════════════════ */
 :root {
   --ink:        #0D0500;
@@ -277,44 +277,56 @@ section { padding:120px 80px; }
 .btn-add:hover { background:var(--copper-lt); }
 .btn-add.added { background:var(--bark);color:var(--copper); }
 
-/* ═══ FARMERS SLIDER ═══ */
-#farmers { background:var(--bark);padding:0;position:relative;overflow:hidden; }
+/* ═══ FARMERS SLIDER — foto arriba, historia abajo ═══ */
+#farmers { background:var(--bark);padding:0;overflow:hidden; }
 .farmers-track { display:flex;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
 .farmer-slide {
-  min-width:100%;height:80vh;position:relative;flex-shrink:0;
+  min-width:100%;flex-shrink:0;
+  display:grid;grid-template-rows:auto auto;
+}
+/* Foto — cuadrada, centrada, cara completa */
+.farmer-photo-wrap {
+  width:100%;height:60vw;max-height:600px;overflow:hidden;position:relative;
 }
 .farmer-img {
-  width:100%;height:100%;object-fit:cover;object-position:center center;
-  filter:brightness(0.55) saturate(1.1);
+  width:100%;height:100%;object-fit:cover;object-position:center 25%;
+  filter:brightness(0.85) saturate(1.1);
+  transition:transform 0.8s ease;
 }
-.farmer-overlay {
-  position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(13,5,0,0.85) 0%, rgba(13,5,0,0.2) 60%, transparent 100%);
-  padding:80px;display:flex;flex-direction:column;justify-content:center;max-width:600px;
-}
+.farmer-slide:hover .farmer-img { transform:scale(1.03); }
+/* Número flotante sobre la foto */
 .farmer-num {
-  font-family:'Cormorant Garamond',serif;font-size:80px;
-  color:rgba(200,149,74,0.15);font-weight:700;line-height:1;margin-bottom:-10px;
+  position:absolute;top:24px;left:32px;
+  font-family:'Cormorant Garamond',serif;font-size:72px;
+  color:rgba(200,149,74,0.25);font-weight:700;line-height:1;
+  pointer-events:none;
 }
-.farmer-tag { font-size:9px;letter-spacing:0.45em;text-transform:uppercase;color:var(--copper);margin-bottom:16px; }
+/* Historia debajo */
+.farmer-story-box {
+  background:var(--deep);padding:48px 80px;
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;
+  border-top:2px solid var(--copper);
+}
+.farmer-tag { font-size:9px;letter-spacing:0.45em;text-transform:uppercase;color:var(--copper);margin-bottom:12px;display:block; }
 .farmer-name {
-  font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);
+  font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);
   color:var(--cream);font-weight:400;line-height:1.1;
 }
-.farmer-region { font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:0.1em; }
-.farmer-story { font-size:14px;color:rgba(240,228,204,0.7);line-height:1.8;margin-top:16px;max-width:420px; }
-.farmers-controls {
-  position:absolute;bottom:36px;left:80px;z-index:10;
-  display:flex;gap:12px;align-items:center;
+.farmer-region { font-size:11px;color:var(--muted);margin-top:8px;letter-spacing:0.1em; }
+.farmer-story { font-size:14px;color:rgba(240,228,204,0.65);line-height:1.9;padding-top:4px; }
+/* Controls */
+.farmers-nav {
+  background:var(--bark);padding:24px 80px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid var(--border);
 }
+.farmers-dots-row { display:flex;gap:10px;align-items:center; }
 .farmer-dot {
   width:6px;height:6px;border-radius:50%;background:rgba(200,149,74,0.3);
   cursor:pointer;transition:all 0.3s;border:none;padding:0;
 }
 .farmer-dot.active { background:var(--copper);width:20px;border-radius:3px; }
-.farmers-arrows {
-  position:absolute;bottom:28px;right:80px;z-index:10;display:flex;gap:12px;
-}
+.farmers-arrows { display:flex;gap:10px; }
 .farmer-arrow {
   width:44px;height:44px;background:transparent;border:1px solid var(--border);
   color:var(--copper);cursor:pointer;font-size:16px;
@@ -441,8 +453,9 @@ footer {
   .products-grid { grid-template-columns:1fr 1fr; }
   .process-grid { grid-template-columns:1fr 1fr; }
   .farmer-overlay { padding:40px 24px; }
-  .farmers-controls { left:24px; }
-  .farmers-arrows { right:24px; }
+  .farmer-story-box { grid-template-columns:1fr;padding:32px 24px;gap:20px; }
+  .farmer-photo-wrap { height:80vw;max-height:400px; }
+  .farmers-nav { padding:16px 24px; }
   .footer-grid { grid-template-columns:1fr 1fr;gap:32px; }
   .hero-content { padding:0 24px 60px; }
   .cart-panel { width:100%;right:-100%; }
@@ -506,7 +519,7 @@ footer {
     <li><a onclick="scrollTo_('#process')">Proceso</a></li>
     <li><a onclick="scrollTo_('#contact')">Contacto</a></li>
   </ul>
-  <a class="nav-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20cacao%20HOLZEN" target="_blank">
+  <a class="nav-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN" target="_blank">
     📱 WhatsApp
   </a>
   <button class="mob-nav-btn" onclick="toggleMobNav()">☰</button>
@@ -529,12 +542,12 @@ footer {
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Cacao Premium · Perú</p>
+    <p class="hero-eyebrow">Café de Especialidad · Perú</p>
     <h1 class="hero-title">
       HOLZEN
       <em>Del árbol al alma</em>
     </h1>
-    <p class="hero-sub">Cacao de origen único, cultivado en los valles más puros de los Andes peruanos. Fermentado con tiempo, secado con sol, entregado con propósito.</p>
+    <p class="hero-sub">Café de origen único, cultivado en los valles más puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con propósito.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="scrollTo_('#products')">Ver Catálogo</button>
       <button class="btn-outline" onclick="scrollTo_('#farmers')">Nuestros Productores</button>
@@ -551,11 +564,11 @@ footer {
   <div class="manifesto-grid">
     <div>
       <p class="eyebrow">Nuestra Filosofía</p>
-      <h2 class="section-title">El cacao como arte,<br>no como <em>commodity</em></h2>
-      <p>HOLZEN nace de la convicción de que el cacao peruano merece el mismo reconocimiento que el mejor chocolate belga o suizo. Las variedades nativas del Perú son tesoros genéticos únicos en el mundo.</p>
-      <p>Trabajamos con cooperativas que respetan el ciclo natural de la planta, la fermentación artesanal y el secado solar. Cada lote tiene nombre de productor, coordenadas GPS y perfil sensorial documentado.</p>
+      <h2 class="section-title">El café como arte,<br>no como <em>commodity</em></h2>
+      <p>HOLZEN nace de la convicción de que el café peruano merece el mismo reconocimiento que el mejor café etíope o colombiano. Las variedades nativas del Perú son tesoros genéticos únicos en el mundo.</p>
+      <p>Trabajamos con cooperativas que respetan el ciclo natural de la planta, el proceso artesanal y el secado solar. Cada lote tiene nombre de productor, coordenadas GPS y perfil de cata documentado.</p>
       <div class="manifesto-stats">
-        <div class="stat"><div class="stat-n">5+</div><div class="stat-l">Días fermentación</div></div>
+        <div class="stat"><div class="stat-n">86+</div><div class="stat-l">Puntos SCA mínimo</div></div>
         <div class="stat"><div class="stat-n">≤7%</div><div class="stat-l">Humedad máx.</div></div>
         <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Trazabilidad EUDR</div></div>
         <div class="stat"><div class="stat-n">3</div><div class="stat-l">Variedades premium</div></div>
@@ -563,7 +576,7 @@ footer {
     </div>
     <div class="manifesto-img">
       <!-- 🖼️ Foto Nosotros/Equipo -->
-      <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg" alt="HOLZEN Cacao origen">
+      <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg" alt="HOLZEN Café origen">
     </div>
   </div>
 </section>
@@ -572,14 +585,14 @@ footer {
 <section id="products">
   <div class="products-intro">
     <p class="eyebrow">Catálogo</p>
-    <h2 class="section-title">Nuestros<br><em>Cacaos</em></h2>
+    <h2 class="section-title">Nuestros<br><em>Cafés</em></h2>
     <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:16px;">Selecciona los productos que te interesan y envíanos tu pedido por WhatsApp. Respondemos en menos de 24 horas.</p>
   </div>
   <div class="products-grid">
 
     <!-- PRODUCTO 1 -->
     <div class="prod-card" id="card-1">
-      <img class="prod-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773435430/b5dcee5858d308c712cc1e53229f35e6_gc2rqw.jpg" alt="Cacao Chuncho Cusco">
+      <img class="prod-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773435430/b5dcee5858d308c712cc1e53229f35e6_gc2rqw.jpg" alt="Café Geisha Washed">
       <div class="prod-overlay">
         <span class="prod-tag">Variedad Nativa</span>
         <div class="prod-name">Chuncho del Cusco</div>
@@ -588,15 +601,15 @@ footer {
       </div>
       <div class="prod-detail">
         <span class="prod-tag">Quillabamba · Cusco · Perú</span>
-        <div class="prod-name" style="font-size:20px;">Cacao Chuncho</div>
+        <div class="prod-name" style="font-size:20px;">Café Geisha Washed</div>
         <ul class="prod-specs">
           <li><span>Variedad</span><span>Chuncho nativo</span></li>
-          <li><span>Fermentación</span><span>6 días</span></li>
+          <li><span>Procesado</span><span>6 días</span></li>
           <li><span>% Humedad</span><span>≤ 7%</span></li>
           <li><span>Notas</span><span>Frutas rojas, nuez</span></li>
           <li><span>Precio</span><span style="color:var(--copper)">€6.50 / kg</span></li>
         </ul>
-        <button class="btn-add" onclick="addToCart('Cacao Chuncho del Cusco','€6.50/kg',6.50,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773435430/b5dcee5858d308c712cc1e53229f35e6_gc2rqw.jpg',this)">
+        <button class="btn-add" onclick="addToCart('Café Geisha Washed','€28.00/kg',28.00,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773435430/b5dcee5858d308c712cc1e53229f35e6_gc2rqw.jpg',this)">
           <span>+</span> Agregar al pedido
         </button>
       </div>
@@ -604,7 +617,7 @@ footer {
 
     <!-- PRODUCTO 2 -->
     <div class="prod-card" id="card-2">
-      <img class="prod-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg" alt="Cacao CCN-51">
+      <img class="prod-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg" alt="Café Natural Bourbon">
       <div class="prod-overlay">
         <span class="prod-tag">Export Grade</span>
         <div class="prod-name">CCN-51 Premium</div>
@@ -613,15 +626,15 @@ footer {
       </div>
       <div class="prod-detail">
         <span class="prod-tag">San Martín · Perú</span>
-        <div class="prod-name" style="font-size:20px;">Cacao CCN-51</div>
+        <div class="prod-name" style="font-size:20px;">Café Natural Bourbon</div>
         <ul class="prod-specs">
           <li><span>Variedad</span><span>CCN-51</span></li>
-          <li><span>Fermentación</span><span>5 días</span></li>
+          <li><span>Procesado</span><span>5 días</span></li>
           <li><span>% Humedad</span><span>≤ 7%</span></li>
           <li><span>Empaque</span><span>Sacos 60 kg</span></li>
           <li><span>Precio</span><span style="color:var(--copper)">€4.20 / kg</span></li>
         </ul>
-        <button class="btn-add" onclick="addToCart('Cacao CCN-51 Premium','€4.20/kg',4.20,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg',this)">
+        <button class="btn-add" onclick="addToCart('Café Natural Bourbon','€18.00/kg',18.00,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg',this)">
           <span>+</span> Agregar al pedido
         </button>
       </div>
@@ -629,7 +642,7 @@ footer {
 
     <!-- PRODUCTO 3 -->
     <div class="prod-card" id="card-3">
-      <img class="prod-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773431769/6a7b9a09d97a0e0a5a6496ae7ee378a3_ehcb75.jpg" alt="Cacao Monzón">
+      <img class="prod-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773431769/6a7b9a09d97a0e0a5a6496ae7ee378a3_ehcb75.jpg" alt="Café Honey Amarillo">
       <div class="prod-overlay">
         <span class="prod-tag">Selección Especial</span>
         <div class="prod-name">Monzón Heritage</div>
@@ -638,15 +651,15 @@ footer {
       </div>
       <div class="prod-detail">
         <span class="prod-tag">Valle Monzón · Huánuco</span>
-        <div class="prod-name" style="font-size:20px;">Cacao Monzón</div>
+        <div class="prod-name" style="font-size:20px;">Café Honey Amarillo</div>
         <ul class="prod-specs">
           <li><span>Variedad</span><span>Forastero local</span></li>
-          <li><span>Fermentación</span><span>Natural 5 días</span></li>
+          <li><span>Procesado</span><span>Natural 5 días</span></li>
           <li><span>% Humedad</span><span>≤ 7.5%</span></li>
           <li><span>Notas</span><span>Tropical, madera</span></li>
           <li><span>Precio</span><span style="color:var(--copper)">€5.80 / kg</span></li>
         </ul>
-        <button class="btn-add" onclick="addToCart('Cacao Monzón Heritage','€5.80/kg',5.80,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773431769/6a7b9a09d97a0e0a5a6496ae7ee378a3_ehcb75.jpg',this)">
+        <button class="btn-add" onclick="addToCart('Café Honey Amarillo','€22.00/kg',22.00,'https://res.cloudinary.com/djfmngyl0/image/upload/v1773431769/6a7b9a09d97a0e0a5a6496ae7ee378a3_ehcb75.jpg',this)">
           <span>+</span> Agregar al pedido
         </button>
       </div>
@@ -655,55 +668,74 @@ footer {
   </div>
 </section>
 
-<!-- FARMERS SLIDER -->
+<!-- FARMERS SLIDER — foto arriba centrada, historia abajo -->
 <section id="farmers" style="padding:0;">
-  <div style="padding:80px 80px 0;background:var(--bark);">
+  <div style="padding:80px 80px 40px;background:var(--bark);">
     <p class="eyebrow" style="color:var(--copper);">Historias de Vida</p>
     <h2 class="section-title" style="color:var(--cream);">La historia detrás de<br><em>cada grano</em></h2>
   </div>
-  <div style="position:relative;background:var(--bark);">
-    <div class="farmers-track" id="farmers-track">
 
-      <!-- FARMER 1 -->
-      <div class="farmer-slide">
-        <img class="farmer-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516122/d6c6488724febbae729820d253497cb7_un9okc.jpg" alt="Productor 1">
-        <div class="farmer-overlay">
-          <div class="farmer-num">01</div>
-          <div class="farmer-tag">Cacao · Quillabamba, Cusco</div>
+  <div class="farmers-track" id="farmers-track">
+
+    <!-- FARMER 1 -->
+    <div class="farmer-slide">
+      <div class="farmer-photo-wrap">
+        <div class="farmer-num">01</div>
+        <img class="farmer-img"
+          src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516122/d6c6488724febbae729820d253497cb7_un9okc.jpg"
+          alt="Cooperativa Quillabamba">
+      </div>
+      <div class="farmer-story-box">
+        <div>
+          <span class="farmer-tag">Café · Villa Rica, Pasco</span>
           <div class="farmer-name">Cooperativa<br>Quillabamba</div>
           <div class="farmer-region">Valle del Urubamba · 900 msnm</div>
-          <p class="farmer-story">Tres generaciones cuidando el cacao Chuncho nativo, considerado uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a los chocolateros más exigentes de Europa.</p>
         </div>
+        <p class="farmer-story">Tres generaciones cuidando el café Geisha nativo, considerado uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa. Hoy exportan directamente gracias a HOLZEN.</p>
       </div>
-
-      <!-- FARMER 2 -->
-      <div class="farmer-slide">
-        <img class="farmer-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516115/624a4fa7b3b3c803786cb9be0bafb4d2_gvcce3.jpg" alt="Productor 2">
-        <div class="farmer-overlay">
-          <div class="farmer-num">02</div>
-          <div class="farmer-tag">Cacao · San Martín</div>
-          <div class="farmer-name">Asociación<br>San Martín</div>
-          <div class="farmer-region">Tarapoto · 450 msnm</div>
-          <p class="farmer-story">Familias que convirtieron tierras abandonadas en cacaotales productivos. Con el apoyo de HOLZEN accedieron a certificación orgánica y triplicaron sus ingresos en dos años.</p>
-        </div>
-      </div>
-
-      <!-- FARMER 3 -->
-      <div class="farmer-slide">
-        <img class="farmer-img" src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516573/c2475e4cc2603cd9e890e97ec232598a_knpcxb.jpg" alt="Productor 3">
-        <div class="farmer-overlay">
-          <div class="farmer-num">03</div>
-          <div class="farmer-tag">Cacao · Valle Monzón</div>
-          <div class="farmer-name">Agro Monzón<br>Heritage</div>
-          <div class="farmer-region">Huánuco · 800 msnm</div>
-          <p class="farmer-story">En el corazón del Valle Monzón, este grupo de productores mantiene viva la tradición del fermentado natural. Cada lote es un reflejo de su dedicación y del microclima único de este valle.</p>
-        </div>
-      </div>
-
     </div>
 
-    <!-- Controls -->
-    <div class="farmers-controls" id="farmers-dots"></div>
+    <!-- FARMER 2 -->
+    <div class="farmer-slide">
+      <div class="farmer-photo-wrap">
+        <div class="farmer-num">02</div>
+        <img class="farmer-img"
+          src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516115/624a4fa7b3b3c803786cb9be0bafb4d2_gvcce3.jpg"
+          alt="Asociación San Martín">
+      </div>
+      <div class="farmer-story-box">
+        <div>
+          <span class="farmer-tag">Café · Chanchamayo, Junín</span>
+          <div class="farmer-name">Asociación<br>San Martín</div>
+          <div class="farmer-region">Tarapoto · 450 msnm</div>
+        </div>
+        <p class="farmer-story">Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN accedieron a certificación especialidad y triplicaron sus ingresos en dos años. Cada saco que envían a Europa lleva el sello de su esfuerzo.</p>
+      </div>
+    </div>
+
+    <!-- FARMER 3 -->
+    <div class="farmer-slide">
+      <div class="farmer-photo-wrap">
+        <div class="farmer-num">03</div>
+        <img class="farmer-img"
+          src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516573/c2475e4cc2603cd9e890e97ec232598a_knpcxb.jpg"
+          alt="Agro Monzón Heritage">
+      </div>
+      <div class="farmer-story-box">
+        <div>
+          <span class="farmer-tag">Café · Valle Monzón, Huánuco</span>
+          <div class="farmer-name">Agro Monzón<br>Heritage</div>
+          <div class="farmer-region">Valle Monzón · 800 msnm</div>
+        </div>
+        <p class="farmer-story">En el corazón del Valle Monzón, este grupo mantiene viva la tradición del proceso natural. Cada lote es un reflejo de su dedicación y del microclima único de este valle. Su café tiene un perfil de cata inconfundible.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Nav: dots + flechas -->
+  <div class="farmers-nav">
+    <div class="farmers-dots-row" id="farmers-dots"></div>
     <div class="farmers-arrows">
       <button class="farmer-arrow" onclick="prevFarmer()">←</button>
       <button class="farmer-arrow" onclick="nextFarmer()">→</button>
@@ -725,8 +757,8 @@ footer {
     <div class="process-step">
       <div class="process-n">02</div>
       <div class="process-icon">🫙</div>
-      <div class="process-title">Fermentación Artesanal</div>
-      <p class="process-desc">5 a 6 días en cajones de madera. El proceso que desarrolla los precursores de sabor únicos del cacao peruano.</p>
+      <div class="process-title">Procesado Artesanal</div>
+      <p class="process-desc">48-72 horas de procesado controlada. El proceso que desarrolla los precursores de sabor únicos del café peruano.</p>
     </div>
     <div class="process-step">
       <div class="process-n">03</div>
@@ -747,13 +779,13 @@ footer {
 <section id="contact">
   <div class="contact-inner">
     <p class="eyebrow" style="justify-content:center;">¿Te interesa?</p>
-    <h2 class="section-title">Hablemos de<br><em>cacao</em></h2>
-    <p>Trabajamos con chocolateros, pasteleros y distribuidores B2B en Europa y Perú. Mínimo de pedido: 25 kg por variedad. Respondemos en menos de 24 horas.</p>
+    <h2 class="section-title">Hablemos de<br><em>café</em></h2>
+    <p>Trabajamos con tostadores, pasteleros y distribuidores B2B en Europa y Perú. Mínimo de pedido: 25 kg por variedad. Respondemos en menos de 24 horas.</p>
     <div class="contact-options">
-      <a class="btn-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20cacao%20HOLZEN.%20Quisiera%20más%20información." target="_blank">
+      <a class="btn-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN.%20Quisiera%20más%20información." target="_blank">
         📱 WhatsApp
       </a>
-      <a class="btn-outline" href="mailto:hola@holzen.com">
+      <a class="btn-outline" href="/cdn-cgi/l/email-protection#771f181b16371f181b0d12195914181a">
         ✉️ Email
       </a>
     </div>
@@ -765,12 +797,12 @@ footer {
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo">HOLZEN<span>by Aurum Origins</span></div>
-      <p>Cacao premium de origen peruano.<br>Lima, Perú — Europa.</p>
+      <p>Café premium de origen peruano.<br>Lima, Perú — Europa.</p>
     </div>
     <div class="footer-col">
       <h5>Productos</h5>
       <ul>
-        <li><a onclick="scrollTo_('#products')">Cacao Chuncho del Cusco</a></li>
+        <li><a onclick="scrollTo_('#products')">Café Chuncho del Cusco</a></li>
         <li><a onclick="scrollTo_('#products')">CCN-51 Premium</a></li>
         <li><a onclick="scrollTo_('#products')">Monzón Heritage</a></li>
       </ul>
@@ -791,7 +823,7 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ══ NAV SCROLL ══
 window.addEventListener('scroll',function(){
   document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>80);
@@ -946,11 +978,4 @@ document.querySelectorAll('.process-step,.manifesto-stats .stat').forEach(functi
 
 // ══ PWA SERVICE WORKER ══
 if('serviceWorker' in navigator){
-  window.addEventListener('load',function(){
-    navigator.serviceWorker.register('sw-holzen.js').catch(function(){});
-  });
-}
-</script>
-
-</body>
-</html>
+  window
