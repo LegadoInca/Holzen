@@ -14,7 +14,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1C0A00">
 <meta name="description" content="Café de especialidad de origen peruano. Variedades únicas, proceso artesanal, trazabilidad total.">
-<link rel="manifest" href="manifest-holzen.json">
+<link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%231C0A00'/%3E%3Ctext x='256' y='340' font-size='260' text-anchor='middle' fill='%23C8954A' font-family='Georgia,serif'%3EH%3C/text%3E%3C/svg%3E">
 
 <style>
@@ -524,7 +524,7 @@ footer {
 <nav id="main-nav">
   <div class="nav-logo" onclick="window.scrollTo(0,0)">
     HOLZEN
-    <span>by Aurum Origins</span>
+    <span>by Legado Inca</span>
   </div>
   <ul class="nav-links">
     <li><a onclick="scrollTo_('#manifesto')" data-key="nav_manifesto">Filosofía</a></li>
@@ -815,7 +815,7 @@ footer {
       <a class="btn-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN.%20Quisiera%20más%20información." target="_blank">
         📱 WhatsApp
       </a>
-      <a class="btn-outline" href="/cdn-cgi/l/email-protection#771f181b16371f181b0d12195914181a">
+      <a class="btn-outline" href="mailto:hola@legadoinca.com">
         ✉️ Email
       </a>
     </div>
@@ -826,7 +826,7 @@ footer {
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="logo">HOLZEN<span>by Aurum Origins</span></div>
+      <div class="logo">HOLZEN<span>by Legado Inca</span></div>
       <p data-key="footer_desc">Café premium de origen peruano.<br>Lima, Perú — Europa.</p>
     </div>
     <div class="footer-col">
@@ -848,133 +848,154 @@ footer {
     </div>
   </div>
   <div class="footer-bottom">
-    <p data-key="footer_copy">© 2025 HOLZEN · Aurum Origins. Todos los derechos reservados.</p>
+    <p data-key="footer_copy">© 2025 HOLZEN · Legado Inca. Todos los derechos reservados.</p>
     <a href="https://wa.me/51XXXXXXXXX" target="_blank">📱 WhatsApp</a>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+<script>
+
 // ── TRANSLATIONS ─────────────────────────
 var TH = {
   es: {
-    nav_manifesto:'Filosofía', nav_products:'Catálogo', nav_farmers:'Productores', nav_process:'Proceso', nav_contact:'Contacto',
-    hero_eyebrow:'Café de Especialidad · Perú',
-    hero_sub_em:'Del árbol al alma',
-    hero_sub:'Café de origen único, cultivado en los valles más puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con propósito.',
-    hero_btn1:'Ver Catálogo', hero_btn2:'Nuestros Productores',
-    manifesto_eyebrow:'Nuestra Filosofía',
-    manifesto_title:'El café como arte,<br>no como <em>commodity</em>',
-    stat1:'Puntos SCA mínimo', stat2:'Humedad máx.', stat3:'Trazabilidad EUDR', stat4:'Variedades premium',
-    prod_eyebrow:'Catálogo', prod_title:'Nuestros<br><em>Cafés</em>',
-    btn_add_txt:'Agregar al pedido',
-    farmers_eyebrow:'La historia detrás de cada grano',farmer1_tag:'Café · Villa Rica, Pasco',farmer2_tag:'Café · Chanchamayo, Junín',farmer3_tag:'Café · Valle Monzón, Huánuco',manifesto_p1:'Detrás de cada taza de HOLZEN hay una historia que el mundo necesita conocer. Nuestros caficultores son supervivientes. Mujeres que reconstruyeron su vida después de la violencia. Hombres que cambiaron la hoja de coca por el grano de oro. Familias que vivieron el conflicto armado y eligieron quedarse.',manifesto_quote:'“No cultivamos solo café. Cultivamos dignidad, esperanza y el derecho a un futuro mejor.”',manifesto_p2:'HOLZEN nace de la convicción de que el mejor café crece en las manos de quienes más han luchado. Cuando compras HOLZEN, te conviertes en parte de esta transformación.',contact_body:'Cada vez que eliges HOLZEN, estás eligiendo a las personas que hay detrás. Escríbenos — estamos aquí para contarte la historia de tu próxima taza.',spec_variedad:'Variedad',spec_proceso:'Procesado',spec_humedad:'% Humedad',spec_notas:'Notas',spec_precio:'Precio',spec_empaque:'Empaque',
-    farmers_title:'La historia detrás de<br><em>cada grano</em>',
-    farmer1_story:'Tres generaciones cuidando el café Geisha nativo, considerado uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa. Hoy exportan directamente gracias a HOLZEN.',
-    farmer2_story:'Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN accedieron a certificación especialidad y triplicaron sus ingresos en dos años. Cada saco que envían a Europa lleva el sello de su esfuerzo.',
-    farmer3_story:'En el corazón del Valle Monzón, este grupo mantiene viva la tradición del proceso natural. Cada lote es un reflejo de su dedicación y del microclima único de este valle. Su café tiene un perfil de cata inconfundible.',
-    proc_eyebrow:'Nuestro Proceso', proc_title:'De la parcela a<br><em>tu mesa</em>',
-    proc1_t:'Cosecha Selectiva', proc1_d:'Solo cerezas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.',
-    proc2_t:'Procesado Artesanal', proc2_d:'48-72 horas de procesado controlado. El proceso que desarrolla los precursores de sabor únicos del café peruano.',
-    proc3_t:'Secado Solar', proc3_d:'Bajo el sol andino durante 7 a 10 días. Humedad final ≤7%. Sin secado artificial que altere el perfil sensorial.',
-    proc4_t:'Control & Envío', proc4_d:'Análisis de laboratorio, certificados EUDR y empaque en sacos GrainPro. De Lima a tu destino en Europa.',
-    contact_eyebrow:'¿Te interesa?', contact_title:'Hablemos de<br><em>café</em>',
-    contact_body:'Trabajamos con tostadores y distribuidores B2B en Europa y Perú. Mínimo de pedido: 25 kg por variedad. Respondemos en menos de 24 horas.',
-    footer_desc:'Café premium de origen peruano.<br>Lima, Perú — Europa.',
-    footer_products:'Productos', footer_company:'Empresa',
-    footer_copy:'© 2025 HOLZEN · Aurum Origins. Todos los derechos reservados.',
-    cart_empty:'Tu carrito está vacío.<br>Agrega productos del catálogo.',
-    cart_wa:'Pedir por WhatsApp',
-    cart_note:'Te contactaremos para confirmar disponibilidad, envío y método de pago.'
+    nav_manifesto:"Filosofía", nav_products:"Catálogo", nav_farmers:"Productores", nav_process:"Proceso", nav_contact:"Contacto",
+    hero_eyebrow:"Café de Especialidad · Perú",
+    hero_sub_em:"Del árbol al alma",
+    hero_sub:"Café de origen único, cultivado en los valles más puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con propósito.",
+    hero_btn1:"Ver Catálogo", hero_btn2:"Nuestros Productores",
+    manifesto_eyebrow:"Nuestra Filosofía",
+    manifesto_title:"El café como arte,<br>no como <em>commodity</em>",
+    manifesto_p1:"Detrás de cada taza de HOLZEN hay una historia que el mundo necesita conocer. Nuestros caficultores son supervivientes. Mujeres que reconstruyeron su vida después de la violencia. Hombres que cambiaron la hoja de coca por el grano de oro.",
+    manifesto_quote:"No cultivamos solo café. Cultivamos dignidad, esperanza y el derecho a un futuro mejor.",
+    manifesto_p2:"HOLZEN nace de la convicción de que el mejor café crece en las manos de quienes más han luchado. Cuando compras HOLZEN, te conviertes en parte de esta transformación.",
+    stat1:"Puntos SCA mínimo", stat2:"Humedad máx.", stat3:"Trazabilidad EUDR", stat4:"Variedades premium",
+    prod_eyebrow:"Catálogo", prod_title:"Nuestros<br><em>Cafés</em>",
+    btn_add:"+", btn_add_txt:"Agregar al pedido",
+    farmers_eyebrow:"La historia detrás de cada grano",
+    farmer1_tag:"Café · Villa Rica, Pasco",
+    farmer2_tag:"Café · Chanchamayo, Junín",
+    farmer3_tag:"Café · Valle Monzón, Huánuco",
+    farmer1_story:"Tres generaciones cuidando el café Geisha nativo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa.",
+    farmer2_story:"Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN triplicaron sus ingresos en dos años.",
+    farmer3_story:"En el corazón del Valle Monzón, este grupo mantiene viva la tradición del proceso natural. Su café tiene un perfil de cata inconfundible.",
+    proc_eyebrow:"Nuestro Proceso", proc_title:"De la parcela a<br><em>tu mesa</em>",
+    proc1_t:"Cosecha Selectiva", proc1_d:"Solo cerezas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.",
+    proc2_t:"Procesado Artesanal", proc2_d:"48-72 horas de procesado controlado. El proceso que desarrolla los precursores de sabor únicos del café peruano.",
+    proc3_t:"Secado Solar", proc3_d:"Bajo el sol andino durante 7 a 10 días. Humedad final menor o igual a 7%. Sin secado artificial.",
+    proc4_t:"Control y Envío", proc4_d:"Análisis de laboratorio, certificados EUDR y empaque en sacos GrainPro. De Lima a tu destino en Europa.",
+    contact_eyebrow:"¿Te interesa?", contact_title:"Hablemos de<br><em>café</em>",
+    contact_body:"Trabajamos con tostadores y distribuidores B2B en Europa y Perú. Mínimo 25 kg por variedad. Respondemos en menos de 24 horas.",
+    footer_desc:"Café premium de origen peruano.<br>Lima, Perú — Europa.",
+    footer_products:"Productos", footer_company:"Empresa",
+    footer_copy:"© 2025 HOLZEN · Legado Inca. Todos los derechos reservados.",
+    cart_empty:"Tu carrito está vacío.<br>Agrega productos del catálogo.",
+    cart_wa:"Pedir por WhatsApp",
+    cart_note:"Te contactaremos para confirmar disponibilidad, envío y método de pago."
   },
   en: {
-    nav_manifesto:'Philosophy', nav_products:'Catalogue', nav_farmers:'Farmers', nav_process:'Process', nav_contact:'Contact',
-    hero_eyebrow:'Specialty Coffee · Peru',
-    hero_sub_em:'From the tree to your soul',
-    hero_sub:'Single-origin coffee, grown in the purest valleys of the Peruvian Andes. Processed by hand, sun-dried, delivered with purpose.',
-    hero_btn1:'View Catalogue', hero_btn2:'Our Farmers',
-    manifesto_eyebrow:'Our Philosophy',
-    manifesto_title:'Coffee as art,<br>not as <em>commodity</em>',
-    stat1:'SCA points minimum', stat2:'Max. moisture', stat3:'EUDR traceability', stat4:'Premium varieties',
-    prod_eyebrow:'Catalogue', prod_title:'Our<br><em>Coffees</em>',
-    btn_add_txt:'Add to order',
-    farmers_eyebrow:'Life Stories',
-    farmers_title:'The story behind<br><em>every bean</em>',
-    farmer1_story:'Three generations tending native Geisha coffee, considered one of the finest in the world. Their fight to preserve this ancestral variety opened the doors to the best roasters in Europe. Today they export directly thanks to HOLZEN.',
-    farmer2_story:'Families who turned abandoned land into productive coffee farms. With HOLZEN's support they achieved specialty certification and tripled their income in two years. Every sack they send to Europe carries the seal of their effort.',
-    farmer3_story:'At the heart of the Monzon Valley, this group keeps the tradition of natural processing alive. Each lot reflects their dedication and the unique microclimate of this valley. Their coffee has an unmistakable cupping profile.',
-    proc_eyebrow:'Our Process', proc_title:'From the farm<br><em>to your table</em>',
-    proc1_t:'Selective Harvest', proc1_d:'Only cherries at peak ripeness, hand-picked by our producers.',
-    proc2_t:'Artisan Processing', proc2_d:'48-72 hours of controlled processing. The step that develops the unique flavor precursors of Peruvian coffee.',
-    proc3_t:'Solar Drying', proc3_d:'Under the Andean sun for 7 to 10 days. Final moisture below 7%. No artificial drying.',
-    proc4_t:'Quality Control & Shipping', proc4_d:'Lab analysis, EUDR certificates and GrainPro sack packaging. From Lima to your destination in Europe.',
-    contact_eyebrow:'Interested?', contact_title:'Let's talk<br><em>coffee</em>',
-    contact_body:'We work with roasters and B2B distributors in Europe and Peru. Minimum order: 25 kg per variety. We respond in less than 24 hours.',
-    footer_desc:'Premium single-origin coffee.<br>Lima, Peru — Europe.',
-    footer_products:'Products', footer_company:'Company',
-    footer_copy:'© 2025 HOLZEN · Aurum Origins. All rights reserved.',
-    cart_empty:'Your cart is empty.<br>Add products from the catalogue.',
-    cart_wa:'Order via WhatsApp',
-    cart_note:'We will contact you to confirm availability, shipping and payment method.'
+    nav_manifesto:"Philosophy", nav_products:"Catalogue", nav_farmers:"Farmers", nav_process:"Process", nav_contact:"Contact",
+    hero_eyebrow:"Specialty Coffee · Peru",
+    hero_sub_em:"From the tree to your soul",
+    hero_sub:"Single-origin coffee, grown in the purest valleys of the Peruvian Andes. Processed by hand, sun-dried, delivered with purpose.",
+    hero_btn1:"View Catalogue", hero_btn2:"Our Farmers",
+    manifesto_eyebrow:"Our Philosophy",
+    manifesto_title:"Coffee as art,<br>not as <em>commodity</em>",
+    manifesto_p1:"Behind every cup of HOLZEN is a story the world needs to know. Our farmers are survivors. Women who rebuilt their lives after violence. Men who traded coca leaves for golden beans.",
+    manifesto_quote:"We do not just grow coffee. We grow dignity, hope and the right to a better future.",
+    manifesto_p2:"HOLZEN was born from the conviction that the best coffee grows in the hands of those who have fought the most. When you buy HOLZEN, you become part of this transformation.",
+    stat1:"SCA points minimum", stat2:"Max. moisture", stat3:"EUDR traceability", stat4:"Premium varieties",
+    prod_eyebrow:"Catalogue", prod_title:"Our<br><em>Coffees</em>",
+    btn_add:"+", btn_add_txt:"Add to order",
+    farmers_eyebrow:"Life Stories",
+    farmer1_tag:"Coffee · Villa Rica, Pasco",
+    farmer2_tag:"Coffee · Chanchamayo, Junín",
+    farmer3_tag:"Coffee · Monzon Valley, Huánuco",
+    farmer1_story:"Three generations tending native Geisha coffee. Their fight to preserve this ancestral variety opened the doors to the best roasters in Europe.",
+    farmer2_story:"Families who turned abandoned land into productive coffee farms. With HOLZEN support they tripled their income in two years.",
+    farmer3_story:"In the heart of the Monzon Valley, this group keeps the tradition of natural processing alive. Their coffee has an unmistakable cupping profile.",
+    proc_eyebrow:"Our Process", proc_title:"From the farm<br><em>to your table</em>",
+    proc1_t:"Selective Harvest", proc1_d:"Only cherries at peak ripeness, hand-picked by our producers.",
+    proc2_t:"Artisan Processing", proc2_d:"48-72 hours of controlled processing. The step that develops the unique flavor profiles of Peruvian coffee.",
+    proc3_t:"Solar Drying", proc3_d:"Under the Andean sun for 7 to 10 days. Final moisture below 7%. No artificial drying.",
+    proc4_t:"Quality Control and Shipping", proc4_d:"Lab analysis, EUDR certificates and GrainPro sack packaging. From Lima to your destination in Europe.",
+    contact_eyebrow:"Interested?", contact_title:"Let us talk<br><em>coffee</em>",
+    contact_body:"We work with roasters and B2B distributors in Europe and Peru. Minimum 25 kg per variety. We respond in less than 24 hours.",
+    footer_desc:"Premium single-origin coffee.<br>Lima, Peru — Europe.",
+    footer_products:"Products", footer_company:"Company",
+    footer_copy:"© 2025 HOLZEN · Legado Inca. All rights reserved.",
+    cart_empty:"Your cart is empty.<br>Add products from the catalogue.",
+    cart_wa:"Order via WhatsApp",
+    cart_note:"We will contact you to confirm availability, shipping and payment method."
   },
   de: {
-    nav_manifesto:'Philosophie', nav_products:'Katalog', nav_farmers:'Erzeuger', nav_process:'Prozess', nav_contact:'Kontakt',
-    hero_eyebrow:'Spezialitätenkaffee · Peru',
-    hero_sub_em:'Vom Baum zur Seele',
-    hero_sub:'Single-Origin-Kaffee aus den reinsten Tälern der peruanischen Anden. Handverarbeitet, sonnengetrocknet, mit Zweck geliefert.',
-    hero_btn1:'Katalog ansehen', hero_btn2:'Unsere Erzeuger',
-    manifesto_eyebrow:'Unsere Philosophie',
-    manifesto_title:'Kaffee als Kunst,<br>nicht als <em>Massenware</em>',
-    stat1:'SCA-Punkte Minimum', stat2:'Max. Feuchtigkeit', stat3:'EUDR-Ruckverfolgung', stat4:'Premium-Sorten',
-    prod_eyebrow:'Katalog', prod_title:'Unsere<br><em>Kaffees</em>',
-    btn_add_txt:'Zur Bestellung hinzufugen',
-    farmers_eyebrow:'Lebensgeschichten',
-    farmers_title:'Die Geschichte hinter<br><em>jeder Bohne</em>',
-    farmer1_story:'Drei Generationen pflegen nativen Geisha-Kaffee, einer der feinsten der Welt. Ihr Kampf um diese Sorte offnete die Turen der besten Rostereien Europas. Heute exportieren sie dank HOLZEN direkt.',
-    farmer2_story:'Familien, die brachliegendes Land in produktive Kaffeeplantagen verwandelten. Mit HOLZEN erreichten sie Specialty-Zertifizierung und verdreifachten ihre Einnahmen in zwei Jahren.',
-    farmer3_story:'Im Herzen des Monzon-Tals halt diese Gruppe die Tradition der Naturverarbeitung lebendig. Jede Charge spiegelt ihre Hingabe und das einzigartige Mikroklima wider.',
-    proc_eyebrow:'Unser Prozess', proc_title:'Von der Parzelle<br><em>zu Ihrem Tisch</em>',
-    proc1_t:'Selektive Ernte', proc1_d:'Nur Kirschen auf dem Hohepunkt der Reife, von Hand gepfluckt.',
-    proc2_t:'Handwerkliche Verarbeitung', proc2_d:'48-72 Stunden kontrollierte Verarbeitung. Der Schritt, der die einzigartigen Geschmacksprekursoren entwickelt.',
-    proc3_t:'Solartrocknung', proc3_d:'Unter der Andensonne 7 bis 10 Tage. Endfeuchte unter 7%. Keine kunstliche Trocknung.',
-    proc4_t:'Qualitätskontrolle & Versand', proc4_d:'Laboranalyse, EUDR-Zertifikate und GrainPro-Sacke. Von Lima zu Ihrem Ziel in Europa.',
-    contact_eyebrow:'Interesse?', contact_title:'Sprechen wir uber<br><em>Kaffee</em>',
-    contact_body:'Wir arbeiten mit Rostern und B2B-Distributoren in Europa und Peru. Mindestbestellung: 25 kg pro Sorte. Antwort in weniger als 24 Stunden.',
-    footer_desc:'Premium Single-Origin-Kaffee.<br>Lima, Peru — Europa.',
-    footer_products:'Produkte', footer_company:'Unternehmen',
-    footer_copy:'© 2025 HOLZEN · Aurum Origins. Alle Rechte vorbehalten.',
-    cart_empty:'Ihr Warenkorb ist leer.<br>Produkte aus dem Katalog hinzufugen.',
-    cart_wa:'Per WhatsApp bestellen',
-    cart_note:'Wir kontaktieren Sie zur Bestatigung von Verfugbarkeit, Versand und Zahlungsmethode.'
+    nav_manifesto:"Philosophie", nav_products:"Katalog", nav_farmers:"Erzeuger", nav_process:"Prozess", nav_contact:"Kontakt",
+    hero_eyebrow:"Spezialitätenkaffee · Peru",
+    hero_sub_em:"Vom Baum zur Seele",
+    hero_sub:"Single-Origin-Kaffee aus den reinsten Tälern der peruanischen Anden. Handverarbeitet, sonnengetrocknet, mit Zweck geliefert.",
+    hero_btn1:"Katalog ansehen", hero_btn2:"Unsere Erzeuger",
+    manifesto_eyebrow:"Unsere Philosophie",
+    manifesto_title:"Kaffee als Kunst,<br>nicht als <em>Massenware</em>",
+    manifesto_p1:"Hinter jeder Tasse HOLZEN steckt eine Geschichte. Unsere Kaffeebauern sind Überlebende. Frauen, die ihr Leben nach der Gewalt neu aufbauten. Männer, die Kokablätter gegen goldene Bohnen tauschten.",
+    manifesto_quote:"Wir bauen nicht nur Kaffee an. Wir bauen Würde, Hoffnung und das Recht auf eine bessere Zukunft.",
+    manifesto_p2:"HOLZEN wurde aus der Überzeugung geboren, dass der beste Kaffee in den Händen derer wächst, die am meisten gekämpft haben.",
+    stat1:"SCA-Punkte Minimum", stat2:"Max. Feuchtigkeit", stat3:"EUDR-Rückverfolgung", stat4:"Premium-Sorten",
+    prod_eyebrow:"Katalog", prod_title:"Unsere<br><em>Kaffees</em>",
+    btn_add:"+", btn_add_txt:"Zur Bestellung hinzufügen",
+    farmers_eyebrow:"Lebensgeschichten",
+    farmer1_tag:"Kaffee · Villa Rica, Pasco",
+    farmer2_tag:"Kaffee · Chanchamayo, Junín",
+    farmer3_tag:"Kaffee · Monzon-Tal, Huánuco",
+    farmer1_story:"Drei Generationen pflegen nativen Geisha-Kaffee. Ihr Kampf um diese Sorte öffnete die Türen der besten Röstereien Europas.",
+    farmer2_story:"Familien, die brachliegendes Land in produktive Kaffeeplantagen verwandelten. Mit HOLZEN verdreifachten sie ihre Einnahmen in zwei Jahren.",
+    farmer3_story:"Im Herzen des Monzon-Tals hält diese Gruppe die Tradition der Naturverarbeitung lebendig.",
+    proc_eyebrow:"Unser Prozess", proc_title:"Von der Parzelle<br><em>zu Ihrem Tisch</em>",
+    proc1_t:"Selektive Ernte", proc1_d:"Nur Kirschen auf dem Höhepunkt der Reife, von Hand gepflückt.",
+    proc2_t:"Handwerkliche Verarbeitung", proc2_d:"48-72 Stunden kontrollierte Verarbeitung.",
+    proc3_t:"Solartrocknung", proc3_d:"Unter der Andensonne 7 bis 10 Tage. Endfeuchte unter 7%.",
+    proc4_t:"Qualitätskontrolle und Versand", proc4_d:"Laboranalyse, EUDR-Zertifikate und GrainPro-Säcke.",
+    contact_eyebrow:"Interesse?", contact_title:"Sprechen wir über<br><em>Kaffee</em>",
+    contact_body:"Wir arbeiten mit Röstern und B2B-Distributoren in Europa und Peru. Mindestbestellung 25 kg. Antwort in weniger als 24 Stunden.",
+    footer_desc:"Premium Single-Origin-Kaffee.<br>Lima, Peru — Europa.",
+    footer_products:"Produkte", footer_company:"Unternehmen",
+    footer_copy:"© 2025 HOLZEN · Legado Inca. Alle Rechte vorbehalten.",
+    cart_empty:"Ihr Warenkorb ist leer.<br>Produkte aus dem Katalog hinzufügen.",
+    cart_wa:"Per WhatsApp bestellen",
+    cart_note:"Wir kontaktieren Sie zur Bestätigung von Verfügbarkeit, Versand und Zahlungsmethode."
   },
   cs: {
-    nav_manifesto:'Filozofie', nav_products:'Katalog', nav_farmers:'Pestitelé', nav_process:'Proces', nav_contact:'Kontakt',
-    hero_eyebrow:'Specialty kava · Peru',
-    hero_sub_em:'Ze stromu do duse',
-    hero_sub:'Kava jedineho puvodu, pestovana v nejcistejsich udolich peruanskych And. Zpracovana rucne, susena na slunci, dodavana s ucelem.',
-    hero_btn1:'Zobrazit katalog', hero_btn2:'Nasi pestitelé',
-    manifesto_eyebrow:'Nase filozofie',
-    manifesto_title:'Kava jako umeni,<br>ne jako <em>komodita</em>',
-    stat1:'Body SCA minimum', stat2:'Max. vlhkost', stat3:'Sledovatelnost EUDR', stat4:'Prémiové odrůdy',
-    prod_eyebrow:'Katalog', prod_title:'Nase<br><em>Kavy</em>',
-    btn_add_txt:'Pridat do objednávky',
-    farmers_eyebrow:'Zivotni pribehy',
-    farmers_title:'Pribeh za<br><em>kazdym zrnem</em>',
-    farmer1_story:'Tri generace pecuji o nativni kavu Geisha, povazovanou za jednu z nejjemnejsich na svete. Jejich boj o zachovani teto pradavné odrudy otevrél dvere nejlepsim prazírnam Evropy. Dnes exportuji priméo díky HOLZEN.',
-    farmer2_story:'Rodiny, které promenily opustená pole na produktivní kavové plantáze. S podporou HOLZEN dosáhly certifikace specialty a za dva roky ztrojnásobily príjmy.',
-    farmer3_story:'V srdci údolí Monzón tato skupina udruje tradici prírodního zpracování. Kazda várka odráí jejich oddanost a jedinecné mikroklima tohoto údolí.',
-    proc_eyebrow:'Nas proces', proc_title:'Z farmy<br><em>na vas stul</em>',
-    proc1_t:'Selektivní sklizen', proc1_d:'Pouze tresne na vrcholu zralosti, rucne sbírane nasimi pestiteli.',
-    proc2_t:'Remeselné zpracování', proc2_d:'48-72 hodin kontrolovaného zpracování. Krok, který rozvíjí jedinecné precursory chuti peruanské kavy.',
-    proc3_t:'Solární susení', proc3_d:'Pod andským sluncem 7 az 10 dní. Konecná vlhkost pod 7%. Zadné umelé susení.',
-    proc4_t:'Kontrola kvality & Odeslání', proc4_d:'Laboratorní analýza, certifikáty EUDR a balení do vaku GrainPro. Z Limy do vaseho cíle v Evrope.',
-    contact_eyebrow:'Máte zájem?', contact_title:'Mluvme o<br><em>kave</em>',
-    contact_body:'Pracujeme s prazírnami a B2B distributory v Evrope a Peru. Minimální objednávka: 25 kg na odrudu. Odpovídáme do 24 hodin.',
-    footer_desc:'Prémiová kava jedineného puvodu.<br>Lima, Peru — Evropa.',
-    footer_products:'Produkty', footer_company:'Spolecnost',
-    footer_copy:'© 2025 HOLZEN · Aurum Origins. Vsechna práva vyhrazena.',
-    cart_empty:'Vás kosík je prázdný.<br>Pridejte produkty z katalogu.',
-    cart_wa:'Objednat pres WhatsApp',
-    cart_note:'Kontaktujeme vás pro potvrzení dostupnosti, dopravy a zpusobu platby.'
+    nav_manifesto:"Filozofie", nav_products:"Katalog", nav_farmers:"Pestitelé", nav_process:"Proces", nav_contact:"Kontakt",
+    hero_eyebrow:"Specialty kava · Peru",
+    hero_sub_em:"Ze stromu do duse",
+    hero_sub:"Kava jediného puvodu, pestována v nejcistejsích údolích peruánských And. Zpracována rucne, susena na slunci.",
+    hero_btn1:"Zobrazit katalog", hero_btn2:"Nasi pestitelé",
+    manifesto_eyebrow:"Nase filozofie",
+    manifesto_title:"Kava jako umení,<br>ne jako <em>komodita</em>",
+    manifesto_p1:"Za kazdou sálkem HOLZEN je príbeh. Nasi pestitelé jsou prezivsi. Zeny, které znovu vybudovaly svuj zivot. Muzi, kterí vymánili listy koky za zlatá zrna.",
+    manifesto_quote:"Nepestujeme jen kávu. Pestujeme dustojnost, nadeji a právo na lepsí budoucnost.",
+    manifesto_p2:"HOLZEN vznikl z presvedcení, ze nejlepsí káva roste v rukou tech, kterí nejvíce bojovali.",
+    stat1:"Body SCA minimum", stat2:"Max. vlhkost", stat3:"Sledovatelnost EUDR", stat4:"Prémiové odrudy",
+    prod_eyebrow:"Katalog", prod_title:"Nase<br><em>Kávy</em>",
+    btn_add:"+", btn_add_txt:"Pridat do objednávky",
+    farmers_eyebrow:"Zivotní príbehy",
+    farmer1_tag:"Káva · Villa Rica, Pasco",
+    farmer2_tag:"Káva · Chanchamayo, Junín",
+    farmer3_tag:"Káva · Údolí Monzón, Huánuco",
+    farmer1_story:"Tri generace pecují o nativní kávu Geisha. Jejich boj otevrél dvere nejlepsím prazírnám Evropy.",
+    farmer2_story:"Rodiny, které promenily opustená pole na produktivní kavové plantáze. S HOLZEN ztrojnásobily príjmy za dva roky.",
+    farmer3_story:"V srdci údolí Monzón tato skupina udruje tradici prírodního zpracování.",
+    proc_eyebrow:"Nás proces", proc_title:"Z farmy<br><em>na vás stul</em>",
+    proc1_t:"Selektivní sklizen", proc1_d:"Pouze tresne na vrcholu zralosti, rucne sbírané nasimi pestiteli.",
+    proc2_t:"Remeslné zpracování", proc2_d:"48-72 hodin kontrolovaného zpracování.",
+    proc3_t:"Solární susení", proc3_d:"Pod andským sluncem 7 az 10 dní. Konecná vlhkost pod 7%.",
+    proc4_t:"Kontrola kvality a odeslání", proc4_d:"Laboratorní analýza, certifikáty EUDR a balení GrainPro.",
+    contact_eyebrow:"Máte zájem?", contact_title:"Mluvme o<br><em>kave</em>",
+    contact_body:"Pracujeme s prazírnami a B2B distributory v Evrope a Peru. Minimální objednávka 25 kg. Odpovídáme do 24 hodin.",
+    footer_desc:"Prémiová káva jediného puvodu.<br>Lima, Peru — Evropa.",
+    footer_products:"Produkty", footer_company:"Spolecnost",
+    footer_copy:"© 2025 HOLZEN · Legado Inca. Vsechna práva vyhrazena.",
+    cart_empty:"Vás kosík je prázdný.<br>Pridejte produkty z katalogu.",
+    cart_wa:"Objednat pres WhatsApp",
+    cart_note:"Kontaktujeme vás pro potvrzení dostupnosti, dopravy a zpusobu platby."
   }
 };
 
@@ -993,6 +1014,7 @@ function setLang(lang) {
     if (t[k] !== undefined) el.innerHTML = t[k];
   });
 }
+
 
 </script><script>
 // ── HERO SLIDER ──
@@ -1181,4 +1203,28 @@ document.querySelectorAll('.process-step,.manifesto-stats .stat').forEach(functi
 
 // ══ PWA SERVICE WORKER ══
 if('serviceWorker' in navigator){
-  window
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/Holzen/sw.js').catch(function() {});
+  });
+}
+
+// ══ COOKIE BANNER ══
+if (!localStorage.getItem('cookies')) {
+  setTimeout(function() {
+    var cb = document.getElementById('cookie-bar');
+    if (cb) cb.style.display = 'flex';
+  }, 2500);
+}
+</script>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-bar" id="cookie-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(28,10,0,0.97);border-top:1px solid rgba(200,149,74,0.2);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;backdrop-filter:blur(8px);">
+  <p style="font-family:'Jost',sans-serif;font-size:13px;color:rgba(240,228,204,0.6);flex:1;">Usamos cookies para mejorar tu experiencia.</p>
+  <div style="display:flex;gap:10px;">
+    <button onclick="document.getElementById('cookie-bar').style.display='none';localStorage.setItem('cookies','ok')" style="background:var(--copper);color:var(--ink);border:none;padding:8px 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.1em;cursor:pointer;font-weight:700;">Aceptar</button>
+    <button onclick="document.getElementById('cookie-bar').style.display='none'" style="background:transparent;color:rgba(240,228,204,0.5);border:1px solid rgba(200,149,74,0.2);padding:8px 16px;font-family:'Jost',sans-serif;font-size:10px;cursor:pointer;">Solo esenciales</button>
+  </div>
+</div>
+
+</body>
+</html>
