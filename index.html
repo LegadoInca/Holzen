@@ -23,13 +23,13 @@
    Aesthetic: Refined luxury · Dark café de especialidad · Editorial
 ═══════════════════════════════════════════ */
 :root {
-  --ink:        #0D0500;
+  --ink:        #0F0500;
   --deep:       #1C0A00;
   --bark:       #2E1200;
   --mid:        #4A2010;
-  --copper:     #C8954A;
-  --copper-lt:  #E8B870;
-  --copper-dk:  #8A5E28;
+  --copper:     #C8A96E;
+  --copper-lt:  #E0C98A;
+  --copper-dk:  #9E7D45;
   --cream:      #F5ECD8;
   --cream-dk:   #E8D8B8;
   --sand:       #C8A878;
@@ -83,10 +83,7 @@ nav {
   display:flex;justify-content:space-between;align-items:center;
   transition:all 0.4s;
 }
-nav.scrolled {
-  background:rgba(13,5,0,0.96);backdrop-filter:blur(16px);
-  padding:14px 60px;border-bottom:1px solid var(--border);
-}
+nav.scrolled{background:rgba(15,5,0,0.95);backdrop-filter:blur(8px);padding:14px 60px;border-bottom:1px solid rgba(200,169,110,0.1);}
 .nav-logo {
   font-family:'Cormorant Garamond',serif;
   font-size:28px;font-weight:700;letter-spacing:0.18em;
@@ -103,14 +100,14 @@ nav.scrolled {
   color:var(--muted);text-decoration:none;cursor:pointer;transition:color 0.3s;
 }
 .nav-links a:hover { color:var(--copper); }
-.nav-wa {
+.nav-wa{
   display:flex;align-items:center;gap:8px;
   background:transparent;border:1px solid var(--border);
   color:var(--copper);padding:9px 20px;
   font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
   cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.3s;
   text-decoration:none;
-}
+;border-radius:999px;}
 .nav-wa:hover { background:rgba(200,149,74,0.1);border-color:var(--copper); }
 
 /* Mobile nav */
@@ -126,7 +123,7 @@ nav.scrolled {
 }
 .hero-video {
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:brightness(0.45) saturate(1.2);
+  
 }
 .hero-overlay {
   position:absolute;inset:0;
@@ -142,18 +139,8 @@ nav.scrolled {
   opacity:0;animation:fadeUp 1s 0.3s forwards;
 }
 .hero-eyebrow::before { content:'';width:32px;height:1px;background:var(--copper-dk); }
-.hero-title {
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(64px,9vw,120px);font-weight:700;
-  color:var(--cream);line-height:0.9;letter-spacing:0.04em;
-  text-transform:uppercase;
-  opacity:0;animation:fadeUp 1s 0.5s forwards;
-}
-.hero-title em {
-  display:block;font-style:italic;font-weight:300;
-  font-size:0.55em;color:var(--copper);letter-spacing:0.1em;
-  margin-top:8px;
-}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,10vw,8rem);font-weight:900;color:var(--cream);line-height:1;letter-spacing:0.15em;text-transform:uppercase;opacity:0;animation:fadeUp 1s 0.5s forwards;text-align:center;}
+.hero-title em{display:block;font-style:italic;color:var(--copper);font-weight:400;font-size:clamp(1.1rem,3vw,2rem);letter-spacing:0.1em;margin-top:8px;}
 .hero-sub {
   font-size:14px;color:var(--muted);line-height:1.8;
   margin-top:24px;max-width:440px;
@@ -176,18 +163,18 @@ nav.scrolled {
 @keyframes scrollPulse { 0%{transform:scaleY(0);transform-origin:top;} 50%{transform:scaleY(1);transform-origin:top;} 51%{transform:scaleY(1);transform-origin:bottom;} 100%{transform:scaleY(0);transform-origin:bottom;} }
 
 /* ═══ BUTTONS ═══ */
-.btn-primary {
+.btn-primary{
   background:var(--copper);color:var(--ink);border:none;
   padding:14px 36px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;
   cursor:pointer;font-family:'Jost',sans-serif;font-weight:500;transition:all 0.3s;
-}
+;border-radius:999px;}
 .btn-primary:hover { background:var(--copper-lt);transform:translateY(-2px); }
-.btn-outline {
+.btn-outline{
   background:transparent;color:var(--copper);border:1px solid var(--border);
   padding:14px 36px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;
   cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.3s;
   text-decoration:none;display:inline-block;
-}
+;border-radius:999px;}
 .btn-outline:hover { background:rgba(200,149,74,0.08);border-color:var(--copper); }
 .btn-wa {
   background:#25D366;color:#fff;border:none;
@@ -207,7 +194,7 @@ section { padding:120px 80px; }
 .eyebrow::before { content:'';width:28px;height:1px;background:var(--copper-dk); }
 .section-title {
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(36px,5vw,64px);font-weight:400;line-height:1.1;color:var(--cream);
+  font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.15;color:var(--cream);
 }
 .section-title em { font-style:italic;color:var(--copper); }
 
@@ -232,12 +219,12 @@ section { padding:120px 80px; }
 .manifesto-img img { width:100%;height:100%;object-fit:cover;position:relative;z-index:1; }
 
 /* ═══ PRODUCTS ═══ */
-#products { background:var(--ink); }
-.products-intro { max-width:560px;margin-bottom:80px; }
+#products { background:var(--ink); padding:40px 60px; }
+.products-intro { max-width:560px;margin-bottom:40px; }
 .products-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px; }
 .prod-card {
   position:relative;overflow:hidden;cursor:pointer;
-  aspect-ratio:3/4;background:var(--deep);
+  aspect-ratio:3/4;background:var(--deep);border-radius:12px;
 }
 .prod-img {
   width:100%;height:100%;object-fit:cover;
@@ -290,7 +277,7 @@ section { padding:120px 80px; }
 }
 .farmer-img {
   width:100%;height:100%;object-fit:cover;object-position:center 25%;
-  filter:brightness(0.85) saturate(1.1);
+  
   transition:transform 0.8s ease;
 }
 .farmer-slide:hover .farmer-img { transform:scale(1.03); }
@@ -444,7 +431,7 @@ footer {
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1024px){
   nav { padding:18px 24px; }
-  nav.scrolled { padding:12px 24px; }
+  nav.scrolled{background:rgba(15,5,0,0.95);backdrop-filter:blur(8px);padding:14px 60px;border-bottom:1px solid rgba(200,169,110,0.1);}
   .nav-links { display:none; }
   .mob-nav-btn { display:block; }
   section { padding:80px 24px; }
@@ -466,7 +453,7 @@ footer {
   .products-grid { grid-template-columns:1fr; }
   .process-grid { grid-template-columns:1fr; }
   .manifesto-stats { grid-template-columns:1fr 1fr; }
-  .hero-title { font-size:56px; }
+  .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,10vw,8rem);font-weight:900;color:var(--cream);line-height:1;letter-spacing:0.15em;text-transform:uppercase;opacity:0;animation:fadeUp 1s 0.5s forwards;text-align:center;}
   .footer-grid { grid-template-columns:1fr; }
 }
 
@@ -553,38 +540,38 @@ footer {
 <section id="hero" style="position:relative;height:100vh;overflow:hidden;">
   <!-- SLIDE 1 — VIDEO -->
   <div class="hslide" style="position:absolute;inset:0;opacity:1;transition:opacity 1.4s ease;">
-    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(0.38) saturate(1.1);">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center 40%;">
       <source src="https://res.cloudinary.com/djfmngyl0/video/upload/v1773435823/9063027-uhd_3840_2160_30fps_rqdegd.mp4" type="video/mp4">
     </video>
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,1) 0%,rgba(13,5,0,0.1) 60%,transparent 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,5,0,0.5) 0%,rgba(15,5,0,0.3) 50%,rgba(15,5,0,0.7) 100%);"></div>
   </div>
   <!-- SLIDE 2 -->
   <div class="hslide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774742809/pexels-cleiton-silva-107471926-10980490_flam0f.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(0.38) saturate(1.1);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,1) 0%,rgba(13,5,0,0.1) 60%,transparent 100%);"></div>
+    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774742809/pexels-cleiton-silva-107471926-10980490_flam0f.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,5,0,0.5) 0%,rgba(15,5,0,0.3) 50%,rgba(15,5,0,0.7) 100%);"></div>
   </div>
   <!-- SLIDE 3 -->
   <div class="hslide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774742806/pexels-jvalenciazz-12833203_zopukm.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(0.38) saturate(1.1);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,1) 0%,rgba(13,5,0,0.1) 60%,transparent 100%);"></div>
+    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774742806/pexels-jvalenciazz-12833203_zopukm.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,5,0,0.5) 0%,rgba(15,5,0,0.3) 50%,rgba(15,5,0,0.7) 100%);"></div>
   </div>
   <!-- SLIDE 4 -->
   <div class="hslide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773435261/e45b66891fa2f4f8ce8526485a6c3da9_llpiux.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(0.38) saturate(1.1);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,1) 0%,rgba(13,5,0,0.1) 60%,transparent 100%);"></div>
+    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773435261/e45b66891fa2f4f8ce8526485a6c3da9_llpiux.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,5,0,0.5) 0%,rgba(15,5,0,0.3) 50%,rgba(15,5,0,0.7) 100%);"></div>
   </div>
   <!-- SLIDE 5 -->
   <div class="hslide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774826862/pexels-franco30-11130920_shooei.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(0.38) saturate(1.1);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,1) 0%,rgba(13,5,0,0.1) 60%,transparent 100%);"></div>
+    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774826862/pexels-franco30-11130920_shooei.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,5,0,0.5) 0%,rgba(15,5,0,0.3) 50%,rgba(15,5,0,0.7) 100%);"></div>
   </div>
   <!-- SLIDE 6 -->
   <div class="hslide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774826862/pexels-irvin-david-906313077-36040318_f550kd.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:brightness(0.38) saturate(1.1);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,1) 0%,rgba(13,5,0,0.1) 60%,transparent 100%);"></div>
+    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1774826862/pexels-irvin-david-906313077-36040318_f550kd.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(15,5,0,0.5) 0%,rgba(15,5,0,0.3) 50%,rgba(15,5,0,0.7) 100%);"></div>
   </div>
   <!-- CONTENT -->
-  <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 80px;padding-top:80px;">
+  <div style="position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 32px;padding-top:80px;">
     <p class="hero-eyebrow" data-key="hero_eyebrow">Caf&#233; de Especialidad &#183; Per&#250;</p>
     <h1 class="hero-title">HOLZEN<em data-key="hero_sub_em">Del &#225;rbol al alma</em></h1>
     <p class="hero-sub" data-key="hero_sub">Caf&#233; de origen &#250;nico, cultivado en los valles m&#225;s puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con prop&#243;sito.</p>
@@ -594,35 +581,156 @@ footer {
     </div>
   </div>
   <!-- DOTS -->
-  <div id="hdots" style="position:absolute;bottom:32px;left:80px;z-index:3;display:flex;gap:8px;align-items:center;"></div>
+  <div id="hdots" style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:8px;align-items:center;"></div>
 </section>
 
-<!-- MANIFESTO -->
-<section id="manifesto" style="padding:100px 80px;background:var(--deep);">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
-    <div>
-      <p class="eyebrow" data-key="manifesto_eyebrow">Nuestra Filosof&#237;a</p>
-      <h2 class="section-title" data-key="manifesto_title">El caf&#233; como arte,<br>no como <em>commodity</em></h2>
-      <div style="margin-top:28px;">
-        <p style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--muted);line-height:1.9;margin-bottom:16px;" data-key="manifesto_p1">Detr&#225;s de cada taza de HOLZEN hay una historia que el mundo necesita conocer. Nuestros caficultores no son simples proveedores &#8212; son supervivientes. Mujeres que reconstruyeron su vida despu&#233;s de la violencia. Hombres que cambiaron la hoja de coca por el grano de oro. Familias que vivieron el terror del conflicto armado y eligieron quedarse, sembrar y florecer.</p>
-        <div style="border-left:3px solid var(--copper);padding-left:24px;margin:28px 0;">
-          <p style="font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);font-style:italic;line-height:1.5;" data-key="manifesto_quote">&#8220;No cultivamos solo caf&#233;. Cultivamos dignidad, esperanza y el derecho a un futuro mejor.&#8221;</p>
-        </div>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--muted);line-height:1.9;" data-key="manifesto_p2">HOLZEN nace de la convicci&#243;n de que el mejor caf&#233; del mundo crece en las manos de quienes m&#225;s han luchado. Cada lote lleva el nombre de quien lo cultiv&#243;, las coordenadas de su parcela y el peso de una historia que merece ser honrada. Cuando compras HOLZEN, te conviertes en parte de esta transformaci&#243;n.</p>
+<!-- FARMERS -->
+<section id="farmers" style="position:relative;background:#0F0500;padding:60px 24px;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.08;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,#c8a96e 0%,transparent 65%);"></div>
+  <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;">
+
+    <!-- Header -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <p style="color:var(--copper);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;margin-bottom:10px;" data-key="farmers_eyebrow">La historia detrás de cada grano</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--cream);font-weight:700;">Nuestros Productores</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px;">
-        <div style="border-left:2px solid var(--border);padding-left:16px;"><div style="font-family:'Playfair Display',serif;font-size:40px;color:var(--copper);font-weight:700;line-height:1;">86+</div><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;" data-key="stat1">Puntos SCA m&#237;nimo</div></div>
-        <div style="border-left:2px solid var(--border);padding-left:16px;"><div style="font-family:'Playfair Display',serif;font-size:40px;color:var(--copper);font-weight:700;line-height:1;">&#8804;7%</div><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;" data-key="stat2">Humedad m&#225;x.</div></div>
-        <div style="border-left:2px solid var(--border);padding-left:16px;"><div style="font-family:'Playfair Display',serif;font-size:40px;color:var(--copper);font-weight:700;line-height:1;">100%</div><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;" data-key="stat3">Trazabilidad EUDR</div></div>
-        <div style="border-left:2px solid var(--border);padding-left:16px;"><div style="font-family:'Playfair Display',serif;font-size:40px;color:var(--copper);font-weight:700;line-height:1;">3</div><div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;" data-key="stat4">Variedades premium</div></div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button onclick="prevFR()" style="width:42px;height:42px;border-radius:50%;border:1px solid rgba(245,230,208,0.2);background:transparent;color:rgba(245,230,208,0.7);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all 0.3s;line-height:1;font-family:serif;">&#8592;</button>
+        <span id="fr-counter" style="font-family:'Playfair Display',serif;color:rgba(245,230,208,0.35);font-size:15px;min-width:56px;text-align:center;">01 / 03</span>
+        <button onclick="nextFR()" style="width:42px;height:42px;border-radius:50%;border:1px solid rgba(245,230,208,0.2);background:transparent;color:rgba(245,230,208,0.7);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all 0.3s;line-height:1;font-family:serif;">&#8594;</button>
       </div>
     </div>
-    <div style="position:relative;height:520px;overflow:hidden;">
-      <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.8) saturate(1.1);" alt="HOLZEN Cafe origen">
+
+    <!-- Stage: left-thumb | portrait | right-thumb -->
+    <div style="display:flex;align-items:center;gap:20px;">
+
+      <!-- Left thumbnail -->
+      <div class="fr-thumbs" style="display:flex;flex-direction:column;gap:14px;flex-shrink:0;">
+        <button onclick="goFR(2)" id="flt-0"
+          style="position:relative;width:110px;height:160px;border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid rgba(245,230,208,0.1);background:none;padding:0;transition:all 0.3s;">
+          <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516573/c2475e4cc2603cd9e890e97ec232598a_knpcxb.jpg"
+            style="width:100%;height:100%;object-fit:cover;" alt="">
+          <div style="position:absolute;inset:0;background:rgba(15,5,0,0.55);transition:background 0.3s;"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:8px;">
+            <p style="color:rgba(245,230,208,0.85);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;margin:0;">Café</p>
+          </div>
+        </button>
+      </div>
+
+      <!-- Main portrait card -->
+      <div style="flex:1;display:flex;flex-direction:column;">
+        <div style="position:relative;border-radius:20px;overflow:hidden;width:100%;aspect-ratio:16/9;max-height:560px;">
+
+          <!-- Farmer images -->
+          <div id="fri-0" style="position:absolute;inset:0;transition:opacity 0.6s ease,transform 0.6s ease;opacity:1;transform:scale(1);">
+            <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516122/d6c6488724febbae729820d253497cb7_un9okc.jpg"
+              style="width:100%;height:100%;object-fit:cover;object-position:50% 20%;" alt="">
+            <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(15,5,0,0.3) 0%,rgba(15,5,0,0.05) 40%,rgba(15,5,0,0.05) 60%,rgba(15,5,0,0.4) 100%);"></div>
+            <div style="position:absolute;inset-x:0;bottom:0;height:60%;background:linear-gradient(to top,rgba(15,5,0,0.95) 0%,rgba(15,5,0,0.5) 50%,transparent 100%);"></div>
+          </div>
+          <div id="fri-1" style="position:absolute;inset:0;transition:opacity 0.6s ease,transform 0.6s ease;opacity:0;transform:scale(0.97);">
+            <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516115/624a4fa7b3b3c803786cb9be0bafb4d2_gvcce3.jpg"
+              style="width:100%;height:100%;object-fit:cover;object-position:50% 20%;" alt="">
+            <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(15,5,0,0.3) 0%,rgba(15,5,0,0.05) 40%,rgba(15,5,0,0.05) 60%,rgba(15,5,0,0.4) 100%);"></div>
+            <div style="position:absolute;inset-x:0;bottom:0;height:60%;background:linear-gradient(to top,rgba(15,5,0,0.95) 0%,rgba(15,5,0,0.5) 50%,transparent 100%);"></div>
+          </div>
+          <div id="fri-2" style="position:absolute;inset:0;transition:opacity 0.6s ease,transform 0.6s ease;opacity:0;transform:scale(0.97);">
+            <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516573/c2475e4cc2603cd9e890e97ec232598a_knpcxb.jpg"
+              style="width:100%;height:100%;object-fit:cover;object-position:50% 20%;" alt="">
+            <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(15,5,0,0.3) 0%,rgba(15,5,0,0.05) 40%,rgba(15,5,0,0.05) 60%,rgba(15,5,0,0.4) 100%);"></div>
+            <div style="position:absolute;inset-x:0;bottom:0;height:60%;background:linear-gradient(to top,rgba(15,5,0,0.95) 0%,rgba(15,5,0,0.5) 50%,transparent 100%);"></div>
+          </div>
+
+          <!-- Badge top-left -->
+          <div style="position:absolute;top:20px;left:20px;z-index:10;">
+            <span id="fr-tag" style="background:rgba(200,169,110,0.92);color:#0F0500;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;font-weight:700;padding:5px 14px;border-radius:999px;" data-key="farmer1_tag">Café · Villa Rica, Pasco</span>
+          </div>
+          <!-- Index watermark top-right -->
+          <div style="position:absolute;top:10px;right:20px;z-index:10;">
+            <span id="fr-idx" style="font-family:'Playfair Display',serif;font-size:5.5rem;color:rgba(245,230,208,0.07);font-weight:900;line-height:1;user-select:none;">01</span>
+          </div>
+
+          <!-- Text bottom -->
+          <div style="position:absolute;bottom:0;left:0;right:0;z-index:10;padding:28px 32px;transition:opacity 0.35s,transform 0.35s;" id="fr-text">
+            <h3 id="fr-name" style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:var(--cream);line-height:1.15;margin-bottom:6px;white-space:pre-line;">Cooperativa&#10;Quillabamba</h3>
+            <p id="fr-loc" style="color:rgba(200,169,110,0.85);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;margin-bottom:14px;">Valle del Urubamba · 900 msnm</p>
+            <blockquote id="fr-story" style="font-family:'Playfair Display',serif;font-style:italic;color:rgba(245,230,208,0.7);font-size:14px;line-height:1.75;border-left:2px solid var(--copper);padding-left:16px;margin:0;" data-key="farmer1_story">Tres generaciones cuidando el café Geisha nativo, uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa.</blockquote>
+          </div>
+
+          <!-- Invisible click zones -->
+          <button onclick="prevFR()" style="position:absolute;left:0;top:0;bottom:0;width:20%;z-index:20;opacity:0;cursor:pointer;background:none;border:none;"></button>
+          <button onclick="nextFR()" style="position:absolute;right:0;top:0;bottom:0;width:20%;z-index:20;opacity:0;cursor:pointer;background:none;border:none;"></button>
+        </div>
+
+        <!-- Progress bars -->
+        <div style="display:flex;gap:8px;margin-top:18px;justify-content:center;">
+          <button onclick="goFR(0)" id="frb-0" style="height:3px;width:48px;background:var(--copper);border:none;cursor:pointer;border-radius:3px;padding:0;transition:all 0.4s;"></button>
+          <button onclick="goFR(1)" id="frb-1" style="height:3px;width:20px;background:rgba(200,169,110,0.2);border:none;cursor:pointer;border-radius:3px;padding:0;transition:all 0.4s;"></button>
+          <button onclick="goFR(2)" id="frb-2" style="height:3px;width:20px;background:rgba(200,169,110,0.2);border:none;cursor:pointer;border-radius:3px;padding:0;transition:all 0.4s;"></button>
+        </div>
+      </div>
+
+      <!-- Right thumbnail -->
+      <div class="fr-thumbs" style="display:flex;flex-direction:column;gap:14px;flex-shrink:0;">
+        <button onclick="goFR(1)" id="frt-0"
+          style="position:relative;width:110px;height:160px;border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid rgba(245,230,208,0.1);background:none;padding:0;transition:all 0.3s;">
+          <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516115/624a4fa7b3b3c803786cb9be0bafb4d2_gvcce3.jpg"
+            style="width:100%;height:100%;object-fit:cover;" alt="">
+          <div style="position:absolute;inset:0;background:rgba(15,5,0,0.55);transition:background 0.3s;"></div>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:8px;">
+            <p style="color:rgba(245,230,208,0.85);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;margin:0;">Café</p>
+          </div>
+        </button>
+      </div>
     </div>
   </div>
 </section>
-
+<!-- MANIFESTO -->
+<section id="manifesto" style="position:relative;padding:80px 60px;background:#0F0500;overflow:hidden;">
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.1;pointer-events:none;z-index:0;">
+    <source src="https://res.cloudinary.com/djfmngyl0/video/upload/v1773435823/9063027-uhd_3840_2160_30fps_rqdegd.mp4" type="video/mp4">
+  </video>
+  <div style="position:absolute;inset:0;background:rgba(15,5,0,0.75);pointer-events:none;z-index:0;"></div>
+  <div style="position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" id="mf-wrap">
+    <div>
+      <p class="eyebrow" data-key="manifesto_eyebrow">Nuestra Filosofía</p>
+      <h2 class="section-title" data-key="manifesto_title">El café como arte,<br>no como <em>commodity</em></h2>
+      <!-- Tabs -->
+      <div style="display:flex;gap:4px;background:#1C0A00;border-radius:999px;padding:4px;margin:24px 0 20px;width:fit-content;">
+        <button onclick="setMT(0)" id="mt-0" style="padding:6px 18px;border-radius:999px;border:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-family:'Cormorant Garamond',serif;background:var(--copper);color:var(--ink);font-weight:700;">Historia</button>
+        <button onclick="setMT(1)" id="mt-1" style="padding:6px 18px;border-radius:999px;border:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-family:'Cormorant Garamond',serif;background:transparent;color:rgba(245,230,208,0.5);">Misión</button>
+        <button onclick="setMT(2)" id="mt-2" style="padding:6px 18px;border-radius:999px;border:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-family:'Cormorant Garamond',serif;background:transparent;color:rgba(245,230,208,0.5);">Impacto</button>
+      </div>
+      <div style="position:relative;min-height:90px;margin-bottom:24px;">
+        <p id="mt-c0" style="position:absolute;inset:0;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--muted);line-height:1.85;transition:opacity 0.4s,transform 0.4s;" data-key="manifesto_p1">Detrás de cada taza de HOLZEN hay una historia que el mundo necesita conocer. Nuestros caficultores son supervivientes. Mujeres que reconstruyeron su vida después de la violencia. Hombres que cambiaron la hoja de coca por el grano de oro.</p>
+        <p id="mt-c1" style="position:absolute;inset:0;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--muted);line-height:1.85;transition:opacity 0.4s,transform 0.4s;opacity:0;transform:translateY(8px);pointer-events:none;" data-key="manifesto_p2">HOLZEN nace de la convicción de que el mejor café crece en las manos de quienes más han luchado. Cada lote lleva el nombre de quien lo cultivó, las coordenadas de su parcela y el peso de una historia que merece ser honrada.</p>
+        <p id="mt-c2" style="position:absolute;inset:0;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--muted);line-height:1.85;transition:opacity 0.4s,transform 0.4s;opacity:0;transform:translateY(8px);pointer-events:none;">Cuando compras HOLZEN, te conviertes en parte de esta transformación. Cada compra financia educación e infraestructura en los Andes peruanos.</p>
+      </div>
+      <div style="border-left:3px solid var(--copper);padding-left:24px;margin-bottom:28px;">
+        <p style="font-family:'Playfair Display',serif;font-size:20px;color:var(--cream);font-style:italic;line-height:1.5;" data-key="manifesto_quote">"No cultivamos solo café. Cultivamos dignidad, esperanza y el derecho a un futuro mejor."</p>
+      </div>
+      <div class="manifesto-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div class="stat" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--copper);font-weight:700;">86+</div><div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-family:'Cormorant Garamond',serif;" data-key="stat1">Puntos SCA mínimo</div></div>
+        <div class="stat" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--copper);font-weight:700;">≤7%</div><div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-family:'Cormorant Garamond',serif;" data-key="stat2">Humedad máx.</div></div>
+        <div class="stat" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--copper);font-weight:700;">100%</div><div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-family:'Cormorant Garamond',serif;" data-key="stat3">Trazabilidad EUDR</div></div>
+        <div class="stat" style="text-align:center;"><div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--copper);font-weight:700;">3</div><div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:4px;font-family:'Cormorant Garamond',serif;" data-key="stat4">Variedades premium</div></div>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg" style="width:100%;height:500px;object-fit:cover;object-position:50% 30%;border-radius:12px;" alt="HOLZEN Cafe origen">
+      <div style="position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(200,169,110,0.1);pointer-events:none;"></div>
+      <div style="position:absolute;top:20px;left:20px;background:rgba(15,5,0,0.82);backdrop-filter:blur(8px);border:1px solid rgba(200,169,110,0.25);border-radius:999px;padding:8px 16px;display:flex;align-items:center;gap:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--copper);display:inline-block;animation:pls 2s infinite;flex-shrink:0;"></span>
+        <span style="color:var(--cream);font-size:11px;font-family:'Cormorant Garamond',serif;letter-spacing:0.15em;text-transform:uppercase;">Origen Único</span>
+      </div>
+      <div style="position:absolute;bottom:20px;right:20px;background:rgba(15,5,0,0.82);backdrop-filter:blur(8px);border:1px solid rgba(200,169,110,0.25);border-radius:12px;padding:12px 18px;">
+        <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--copper);line-height:1;">86+</div>
+        <div style="color:rgba(245,230,208,0.6);font-size:10px;font-family:'Cormorant Garamond',serif;letter-spacing:0.12em;text-transform:uppercase;">Puntos SCA</div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- PRODUCTS -->
 <section id="products">
   <div class="products-intro">
@@ -710,119 +818,133 @@ footer {
   </div>
 </section>
 
-<!-- FARMERS SLIDER — foto arriba centrada, historia abajo -->
-<section id="farmers" style="position:relative;height:90vh;overflow:hidden;background:var(--deep);">
-  <div style="position:absolute;top:28px;left:50%;transform:translateX(-50%);z-index:10;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.45em;text-transform:uppercase;color:var(--copper);white-space:nowrap;" data-key="farmers_eyebrow">La historia detr&#225;s de cada grano</div>
-
-  <!-- SLIDE 1 -->
-  <div class="fslide active" style="position:absolute;inset:0;opacity:1;transition:opacity 1.3s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516122/d6c6488724febbae729820d253497cb7_un9okc.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(0.38) saturate(1.05);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,0.97) 0%,rgba(13,5,0,0.3) 55%,transparent 100%);"></div>
-    <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;padding:60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;">
-      <div>
-        <span style="display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 14px;background:rgba(200,149,74,0.15);border:1px solid rgba(200,149,74,0.3);color:var(--copper);margin-bottom:14px;" data-key="farmer1_tag">Caf&#233; &#183; Villa Rica, Pasco</span>
-        <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);color:var(--cream);font-weight:700;line-height:1.1;margin-bottom:6px;">Cooperativa<br>Quillabamba</div>
-        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--copper);text-transform:uppercase;">Valle del Urubamba &#183; 900 msnm</div>
-      </div>
-      <div>
-        <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.8vw,20px);color:rgba(240,228,204,0.82);line-height:1.85;font-style:italic;border-left:3px solid var(--copper-dk);padding-left:22px;" data-key="farmer1_story">Tres generaciones cuidando el caf&#233; Geisha nativo, uno de los m&#225;s finos del mundo. Su lucha por preservar esta variedad ancestral les abri&#243; las puertas a las mejores tostadoras de Europa.</blockquote>
-      </div>
-    </div>
-    <div style="font-family:'Playfair Display',serif;font-size:120px;color:rgba(200,149,74,0.1);font-weight:900;line-height:1;position:absolute;bottom:40px;right:60px;pointer-events:none;">01</div>
-  </div>
-
-  <!-- SLIDE 2 -->
-  <div class="fslide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.3s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516115/624a4fa7b3b3c803786cb9be0bafb4d2_gvcce3.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(0.38) saturate(1.05);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,0.97) 0%,rgba(13,5,0,0.3) 55%,transparent 100%);"></div>
-    <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;padding:60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;">
-      <div>
-        <span style="display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 14px;background:rgba(200,149,74,0.15);border:1px solid rgba(200,149,74,0.3);color:var(--copper);margin-bottom:14px;" data-key="farmer2_tag">Caf&#233; &#183; Chanchamayo, Jun&#237;n</span>
-        <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);color:var(--cream);font-weight:700;line-height:1.1;margin-bottom:6px;">Asociaci&#243;n<br>San Mart&#237;n</div>
-        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--copper);text-transform:uppercase;">Tarapoto &#183; 450 msnm</div>
-      </div>
-      <div>
-        <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.8vw,20px);color:rgba(240,228,204,0.82);line-height:1.85;font-style:italic;border-left:3px solid var(--copper-dk);padding-left:22px;" data-key="farmer2_story">Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN triplicaron sus ingresos en dos a&#241;os. Cada saco lleva el sello de su esfuerzo.</blockquote>
-      </div>
-    </div>
-    <div style="font-family:'Playfair Display',serif;font-size:120px;color:rgba(200,149,74,0.1);font-weight:900;line-height:1;position:absolute;bottom:40px;right:60px;pointer-events:none;">02</div>
-  </div>
-
-  <!-- SLIDE 3 -->
-  <div class="fslide" style="position:absolute;inset:0;opacity:0;transition:opacity 1.3s ease;">
-    <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773516573/c2475e4cc2603cd9e890e97ec232598a_knpcxb.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(0.38) saturate(1.05);" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,5,0,0.97) 0%,rgba(13,5,0,0.3) 55%,transparent 100%);"></div>
-    <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;padding:60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;">
-      <div>
-        <span style="display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 14px;background:rgba(200,149,74,0.15);border:1px solid rgba(200,149,74,0.3);color:var(--copper);margin-bottom:14px;" data-key="farmer3_tag">Caf&#233; &#183; Valle Monz&#243;n, Hu&#225;nuco</span>
-        <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);color:var(--cream);font-weight:700;line-height:1.1;margin-bottom:6px;">Agro Monz&#243;n<br>Heritage</div>
-        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--copper);text-transform:uppercase;">Valle Monz&#243;n &#183; 800 msnm</div>
-      </div>
-      <div>
-        <blockquote style="font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.8vw,20px);color:rgba(240,228,204,0.82);line-height:1.85;font-style:italic;border-left:3px solid var(--copper-dk);padding-left:22px;" data-key="farmer3_story">En el coraz&#243;n del Valle Monz&#243;n, este grupo mantiene viva la tradici&#243;n del proceso natural. Su caf&#233; tiene un perfil de cata inconfundible.</blockquote>
-      </div>
-    </div>
-    <div style="font-family:'Playfair Display',serif;font-size:120px;color:rgba(200,149,74,0.1);font-weight:900;line-height:1;position:absolute;bottom:40px;right:60px;pointer-events:none;">03</div>
-  </div>
-
-  <!-- DOTS + ARROWS -->
-  <div id="fdots" style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:10px;align-items:center;"></div>
-  <div style="position:absolute;bottom:22px;right:80px;z-index:10;display:flex;gap:10px;">
-    <button onclick="prevF()" style="background:transparent;border:1px solid rgba(200,149,74,0.3);color:var(--copper);width:38px;height:38px;cursor:pointer;font-size:16px;transition:all 0.3s;">&#8592;</button>
-    <button onclick="nextF()" style="background:transparent;border:1px solid rgba(200,149,74,0.3);color:var(--copper);width:38px;height:38px;cursor:pointer;font-size:16px;transition:all 0.3s;">&#8594;</button>
-  </div>
-</section>
-
 <!-- PROCESS -->
-<section id="process">
-  <p class="eyebrow" data-key="proc_eyebrow">Nuestro Proceso</p>
-  <h2 class="section-title" data-key="proc_title">De la parcela a<br><em>tu mesa</em></h2>
-  <div class="process-grid">
-    <div class="process-step">
-      <div class="process-n">01</div>
-      <div class="process-icon">🌱</div>
-      <div class="process-title" data-key="proc1_t">Cosecha Selectiva</div>
-      <p class="process-desc" data-key="proc1_d">Solo cerezas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.</p>
+<section id="process" style="position:relative;background:#0A0300;padding:60px 24px;overflow:hidden;">
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08;pointer-events:none;">
+    <source src="https://res.cloudinary.com/djfmngyl0/video/upload/v1773435823/9063027-uhd_3840_2160_30fps_rqdegd.mp4" type="video/mp4">
+  </video>
+  <div style="position:absolute;inset:0;background:rgba(10,3,0,0.8);pointer-events:none;"></div>
+  <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;">
+
+    <!-- Header -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <p style="color:var(--copper);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;margin-bottom:10px;" data-key="proc_eyebrow">Nuestro Proceso</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);color:var(--cream);line-height:1.2;font-weight:700;" data-key="proc_title">De la parcela a <em style="color:var(--copper);font-style:italic;">tu mesa</em></h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button onclick="prevPC()" id="pc-btn-prev" style="width:42px;height:42px;border-radius:50%;border:1px solid rgba(245,230,208,0.2);background:transparent;color:rgba(245,230,208,0.7);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all 0.3s;line-height:1;font-family:serif;">&#8592;</button>
+        <span id="pc-ctr" style="font-family:'Playfair Display',serif;color:rgba(245,230,208,0.35);font-size:15px;min-width:56px;text-align:center;">01 / 04</span>
+        <button onclick="nextPC()" id="pc-btn-next" style="width:42px;height:42px;border-radius:50%;border:1px solid rgba(245,230,208,0.2);background:transparent;color:rgba(245,230,208,0.7);cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all 0.3s;line-height:1;font-family:serif;">&#8594;</button>
+      </div>
     </div>
-    <div class="process-step">
-      <div class="process-n">02</div>
-      <div class="process-icon">🫙</div>
-      <div class="process-title" data-key="proc2_t">Procesado Artesanal</div>
-      <p class="process-desc" data-key="proc2_d">48-72 horas de procesado controlado. El proceso que desarrolla los precursores de sabor únicos del café peruano.</p>
+
+    <!-- Carousel stage -->
+    <div style="position:relative;height:400px;display:flex;align-items:center;justify-content:center;" id="pc-stage">
+
+      <div class="pcc" id="pc-0" onclick="goPC(0)"
+        style="position:absolute;border-radius:18px;overflow:hidden;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);width:520px;height:380px;transform:translateX(0) scale(1);opacity:1;z-index:10;cursor:default;">
+        <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773435430/b5dcee5858d308c712cc1e53229f35e6_gc2rqw.jpg"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" alt="">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,10,5,0.88) 0%,rgba(15,10,5,0.42) 55%,rgba(15,10,5,0.18) 100%);"></div>
+        <div style="position:absolute;inset:0;border-radius:18px;box-shadow:inset 0 0 0 1.5px rgba(200,169,110,0.45);pointer-events:none;"></div>
+        <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:28px 32px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.45);display:flex;align-items:center;justify-content:center;font-size:18px;">🌱</div>
+              <span style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--copper);font-weight:700;">PASO 01</span>
+            </div>
+            <span style="font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:rgba(200,169,110,0.1);line-height:1;user-select:none;">01</span>
+          </div>
+          <div>
+            <p style="color:rgba(245,230,208,0.55);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;margin-bottom:6px;">Selección a mano</p>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--cream);line-height:1.2;margin-bottom:10px;" data-key="proc1_t">Cosecha Selectiva</h3>
+            <p style="color:rgba(245,230,208,0.68);font-size:13px;font-family:'Cormorant Garamond',serif;line-height:1.65;margin-bottom:14px;" data-key="proc1_d">Solo cerezas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.3);color:var(--copper);font-size:10px;padding:3px 12px;border-radius:999px;font-family:'Cormorant Garamond',serif;">100% Manual</span>
+              <span style="background:rgba(200,169,110,0.12);border:1px solid rgba(200,169,110,0.3);color:var(--copper);font-size:10px;padding:3px 12px;border-radius:999px;font-family:'Cormorant Garamond',serif;">Madurez óptima</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcc" id="pc-1" onclick="goPC(1)"
+        style="position:absolute;border-radius:18px;overflow:hidden;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);width:300px;height:280px;transform:translateX(68%) scale(0.82);opacity:0.65;z-index:5;cursor:pointer;filter:blur(1px);">
+        <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773430526/c492ba241ebe80fbc03250506b73de33_zpoxz5.jpg"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" alt="">
+        <div style="position:absolute;inset:0;background:rgba(15,10,5,0.68);"></div>
+        <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:20px 24px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(160,120,80,0.15);border:1px solid rgba(160,120,80,0.4);display:flex;align-items:center;justify-content:center;font-size:16px;">🫙</div>
+            <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#a07850;font-family:'Cormorant Garamond',serif;font-weight:700;">PASO 02</span>
+          </div>
+          <div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);margin-bottom:8px;" data-key="proc2_t">Procesado Artesanal</h3>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="background:rgba(160,120,80,0.12);border:1px solid rgba(160,120,80,0.3);color:#a07850;font-size:9px;padding:3px 10px;border-radius:999px;font-family:'Cormorant Garamond',serif;">48-72 horas</span>
+              <span style="background:rgba(160,120,80,0.12);border:1px solid rgba(160,120,80,0.3);color:#a07850;font-size:9px;padding:3px 10px;border-radius:999px;font-family:'Cormorant Garamond',serif;">Fermentación</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcc" id="pc-2" onclick="goPC(2)"
+        style="position:absolute;border-radius:18px;overflow:hidden;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);width:300px;height:280px;transform:translateX(110%) scale(0.68);opacity:0.3;z-index:1;cursor:pointer;">
+        <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773431769/6a7b9a09d97a0e0a5a6496ae7ee378a3_ehcb75.jpg"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" alt="">
+        <div style="position:absolute;inset:0;background:rgba(15,10,5,0.68);"></div>
+        <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:20px 24px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(212,168,83,0.15);border:1px solid rgba(212,168,83,0.4);display:flex;align-items:center;justify-content:center;font-size:16px;">☀️</div>
+            <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#d4a853;font-family:'Cormorant Garamond',serif;font-weight:700;">PASO 03</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);" data-key="proc3_t">Secado Solar</h3>
+        </div>
+      </div>
+
+      <div class="pcc" id="pc-3" onclick="goPC(3)"
+        style="position:absolute;border-radius:18px;overflow:hidden;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);width:300px;height:280px;transform:translateX(-110%) scale(0.68);opacity:0.3;z-index:1;cursor:pointer;">
+        <img src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773435261/e45b66891fa2f4f8ce8526485a6c3da9_llpiux.jpg"
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" alt="">
+        <div style="position:absolute;inset:0;background:rgba(15,10,5,0.68);"></div>
+        <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:20px 24px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(139,99,64,0.15);border:1px solid rgba(139,99,64,0.4);display:flex;align-items:center;justify-content:center;font-size:16px;">📦</div>
+            <span style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#8b6340;font-family:'Cormorant Garamond',serif;font-weight:700;">PASO 04</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);" data-key="proc4_t">Control &amp; Envío</h3>
+        </div>
+      </div>
+
     </div>
-    <div class="process-step">
-      <div class="process-n">03</div>
-      <div class="process-icon">☀️</div>
-      <div class="process-title" data-key="proc3_t">Secado Solar</div>
-      <p class="process-desc" data-key="proc3_d">Bajo el sol andino durante 7 a 10 días. Humedad final ≤7%. Sin secado artificial que altere el perfil sensorial.</p>
-    </div>
-    <div class="process-step">
-      <div class="process-n">04</div>
-      <div class="process-icon">📦</div>
-      <div class="process-title" data-key="proc4_t">Control &amp; Envío</div>
-      <p class="process-desc" data-key="proc4_d">Análisis de laboratorio, certificados EUDR y empaque en sacos GrainPro. De Lima a tu destino en Europa.</p>
+
+    <!-- Timeline bar -->
+    <div style="margin-top:36px;max-width:560px;margin-left:auto;margin-right:auto;">
+      <div style="position:relative;height:2px;background:rgba(245,230,208,0.1);border-radius:999px;">
+        <div id="pc-fill" style="position:absolute;top:0;left:0;height:100%;border-radius:999px;transition:width 0.5s;background:linear-gradient(90deg,#8b6340,#c8a96e);width:0%;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:14px;">
+        <button onclick="goPC(0)" class="pc-tlabel" style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:none;border:none;padding:0;"><div id="pd-0" style="width:8px;height:8px;border-radius:50%;background:var(--copper);transform:scale(1.6);box-shadow:0 0 8px rgba(200,169,110,0.6);transition:all 0.3s;margin-top:-19px;"></div><span style="font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--copper);margin-top:10px;transition:color 0.3s;">Cosecha</span></button>
+        <button onclick="goPC(1)" class="pc-tlabel" style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:none;border:none;padding:0;"><div id="pd-1" style="width:8px;height:8px;border-radius:50%;background:rgba(245,230,208,0.15);transition:all 0.3s;margin-top:-19px;"></div><span style="font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,230,208,0.3);margin-top:10px;transition:color 0.3s;">Procesado</span></button>
+        <button onclick="goPC(2)" class="pc-tlabel" style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:none;border:none;padding:0;"><div id="pd-2" style="width:8px;height:8px;border-radius:50%;background:rgba(245,230,208,0.15);transition:all 0.3s;margin-top:-19px;"></div><span style="font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,230,208,0.3);margin-top:10px;transition:color 0.3s;">Secado</span></button>
+        <button onclick="goPC(3)" class="pc-tlabel" style="display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:none;border:none;padding:0;"><div id="pd-3" style="width:8px;height:8px;border-radius:50%;background:rgba(245,230,208,0.15);transition:all 0.3s;margin-top:-19px;"></div><span style="font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,230,208,0.3);margin-top:10px;transition:color 0.3s;">Control</span></button>
+      </div>
     </div>
   </div>
 </section>
-
 <!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <p class="eyebrow" style="justify-content:center;" data-key="contact_eyebrow">¿Te interesa?</p>
-    <h2 class="section-title" data-key="contact_title">Hablemos de<br><em>café</em></h2>
-    <p data-key="contact_body">Cada vez que eliges HOLZEN, est&#225;s eligiendo a las personas que hay detr&#225;s. Escr&#237;benos &#8212; estamos aqu&#237; para contarte la historia de tu pr&#243;xima taza y encontrar juntos el caf&#233; que buscas.</p>
-    <div class="contact-options">
-      <a class="btn-wa" href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN.%20Quisiera%20más%20información." target="_blank">
-        📱 WhatsApp
-      </a>
-      <a class="btn-outline" href="mailto:hola@legadoinca.com">
-        ✉️ Email
-      </a>
+<section id="contact" style="background:#1C0A00;padding:80px 24px;text-align:center;">
+  <div style="max-width:600px;margin:0 auto;">
+    <p style="color:var(--copper);font-size:11px;letter-spacing:0.4em;text-transform:uppercase;font-family:'Cormorant Garamond',serif;margin-bottom:16px;" data-key="contact_eyebrow">¿Te interesa?</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2.5rem,8vw,4rem);color:var(--cream);line-height:1.1;margin-bottom:20px;" data-key="contact_title">Hablemos de<br><em style="color:var(--copper);font-style:italic;">café</em></h2>
+    <p style="color:rgba(245,230,208,0.6);font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.7;margin-bottom:40px;" data-key="contact_body">Cada vez que eliges HOLZEN, estás eligiendo a las personas que hay detrás. Escríbenos — estamos aquí para contarte la historia de tu próxima taza.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN.%20Quisiera%20más%20información." target="_blank"
+        style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:14px 32px;border-radius:999px;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.3s;">📱 WhatsApp</a>
+      <a href="/cdn-cgi/l/email-protection#751d1a19143519101214111a1c1b16145b161a18" style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(245,230,208,0.3);color:var(--cream);padding:14px 32px;border-radius:999px;font-family:'Cormorant Garamond',serif;font-size:15px;text-decoration:none;transition:all 0.3s;">✉️ Email</a>
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -853,7 +975,7 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
 // ── TRANSLATIONS ─────────────────────────
 var TH = {
@@ -1021,12 +1143,12 @@ function setLang(lang) {
 var hIdx=0;
 var hSlides=document.querySelectorAll('.hslide');
 var hDotsWrap=document.getElementById('hdots');
-hSlides.forEach(function(_,i){
+if(hDotsWrap){hSlides.forEach(function(_,i){
   var d=document.createElement('button');
-  d.style.cssText='width:'+(i===0?'20px':'6px')+';height:6px;border-radius:'+(i===0?'3px':'50%')+';background:'+(i===0?'var(--copper)':'rgba(200,149,74,0.35)')+';border:none;cursor:pointer;transition:all 0.3s;padding:0;';
+  d.style.cssText='width:'+(i===0?'28px':'8px')+';height:8px;border-radius:'+(i===0?'4px':'50%')+';background:'+(i===0?'var(--copper)':'rgba(200,169,110,0.35)')+';border:none;cursor:pointer;transition:all 0.3s;padding:0;';
   d.onclick=function(){goH(i);};
   hDotsWrap.appendChild(d);
-});
+});}
 function goH(n){
   hSlides[hIdx].style.opacity='0';
   var od=hDotsWrap.children[hIdx];
@@ -1068,14 +1190,17 @@ var farmerSlides=document.querySelectorAll('.farmer-slide');
 var farmersTrack=document.getElementById('farmers-track');
 var dotsWrap=document.getElementById('farmers-dots');
 
-farmerSlides.forEach(function(_,i){
-  var d=document.createElement('button');
-  d.className='farmer-dot'+(i===0?' active':'');
-  d.onclick=function(){goFarmer(i);};
-  dotsWrap.appendChild(d);
-});
+if(farmerSlides.length>0 && dotsWrap){
+  farmerSlides.forEach(function(_,i){
+    var d=document.createElement('button');
+    d.className='farmer-dot'+(i===0?' active':'');
+    d.onclick=function(){goFarmer(i);};
+    dotsWrap.appendChild(d);
+  });
+}
 
 function goFarmer(n){
+  if(!farmersTrack)return;
   farmerIdx=(n+farmerSlides.length)%farmerSlides.length;
   farmersTrack.style.transform='translateX(-'+farmerIdx*100+'%)';
   dotsWrap.querySelectorAll('.farmer-dot').forEach(function(d,i){
@@ -1215,6 +1340,108 @@ if (!localStorage.getItem('cookies')) {
     if (cb) cb.style.display = 'flex';
   }, 2500);
 }
+
+// ══ MANIFESTO TABS ══
+var mtI=0, mtT=setInterval(function(){setMT((mtI+1)%3);},4500);
+function setMT(n){
+  ['mt-c0','mt-c1','mt-c2'].forEach(function(id,i){
+    var el=document.getElementById(id);
+    if(el){el.style.opacity=i===n?'1':'0';el.style.transform=i===n?'translateY(0)':'translateY(8px)';el.style.pointerEvents=i===n?'auto':'none';}
+  });
+  ['mt-0','mt-1','mt-2'].forEach(function(id,i){
+    var b=document.getElementById(id);
+    if(b){b.style.background=i===n?'var(--copper)':'transparent';b.style.color=i===n?'var(--ink)':'rgba(245,230,208,0.5)';b.style.fontWeight=i===n?'700':'400';}
+  });
+  mtI=n; clearInterval(mtT); mtT=setInterval(function(){setMT((mtI+1)%3);},4500);
+}
+
+// ══ FARMERS PORTRAIT CAROUSEL ══
+var frI=0, frN=3, frAnim=false, frTimer=null;
+var frData=[
+  {tagKey:"farmer1_tag", tagDef:"CAFÉ · VILLA RICA, PASCO", name:"Cooperativa\nQuillabamba", loc:"Valle del Urubamba · 900 msnm", storyKey:"farmer1_story", storyDef:"Tres generaciones cuidando el café Geisha nativo, uno de los más finos del mundo. Su lucha por preservar esta variedad ancestral les abrió las puertas a las mejores tostadoras de Europa.", idx:"01"},
+  {tagKey:"farmer2_tag", tagDef:"CAFÉ · CHANCHAMAYO, JUNÍN", name:"Asociación\nSan Martín", loc:"Tarapoto · 450 msnm", storyKey:"farmer2_story", storyDef:"Familias que convirtieron tierras abandonadas en cafetales productivos. Con el apoyo de HOLZEN triplicaron sus ingresos en dos años.", idx:"02"},
+  {tagKey:"farmer3_tag", tagDef:"CAFÉ · VALLE MONZÓN, HUÁNUCO", name:"Agro Monzón\nHeritage", loc:"Valle Monzón · 800 msnm", storyKey:"farmer3_story", storyDef:"En el corazón del Valle Monzón, este grupo mantiene viva la tradición del proceso natural. Su café tiene un perfil de cata inconfundible.", idx:"03"}
+];
+function goFR(n){
+  if(frAnim||n===frI)return; frAnim=true;
+  var prev=frI, dir=n>frI?1:-1; frI=((n%frN)+frN)%frN;
+  // images
+  var pi=document.getElementById('fri-'+prev), ni=document.getElementById('fri-'+frI);
+  if(pi){pi.style.opacity='0';pi.style.transform='scale(0.97)';}
+  if(ni){ni.style.opacity='1';ni.style.transform='scale(1)';}
+  // fade text
+  var ft=document.getElementById('fr-text');
+  if(ft){ft.style.opacity='0';ft.style.transform='translateY(10px)';}
+  setTimeout(function(){
+    var d=frData[frI];
+    var t=(typeof TH!=='undefined'&&TH[typeof currentLang!=='undefined'?currentLang:'es'])||{};
+    var tag=document.getElementById('fr-tag'); if(tag) tag.textContent=(t[d.tagKey]||d.tagDef).toUpperCase();
+    var nm=document.getElementById('fr-name'); if(nm){nm.style.whiteSpace='pre-line';nm.textContent=d.name;}
+    var lc=document.getElementById('fr-loc'); if(lc) lc.textContent=d.loc;
+    var st=document.getElementById('fr-story'); if(st) st.textContent=t[d.storyKey]||d.storyDef;
+    var ix=document.getElementById('fr-idx'); if(ix) ix.textContent=d.idx;
+    var ct=document.getElementById('fr-counter'); if(ct) ct.textContent=String(frI+1).padStart(2,'0')+' / '+String(frN).padStart(2,'0');
+    if(ft){ft.style.transition='opacity 0.35s,transform 0.35s';ft.style.opacity='1';ft.style.transform='translateY(0)';}
+    // bars
+    for(var i=0;i<frN;i++){var b=document.getElementById('frb-'+i);if(b){b.style.width=i===frI?'48px':'20px';b.style.background=i===frI?'var(--copper)':'rgba(200,169,110,0.2)';}}
+    frAnim=false;
+  },380);
+  clearInterval(frTimer); frTimer=setInterval(function(){goFR((frI+1)%frN);},6000);
+}
+function nextFR(){goFR((frI+1)%frN);}
+function prevFR(){goFR((frI-1+frN)%frN);}
+frTimer=setInterval(function(){goFR((frI+1)%frN);},6000);
+
+// ══ PROCESS CAROUSEL ══
+var pcI=0, pcN=4;
+var pcColors=['#c8a96e','#a07850','#d4a853','#8b6340'];
+var pcPositions=[
+  {w:'520px',h:'380px',x:'0%',s:1,o:1,z:10,b:0,active:true},
+  {w:'300px',h:'280px',x:'68%',s:0.82,o:0.65,z:5,b:1,active:false},
+  {w:'300px',h:'280px',x:'110%',s:0.68,o:0.3,z:1,b:2,active:false},
+  {w:'300px',h:'280px',x:'-110%',s:0.68,o:0.3,z:1,b:2,active:false}
+];
+function goPC(n){
+  pcI=((n%pcN)+pcN)%pcN;
+  for(var i=0;i<pcN;i++){
+    var card=document.getElementById('pc-'+i); if(!card) continue;
+    var rel=((i-pcI)%pcN+pcN)%pcN;
+    var pos=pcPositions[rel];
+    card.style.width=pos.w; card.style.height=pos.h;
+    card.style.transform='translateX('+pos.x+') scale('+pos.s+')';
+    card.style.opacity=pos.o; card.style.zIndex=pos.z;
+    card.style.filter=pos.b?'blur('+pos.b+'px)':'none';
+    card.style.cursor=pos.active?'default':'pointer';
+    card.style.boxShadow=pos.active?'inset 0 0 0 1.5px '+pcColors[i]+'60':'none';
+  }
+  var fill=document.getElementById('pc-fill');
+  if(fill) fill.style.width=(pcI/(pcN-1)*100)+'%';
+  var ctr=document.getElementById('pc-ctr');
+  if(ctr) ctr.textContent=String(pcI+1).padStart(2,'0')+' / '+String(pcN).padStart(2,'0');
+  document.querySelectorAll('.pc-tlabel').forEach(function(el,i){
+    var dot=document.getElementById('pd-'+i);
+    var span=el.querySelector('span');
+    if(dot){dot.style.background=i<=pcI?pcColors[pcI]:'rgba(245,230,208,0.15)';dot.style.transform=i===pcI?'scale(1.6)':'scale(1)';dot.style.boxShadow=i===pcI?'0 0 8px '+pcColors[pcI]+'80':'none';}
+    if(span) span.style.color=i===pcI?pcColors[pcI]:'rgba(245,230,208,0.3)';
+  });
+  var pb=document.getElementById('pc-btn-prev'),nb=document.getElementById('pc-btn-next');
+  if(pb) pb.style.opacity=pcI===0?'0.25':'1';
+  if(nb) nb.style.opacity=pcI===pcN-1?'0.25':'1';
+}
+function prevPC(){if(pcI>0)goPC(pcI-1);}
+function nextPC(){if(pcI<pcN-1)goPC(pcI+1);}
+goPC(0);
+
+// ══ EXTRA CSS ══
+(function(){
+  var s=document.createElement('style');
+  s.textContent=
+    '@keyframes pls{0%,100%{opacity:1;}50%{opacity:0.3;}}'+
+    '@media(max-width:1024px){#mf-wrap{grid-template-columns:1fr!important;gap:40px!important;}.fr-thumbs{display:none!important;}}'+
+    '@media(max-width:768px){#pc-stage{height:300px!important;}}';
+  document.head.appendChild(s);
+})();
+
 </script>
 
 <!-- COOKIE BANNER -->
@@ -1222,9 +1449,6 @@ if (!localStorage.getItem('cookies')) {
   <p style="font-family:'Jost',sans-serif;font-size:13px;color:rgba(240,228,204,0.6);flex:1;">Usamos cookies para mejorar tu experiencia.</p>
   <div style="display:flex;gap:10px;">
     <button onclick="document.getElementById('cookie-bar').style.display='none';localStorage.setItem('cookies','ok')" style="background:var(--copper);color:var(--ink);border:none;padding:8px 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.1em;cursor:pointer;font-weight:700;">Aceptar</button>
-    <button onclick="document.getElementById('cookie-bar').style.display='none'" style="background:transparent;color:rgba(240,228,204,0.5);border:1px solid rgba(200,149,74,0.2);padding:8px 16px;font-family:'Jost',sans-serif;font-size:10px;cursor:pointer;">Solo esenciales</button>
-  </div>
-</div>
-
+    <button onclick="document.getElem
 </body>
 </html>
