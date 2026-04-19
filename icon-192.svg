@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <rect width="192" height="192" rx="32" fill="#3D2B1F"/>
+  <text
+    x="96"
+    y="138"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="130"
+    font-weight="700"
+    text-anchor="middle"
+    fill="#C9A84C"
+    letter-spacing="-3"
+  >H</text>
+</svg>
