@@ -1,0 +1,110 @@
+const de = {
+  // Navbar
+  nav_philosophy: 'Philosophie',
+  nav_catalog: 'Katalog',
+  nav_farmers: 'Bauern',
+  nav_process: 'Prozess',
+  nav_contact: 'Kontakt',
+
+  // Hero
+  hero_eyebrow: 'Spezialitätenkaffee · Peru',
+  hero_subtitle: 'Das ist nicht\nnur Kaffee.\nEs ist eine zweite\nChance.',
+  hero_desc: 'Kaffee aus einzigartiger Herkunft, angebaut in den reinsten Tälern der peruanischen Anden. Handverarbeitet, sonnengetrocknet, mit Sinn geliefert.',
+  hero_cta_primary: 'WIRKUNG ERZIELEN',
+  hero_cta_secondary: 'Unsere Bauern',
+
+  // Products
+  products_eyebrow: 'Katalog',
+  products_title_line1: 'Kauf keinen Kaffee',
+  products_title_line2: 'Wähle eine Geschichte',
+  products_desc: 'Jede Tasse verbindet deinen Tisch mit einer echten Geschichte. Wähle den Kaffee, den du unterstützen möchtest, und wir melden uns innerhalb von 24 Stunden per WhatsApp.',
+  products_tap_hint: 'Tippen zum Entdecken',
+  products_mobile_counter: '{{current}} von {{total}} · Wischen für mehr',
+  products_footer_note: 'Mindestbestellungen ab 1 kg · Versand in ganz Europa · Antwort in <24h',
+  products_stock_last: 'Letzte Einheit!',
+  products_stock_few: 'Noch {{n}} Einheiten',
+  products_stock_some: 'Nur {{n}} verfügbar',
+
+  // Manifesto
+  manifesto_eyebrow: 'Unsere Philosophie',
+  manifesto_title: 'Wir haben keine Marke entworfen.\nWir verbinden Welten, die sich\nnie berührt haben.',
+  manifesto_tab_historia: 'Geschichte',
+  manifesto_tab_mision: 'Mission',
+  manifesto_tab_impacto: 'Wirkung',
+  manifesto_historia: 'Es gibt ein Peru, das im Stillen anbaut. Frauen, die das Unvorstellbare überlebt haben und heute Kaffee statt Tränen säen. Männer, die dem Land nach der Gewalt das Leben zurückgaben. Junge Menschen, die Würde statt leichtem Geld wählten. HOLZEN verbindet sie mit Menschen wie dir, auf der anderen Seite der Welt, die möchten, dass jeder ausgegebene Euro echten Sinn hat.',
+  manifesto_mision: 'Jede Tasse verbindet zwei Leben. Deins und das desjenigen, der sie gepflanzt hat.',
+  manifesto_impacto: 'Wenn du HOLZEN kaufst, wirst du Teil dieser Transformation. Familien, die den Terror des bewaffneten Konflikts erlebt haben, entschieden sich zu bleiben, zu pflanzen und aufzublühen. Jeder Kauf finanziert Bildung, Infrastruktur und Würde in den peruanischen Anden.',
+  manifesto_quote: '"Du kaufst keinen Geschmack.\nDu kaufst Bedeutung."',
+  manifesto_stat_families: 'Unterstützte Familien',
+  manifesto_stat_children: 'Kinder in Bildung',
+  manifesto_stat_donated: 'Gespendet in 2024',
+  manifesto_stat_women: 'Frauen im Wohnprogramm',
+  manifesto_map_legend: '{{count}} aktive Bauern auf der Karte · Tippe auf einen Punkt, um ihre Geschichte zu erfahren',
+
+  // Farmers
+  farmers_eyebrow: 'Hinter jedem Korn',
+  farmers_title: 'Unsere Bauern',
+  farmers_desc: 'Echte Menschen mit Geschichten von Kampf, Resilienz und Zweck. Jede Tasse trägt ihren Namen.',
+  farmers_see_story: 'Geschichte sehen',
+  farmers_tap_close: 'Tippen zum Schließen',
+
+  // Process
+  process_eyebrow: 'Unser Prozess',
+  process_title: 'Vom Feld auf deinen Tisch',
+  process_step_label: 'Schritt {{n}}',
+
+  // Contact
+  contact_eyebrow: 'Direkte Wirkung',
+  contact_title: 'Adoptiere eine Kaffeefarm',
+  contact_subtitle: '"Du adoptierst keine Farm. Du wirst Teil ihrer Geschichte."',
+  contact_choose_farmer: 'Wähle, wen du unterstützen möchtest',
+  contact_monthly: 'Monatlich',
+  contact_annual: 'Einmalig',
+  contact_impact_label: 'Deine echte Wirkung',
+  contact_impact_text: 'Mit ${{amount}} für {{name}}: {{impact}}',
+  contact_cert_title: 'Pate werden und Anerkennung erhalten',
+  contact_cert_desc: 'Offizielles unterzeichnetes Zertifikat · Updates von deiner Farm',
+  contact_name_placeholder: 'Dein Name',
+  contact_email_placeholder: 'Deine E-Mail-Adresse',
+  contact_submit: 'Adoptieren für ${{amount}}{{period}}',
+  contact_submit_monthly: '/Monat',
+  contact_submit_annual: ' einmalig',
+  contact_submitting: 'Wird gesendet...',
+  contact_success_title: 'Danke für deine Adoption!',
+  contact_success_desc: 'Wir melden uns innerhalb von 24 Stunden, um deine Adoption abzuschließen.',
+  contact_newsletter_title: 'Werde Teil unserer Geschichte',
+  contact_newsletter_desc: 'Erhalte Neuigkeiten über unsere Bauern, neue Produkte und die Wirkung deines Kaufs.',
+  contact_newsletter_desc_short: 'Erhalte Neuigkeiten über unsere Bauern und die Wirkung deines Kaufs.',
+  contact_newsletter_email: 'Deine E-Mail-Adresse',
+  contact_newsletter_btn: 'Abonnieren',
+  contact_newsletter_privacy: 'Wir respektieren deine Privatsphäre. Kein Spam.',
+  contact_stat_adopters: 'Aktive Adoptierende',
+  contact_stat_families: 'Unterstützte Familien',
+  contact_stat_raised: 'Diesen Monat gesammelt',
+  contact_stat_direct: 'Geht direkt an den Bauern',
+  contact_adopters_count: '{{n}} Adoptierende',
+  contact_support_btn: '{{name}} unterstützen',
+  contact_cert_program: 'HOLZEN Patenschaftsprogramm',
+  contact_cert_acredita: 'Dieses Zertifikat bestätigt, dass',
+  contact_cert_body: 'sich ehrenhaft verpflichtet hat, {{farmer}} zu schützen und zu unterstützen, und damit zum Wohlergehen der Kaffeebauernfamilien und zur Erhaltung des peruanischen Kaffees für zukünftige Generationen beiträgt.',
+  contact_cert_godparent: 'Pate / Patin',
+  contact_cert_year: 'Jahr',
+  contact_cert_official: 'Offiziell',
+  contact_cert_adoption: 'Adoptionszertifikat',
+
+  // Footer
+  footer_tagline: 'Premium-Kaffee aus peruanischem Ursprung.\nLima, Peru — Europa.',
+  footer_products: 'Produkte',
+  footer_company: 'Unternehmen',
+  footer_philosophy: 'Unsere Philosophie',
+  footer_farmers: 'Bauern',
+  footer_process: 'Prozess',
+  footer_contact: 'Kontakt',
+  footer_copyright: '© 2025 HOLZEN · Legado Inca. Alle Rechte vorbehalten.',
+
+  // Reviews
+  reviews_eyebrow: 'Stimmen aus der Welt',
+  reviews_title: 'Was unsere Kunden sagen',
+};
+
+export default de;
