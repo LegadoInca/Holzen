@@ -356,10 +356,10 @@ const Manifesto = () => {
         {/* LEFT */}
         <div className={`transition-all duration-700 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
           <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4">{t('manifesto_eyebrow')}</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-cream leading-tight mb-8 whitespace-pre-line">
+          <h2 className="font-serif text-4xl md:text-5xl text-cream leading-tight mb-8">
             {t('manifesto_title').split('\n').map((line, i, arr) => (
               i === arr.length - 1
-                ? <span key={i}>{line.replace('tocado.', '')}<em className="text-gold italic">tocado.</em></span>
+                ? <span key={i}>{line} <em className="text-gold italic">{t('manifesto_title_highlight')}</em></span>
                 : <span key={i}>{line}<br /></span>
             ))}
           </h2>

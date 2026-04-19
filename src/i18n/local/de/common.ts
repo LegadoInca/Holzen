@@ -27,7 +27,8 @@ const de = {
 
   // Manifesto
   manifesto_eyebrow: 'Unsere Philosophie',
-  manifesto_title: 'Wir haben keine Marke entworfen.\nWir verbinden Welten, die sich\nnie berührt haben.',
+  manifesto_title: 'Wir haben keine Marke entworfen.\nWir verbinden Welten, die sich\nnie',
+  manifesto_title_highlight: 'berührt haben.',
   manifesto_tab_historia: 'Geschichte',
   manifesto_tab_mision: 'Mission',
   manifesto_tab_impacto: 'Wirkung',
@@ -50,12 +51,12 @@ const de = {
 
   // Process
   process_eyebrow: 'Unser Prozess',
-  process_title: 'Vom Feld auf deinen Tisch',
+  process_title: 'Vom Feld auf',
   process_step_label: 'Schritt {{n}}',
 
   // Contact
   contact_eyebrow: 'Direkte Wirkung',
-  contact_title: 'Adoptiere eine Kaffeefarm',
+  contact_title: 'Adoptiere eine',
   contact_subtitle: '"Du adoptierst keine Farm. Du wirst Teil ihrer Geschichte."',
   contact_choose_farmer: 'Wähle, wen du unterstützen möchtest',
   contact_monthly: 'Monatlich',
@@ -105,6 +106,44 @@ const de = {
   // Reviews
   reviews_eyebrow: 'Stimmen aus der Welt',
   reviews_title: 'Was unsere Kunden sagen',
+
+  // CartPanel
+  cart_title: 'Dein Andenkorb',
+  cart_empty_text: 'Dein Korb ist leer.\nFüge Produkte aus dem Katalog hinzu.',
+  cart_total: 'Korb gesamt',
+  cart_whatsapp_btn: 'Per WhatsApp bestellen',
+  cart_whatsapp_note: 'Wir melden uns zur Bestätigung von Verfügbarkeit, Versand und Zahlung.',
+  cart_whatsapp_message: 'Hallo, ich interessiere mich für HOLZEN Kaffee. Meine Bestellung:\n{{lines}}\nGeschätzter Gesamtbetrag: ${{total}}',
+
+  // CookieBar
+  cookie_text: 'Wir verwenden Cookies, um deine Erfahrung zu verbessern.',
+  cookie_accept: 'Akzeptieren',
+  cookie_essential: 'Nur essentielle',
+
+  // ContactSection
+  contact_impact_with: 'Mit ${{amount}} für {{name}}: {{impact}}',
+  contact_title_highlight: 'Kaffeefarm',
+
+  // ProcessSection
+  process_title_highlight: 'deinen Tisch',
+
+  // SiteFooter products
+  footer_product_1: 'Caturra aus Cusco',
+  footer_product_2: 'Naturaler Bourbon',
+  footer_product_3: 'Monzón Heritage',
+
+  // Andean Basket Toast
+  toast_added: 'Zu deinem Andenkorb hinzugefügt!',
+  toast_impact_low: 'Dein Kauf unterstützt direkt **{{name}}**. Jedes Korn kommt vollständig in ihren Händen an.',
+  toast_impact_mid: 'Mit deiner Bestellung kann **{{name}}** diese Woche die Schule ihrer Kinder bezahlen. Danke, dass du anders wählst.',
+  toast_impact_high: 'Dein Korb finanziert bereits den monatlichen Lebensunterhalt der Familie von **{{name}}**. Das ist echter Einfluss.',
+  toast_impact_max: 'Du bist Teil des Wandels. **{{name}}** und ihre Familie danken dir von Herzen. Das verändert Leben.',
+  toast_basket_label: 'Andenkorb',
+  toast_cart_summary: 'Dein Korb',
+  toast_products: '{{count}} Produkt',
+  toast_products_plural: '{{count}} Produkte',
+  toast_cta: 'Korb ansehen · USD ${{total}}',
+  toast_hint: 'Drücke ✕ oder klicke außerhalb zum Schließen',
 };
 
 export default de;

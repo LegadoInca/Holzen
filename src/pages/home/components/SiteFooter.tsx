@@ -12,7 +12,7 @@ const SiteFooter = () => {
     { l: t('footer_contact'), id: 'contact' },
   ];
 
-  const productNames = ['Café Chuncho del Cusco', 'CCN-51 Premium', 'Monzón Heritage'];
+  const productNames = [t('footer_product_1'), t('footer_product_2'), t('footer_product_3')];
 
   return (
     <footer className="bg-coffee-950 pt-16 pb-8 px-6">

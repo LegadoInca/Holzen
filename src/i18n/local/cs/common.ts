@@ -27,7 +27,8 @@ const cs = {
 
   // Manifesto
   manifesto_eyebrow: 'Naše filozofie',
-  manifesto_title: 'Nevytvořili jsme značku.\nSpojujeme světy, které se\nnikdy nedotkly.',
+  manifesto_title: 'Nevytvořili jsme značku.\nSpojujeme světy, které se\nnikdy',
+  manifesto_title_highlight: 'nedotkly.',
   manifesto_tab_historia: 'Příběh',
   manifesto_tab_mision: 'Mise',
   manifesto_tab_impacto: 'Dopad',
@@ -50,12 +51,12 @@ const cs = {
 
   // Process
   process_eyebrow: 'Náš proces',
-  process_title: 'Od farmy na váš stůl',
+  process_title: 'Od farmy na',
   process_step_label: 'Krok {{n}}',
 
   // Contact
   contact_eyebrow: 'Přímý dopad',
-  contact_title: 'Adoptujte kávovou farmu',
+  contact_title: 'Adoptujte kávovou',
   contact_subtitle: '"Neadoptujete farmu. Stáváte se součástí jejího příběhu."',
   contact_choose_farmer: 'Vyberte, koho chcete podpořit',
   contact_monthly: 'Měsíčně',
@@ -105,6 +106,44 @@ const cs = {
   // Reviews
   reviews_eyebrow: 'Hlasy ze světa',
   reviews_title: 'Co říkají naši zákazníci',
+
+  // CartPanel
+  cart_title: 'Váš andský košík',
+  cart_empty_text: 'Váš košík je prázdný.\nPřidejte produkty z katalogu.',
+  cart_total: 'Celkem košík',
+  cart_whatsapp_btn: 'Objednat přes WhatsApp',
+  cart_whatsapp_note: 'Ozveme se vám k potvrzení dostupnosti, dopravy a platby.',
+  cart_whatsapp_message: 'Dobrý den, mám zájem o kávu HOLZEN. Moje objednávka:\n{{lines}}\nOdhadovaný celkový součet: ${{total}}',
+
+  // CookieBar
+  cookie_text: 'Používáme cookies ke zlepšení vašeho zážitku.',
+  cookie_accept: 'Přijmout',
+  cookie_essential: 'Pouze nezbytné',
+
+  // ContactSection
+  contact_impact_with: 'S ${{amount}} pro {{name}}: {{impact}}',
+  contact_title_highlight: 'farmu',
+
+  // ProcessSection
+  process_title_highlight: 'váš stůl',
+
+  // SiteFooter products
+  footer_product_1: 'Caturra z Cusca',
+  footer_product_2: 'Přírodní Bourbon',
+  footer_product_3: 'Monzón Heritage',
+
+  // Andean Basket Toast
+  toast_added: 'Přidáno do vašeho andského košíku!',
+  toast_impact_low: 'Váš nákup přímo podporuje **{{name}}**. Každé zrno dorazí celé do jejich rukou.',
+  toast_impact_mid: 'S vaší objednávkou může **{{name}}** tento týden zaplatit školu svých dětí. Děkujeme, že volíte jinak.',
+  toast_impact_high: 'Váš košík již financuje měsíční živobytí rodiny **{{name}}**. To je skutečný dopad.',
+  toast_impact_max: 'Jste součástí změny. **{{name}}** a jejich rodina vám děkují z celého srdce. To mění životy.',
+  toast_basket_label: 'Andský košík',
+  toast_cart_summary: 'Váš košík',
+  toast_products: '{{count}} produkt',
+  toast_products_plural: '{{count}} produkty',
+  toast_cta: 'Zobrazit košík · USD ${{total}}',
+  toast_hint: 'Stiskněte ✕ nebo klikněte mimo pro zavření',
 };
 
 export default cs;

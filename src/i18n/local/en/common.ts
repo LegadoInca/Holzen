@@ -27,7 +27,8 @@ const en = {
 
   // Manifesto
   manifesto_eyebrow: 'Our Philosophy',
-  manifesto_title: 'We didn\'t design a brand.\nWe connect worlds that had\nnever touched.',
+  manifesto_title: 'We didn\'t design a brand.\nWe connect worlds that had\nnever',
+  manifesto_title_highlight: 'touched.',
   manifesto_tab_historia: 'Story',
   manifesto_tab_mision: 'Mission',
   manifesto_tab_impacto: 'Impact',
@@ -50,12 +51,12 @@ const en = {
 
   // Process
   process_eyebrow: 'Our Process',
-  process_title: 'From the farm to your table',
+  process_title: 'From the farm to',
   process_step_label: 'Step {{n}}',
 
   // Contact
   contact_eyebrow: 'Direct impact',
-  contact_title: 'Adopt a Coffee Farm',
+  contact_title: 'Adopt a Coffee',
   contact_subtitle: '"You\'re not adopting a farm. You become part of its story."',
   contact_choose_farmer: 'Choose who to support',
   contact_monthly: 'Monthly',
@@ -105,6 +106,44 @@ const en = {
   // Reviews
   reviews_eyebrow: 'Voices from the World',
   reviews_title: 'What Our Clients Say',
+
+  // CartPanel
+  cart_title: 'Your Andean Basket',
+  cart_empty_text: 'Your basket is empty.\nAdd products from the catalog.',
+  cart_total: 'Basket total',
+  cart_whatsapp_btn: 'Order via WhatsApp',
+  cart_whatsapp_note: 'We\'ll contact you to confirm availability, shipping and payment.',
+  cart_whatsapp_message: 'Hello, I\'m interested in HOLZEN coffee. My order:\n{{lines}}\nEstimated total: ${{total}}',
+
+  // CookieBar
+  cookie_text: 'We use cookies to improve your experience.',
+  cookie_accept: 'Accept',
+  cookie_essential: 'Essential only',
+
+  // ContactSection
+  contact_impact_with: 'With ${{amount}} for {{name}}: {{impact}}',
+  contact_title_highlight: 'Farm',
+
+  // ProcessSection
+  process_title_highlight: 'your table',
+
+  // SiteFooter products
+  footer_product_1: 'Caturra from Cusco',
+  footer_product_2: 'Natural Bourbon',
+  footer_product_3: 'Monzón Heritage',
+
+  // Andean Basket Toast
+  toast_added: 'Added to your Andean Basket!',
+  toast_impact_low: 'Your purchase directly supports **{{name}}**. Every bean reaches their hands in full.',
+  toast_impact_mid: 'With your order, **{{name}}** can pay for their children\'s school this week. Thank you for choosing differently.',
+  toast_impact_high: 'Your basket already funds the monthly livelihood of **{{name}}**\'s family. That\'s real impact.',
+  toast_impact_max: 'You are part of the change. **{{name}}** and their family thank you from the heart. This transforms lives.',
+  toast_basket_label: 'Andean Basket',
+  toast_cart_summary: 'Your basket',
+  toast_products: '{{count}} product',
+  toast_products_plural: '{{count}} products',
+  toast_cta: 'View basket · USD ${{total}}',
+  toast_hint: 'Press ✕ or click outside to close',
 };
 
 export default en;

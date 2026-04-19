@@ -27,7 +27,8 @@ const es = {
 
   // Manifesto
   manifesto_eyebrow: 'Nuestra Filosofía',
-  manifesto_title: 'No diseñamos una marca.\nConectamos mundos que nunca\nse habían tocado.',
+  manifesto_title: 'No diseñamos una marca.\nConectamos mundos que nunca\nse habían',
+  manifesto_title_highlight: 'tocado.',
   manifesto_tab_historia: 'Historia',
   manifesto_tab_mision: 'Misión',
   manifesto_tab_impacto: 'Impacto',
@@ -50,12 +51,12 @@ const es = {
 
   // Process
   process_eyebrow: 'Nuestro Proceso',
-  process_title: 'De la parcela a tu mesa',
+  process_title: 'De la parcela a',
   process_step_label: 'Paso {{n}}',
 
   // Contact
   contact_eyebrow: 'Impacto directo',
-  contact_title: 'Adopta un Cafetal',
+  contact_title: 'Adopta un',
   contact_subtitle: '"No adoptas un cafetal. Te conviertes en parte de su historia."',
   contact_choose_farmer: 'Elige a quién apoyar',
   contact_monthly: 'Mensual',
@@ -105,6 +106,44 @@ const es = {
   // Reviews
   reviews_eyebrow: 'Voces del Mundo',
   reviews_title: 'Lo que Dicen Nuestros Clientes',
+
+  // CartPanel
+  cart_title: 'Tu Canasta Andina',
+  cart_empty_text: 'Tu canasta está vacía.\nAgrega productos del catálogo.',
+  cart_total: 'Total canasta',
+  cart_whatsapp_btn: 'Pedir por WhatsApp',
+  cart_whatsapp_note: 'Te contactaremos para confirmar disponibilidad, envío y método de pago.',
+  cart_whatsapp_message: 'Hola, me interesa el café HOLZEN. Mi pedido:\n{{lines}}\nTotal estimado: ${{total}}',
+
+  // CookieBar
+  cookie_text: 'Usamos cookies para mejorar tu experiencia.',
+  cookie_accept: 'Aceptar',
+  cookie_essential: 'Solo esenciales',
+
+  // ContactSection
+  contact_impact_with: 'Con ${{amount}} para {{name}}: {{impact}}',
+  contact_title_highlight: 'Cafetal',
+
+  // ProcessSection
+  process_title_highlight: 'tu mesa',
+
+  // SiteFooter products
+  footer_product_1: 'Caturra del Cusco',
+  footer_product_2: 'Bourbon Natural',
+  footer_product_3: 'Monzón Heritage',
+
+  // Andean Basket Toast
+  toast_added: '¡Añadido a tu Canasta Andina!',
+  toast_impact_low: 'Tu compra apoya directamente a **{{name}}**. Cada grano cuenta y llega íntegro a sus manos.',
+  toast_impact_mid: 'Con tu pedido, **{{name}}** puede pagar la escuela de sus hijos esta semana. Gracias por elegir diferente.',
+  toast_impact_high: 'Tu canasta ya financia el sustento mensual de la familia de **{{name}}**. Eso es impacto real.',
+  toast_impact_max: 'Eres parte del cambio. **{{name}}** y su familia te lo agradecen de corazón. Esto transforma vidas.',
+  toast_basket_label: 'Canasta Andina',
+  toast_cart_summary: 'Tu canasta',
+  toast_products: '{{count}} producto',
+  toast_products_plural: '{{count}} productos',
+  toast_cta: 'Ver canasta · USD ${{total}}',
+  toast_hint: 'Pulsa la ✕ o haz clic fuera para cerrar',
 };
 
 export default es;

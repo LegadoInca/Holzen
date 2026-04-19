@@ -210,13 +210,7 @@ const ContactSection = () => {
           <div className="text-center mb-8 md:mb-12">
             <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-3">{t('contact_eyebrow')}</p>
             <h2 className="font-serif text-3xl md:text-5xl text-cream leading-tight mb-3">
-              {t('contact_title').split('Cafetal').length > 1 ? (
-                <>
-                  {t('contact_title').split('Cafetal')[0]}
-                  <em className="text-gold italic">Cafetal</em>
-                  {t('contact_title').split('Cafetal')[1]}
-                </>
-              ) : t('contact_title')}
+              {t('contact_title')} <em className="text-gold italic">{t('contact_title_highlight')}</em>
             </h2>
             <p className="text-cream/50 font-sans text-sm italic">
               &ldquo;{t('contact_subtitle').replace(/^"|"$/g, '')}&rdquo;
@@ -350,7 +344,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div className="text-gold text-[10px] tracking-widest uppercase font-sans mb-1">{t('contact_impact_label')}</div>
-                  <p className="text-cream/70 text-xs font-sans leading-relaxed">Con ${amount} para {selectedFarmer.name}: {impactText}</p>
+                  <p className="text-cream/70 text-xs font-sans leading-relaxed">{t('contact_impact_with', { amount, name: selectedFarmer.name, impact: impactText })}</p>
                 </div>
               </div>
 
