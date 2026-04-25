@@ -323,7 +323,7 @@ export const processSteps = [
     subtitle: 'Selección a mano',
     desc: 'Solo cerezas en su punto óptimo de madurez. Cada una seleccionada a mano por nuestros productores.',
     tags: ['100% Manual', 'Madurez óptima'],
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776587469/search-image_42_hmzrcw.jpg',
+    image: '/Holzen/images/process1.jpeg',
     color: '#c9a96e',
   },
   {
@@ -333,7 +333,7 @@ export const processSteps = [
     subtitle: 'Fermentación controlada',
     desc: '48-72 horas de procesado controlado. El proceso que desarrolla los precursores de sabor únicos del café peruano.',
     tags: ['48-72 horas', 'Fermentación'],
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776587471/search-image_41_urgfv0.jpg',
+    image: '/Holzen/images/process2.jpeg',
     color: '#a07850',
   },
   {
@@ -343,7 +343,7 @@ export const processSteps = [
     subtitle: 'Bajo el sol andino',
     desc: 'Bajo el sol andino durante 7 a 10 días. Humedad final ≤7%. Sin secado artificial que altere el perfil sensorial.',
     tags: ['7-10 días', '≤7% humedad'],
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776587465/search-image_44_z7z667.jpg',
+    image: '/Holzen/images/process3.jpeg',
     color: '#d4a853',
   },
   {
@@ -353,7 +353,7 @@ export const processSteps = [
     subtitle: 'Certificado EUDR',
     desc: 'Análisis de laboratorio, certificados EUDR y empaque en sacos GrainPro. De Lima a tu destino en Europa.',
     tags: ['Cert. EUDR', 'GrainPro'],
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776587467/search-image_43_py8fo5.jpg',
+    image: '/Holzen/images/process4.jpeg',
     color: '#8b6340',
   },
 ];

@@ -10,7 +10,7 @@ const FARMERS = [
     need: 'Necesita: Tanques de fermentación artesanal',
     progress: 68,
     adopters: 14,
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776577663/search-image_28_xprx4c.jpg',
+    image: '/Holzen/images/farmer1.jpg',
     impact: {
       30: 'Financias 2 días de secado solar artesanal de su café Chuncho.',
       40: 'Cubres una semana completa de fermentación controlada.',
@@ -28,7 +28,7 @@ const FARMERS = [
     need: 'Necesita: Camas africanas de secado solar',
     progress: 45,
     adopters: 9,
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1773516115/624a4fa7b3b3c803786cb9be0bafb4d2_gvcce3.jpg',
+    image: '/Holzen/images/farmer2.jpeg',
     impact: {
       30: 'Financias el mantenimiento de su cafetal por una semana.',
       40: 'Cubres los insumos de procesado natural de un quintal.',
@@ -46,7 +46,7 @@ const FARMERS = [
     need: 'Necesita: Secadora solar portátil',
     progress: 20,
     adopters: 4,
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776577667/search-image_26_dvtva9.jpg',
+    image: '/Holzen/images/farmer3.jpeg',
     impact: {
       30: 'Financias los materiales de secado de su lote Honey.',
       40: 'Cubres una semana de procesado artesanal sin intermediarios.',
@@ -196,9 +196,9 @@ const ContactSection = () => {
       <section id="contact" className="relative py-14 md:py-20 px-4 md:px-6 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <img
-            src="https://res.cloudinary.com/djfmngyl0/image/upload/v1773435430/b5dcee5858d308c712cc1e53229f35e6_gc2rqw.jpg"
-            alt="background"
+          <video
+            autoPlay muted loop playsInline
+            src="/Holzen/videos/hero4.mp4"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-coffee-900/80" />

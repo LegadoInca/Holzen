@@ -43,7 +43,7 @@ const Reviews = () => {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="https://res.cloudinary.com/djfmngyl0/image/upload/v1776606230/1416d425ed759dc4a5e1644da8e96586_1_mejnlj.jpg"
+          src="/Holzen/images/reviews-bg.jpg"
           alt="background"
           className="w-full h-full object-cover object-center"
         />

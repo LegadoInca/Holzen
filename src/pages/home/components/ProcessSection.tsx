@@ -11,7 +11,7 @@ const ProcessSection = () => {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="https://res.cloudinary.com/djfmngyl0/image/upload/v1776578027/search-image_37_femwi5.jpg"
+          src="/Holzen/images/product1.jpeg"
           alt="background"
           className="w-full h-full object-cover object-center"
         />
