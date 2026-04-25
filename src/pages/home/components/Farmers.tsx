@@ -108,7 +108,7 @@ const Farmers = () => {
     <section id="farmers" className="relative w-full bg-coffee-900 overflow-hidden py-10 md:py-12">
       <video autoPlay muted loop playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-50 pointer-events-none"
-        src="https://res.cloudinary.com/djfmngyl0/video/upload/v1773436299/14701095_1920_1080_30fps_amrqfg.mp4"
+        src="/Holzen/videos/farmers-bg.mp4"
       />
       <div className="absolute inset-0 bg-coffee-900/35 pointer-events-none" />
 
