@@ -96,7 +96,7 @@ const mapPins: MapPin[] = [
     name: 'Lucía Quispe',
     altitude: '1,200 m.s.n.m',
     story: 'A los 19 años perdió su cosecha entera por una helada. Sin crédito, sin apoyo, decidió aprender sola el proceso natural. Hoy su café Chuncho es el más solicitado por tostadoras en Alemania y Países Bajos.',
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1773516122/d6c6488724febbae729820d253497cb7_un9okc.jpg',
+    image: '/Holzen/images/farmer1.jpg',
     stat: '3×', statLabel: 'ingresos en 4 años',
     x: 42, y: 62,
   },
@@ -106,7 +106,7 @@ const mapPins: MapPin[] = [
     name: 'Edilberto Rojas',
     altitude: '850 m.s.n.m',
     story: 'Exmilitar que volvió a su tierra con las manos vacías. Convirtió una parcela abandonada en un cafetal de 3 hectáreas trabajando solo, de madrugada, durante dos años. Su café financió la educación de sus cuatro hijos.',
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1773516115/624a4fa7b3b3c803786cb9be0bafb4d2_gvcce3.jpg',
+    image: '/Holzen/images/farmer2.jpeg',
     stat: '3 ha', statLabel: 'cultivadas desde cero',
     x: 52, y: 38,
   },
@@ -116,7 +116,7 @@ const mapPins: MapPin[] = [
     name: 'Rosa Panduro',
     altitude: '900 m.s.n.m',
     story: 'Madre soltera de tres hijos, heredó una deuda y una parcela descuidada. Aprendió el secado solar artesanal observando a sus vecinos. Hoy produce uno de los cafés naturales más complejos del Perú, sin intermediarios.',
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776577667/search-image_26_dvtva9.jpg',
+    image: '/Holzen/images/farmer3.jpeg',
     stat: '100%', statLabel: 'venta directa al exterior',
     x: 48, y: 48,
   },
@@ -126,7 +126,7 @@ const mapPins: MapPin[] = [
     name: 'Segundo Herrera',
     altitude: '1,400 m.s.n.m',
     story: 'Creció viendo a su padre vender café a precios de miseria. A los 28 años aprendió catación, certificó su finca y comenzó a exportar directamente. Hoy su café llega a Japón y Suecia con su nombre en el saco.',
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776560755/search-image_11_kf9lnh.jpg',
+    image: '/Holzen/images/farmer4.jpeg',
     stat: '12 países', statLabel: 'destinos de exportación',
     x: 36, y: 28,
   },
@@ -136,7 +136,7 @@ const mapPins: MapPin[] = [
     name: 'Manuel Ccahuana',
     altitude: '2,200 m.s.n.m',
     story: 'En los 90, el terrorismo destruyó su comunidad. Manuel perdió a su padre y a tres vecinos en una semana. Hoy, a los 54 años, cultiva café donde antes solo había miedo. Cada saco que exporta es un acto de resistencia y de paz.',
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776563427/search-image_21_hqnltd.jpg',
+    image: '/Holzen/images/farmer5.jpg',
     stat: '54 años', statLabel: 'de resistencia',
     x: 46, y: 56,
   },
@@ -146,7 +146,7 @@ const mapPins: MapPin[] = [
     name: 'Rosa Quispe',
     altitude: '2,800 m.s.n.m',
     story: 'Rosa escapó de una relación violenta con tres hijos pequeños. Sin dinero ni red de apoyo, llegó a Cusco con lo puesto. Hoy su finca financia la escuela de sus tres hijos y exporta directamente a Europa.',
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776562290/25c37853594fb2280f9aa9681f936840_cow5ay.jpg',
+    image: '/Holzen/images/farmer6.jpg',
     stat: '3 hijos', statLabel: 'en la escuela',
     x: 50, y: 66,
   },
@@ -156,7 +156,7 @@ const mapPins: MapPin[] = [
     name: 'Julia Flores',
     altitude: '1,900 m.s.n.m',
     story: 'Hace tres años, Julia cultivaba coca porque no había otra opción. Hoy cultiva café premium con certificación de origen. "El café me devolvió el orgullo", dice en el audio que recibirás con tu pedido.',
-    image: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1776560748/search-image_10_uiz3lx.jpg',
+    image: '/Holzen/images/farmer7.jpeg',
     stat: '100%', statLabel: 'café certificado de origen',
     x: 55, y: 42,
   },
@@ -190,7 +190,7 @@ const PeruMap = ({ contentVisible, mapLegend }: { contentVisible: boolean; mapLe
     >
       <div className="relative w-full select-none" style={{ height: '580px' }}>
         <img
-          src="https://res.cloudinary.com/djfmngyl0/image/upload/v1776561016/58e9ceb9-87e6-40b2-b113-c4a6305bf31e_iwupfo.png"
+          src="/Holzen/images/mapa.png"
           alt="Mapa del Perú"
           className="w-full h-full object-contain object-center"
           style={{ filter: 'drop-shadow(0 0 40px rgba(201,169,110,0.15))' }}
@@ -348,7 +348,7 @@ const Manifesto = () => {
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
-        src="https://res.cloudinary.com/djfmngyl0/video/upload/v1773435823/9063027-uhd_3840_2160_30fps_rqdegd.mp4"
+        src="/Holzen/videos/hero5.mp4"
       />
       <div className="absolute inset-0 bg-coffee-900/45 pointer-events-none" />
       <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

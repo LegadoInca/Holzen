@@ -132,7 +132,7 @@ const Products = ({ onAddToCart }: ProductsProps) => {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="https://res.cloudinary.com/djfmngyl0/image/upload/v1776583647/search-image_39_rchtpi.jpg"
+          src="/Holzen/images/products-bg.jpeg"
           alt="background"
           className="w-full h-full object-cover object-center"
         />
