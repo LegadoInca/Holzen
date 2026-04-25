@@ -1,27 +1,27 @@
 export const heroSlides = [
   {
     type: 'video' as const,
-    src: 'https://res.cloudinary.com/djfmngyl0/video/upload/v1773435823/9063027-uhd_3840_2160_30fps_rqdegd.mp4',
+    src: '/videos/hero4.mp4',
+  },
+  {
+    type: 'video' as const,
+    src: '/videos/hero5.mp4',
   },
   {
     type: 'image' as const,
-    src: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1774742809/pexels-cleiton-silva-107471926-10980490_flam0f.jpg',
+    src: '/images/hero1.jpg',
   },
   {
     type: 'image' as const,
-    src: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1774742806/pexels-jvalenciazz-12833203_zopukm.jpg',
+    src: '/images/hero2.jpg',
   },
   {
     type: 'image' as const,
-    src: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1773435261/e45b66891fa2f4f8ce8526485a6c3da9_llpiux.jpg',
+    src: '/images/hero3.jpg',
   },
   {
     type: 'image' as const,
-    src: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1774826862/pexels-franco30-11130920_shooei.jpg',
-  },
-  {
-    type: 'image' as const,
-    src: 'https://res.cloudinary.com/djfmngyl0/image/upload/v1774826862/pexels-irvin-david-906313077-36040318_f550kd.jpg',
+    src: '/images/hero6.jpg',
   },
 ];
 
