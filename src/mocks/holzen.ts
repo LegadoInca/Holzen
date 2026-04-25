@@ -1,27 +1,27 @@
 export const heroSlides = [
   {
     type: 'video' as const,
-    src: '/videos/hero4.mp4',
+    src: '/Holzen/videos/hero4.mp4',
   },
   {
     type: 'video' as const,
-    src: '/videos/hero5.mp4',
+    src: '/Holzen/videos/hero5.mp4',
   },
   {
     type: 'image' as const,
-    src: '/images/hero1.jpg',
+    src: '/Holzen/images/hero1.jpg',
   },
   {
     type: 'image' as const,
-    src: '/images/hero2.jpg',
+    src: '/Holzen/images/hero2.jpg',
   },
   {
     type: 'image' as const,
-    src: '/images/hero3.jpg',
+    src: '/Holzen/images/hero3.jpg',
   },
   {
     type: 'image' as const,
-    src: '/images/hero6.jpg',
+    src: '/Holzen/images/hero6.jpg',
   },
 ];
 
