@@ -300,6 +300,17 @@ const cs = {
   emp_farmers_qr_title: 'QR sledovatelnost',
   emp_farmers_qr_desc: 'Každá šarže obsahuje QR kód zobrazující příběh producenta a proces.',
   toast_hint: 'Stiskněte ✕ nebo klikněte mimo pro zavření',
+  emp_docs_title: 'Kompletní dokumentace',
+  emp_docs_item1: 'Certifikát původu',
+  emp_docs_item2: 'Laboratorní analýza',
+  emp_docs_item3: 'Certifikát EUDR',
+  emp_docs_item4: 'Obchodní faktura a packing list',
+  emp_footer_subtitle: 'Firmy · by Legado Inca',
+  emp_footer_store: 'Individuální obchod',
+  emp_footer_farmers: 'Farmáři',
+  emp_footer_copyright: '© 2025 HOLZEN · Legado Inca. Všechna práva vyhrazena.',
+  emp_adoption_impact_text: 'S ${{amount}} pro {{name}}: {{impact}}',
+  emp_adoption_submit: 'VYTVOŘIT DOPAD',
 };
 
 export default cs;

@@ -300,6 +300,17 @@ const de = {
   emp_farmers_qr_title: 'QR-Rückverfolgbarkeit',
   emp_farmers_qr_desc: 'Jedes Los enthält einen QR der die Geschichte des Produzenten und den Prozess zeigt.',
   toast_hint: 'Drücke ✕ oder klicke außerhalb zum Schließen',
+  emp_docs_title: 'Vollständige Dokumentation',
+  emp_docs_item1: 'Ursprungszeugnis',
+  emp_docs_item2: 'Laboranalyse',
+  emp_docs_item3: 'EUDR-Zertifikat',
+  emp_docs_item4: 'Handelsrechnung und Packliste',
+  emp_footer_subtitle: 'Unternehmen · by Legado Inca',
+  emp_footer_store: 'Einzelhandel',
+  emp_footer_farmers: 'Bauern',
+  emp_footer_copyright: '© 2025 HOLZEN · Legado Inca. Alle Rechte vorbehalten.',
+  emp_adoption_impact_text: 'Mit ${{amount}} für {{name}}: {{impact}}',
+  emp_adoption_submit: 'IMPACT GENERIEREN',
 };
 
 export default de;

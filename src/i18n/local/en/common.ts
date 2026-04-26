@@ -300,6 +300,17 @@ const en = {
   emp_farmers_qr_title: 'QR Traceability',
   emp_farmers_qr_desc: 'Each lot includes a QR showing the producer\'s story and process.',
   toast_hint: 'Press ✕ or click outside to close',
+  emp_docs_title: 'Complete documentation',
+  emp_docs_item1: 'Certificate of origin',
+  emp_docs_item2: 'Lab analysis',
+  emp_docs_item3: 'EUDR certificate',
+  emp_docs_item4: 'Commercial invoice and packing list',
+  emp_footer_subtitle: 'Business · by Legado Inca',
+  emp_footer_store: 'Individual store',
+  emp_footer_farmers: 'Farmers',
+  emp_footer_copyright: '© 2025 HOLZEN · Legado Inca. All rights reserved.',
+  emp_adoption_impact_text: 'With ${{amount}} for {{name}}: {{impact}}',
+  emp_adoption_submit: 'GENERATE IMPACT',
 };
 
 export default en;

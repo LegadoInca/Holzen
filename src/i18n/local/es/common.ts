@@ -309,6 +309,17 @@ const es = {
   emp_farmers_qr_title: 'Trazabilidad con QR',
   emp_farmers_qr_desc: 'Cada lote incluye un QR que muestra la historia del productor y el proceso.',
   toast_hint: 'Pulsa la ✕ o haz clic fuera para cerrar',
+  emp_docs_title: 'Documentación completa',
+  emp_docs_item1: 'Certificado de origen',
+  emp_docs_item2: 'Análisis de laboratorio',
+  emp_docs_item3: 'Certificado EUDR',
+  emp_docs_item4: 'Factura comercial y packing list',
+  emp_footer_subtitle: 'Empresas · by Legado Inca',
+  emp_footer_store: 'Tienda individual',
+  emp_footer_farmers: 'Productores',
+  emp_footer_copyright: '© 2025 HOLZEN · Legado Inca. Todos los derechos reservados.',
+  emp_adoption_impact_text: 'Con ${{amount}} para {{name}}: {{impact}}',
+  emp_adoption_submit: 'GENERAR IMPACTO',
 };
 
 export default es;
