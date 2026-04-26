@@ -138,19 +138,22 @@ const ContactSection = () => {
   const [hoveredFarmer, setHoveredFarmer] = useState<typeof FARMERS[0] | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [mobilePreview, setMobilePreview] = useState<typeof FARMERS[0] | null>(null);
+  const [previewTop, setPreviewTop] = useState(0);
   const [showCert, setShowCert] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
   const leftColRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const statsDesktopRef = useRef<HTMLDivElement>(null);
+  const farmerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    const el = statsRef.current;
-    if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setStatsVisible(true); },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
-    observer.observe(el);
+    if (statsRef.current) observer.observe(statsRef.current);
+    if (statsDesktopRef.current) observer.observe(statsDesktopRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -178,11 +181,8 @@ const ContactSection = () => {
         name,
         email,
       });
-      await fetch('https://readdy.ai/api/form/d7i8dn46o6v9400gqbhg', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
-      });
+      // Simulación — conectar EmailJS o WhatsApp Business más adelante
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setSubmitted(true);
     } finally {
       setSubmitting(false);
@@ -191,16 +191,35 @@ const ContactSection = () => {
 
   const period = payMode === 'monthly' ? t('contact_submit_monthly') : t('contact_submit_annual');
 
+  const handleFarmerClick = (f: typeof FARMERS[0], btnEl: HTMLButtonElement | null) => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+      setSelectedFarmer(f);
+      return;
+    }
+    // Toggle: if same farmer, close
+    if (mobilePreview?.id === f.id) {
+      setMobilePreview(null);
+      return;
+    }
+    // Calculate vertical position relative to viewport
+    if (btnEl) {
+      const rect = btnEl.getBoundingClientRect();
+      const cardHeight = 340; // approximate card height
+      let top = rect.top + rect.height / 2 - cardHeight / 2;
+      // Clamp so it doesn't go off screen
+      top = Math.max(16, Math.min(top, window.innerHeight - cardHeight - 16));
+      setPreviewTop(top);
+    }
+    setMobilePreview(f);
+  };
+
   return (
     <>
       <section id="contact" className="relative py-14 md:py-20 px-4 md:px-6 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <video
-            autoPlay muted loop playsInline
-            src="/Holzen/videos/hero4.mp4"
-            className="w-full h-full object-cover object-center"
-          />
+          <video autoPlay muted loop playsInline src="/Holzen/videos/hero4.mp4" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-coffee-900/80" />
           <div className="absolute inset-0 bg-amber-950/30" />
         </div>
@@ -254,7 +273,8 @@ const ContactSection = () => {
                   {FARMERS.map((f) => (
                     <button
                       key={f.id}
-                      onClick={() => setSelectedFarmer(f)}
+                      ref={(el) => { farmerRefs.current[f.id] = el; }}
+                      onClick={() => handleFarmerClick(f, farmerRefs.current[f.id])}
                       onMouseEnter={(e) => { setHoveredFarmer(f); setTooltipPos({ x: e.clientX, y: e.clientY }); }}
                       onMouseMove={(e) => setTooltipPos({ x: e.clientX, y: e.clientY })}
                       onMouseLeave={() => setHoveredFarmer(null)}
@@ -263,16 +283,12 @@ const ContactSection = () => {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={(e) => { e.stopPropagation(); setMobilePreview(f); }}
-                          className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full overflow-hidden relative cursor-pointer"
-                        >
+                        <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 rounded-full overflow-hidden relative">
                           <img src={f.image} alt={f.name} className="w-full h-full object-cover object-top" />
                           <div className="absolute inset-0 bg-black/35 flex items-center justify-center md:hidden">
                             <i className="ri-eye-line text-white text-xs" />
                           </div>
-                        </button>
+                        </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="font-serif text-sm text-cream font-semibold">{f.name}</span>
@@ -308,7 +324,10 @@ const ContactSection = () => {
                 <div className="font-serif text-base text-cream mb-1">{t('contact_newsletter_title')}</div>
                 <p className="text-cream/40 text-xs font-sans mb-4">{t('contact_newsletter_desc')}</p>
                 <input type="email" placeholder={t('contact_newsletter_email')} className="w-full bg-white/5 border border-cream/15 rounded-lg px-4 py-2.5 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50 mb-3" />
-                <button className="w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer whitespace-nowrap">{t('contact_newsletter_btn')}</button>
+                <button className="relative overflow-hidden w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer whitespace-nowrap group">
+                  <span className="relative z-10">{t('contact_newsletter_btn')}</span>
+                  <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                </button>
                 <p className="text-cream/25 text-[10px] font-sans mt-2 text-center">{t('contact_newsletter_privacy')}</p>
               </div>
             </div>
@@ -316,7 +335,7 @@ const ContactSection = () => {
             {/* RIGHT COLUMN */}
             <div className="flex flex-col gap-3 md:gap-4">
               {/* Stats — desktop only */}
-              <div className="hidden lg:grid rounded-xl border border-cream/10 bg-white/5 px-4 py-5 grid-cols-4 gap-2">
+              <div ref={statsDesktopRef} className="hidden lg:grid rounded-xl border border-cream/10 bg-white/5 px-4 py-5 grid-cols-4 gap-2">
                 {STATS.map((s) => (
                   <StatCircle key={s.labelKey} stat={s} animate={statsVisible} />
                 ))}
@@ -429,12 +448,15 @@ const ContactSection = () => {
                   <p className="text-cream/50 text-xs font-sans">{t('contact_success_desc')}</p>
                 </div>
               ) : (
-                <form data-readdy-form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <input type="text" name="name" placeholder={t('contact_name_placeholder')} value={name} onChange={(e) => setName(e.target.value)} required className="w-full bg-white/5 border border-cream/15 rounded-xl px-4 py-3 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50" />
                   <input type="email" name="email" placeholder={t('contact_email_placeholder')} value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full bg-white/5 border border-cream/15 rounded-xl px-4 py-3 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50" />
-                  <button type="submit" disabled={submitting} className="w-full bg-gold hover:bg-amber-400 disabled:opacity-60 text-coffee-900 font-sans font-bold py-3.5 rounded-xl text-sm tracking-wide transition-colors cursor-pointer whitespace-nowrap flex items-center justify-center gap-2">
-                    <i className="ri-heart-line" />
-                    {submitting ? t('contact_submitting') : t('contact_submit', { amount, period })}
+                  <button type="submit" disabled={submitting} className="relative overflow-hidden w-full disabled:opacity-60 font-sans font-bold py-3.5 rounded-xl text-sm tracking-wide cursor-pointer whitespace-nowrap flex items-center justify-center gap-2" style={{ background: 'linear-gradient(135deg, #c2622a 0%, #e07830 50%, #c2622a 100%)', color: '#fff8f0', boxShadow: '0 0 20px rgba(210,100,40,0.3)' }}>
+                    <span className="relative z-10 flex items-center gap-2">
+                      <i className="ri-heart-fill text-white/90 text-lg animate-pulse" />
+                      {submitting ? t('contact_submitting') : t('contact_submit', { amount, period })}
+                    </span>
+                    <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                   </button>
                 </form>
               )}
@@ -444,40 +466,75 @@ const ContactSection = () => {
                 <div className="font-serif text-sm text-cream mb-1">{t('contact_newsletter_title')}</div>
                 <p className="text-cream/40 text-xs font-sans mb-3">{t('contact_newsletter_desc_short')}</p>
                 <input type="email" placeholder={t('contact_newsletter_email')} className="w-full bg-white/5 border border-cream/15 rounded-lg px-4 py-2.5 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50 mb-2.5" />
-                <button className="w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer whitespace-nowrap">{t('contact_newsletter_btn')}</button>
+                <button className="relative overflow-hidden w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer whitespace-nowrap group">
+                  <span className="relative z-10">{t('contact_newsletter_btn')}</span>
+                  <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mobile farmer photo modal */}
+      {/* Mobile farmer photo — compact floating card, no backdrop, closes on outside tap */}
       {mobilePreview && (
-        <div className="fixed inset-0 z-[100] flex items-end justify-center md:hidden" onClick={() => setMobilePreview(null)}>
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-          <div className="relative w-full max-w-sm mx-4 mb-6 rounded-2xl overflow-hidden shadow-2xl border border-gold/20" onClick={(e) => e.stopPropagation()}>
-            <div className="relative h-72">
-              <img src={mobilePreview.image} alt={mobilePreview.name} className="w-full h-full object-cover object-top" />
-              <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/95 via-coffee-900/20 to-transparent" />
-              <button onClick={() => setMobilePreview(null)} className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-black/50 text-cream cursor-pointer">
-                <i className="ri-close-line text-base" />
-              </button>
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <div className="font-serif text-xl text-cream font-bold mb-0.5">{mobilePreview.name}</div>
-                <div className="text-cream/60 text-xs font-sans mb-2">{mobilePreview.role}</div>
-                <span className="inline-block text-[10px] bg-gold/30 text-gold px-3 py-1 rounded-full font-sans">{mobilePreview.region}</span>
+        <>
+          {/* Invisible full-screen tap catcher to close */}
+          <div
+            className="fixed inset-0 z-[98] md:hidden"
+            onClick={() => setMobilePreview(null)}
+          />
+          {/* Floating card */}
+          <div
+            className="fixed z-[99] md:hidden"
+            style={{
+              top: previewTop,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: 'min(72vw, 240px)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              className="rounded-2xl overflow-hidden border border-gold/30"
+              style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.75)' }}
+            >
+              {/* Photo */}
+              <div className="relative h-[260px]">
+                <img
+                  src={mobilePreview.image}
+                  alt={mobilePreview.name}
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-coffee-900 via-coffee-900/20 to-transparent" />
+                {/* Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <div className="font-serif text-base text-cream font-bold leading-tight">{mobilePreview.name}</div>
+                  <div className="text-cream/60 text-[10px] font-sans mt-0.5 mb-2">{mobilePreview.role}</div>
+                  <span className="inline-block text-[9px] bg-gold/30 text-gold px-2 py-0.5 rounded-full font-sans border border-gold/20">
+                    {mobilePreview.region}
+                  </span>
+                </div>
+              </div>
+              {/* Action */}
+              <div className="bg-coffee-900 px-3 py-3">
+                <button
+                  onClick={() => {
+                    setSelectedFarmer(mobilePreview);
+                    setMobilePreview(null);
+                    setTimeout(() => {
+                      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 50);
+                  }}
+                  className="relative overflow-hidden w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-xl text-xs tracking-wide transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  <span className="relative z-10">{t('contact_support_btn', { name: mobilePreview.name.split(' ')[0] })}</span>
+                  <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                </button>
               </div>
             </div>
-            <div className="bg-coffee-900 px-5 py-4">
-              <button
-                onClick={() => { setSelectedFarmer(mobilePreview); setMobilePreview(null); }}
-                className="w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-3 rounded-xl text-sm tracking-wide transition-colors cursor-pointer whitespace-nowrap"
-              >
-                {t('contact_support_btn', { name: mobilePreview.name.split(' ')[0] })}
-              </button>
-            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );
