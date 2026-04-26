@@ -876,7 +876,7 @@ const B2BAdoption = () => {
     <section id="b2b-adopcion" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0">
         <img src="/Holzen/images/product1.jpeg" alt="bg" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0" style={{ background: 'rgba(20,12,5,0.95)' }} />
+        <div className="absolute inset-0" style={{ background: 'rgba(20,12,5,0.80)' }} />
       </div>
 
       <div className="relative max-w-6xl mx-auto">
