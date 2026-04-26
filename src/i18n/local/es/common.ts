@@ -67,7 +67,7 @@ const es = {
   contact_cert_desc: 'Certificado oficial firmado · Actualizaciones de tu cafetal',
   contact_name_placeholder: 'Tu nombre',
   contact_email_placeholder: 'Tu correo electrónico',
-  contact_submit: 'Adoptar por ${{amount}}{{period}}',
+  contact_submit: 'GENERAR IMPACTO AHORA',
   contact_submit_monthly: '/mes',
   contact_submit_annual: ' único',
   contact_submitting: 'Enviando...',

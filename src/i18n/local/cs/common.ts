@@ -67,7 +67,7 @@ const cs = {
   contact_cert_desc: 'Oficiální podepsaný certifikát · Aktualizace z vaší farmy',
   contact_name_placeholder: 'Vaše jméno',
   contact_email_placeholder: 'Vaše e-mailová adresa',
-  contact_submit: 'Adoptovat za ${{amount}}{{period}}',
+  contact_submit: 'VYTVOŘIT DOPAD NYNÍ',
   contact_submit_monthly: '/měs.',
   contact_submit_annual: ' jednorázově',
   contact_submitting: 'Odesílání...',

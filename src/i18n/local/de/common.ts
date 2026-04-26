@@ -67,7 +67,7 @@ const de = {
   contact_cert_desc: 'Offizielles unterzeichnetes Zertifikat · Updates von deiner Farm',
   contact_name_placeholder: 'Dein Name',
   contact_email_placeholder: 'Deine E-Mail-Adresse',
-  contact_submit: 'Adoptieren für ${{amount}}{{period}}',
+  contact_submit: 'JETZT IMPACT GENERIEREN',
   contact_submit_monthly: '/Monat',
   contact_submit_annual: ' einmalig',
   contact_submitting: 'Wird gesendet...',

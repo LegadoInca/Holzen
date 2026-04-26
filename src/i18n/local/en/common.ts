@@ -67,7 +67,7 @@ const en = {
   contact_cert_desc: 'Official signed certificate · Updates from your farm',
   contact_name_placeholder: 'Your name',
   contact_email_placeholder: 'Your email address',
-  contact_submit: 'Adopt for ${{amount}}{{period}}',
+  contact_submit: 'GENERATE IMPACT NOW',
   contact_submit_monthly: '/mo',
   contact_submit_annual: ' one-time',
   contact_submitting: 'Sending...',
