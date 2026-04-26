@@ -876,7 +876,7 @@ const B2BAdoption = () => {
     <section id="b2b-adopcion" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0">
         <img src="/Holzen/images/product1.jpeg" alt="bg" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0" style={{ background: 'rgba(20,12,5,0.80)' }} />
+        <div className="absolute inset-0" style={{ background: 'rgba(20,12,5,0.78)' }} />
       </div>
 
       <div className="relative max-w-6xl mx-auto">
@@ -1071,7 +1071,7 @@ const B2BContact = () => {
     <section id="b2b-contacto" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img src="/Holzen/images/reviews-bg.jpg" alt="bg" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0" style={{ background: 'rgba(20,12,5,0.93)' }} />
+        <div className="absolute inset-0" style={{ background: 'rgba(20,12,5,0.78)' }} />
       </div>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
 
