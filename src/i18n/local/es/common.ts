@@ -301,6 +301,13 @@ const es = {
   emp_contact_footer_note: 'Respondemos en menos de 24h en días hábiles.',
 
   emp_footer_tagline: 'Café de especialidad peruano con propósito.',
+
+  // ── HOME SECTIONS ────────────────────────────────────
+  emp_farmers_eyebrow: 'Nuestros Productores',
+  emp_farmers_title: 'Conoce a los productores',
+  emp_farmers_desc: 'Familias reales con nombres, historias y coordenadas GPS verificables.',
+  emp_farmers_qr_title: 'Trazabilidad con QR',
+  emp_farmers_qr_desc: 'Cada lote incluye un QR que muestra la historia del productor y el proceso.',
   toast_hint: 'Pulsa la ✕ o haz clic fuera para cerrar',
 };
 
