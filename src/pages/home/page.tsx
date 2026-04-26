@@ -5,6 +5,7 @@ import AndeanBasketToast from './components/AndeanBasketToast';
 import Hero from './components/Hero';
 import Manifesto from './components/Manifesto';
 import Products from './components/Products';
+import ImpactSlider from './components/ImpactSlider';
 import Reviews from './components/Reviews';
 import Farmers from './components/Farmers';
 import ProcessSection from './components/ProcessSection';
@@ -63,6 +64,7 @@ const HomePage = () => {
       <Hero />
       <Farmers />
       <Manifesto />
+      <ImpactSlider />
       <Products onAddToCart={handleAddToCart} />
       <Reviews />
       <ProcessSection />

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 interface NavbarProps {
   cartCount: number;
@@ -22,7 +23,9 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobOpen, setMobOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [mobileLangOpen, setMobileLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
+  const mobileLangRef = useRef<HTMLDivElement>(null);
 
   const currentLang = LANGUAGES.find((l) => l.code === i18n.language) ?? LANGUAGES[0];
 
@@ -36,6 +39,9 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
     const handleClick = (e: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
         setLangOpen(false);
+      }
+      if (mobileLangRef.current && !mobileLangRef.current.contains(e.target as Node)) {
+        setMobileLangOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClick);
@@ -53,6 +59,7 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
   const changeLanguage = (code: string) => {
     i18n.changeLanguage(code);
     setLangOpen(false);
+    setMobileLangOpen(false);
   };
 
   return (
@@ -86,10 +93,19 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
                 </button>
               </li>
             ))}
+            <li>
+              <Link
+                to="/empresas"
+                className="flex items-center gap-1.5 text-sm tracking-widest uppercase font-sans whitespace-nowrap px-4 py-1.5 rounded-full border border-gold/50 text-gold hover:bg-gold hover:text-coffee-900 transition-all duration-200 font-semibold"
+              >
+                <i className="ri-building-2-line text-sm" />
+                Empresas
+              </Link>
+            </li>
           </ul>
 
           <div className="flex items-center gap-3">
-            {/* Language selector */}
+            {/* Language selector — desktop */}
             <div ref={langRef} className="relative hidden md:block">
               <button
                 onClick={() => setLangOpen((v) => !v)}
@@ -112,6 +128,38 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
                     >
                       <span>{lang.flag}</span>
                       <span>{lang.label}</span>
+                      {lang.code === i18n.language && (
+                        <i className="ri-check-line ml-auto text-gold" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Language selector — mobile (dropdown, always visible) */}
+            <div ref={mobileLangRef} className="relative md:hidden">
+              <button
+                onClick={() => setMobileLangOpen((v) => !v)}
+                className="flex items-center gap-1 text-cream/70 hover:text-gold transition-colors text-xs font-sans border border-cream/20 hover:border-gold/40 px-2.5 py-1.5 rounded-full cursor-pointer whitespace-nowrap"
+              >
+                <span className="text-sm">{currentLang.flag}</span>
+                <span className="tracking-widest uppercase font-semibold">{currentLang.code.toUpperCase()}</span>
+                <i className={`ri-arrow-down-s-line text-sm transition-transform duration-200 ${mobileLangOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {mobileLangOpen && (
+                <div className="absolute right-0 top-full mt-2 bg-coffee-900 border border-gold/20 rounded-xl overflow-hidden z-[60]" style={{ minWidth: 130, boxShadow: '0 12px 40px rgba(0,0,0,0.5)' }}>
+                  {LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => changeLanguage(lang.code)}
+                      className={`w-full flex items-center gap-2.5 px-4 py-3 text-xs font-sans tracking-wide hover:bg-gold/10 transition-colors cursor-pointer whitespace-nowrap text-left ${
+                        lang.code === i18n.language ? 'text-gold' : 'text-cream/70'
+                      }`}
+                    >
+                      <span>{lang.flag}</span>
+                      <span className="uppercase font-semibold tracking-widest">{lang.code.toUpperCase()}</span>
                       {lang.code === i18n.language && (
                         <i className="ri-check-line ml-auto text-gold" />
                       )}
@@ -175,24 +223,6 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
             <i className="ri-close-line text-cream text-2xl" />
           </button>
 
-          {/* Mobile language selector */}
-          <div className="flex gap-2 flex-wrap mb-6">
-            {LANGUAGES.map((lang) => (
-              <button
-                key={lang.code}
-                onClick={() => changeLanguage(lang.code)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-sans border transition-colors cursor-pointer whitespace-nowrap ${
-                  lang.code === i18n.language
-                    ? 'border-gold text-gold bg-gold/10'
-                    : 'border-cream/20 text-cream/50 hover:border-gold/40'
-                }`}
-              >
-                <span>{lang.flag}</span>
-                <span>{lang.code.toUpperCase()}</span>
-              </button>
-            ))}
-          </div>
-
           <div className="flex flex-col gap-6">
             {links.map((l) => (
               <button
@@ -203,6 +233,14 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
                 {l.label}
               </button>
             ))}
+            <Link
+              to="/empresas"
+              onClick={() => setMobOpen(false)}
+              className="flex items-center gap-2 text-gold font-semibold tracking-widest uppercase font-sans text-base"
+            >
+              <i className="ri-building-2-line" />
+              Empresas
+            </Link>
           </div>
           <a
             href="https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN"
