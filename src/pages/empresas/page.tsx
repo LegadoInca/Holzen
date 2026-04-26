@@ -216,7 +216,7 @@ const EmpresasNavbar = () => {
           <ul className="hidden md:flex items-center gap-7">
             {navLinks.map((l) => (
               <li key={l.id}>
-                <button onClick={() => scrollTo(l.id)} className="text-cream/80 hover:text-gold transition-colors text-sm tracking-widest uppercase font-sans cursor-pointer whitespace-nowrap">
+                <button onClick={() => scrollTo(l.id)} className="text-cream/80 hover:text-gold transition-colors text-xs tracking-widest uppercase font-serif font-bold cursor-pointer whitespace-nowrap">
                   {l.label}
                 </button>
               </li>
@@ -248,7 +248,7 @@ const EmpresasNavbar = () => {
           </button>
           <div className="flex flex-col gap-6">
             {navLinks.map((l) => (
-              <button key={l.id} onClick={() => scrollTo(l.id)} className="text-left text-cream/80 hover:text-gold transition-colors text-base tracking-widest uppercase font-sans cursor-pointer">
+              <button key={l.id} onClick={() => scrollTo(l.id)} className="text-left text-cream/80 hover:text-gold transition-colors text-sm tracking-widest uppercase font-serif font-bold cursor-pointer">
                 {l.label}
               </button>
             ))}
@@ -303,7 +303,7 @@ const EmpresasHero = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => document.getElementById('b2b-catalogo')?.scrollIntoView({ behavior: 'smooth' })}
-            className="relative overflow-hidden px-8 py-4 rounded-full font-sans font-bold text-sm tracking-[0.2em] uppercase text-white cursor-pointer whitespace-nowrap"
+            className="relative overflow-hidden px-8 py-4 rounded-full font-serif font-black text-base tracking-[0.15em] uppercase text-white cursor-pointer whitespace-nowrap"
             style={{ background: 'linear-gradient(135deg, #c2622a, #e07830)', boxShadow: '0 0 24px rgba(210,100,40,0.4)' }}
           >
             <span className="relative z-10 flex items-center gap-2 justify-center">
@@ -316,7 +316,7 @@ const EmpresasHero = () => {
             href="https://wa.me/51XXXXXXXXX?text=Hola,%20soy%20empresa%20y%20me%20interesa%20el%20café%20HOLZEN%20al%20por%20mayor"
             target="_blank"
             rel="noopener noreferrer nofollow"
-            className="px-8 py-4 rounded-full font-sans font-semibold text-sm tracking-[0.2em] uppercase text-gold border border-gold/50 hover:bg-gold/10 transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 justify-center"
+            className="px-8 py-4 rounded-full font-serif font-black text-base tracking-[0.15em] uppercase text-gold border border-gold/50 hover:bg-gold/10 transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 justify-center"
           >
             <i className="ri-whatsapp-line" />
             {t('emp_hero_cta_advisor')}
@@ -367,7 +367,7 @@ const B2BCatalog = () => {
   return (
     <section id="b2b-catalogo" className="relative py-16 md:py-24 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0">
-        <img src="/Holzen/images/farmer2.jpeg" alt="bg" className="w-full h-full object-cover object-center" />
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover object-center"><source src="/Holzen/videos/farmers-bg.mp4" type="video/mp4" /></video>
         <div className="absolute inset-0 bg-coffee-900/70" />
       </div>
 
@@ -377,7 +377,7 @@ const B2BCatalog = () => {
           <h2 className="font-serif text-3xl md:text-5xl text-cream leading-tight mb-3 font-bold">
             {t('emp_catalog_title1')}<br /><em className="text-gold italic">{t('emp_catalog_title2')}</em>
           </h2>
-          <p className="text-cream/60 font-sans text-sm max-w-xl leading-relaxed">
+          <p className="text-cream/60 font-serif text-sm max-w-xl leading-relaxed">
             {t('emp_catalog_desc')}
           </p>
         </div>
@@ -448,7 +448,7 @@ const B2BCatalog = () => {
                       target="_blank"
                       rel="noopener noreferrer nofollow"
                       onClick={(e) => e.stopPropagation()}
-                      className="mt-auto w-full flex items-center justify-center gap-2 bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-full text-xs tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap"
+                      className="mt-auto w-full flex items-center justify-center gap-2 bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-black py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap"
                     >
                       <i className="ri-whatsapp-line" />
                       {t('emp_catalog_quote_btn')}
@@ -491,16 +491,22 @@ const B2BFarmers = () => {
   const f = farmers[cur];
 
   return (
-    <section id="b2b-productores" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden" style={{ background: 'linear-gradient(180deg, #120a03 0%, #1a0d05 100%)' }}>
+    <section id="b2b-productores" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover object-center">
+          <source src="/Holzen/videos/hero4.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-coffee-900/75" />
+      </div>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-3">{t('emp_farmers_eyebrow')}</p>
           <h2 className="font-serif text-3xl md:text-4xl text-cream font-bold mb-3">
             {t('emp_farmers_title')}
           </h2>
-          <p className="text-cream/50 font-sans text-sm max-w-lg mx-auto leading-relaxed">
+          <p className="text-cream/50 font-serif text-sm max-w-lg mx-auto leading-relaxed">
             {t('emp_farmers_desc')}
           </p>
         </div>
@@ -743,9 +749,15 @@ const B2BImpact = () => {
   ];
 
   return (
-    <section className="relative py-12 md:py-16 px-4 md:px-6 overflow-hidden" style={{ background: 'linear-gradient(180deg, #1a0d05 0%, #120a03 100%)' }}>
+    <section className="relative py-12 md:py-16 px-4 md:px-6 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover object-center">
+          <source src="/Holzen/videos/farmers-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-coffee-900/85" />
+      </div>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto relative z-10">
         <div className="flex items-start justify-between mb-8 gap-4">
           <div>
             <h3 className="font-serif text-xl md:text-2xl text-cream leading-tight">{t('emp_impact_title')}</h3>
@@ -864,7 +876,7 @@ const B2BAdoption = () => {
     <section id="b2b-adopcion" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0">
         <img src="/Holzen/images/product1.jpeg" alt="bg" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-coffee-900/82" />
+        <div className="absolute inset-0 bg-coffee-900/93" />
       </div>
 
       <div className="relative max-w-6xl mx-auto">
@@ -1056,10 +1068,14 @@ const B2BContact = () => {
   ];
 
   return (
-    <section id="b2b-contacto" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden" style={{ background: 'linear-gradient(180deg, #120a03 0%, #0d0602 100%)' }}>
+    <section id="b2b-contacto" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <img src="/Holzen/images/reviews-bg.jpg" alt="bg" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-coffee-900/88" />
+      </div>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-10">
           <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-3">{t('emp_contact_eyebrow')}</p>
           <h2 className="font-serif text-3xl md:text-4xl text-cream font-bold mb-3">

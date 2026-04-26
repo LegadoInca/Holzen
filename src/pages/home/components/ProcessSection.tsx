@@ -15,7 +15,7 @@ const ProcessSection = () => {
           alt="background"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-coffee-900/82" />
+        <div className="absolute inset-0 bg-coffee-900/92" />
         <div className="absolute inset-0 bg-amber-950/25" />
       </div>
 
