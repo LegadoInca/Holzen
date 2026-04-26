@@ -56,10 +56,10 @@ const Hero = () => {
         <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4 opacity-90">
           {t('hero_eyebrow')}
         </p>
-        <h1 className="font-serif font-black text-[clamp(3rem,8vw,6.5rem)] leading-none tracking-[0.15em] text-cream uppercase mb-4">
+        <h1 className="font-serif font-black text-[clamp(2.5rem,7vw,5.5rem)] leading-none tracking-[0.15em] text-cream uppercase mb-4">
           HOLZEN
         </h1>
-        <p className="font-serif font-black text-[clamp(1.2rem,3.2vw,2.8rem)] leading-tight tracking-[0.08em] text-cream uppercase mb-8 whitespace-pre-line">
+        <p className="font-serif font-black text-[clamp(1rem,2.7vw,2.3rem)] leading-tight tracking-[0.08em] text-cream uppercase mb-8 whitespace-pre-line">
           {t('hero_subtitle')}
         </p>
         <p className="max-w-xl text-cream/70 text-sm md:text-base font-sans leading-relaxed mb-10">
