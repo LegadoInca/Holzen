@@ -197,7 +197,7 @@ const ImpactSlider = () => {
             </p>
           </div>
           <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold/20 bg-gold/10">
-            <i className="ri-seedling-line text-xs" style={{color:'#C8A96E'" />
+            <i className="ri-seedling-line text-xs" style={{color:'#C8A96E'}} />
             <span className="font-sans text-[10px] tracking-widest uppercase font-semibold" style={{color:'#C8A96E'}}>Café Peruano</span>
           </div>
         </div>
