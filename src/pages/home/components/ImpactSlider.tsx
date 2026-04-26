@@ -15,28 +15,28 @@ interface ImpactCard {
 const impactCards: ImpactCard[] = [
   {
     icon: 'ri-group-line',
-    image: 'https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=400&h=260&fit=crop',
+    image: '/Holzen/images/impact1.jpg',
     getValue: (n) => String(Math.max(1, Math.round(n / 12))),
     label: 'Familias productoras beneficiadas',
     sublabel: (n) => n <= 10 ? 'una pequeña familia apoyada' : n <= 40 ? 'varias familias esta semana' : 'comunidad entera impactada',
   },
   {
     icon: 'ri-money-dollar-circle-line',
-    image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=260&fit=crop',
+    image: '/Holzen/images/product5.jpeg',
     getValue: (n) => `$${(n * 2.8).toFixed(0)}`,
     label: 'USD directos al productor',
     sublabel: (n) => n <= 10 ? 'paga un día de trabajo' : n <= 40 ? 'cubre una semana de servicios' : 'financia un mes completo',
   },
   {
     icon: 'ri-book-open-line',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=260&fit=crop',
+    image: '/Holzen/images/impact3.jpg',
     getValue: (n) => String(Math.max(1, Math.round(n / 18))),
     label: 'Niños con educación apoyada',
     sublabel: (n) => n <= 15 ? 'un mes de clases garantizado' : n <= 50 ? 'varios niños en la escuela' : 'toda una aula beneficiada',
   },
   {
     icon: 'ri-plant-line',
-    image: 'https://images.unsplash.com/photo-1611174797136-5e1a4a5c4e2f?w=400&h=260&fit=crop',
+    image: '/Holzen/images/product1.jpeg',
     getValue: (n) => String(Math.max(1, Math.round(n * 1.4))),
     label: 'Plantas de café preservadas',
     sublabel: (n) => n <= 10 ? 'un pequeño jardín preservado' : n <= 40 ? 'parcela activa mantenida' : 'hectárea completa protegida',
@@ -167,7 +167,11 @@ const ImpactSlider = () => {
   const voice = voices[voiceIdx];
 
   return (
-    <section className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden" style={{ background: 'linear-gradient(180deg, #1a0d05 0%, #120a03 100%)' }}>
+    <section className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden">
+      <div className="absolute inset-0">
+        <img src="/Holzen/images/process3.jpeg" alt="" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(26,13,5,0.92) 0%, rgba(18,10,3,0.95) 100%)' }} />
+      </div>
       {/* Subtle top border */}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
 

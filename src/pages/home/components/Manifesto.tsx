@@ -82,7 +82,10 @@ interface MapPin {
   name: string;
   altitude: string;
   story: string;
+  storyTitle: string;
   image: string;
+  familyImage: string;
+  familyCaption: string;
   stat: string;
   statLabel: string;
   x: number;
@@ -95,8 +98,11 @@ const mapPins: MapPin[] = [
     region: 'Quillabamba · Cusco',
     name: 'Lucía Quispe',
     altitude: '1,200 m.s.n.m',
-    story: 'A los 19 años perdió su cosecha entera por una helada. Sin crédito, sin apoyo, decidió aprender sola el proceso natural. Hoy su café Chuncho es el más solicitado por tostadoras en Alemania y Países Bajos.',
+    storyTitle: 'El renacer de Lucía',
+    story: 'A los 19 años perdió su cosecha entera por una helada. Sin crédito, sin apoyo, decidió aprender sola el proceso natural.',
     image: '/Holzen/images/farmer1.jpg',
+    familyImage: 'https://images.unsplash.com/photo-1536064479547-7ee40b74b807?w=320&h=220&fit=crop',
+    familyCaption: 'Los hijos de Lucía van a la escuela gracias al café',
     stat: '3×', statLabel: 'ingresos en 4 años',
     x: 42, y: 62,
   },
@@ -105,8 +111,11 @@ const mapPins: MapPin[] = [
     region: 'San Martín · Perú',
     name: 'Edilberto Rojas',
     altitude: '850 m.s.n.m',
-    story: 'Exmilitar que volvió a su tierra con las manos vacías. Convirtió una parcela abandonada en un cafetal de 3 hectáreas trabajando solo, de madrugada, durante dos años. Su café financió la educación de sus cuatro hijos.',
+    storyTitle: 'El despertar de Edilberto',
+    story: 'Exmilitar que volvió a su tierra con las manos vacías. Convirtió una parcela abandonada en 3 hectáreas de cafetal.',
     image: '/Holzen/images/farmer2.jpeg',
+    familyImage: 'https://images.unsplash.com/photo-1511895426328-dc8714191011?w=320&h=220&fit=crop',
+    familyCaption: 'Los 4 hijos de Edilberto estudian en la universidad',
     stat: '3 ha', statLabel: 'cultivadas desde cero',
     x: 52, y: 38,
   },
@@ -115,8 +124,11 @@ const mapPins: MapPin[] = [
     region: 'Valle Monzón · Huánuco',
     name: 'Rosa Panduro',
     altitude: '900 m.s.n.m',
-    story: 'Madre soltera de tres hijos, heredó una deuda y una parcela descuidada. Aprendió el secado solar artesanal observando a sus vecinos. Hoy produce uno de los cafés naturales más complejos del Perú, sin intermediarios.',
+    storyTitle: 'La fuerza de Rosa',
+    story: 'Madre soltera de tres hijos, heredó una deuda y una parcela descuidada. Hoy exporta directamente a Europa.',
     image: '/Holzen/images/farmer3.jpeg',
+    familyImage: 'https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?w=320&h=220&fit=crop',
+    familyCaption: 'Los 3 hijos de Rosa crecen con dignidad y sin deudas',
     stat: '100%', statLabel: 'venta directa al exterior',
     x: 48, y: 48,
   },
@@ -125,8 +137,11 @@ const mapPins: MapPin[] = [
     region: 'Jaén · Cajamarca',
     name: 'Segundo Herrera',
     altitude: '1,400 m.s.n.m',
-    story: 'Creció viendo a su padre vender café a precios de miseria. A los 28 años aprendió catación, certificó su finca y comenzó a exportar directamente. Hoy su café llega a Japón y Suecia con su nombre en el saco.',
+    storyTitle: 'El nuevo comienzo de Segundo',
+    story: 'Creció viendo a su padre vender café a precios de miseria. A los 28 años rompió esa cadena y comenzó a exportar directamente.',
     image: '/Holzen/images/farmer4.jpeg',
+    familyImage: 'https://images.unsplash.com/photo-1543342384-1f1350e27861?w=320&h=220&fit=crop',
+    familyCaption: 'El padre de Segundo ya no vende a intermediarios',
     stat: '12 países', statLabel: 'destinos de exportación',
     x: 36, y: 28,
   },
@@ -135,8 +150,11 @@ const mapPins: MapPin[] = [
     region: 'Ayacucho · Valle del Pampas',
     name: 'Manuel Ccahuana',
     altitude: '2,200 m.s.n.m',
-    story: 'En los 90, el terrorismo destruyó su comunidad. Manuel perdió a su padre y a tres vecinos en una semana. Hoy, a los 54 años, cultiva café donde antes solo había miedo. Cada saco que exporta es un acto de resistencia y de paz.',
+    storyTitle: 'La resistencia de Manuel',
+    story: 'En los 90, el terrorismo destruyó su comunidad. Hoy, a los 54 años, cultiva café donde antes solo había miedo.',
     image: '/Holzen/images/farmer5.jpg',
+    familyImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=320&h=220&fit=crop',
+    familyCaption: 'La familia de Manuel vive en paz donde antes hubo miedo',
     stat: '54 años', statLabel: 'de resistencia',
     x: 46, y: 56,
   },
@@ -145,8 +163,11 @@ const mapPins: MapPin[] = [
     region: 'Cusco · Finca La Esperanza',
     name: 'Rosa Quispe',
     altitude: '2,800 m.s.n.m',
-    story: 'Rosa escapó de una relación violenta con tres hijos pequeños. Sin dinero ni red de apoyo, llegó a Cusco con lo puesto. Hoy su finca financia la escuela de sus tres hijos y exporta directamente a Europa.',
+    storyTitle: 'La esperanza de Rosa',
+    story: 'Escapó de una relación violenta con tres hijos pequeños. Hoy su finca financia la escuela de sus tres hijos.',
     image: '/Holzen/images/farmer6.jpg',
+    familyImage: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=320&h=220&fit=crop',
+    familyCaption: 'Lucía, Ander y Mateo van a la escuela cada mañana',
     stat: '3 hijos', statLabel: 'en la escuela',
     x: 50, y: 66,
   },
@@ -155,8 +176,11 @@ const mapPins: MapPin[] = [
     region: 'San Martín · Alto Huallaga',
     name: 'Julia Flores',
     altitude: '1,900 m.s.n.m',
-    story: 'Hace tres años, Julia cultivaba coca porque no había otra opción. Hoy cultiva café premium con certificación de origen. "El café me devolvió el orgullo", dice en el audio que recibirás con tu pedido.',
+    storyTitle: 'El orgullo de Julia',
+    story: 'Hace tres años cultivaba coca porque no había otra opción. Hoy cultiva café premium con certificación de origen.',
     image: '/Holzen/images/farmer7.jpeg',
+    familyImage: 'https://https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=320&h=220&fit=crop',
+    familyCaption: 'La hija de Julia sueña con estudiar agronomía',
     stat: '100%', statLabel: 'café certificado de origen',
     x: 55, y: 42,
   },
@@ -165,12 +189,17 @@ const mapPins: MapPin[] = [
 const PeruMap = ({ contentVisible, mapLegend }: { contentVisible: boolean; mapLegend: string }) => {
   const [active, setActive] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
+  const [cardTab, setCardTab] = useState<'producer' | 'family'>('producer');
   const containerRef = useRef<HTMLDivElement>(null);
 
   const activePin = mapPins.find(p => p.id === (active ?? hovered));
 
   const handlePin = (id: string) => {
-    setActive(prev => prev === id ? null : id);
+    setActive(prev => {
+      if (prev === id) return null;
+      setCardTab('producer');
+      return id;
+    });
   };
 
   useEffect(() => {
@@ -211,11 +240,7 @@ const PeruMap = ({ contentVisible, mapLegend }: { contentVisible: boolean; mapLe
             >
               <span
                 className="absolute inset-0 rounded-full animate-ping"
-                style={{
-                  background: 'rgba(201,169,110,0.35)',
-                  animationDuration: '2s',
-                  opacity: isActive || isHov ? 1 : 0.5,
-                }}
+                style={{ background: 'rgba(201,169,110,0.35)', animationDuration: '2s', opacity: isActive || isHov ? 1 : 0.5 }}
               />
               <span
                 className="relative flex items-center justify-center rounded-full border-2 transition-all duration-300"
@@ -241,47 +266,123 @@ const PeruMap = ({ contentVisible, mapLegend }: { contentVisible: boolean; mapLe
           );
         })}
 
+        {/* Active pin card — two tabs */}
         {activePin && (
           <div
+            key={activePin.id}
             className="absolute z-30 rounded-2xl overflow-hidden"
             style={{
-              width: '160px',
+              width: '180px',
               left: activePin.x > 55 ? `${activePin.x - 2}%` : `${activePin.x + 3}%`,
-              top: activePin.y > 60 ? `${activePin.y - 8}%` : `${activePin.y + 3}%`,
+              top: activePin.y > 60 ? `${activePin.y - 10}%` : `${activePin.y + 3}%`,
               transform: activePin.x > 55 ? 'translateX(-100%)' : 'translateX(0)',
               animation: 'cardIn 0.28s cubic-bezier(0.16,1,0.3,1) forwards',
-              background: 'rgba(18,10,5,0.96)',
+              background: 'rgba(14,8,3,0.97)',
               border: '1px solid rgba(201,169,110,0.3)',
-              boxShadow: '0 16px 48px rgba(0,0,0,0.7)',
+              boxShadow: '0 20px 56px rgba(0,0,0,0.8)',
             }}
           >
-            <div className="relative w-full" style={{ height: '140px' }}>
+            {/* Photo */}
+            <div className="relative w-full" style={{ height: '148px' }}>
               <img
-                src={activePin.image}
-                alt={activePin.name}
-                className="w-full h-full object-cover object-top"
+                src={cardTab === 'producer' ? activePin.image : activePin.familyImage}
+                alt={cardTab === 'producer' ? activePin.name : 'Familia'}
+                className="w-full h-full object-cover object-top transition-opacity duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+              {/* Tag top-left */}
+              <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[8px] font-sans font-semibold tracking-widest uppercase"
+                style={{ background: 'rgba(194,98,42,0.85)', color: '#fff8f0' }}>
+                {cardTab === 'producer' ? 'Productor' : 'Su familia'}
+              </div>
+
+              {/* Close */}
               <button
                 onClick={() => setActive(null)}
                 className="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full bg-black/60 text-cream/70 hover:text-cream cursor-pointer transition-colors"
               >
                 <i className="ri-close-line" style={{ fontSize: '10px' }} />
               </button>
+
+              {/* Story title over photo bottom */}
+              <div className="absolute bottom-0 left-0 right-0 px-3 pb-2">
+                <p className="font-serif text-cream text-[11px] leading-tight font-semibold">
+                  {activePin.storyTitle}
+                </p>
+              </div>
             </div>
-            <div className="px-3 py-2.5">
+
+            {/* Info */}
+            <div className="px-3 pt-2 pb-1">
               <p className="text-gold font-sans text-[8px] tracking-widest uppercase mb-0.5 truncate">{activePin.region}</p>
               <h4 className="font-serif text-cream text-sm leading-tight">{activePin.name}</h4>
+              {cardTab === 'family' && (
+                <p className="text-cream/55 font-sans text-[9px] leading-snug mt-1.5 italic">
+                  {activePin.familyCaption}
+                </p>
+              )}
+            </div>
+
+            {/* Tabs */}
+            <div className="flex border-t mx-3 mb-2.5 mt-2" style={{ borderColor: 'rgba(201,169,110,0.15)' }}>
+              <button
+                onClick={() => setCardTab('producer')}
+                className="flex-1 py-1.5 font-sans text-[9px] tracking-widest uppercase transition-colors cursor-pointer"
+                style={{ color: cardTab === 'producer' ? '#c9a96e' : 'rgba(255,245,230,0.35)', borderBottom: cardTab === 'producer' ? '1.5px solid #c9a96e' : '1.5px solid transparent' }}
+              >
+                Productor
+              </button>
+              <button
+                onClick={() => setCardTab('family')}
+                className="flex-1 py-1.5 font-sans text-[9px] tracking-widest uppercase transition-colors cursor-pointer"
+                style={{ color: cardTab === 'family' ? '#c9a96e' : 'rgba(255,245,230,0.35)', borderBottom: cardTab === 'family' ? '1.5px solid #c9a96e' : '1.5px solid transparent' }}
+              >
+                Su familia
+              </button>
             </div>
           </div>
         )}
       </div>
 
-      <div className="flex items-center justify-center gap-2 mt-3">
+      {/* Legend */}
+      <div className="flex items-center justify-center gap-2 mt-3 mb-4">
         <span className="w-2 h-2 rounded-full bg-gold/70 flex-shrink-0" />
         <p className="text-cream/35 font-sans text-[10px] tracking-widest uppercase">
           {mapLegend}
         </p>
+      </div>
+
+      {/* Producer chips */}
+      <div className="flex flex-col gap-2">
+        <div className="flex justify-center">
+          <div className="relative overflow-hidden inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-xs font-semibold tracking-[0.2em] uppercase cursor-default select-none" style={{ background: 'linear-gradient(135deg, #c2622a 0%, #e07830 50%, #c2622a 100%)', color: '#fff8f0', boxShadow: '0 0 18px rgba(210,100,40,0.35)' }}>
+            <i className="ri-map-pin-line text-sm" />
+            Toca un nombre para conocer al productor
+            <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          </div>
+        </div>
+        <div className="flex flex-wrap justify-center gap-2 px-2">
+          {mapPins.map((pin) => {
+            const isActive = active === pin.id;
+            return (
+              <button
+                key={pin.id}
+                onClick={() => handlePin(pin.id)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-xs transition-all duration-200 cursor-pointer whitespace-nowrap border"
+                style={{
+                  background: isActive ? 'rgba(201,169,110,0.18)' : 'rgba(255,255,255,0.04)',
+                  borderColor: isActive ? 'rgba(201,169,110,0.6)' : 'rgba(255,255,255,0.1)',
+                  color: isActive ? '#c9a96e' : 'rgba(255,245,230,0.5)',
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: isActive ? '#c9a96e' : 'rgba(201,169,110,0.4)' }} />
+                {pin.name.split(' ')[0]}
+                <span className="text-[9px] opacity-60">{pin.region.split('·')[0].trim()}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <style>{`
