@@ -178,14 +178,14 @@ const ImpactSlider = () => {
 
   return (
     <section className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" style={{zIndex:0}}>
         <img src="/Holzen/images/process3.jpeg" alt="" className="w-full h-full object-cover object-center" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(26,13,5,0.72) 0%, rgba(18,10,3,0.78) 100%)' }} />
       </div>
       {/* Subtle top border */}
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)', zIndex:2 }} />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto" style={{position:'relative', zIndex:10}}>
 
         {/* Header */}
         <div className="flex items-start justify-between mb-6 md:mb-8 gap-4">
