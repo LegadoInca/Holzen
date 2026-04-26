@@ -15,7 +15,7 @@ interface ImpactCard {
 const impactCards: ImpactCard[] = [
   {
     icon: 'ri-group-line',
-    image: '/Holzen/images/impact1.jpg',
+    image: '/Holzen/images/impact1.jpeg',
     getValue: (n) => String(Math.max(1, Math.round(n / 12))),
     label: 'Familias productoras beneficiadas',
     sublabel: (n) => n <= 10 ? 'una pequeña familia apoyada' : n <= 40 ? 'varias familias esta semana' : 'comunidad entera impactada',
@@ -29,7 +29,7 @@ const impactCards: ImpactCard[] = [
   },
   {
     icon: 'ri-book-open-line',
-    image: '/Holzen/images/impact3.jpg',
+    image: '/Holzen/images/impact3.jpeg',
     getValue: (n) => String(Math.max(1, Math.round(n / 18))),
     label: 'Niños con educación apoyada',
     sublabel: (n) => n <= 15 ? 'un mes de clases garantizado' : n <= 50 ? 'varios niños en la escuela' : 'toda una aula beneficiada',
@@ -83,6 +83,16 @@ const voices = [
 ];
 
 const ImpactSlider = () => {
+  // Inject numBounce keyframe
+  useEffect(() => {
+    const id = 'impact-slider-styles';
+    if (!document.getElementById(id)) {
+      const style = document.createElement('style');
+      style.id = id;
+      style.textContent = `@keyframes numBounce { 0%{transform:scale(1)} 30%{transform:scale(1.18)} 60%{transform:scale(0.95)} 80%{transform:scale(1.06)} 100%{transform:scale(1)} }`;
+      document.head.appendChild(style);
+    }
+  }, []);
   const [sliderVal, setSliderVal] = useState(20);
   const [voiceIdx, setVoiceIdx] = useState(0);
   const [voiceFade, setVoiceFade] = useState(true);
@@ -170,7 +180,7 @@ const ImpactSlider = () => {
     <section className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0">
         <img src="/Holzen/images/process3.jpeg" alt="" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(26,13,5,0.92) 0%, rgba(18,10,3,0.95) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(26,13,5,0.72) 0%, rgba(18,10,3,0.78) 100%)' }} />
       </div>
       {/* Subtle top border */}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
