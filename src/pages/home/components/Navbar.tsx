@@ -87,7 +87,7 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               <li key={l.key}>
                 <button
                   onClick={() => scrollTo(l.key)}
-                  className="text-cream/80 hover:text-gold transition-colors text-sm tracking-widest uppercase font-sans cursor-pointer whitespace-nowrap"
+                  className="text-cream/80 hover:text-gold transition-colors text-xs tracking-widest uppercase font-serif font-bold cursor-pointer whitespace-nowrap"
                 >
                   {l.label}
                 </button>
