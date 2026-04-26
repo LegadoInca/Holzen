@@ -178,14 +178,14 @@ const ImpactSlider = () => {
 
   return (
     <section className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden">
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0">
         <img src="/Holzen/images/process3.jpeg" alt="" className="w-full h-full object-cover object-center" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(26,13,5,0.72) 0%, rgba(18,10,3,0.78) 100%)' }} />
       </div>
       {/* Subtle top border */}
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
 
-      <div className="max-w-5xl mx-auto relative z-10">
+      <div className="max-w-5xl mx-auto">
 
         {/* Header */}
         <div className="flex items-start justify-between mb-6 md:mb-8 gap-4">
@@ -326,14 +326,18 @@ const ImpactSlider = () => {
                   </div>
                 </div>
                 {/* CTA button */}
-                <Link
-                  to="/productores"
+                <a
+                  href="#farmers"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('farmers')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-[10px] font-semibold text-white whitespace-nowrap cursor-pointer transition-all hover:brightness-110"
                   style={{ background: 'linear-gradient(90deg, #c2622a, #e07830)', boxShadow: '0 0 10px rgba(210,100,40,0.4)' }}
                 >
                   <i className="ri-user-heart-line text-xs" />
                   Ver más historias
-                </Link>
+                </a>
               </div>
             </div>
 
