@@ -288,7 +288,7 @@ const EmpresasHero = () => {
           <span className="text-gold font-sans text-xs tracking-[0.3em] uppercase font-semibold">{t('emp_hero_badge')}</span>
         </div>
 
-        <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-cream leading-tight mb-6 font-bold">
+        <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-cream leading-tight mb-6 font-bold">
           {t('emp_hero_title1')}<br />
           <em className="text-gold italic">{t('emp_hero_title2')}</em>
         </h1>
@@ -303,7 +303,7 @@ const EmpresasHero = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => document.getElementById('b2b-catalogo')?.scrollIntoView({ behavior: 'smooth' })}
-            className="relative overflow-hidden px-8 py-4 rounded-full font-serif font-black text-base tracking-[0.15em] uppercase text-white cursor-pointer whitespace-nowrap"
+            className="relative overflow-hidden px-6 py-3 rounded-full font-serif font-black text-xs tracking-[0.15em] uppercase text-white cursor-pointer whitespace-nowrap"
             style={{ background: 'linear-gradient(135deg, #c2622a, #e07830)', boxShadow: '0 0 24px rgba(210,100,40,0.4)' }}
           >
             <span className="relative z-10 flex items-center gap-2 justify-center">
@@ -316,7 +316,7 @@ const EmpresasHero = () => {
             href="https://wa.me/51XXXXXXXXX?text=Hola,%20soy%20empresa%20y%20me%20interesa%20el%20café%20HOLZEN%20al%20por%20mayor"
             target="_blank"
             rel="noopener noreferrer nofollow"
-            className="px-8 py-4 rounded-full font-serif font-black text-base tracking-[0.15em] uppercase text-gold border border-gold/50 hover:bg-gold/10 transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 justify-center"
+            className="px-8 py-4 rounded-full font-serif font-black text-xs tracking-[0.15em] uppercase text-gold border border-gold/50 hover:bg-gold/10 transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 justify-center"
           >
             <i className="ri-whatsapp-line" />
             {t('emp_hero_cta_advisor')}
@@ -448,7 +448,7 @@ const B2BCatalog = () => {
                       target="_blank"
                       rel="noopener noreferrer nofollow"
                       onClick={(e) => e.stopPropagation()}
-                      className="mt-auto w-full flex items-center justify-center gap-2 bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-black py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap"
+                      className="mt-auto w-full flex items-center justify-center gap-2 bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-black py-2 rounded-full text-[10px] tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap"
                     >
                       <i className="ri-whatsapp-line" />
                       {t('emp_catalog_quote_btn')}
@@ -876,7 +876,7 @@ const B2BAdoption = () => {
     <section id="b2b-adopcion" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0">
         <img src="/Holzen/images/product1.jpeg" alt="bg" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-coffee-900/93" />
+        <div className="absolute inset-0 bg-coffee-900/98" />
       </div>
 
       <div className="relative max-w-6xl mx-auto">
@@ -1071,7 +1071,7 @@ const B2BContact = () => {
     <section id="b2b-contacto" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img src="/Holzen/images/reviews-bg.jpg" alt="bg" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-coffee-900/88" />
+        <div className="absolute inset-0 bg-coffee-900/96" />
       </div>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)' }} />
 

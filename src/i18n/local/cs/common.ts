@@ -279,7 +279,7 @@ const cs = {
   emp_contact_volume_opt3: '200–500 kg / měsíc',
   emp_contact_volume_opt4: '> 500 kg / měsíc',
   emp_contact_message_placeholder: 'Řekněte nám o svém projektu...',
-  emp_contact_submit: 'VYTVOŘIT DOPAD NYNÍ',
+  emp_contact_submit: 'Odeslat zprávu',
   emp_contact_submitting: 'Odesílání...',
   emp_contact_success_title: 'Zpráva přijata!',
   emp_contact_success_desc: 'Ozveme se vám do 24 hodin.',

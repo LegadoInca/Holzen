@@ -287,7 +287,7 @@ const es = {
   emp_contact_volume_opt3: '200–500 kg / mes',
   emp_contact_volume_opt4: '> 500 kg / mes',
   emp_contact_message_placeholder: 'Cuéntanos tu proyecto...',
-  emp_contact_submit: 'GENERAR IMPACTO AHORA',
+  emp_contact_submit: 'Enviar mensaje',
   emp_contact_submitting: 'Enviando...',
   emp_contact_success_title: '¡Mensaje recibido!',
   emp_contact_success_desc: 'Te contactaremos en menos de 24 horas.',
