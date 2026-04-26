@@ -67,7 +67,7 @@ export const products: Product[] = [
     image: '/Holzen/images/product1.jpeg',
     priceNum: 28,
     priceLabel: '$28.00/kg',
-    ctaLabel: 'Beber su café',
+    ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Lucía Quispe',
       location: 'Quillabamba, Cusco',
@@ -96,7 +96,7 @@ export const products: Product[] = [
     image: '/Holzen/images/product2.jpg',
     priceNum: 24,
     priceLabel: '$24.00/kg',
-    ctaLabel: 'Generar impacto',
+    ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Edilberto Rojas',
       location: 'Tarapoto, San Martín',
@@ -125,7 +125,7 @@ export const products: Product[] = [
     image: '/Holzen/images/product3.jpg',
     priceNum: 22,
     priceLabel: '$22.00/kg',
-    ctaLabel: 'Apoyar su historia',
+    ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Rosa Panduro',
       location: 'Valle Monzón, Huánuco',
@@ -154,7 +154,7 @@ export const products: Product[] = [
     image: '/Holzen/images/product4.jpg',
     priceNum: 38,
     priceLabel: '$38.00/kg',
-    ctaLabel: 'Beber su café',
+    ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Segundo Herrera',
       location: 'Jaén, Cajamarca',
@@ -183,7 +183,7 @@ export const products: Product[] = [
     image: '/Holzen/images/product5.jpeg',
     priceNum: 30,
     priceLabel: '$30.00/kg',
-    ctaLabel: 'Apoyar su historia',
+    ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Manuel Ccahuana',
       location: 'Ayacucho, Valle del Pampas',
@@ -212,7 +212,7 @@ export const products: Product[] = [
     image: '/Holzen/images/product6.jpg',
     priceNum: 34,
     priceLabel: '$34.00/kg',
-    ctaLabel: 'Generar impacto',
+    ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Rosa Quispe',
       location: 'Cusco, Finca La Esperanza',
