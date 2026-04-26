@@ -190,27 +190,27 @@ const ImpactSlider = () => {
         {/* Header */}
         <div className="flex items-start justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <h3 className="font-serif text-xl md:text-2xl text-cream leading-tight">Tu Impacto Real</h3>
+            <h3 className="font-serif text-xl md:text-2xl leading-tight" style={{color:'#F5E6D0'}}>Tu Impacto Real</h3>
             <p className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full font-sans text-xs font-semibold text-white cursor-default select-none" style={{ background: 'linear-gradient(90deg, #c2622a, #e07830)', boxShadow: '0 0 10px rgba(210,100,40,0.45)' }}>
               <i className="ri-drag-move-line text-white/80 text-xs" />
               Mueve el slider y descubre el impacto de cada compra
             </p>
           </div>
-          <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold/25 bg-gold/8">
-            <i className="ri-seedling-line text-gold text-xs" />
-            <span className="text-gold font-sans text-[10px] tracking-widest uppercase font-semibold">Café Peruano</span>
+          <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold/20 bg-gold/10">
+            <i className="ri-seedling-line text-xs" style={{color:'#C8A96E'" />
+            <span className="font-sans text-[10px] tracking-widest uppercase font-semibold" style={{color:'#C8A96E'}}>Café Peruano</span>
           </div>
         </div>
 
         {/* Counter display */}
         <div className="text-center mb-5">
           <div className="flex items-baseline justify-center gap-2">
-            <span className="font-serif text-5xl md:text-6xl text-gold leading-none" style={{ fontVariantNumeric: 'tabular-nums' }}>
+            <span className="font-serif text-5xl md:text-6xl leading-none" style={{ fontVariantNumeric: 'tabular-nums', color:'#C8A96E' }}>
               {sliderVal}
             </span>
-            <span className="font-sans text-cream/60 text-base md:text-lg">productos</span>
+            <span className="font-sans text-base md:text-lg" style={{color:'rgba(245,230,208,0.6)'}}>productos</span>
           </div>
-          <p className="text-cream/30 font-sans text-[9px] tracking-[0.35em] uppercase mt-1">Unidades seleccionadas</p>
+          <p className="font-sans text-[9px] tracking-[0.35em] uppercase mt-1" style={{color:'rgba(245,230,208,0.4)'}}>Unidades seleccionadas</p>
         </div>
 
         {/* Slider track */}
@@ -229,7 +229,7 @@ const ImpactSlider = () => {
           {/* Tick marks */}
           <div className="flex justify-between mt-2 px-0">
             {[1, 25, 50, 75, 100].map((v) => (
-              <span key={v} className="font-sans text-[9px] text-cream/25">{v}</span>
+              <span key={v} className="font-sans text-[9px]" style={{color:'rgba(245,230,208,0.25)'}}>{v}</span>
             ))}
           </div>
         </div>
@@ -260,7 +260,7 @@ const ImpactSlider = () => {
                 >
                   {card.getValue(sliderVal)}
                 </div>
-                <div className="text-cream/80 font-sans text-[9px] leading-tight mb-1">{card.label}</div>
+                <div className="font-sans text-[9px] leading-tight mb-1" style={{color:'rgba(245,230,208,0.8)'}}>{card.label}</div>
                 <div className="text-[8px] font-sans italic" style={{ color: '#e07830' }}>{card.sublabel(sliderVal)}</div>
               </div>
             </div>
@@ -270,7 +270,7 @@ const ImpactSlider = () => {
         {/* Divider */}
         <div className="flex items-center gap-3 mb-5">
           <div className="flex-1 h-px" style={{ background: 'rgba(201,169,110,0.15)' }} />
-          <span className="text-gold/50 font-sans text-[9px] tracking-[0.35em] uppercase font-semibold">Voces del campo</span>
+          <span className="font-sans text-[9px] tracking-[0.35em] uppercase font-semibold" style={{color:'rgba(200,169,110,0.5)'}}>Voces del campo</span>
           <div className="flex-1 h-px" style={{ background: 'rgba(201,169,110,0.15)' }} />
         </div>
 
@@ -305,22 +305,22 @@ const ImpactSlider = () => {
                 <img src={voice.image} alt={voice.name} className="w-full h-full object-cover object-top" />
               </div>
               <div className="text-center">
-                <div className="font-serif text-lg text-gold font-bold leading-none">{voice.years}</div>
-                <div className="text-cream/50 font-sans text-[8px] leading-tight mt-0.5 max-w-[60px]">{voice.yearsLabel}</div>
+                <div className="font-serif text-lg font-bold leading-none" style={{color:'#C8A96E'}}>{voice.years}</div>
+                <div className="font-sans text-[8px] leading-tight mt-0.5 max-w-[60px]" style={{color:'rgba(245,230,208,0.5)'}}>{voice.yearsLabel}</div>
               </div>
             </div>
 
             {/* Right: quote + name */}
             <div className="flex-1 min-w-0">
-              <i className="ri-double-quotes-l text-gold/40 text-2xl leading-none block mb-1" />
-              <p className="text-cream/90 font-serif text-sm leading-relaxed italic mb-3">
+              <i className="ri-double-quotes-l text-2xl leading-none block mb-1" style={{color:'rgba(200,169,110,0.4)'}} />
+              <p className="font-serif text-sm leading-relaxed italic mb-3" style={{color:'rgba(245,230,208,0.9)'}}>
                 {voice.quote}
               </p>
               <div className="flex items-end justify-between gap-3 flex-wrap">
                 <div>
-                  <div className="font-sans text-sm text-cream font-semibold">{voice.name}</div>
-                  <div className="text-gold/70 font-sans text-[10px] mt-0.5">{voice.role}</div>
-                  <div className="text-cream/40 font-sans text-[9px] flex items-center gap-1 mt-0.5">
+                  <div className="font-sans text-sm font-semibold" style={{color:'#F5E6D0'}}>{voice.name}</div>
+                  <div className="font-sans text-[10px] mt-0.5" style={{color:'rgba(200,169,110,0.7)'}}>{voice.role}</div>
+                  <div className="font-sans text-[9px] flex items-center gap-1 mt-0.5" style={{color:'rgba(245,230,208,0.4)'}}>
                     <i className="ri-map-pin-line text-[9px]" />
                     {voice.location}
                   </div>
