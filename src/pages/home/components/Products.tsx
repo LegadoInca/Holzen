@@ -93,7 +93,7 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
               onAddToCart({ id: p.id, name: p.detailName, priceLabel: p.priceLabel, priceNum: p.priceNum, image: p.image });
               onUnflip();
             }}
-            className="relative mt-3 w-full overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-full text-xs tracking-[0.2em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
+            className="relative mt-3 w-full overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-bold py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
           >
             <span className="relative z-10">{p.ctaLabel}</span>
             <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
