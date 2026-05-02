@@ -223,7 +223,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, producerI
                   </div>
                 )}
                 <div
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2"
+                  className="absolute bottom-0 left-0 right-0 flex justify-center"
                   style={{ animation: flyProduct ? 'basketReceive 0.6s ease 0.55s both' : 'none' }}
                 >
                   <SimpleBasket />
