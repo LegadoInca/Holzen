@@ -19,6 +19,7 @@ const HomePage = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [toastItem, setToastItem] = useState<Omit<CartItem, 'qty'> | null>(null);
+  const [toastProducerImage, setToastProducerImage] = useState<string>('');
   const [toastProducer, setToastProducer] = useState('');
   const [toastKey, setToastKey] = useState(0);
 
@@ -31,6 +32,7 @@ const HomePage = () => {
     // Find producer name for this product
     const product = products.find((p) => p.id === item.id);
     setToastProducer(product?.producer.name ?? 'el productor');
+    setToastProducerImage(product?.producer.image ?? '');
     setToastItem(item);
     setToastKey((k) => k + 1);
   }, []);
@@ -58,6 +60,7 @@ const HomePage = () => {
         cartCount={totalCount}
         cartTotal={totalAmount}
         producerName={toastProducer}
+        producerImage={toastProducerImage}
         onClose={() => setToastItem(null)}
         onOpenCart={() => { setCartOpen(true); setToastItem(null); }}
       />

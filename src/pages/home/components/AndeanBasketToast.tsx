@@ -10,6 +10,7 @@ interface AndeanBasketToastProps {
   cartCount: number;
   cartTotal: number;
   producerName: string;
+  producerImage?: string;
   onClose: () => void;
   onOpenCart: () => void;
 }
@@ -33,7 +34,7 @@ const SimpleBasket = () => (
   </div>
 );
 
-const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, onOpenCart }: AndeanBasketToastProps) => {
+const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, producerImage, onClose, onOpenCart }: AndeanBasketToastProps) => {
   const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [flyProduct, setFlyProduct] = useState(false);
@@ -89,8 +90,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
   const impactLines = getImpactLines(cartTotal, producerName);
   const progressPct = Math.min(100, Math.round((cartTotal / 120) * 100));
 
-  // Find producer image from holzen farmers data
-  const producerImg = (item as any).producerImage || null;
+  const producerImg = producerImage || null;
 
   return (
     <>
@@ -151,7 +151,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
 
           {/* Top stripe */}
           <div className="h-1.5 w-full flex relative z-10">
-            {['#8B2500','#D4622A','#E8A020','#F5C842','#2E7D32','#66BB6A','#1565C0','#42A5F5','#8B2500','#D4622A','#E8A020','#F5C842','#2E7D32','#66BB6A'].map((c, i) => (
+            {['#8B2500','#C0390A','#D4622A','#E8820A','#F0A020','#F5C842','#E8A020','#D4622A','#C0390A','#8B2500','#F5C842','#E8A020','#D4622A','#C0390A'].map((c, i) => (
               <div key={i} className="flex-1" style={{ background: c }} />
             ))}
           </div>
@@ -186,13 +186,13 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
           <div className="flex items-stretch gap-0 px-5 pb-5 relative z-10">
 
             {/* LEFT — producer photo + basket */}
-            <div className="flex flex-col items-center justify-center pr-5 flex-shrink-0" style={{ minWidth: 96 }}>
+            <div className="flex flex-col items-center justify-center pr-5 flex-shrink-0" style={{ minWidth: 88 }}>
 
               {/* Producer photo */}
               <div
                 className="relative rounded-full overflow-hidden mb-2"
                 style={{
-                  width: 64, height: 64,
+                  width: 80, height: 80,
                   border: '2.5px solid rgba(201,169,110,0.6)',
                   boxShadow: '0 0 18px rgba(201,169,110,0.3)',
                   animation: flyProduct ? 'producerPop 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' : 'none',
@@ -284,7 +284,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
 
           {/* Bottom stripe */}
           <div className="h-1 w-full flex relative z-10">
-            {['#F5C842','#E8A020','#D4622A','#8B2500','#42A5F5','#1565C0','#66BB6A','#2E7D32','#F5C842','#E8A020','#D4622A','#8B2500','#42A5F5','#1565C0'].map((c, i) => (
+            {['#8B2500','#C0390A','#D4622A','#E8820A','#F0A020','#F5C842','#E8A020','#D4622A','#C0390A','#8B2500','#F5C842','#E8A020','#D4622A','#C0390A'].map((c, i) => (
               <div key={i} className="flex-1" style={{ background: c }} />
             ))}
           </div>
