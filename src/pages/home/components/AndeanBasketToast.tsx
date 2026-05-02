@@ -192,7 +192,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, producerI
               <div
                 className="relative rounded-full overflow-hidden mb-2"
                 style={{
-                  width: 80, height: 80,
+                  width: 96, height: 96,
                   border: '2.5px solid rgba(201,169,110,0.6)',
                   boxShadow: '0 0 18px rgba(201,169,110,0.3)',
                   animation: flyProduct ? 'producerPop 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' : 'none',
@@ -213,7 +213,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, producerI
               </span>
 
               {/* Flying product + basket */}
-              <div className="relative" style={{ height: 72, width: 64 }}>
+              <div className="relative" style={{ height: 72, width: 96 }}>
                 {flyProduct && (
                   <div
                     className="absolute top-0 left-1/2 -translate-x-1/2 rounded-lg overflow-hidden z-10"
