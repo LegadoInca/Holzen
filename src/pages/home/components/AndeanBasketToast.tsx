@@ -186,7 +186,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, producerI
           <div className="flex items-stretch gap-0 px-5 pb-5 relative z-10">
 
             {/* LEFT — producer photo + basket */}
-            <div className="flex flex-col items-center justify-center pr-5 flex-shrink-0" style={{ minWidth: 88 }}>
+            <div className="flex flex-col items-center justify-center pr-4 flex-shrink-0" style={{ width: 110 }}>
 
               {/* Producer photo */}
               <div
@@ -213,7 +213,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, producerI
               </span>
 
               {/* Flying product + basket */}
-              <div className="relative" style={{ height: 72, width: 96 }}>
+              <div className="relative flex justify-center" style={{ height: 72, width: 96 }}>
                 {flyProduct && (
                   <div
                     className="absolute top-0 left-1/2 -translate-x-1/2 rounded-lg overflow-hidden z-10"
@@ -271,7 +271,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, producerI
               <button
                 onClick={() => { handleClose(); onOpenCart(); }}
                 className="relative overflow-hidden w-full flex items-center justify-center gap-2 rounded-xl py-2.5 font-sans text-xs font-bold tracking-[0.15em] uppercase transition-all cursor-pointer whitespace-nowrap"
-                style={{ background: 'linear-gradient(135deg, #c9a96e, #d4a853)', color: '#1a0f05' }}
+                style={{ background: 'linear-gradient(135deg, #D4622A 0%, #E8820A 50%, #C0390A 100%)', color: '#FFFFFF', fontWeight: 800, letterSpacing: '0.12em', boxShadow: '0 4px 20px rgba(212,98,42,0.45)' }}
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <i className="ri-shopping-basket-2-line text-sm" />
