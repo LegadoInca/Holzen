@@ -14,58 +14,22 @@ interface AndeanBasketToastProps {
   onOpenCart: () => void;
 }
 
-/* ── Simple wicker basket illustration ── */
 const SimpleBasket = () => (
-  <div className="relative select-none" style={{ width: 80, height: 80 }}>
-    {/* Body */}
+  <div className="relative select-none" style={{ width: 56, height: 56 }}>
     <div
       className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-b-[45%] rounded-t-[15%]"
-      style={{
-        width: 68, height: 50,
-        background: 'linear-gradient(160deg, #d4a96a 0%, #b8864a 60%, #9a6e38 100%)',
-      }}
+      style={{ width: 48, height: 36, background: 'linear-gradient(160deg, #d4a96a 0%, #b8864a 60%, #9a6e38 100%)' }}
     >
-      {/* Weave lines horizontal */}
       {[30, 50, 70].map((pct) => (
         <div key={pct} className="absolute w-full" style={{ top: `${pct}%`, height: 1, background: 'rgba(90,50,10,0.25)' }} />
       ))}
-      {/* Weave lines vertical */}
       {[20, 40, 60, 80].map((pct) => (
         <div key={pct} className="absolute h-full" style={{ left: `${pct}%`, width: 1, background: 'rgba(90,50,10,0.2)' }} />
       ))}
     </div>
-    {/* Rim */}
-    <div
-      className="absolute left-1/2 -translate-x-1/2 rounded-full"
-      style={{
-        width: 72, height: 14,
-        bottom: 46,
-        background: 'linear-gradient(180deg, #c49050 0%, #9a6e38 100%)',
-        border: '1.5px solid rgba(90,50,10,0.3)',
-      }}
-    />
-    {/* Handle left */}
-    <div
-      className="absolute rounded-full"
-      style={{
-        width: 20, height: 22,
-        bottom: 54, left: 8,
-        border: '3px solid #9a6e38',
-        borderBottom: 'none',
-        background: 'transparent',
-      }}
-    />
-    {/* Handle right */}
-    <div
-      className="absolute rounded-full"
-      style={{
-        width: 20, height: 22,
-        bottom: 54, right: 8,
-        border: '3px solid #9a6e38',
-        borderBottom: 'none',
-        background: 'transparent',
-      }}
-    />
+    <div className="absolute left-1/2 -translate-x-1/2 rounded-full" style={{ width: 52, height: 10, bottom: 33, background: 'linear-gradient(180deg, #c49050 0%, #9a6e38 100%)', border: '1.5px solid rgba(90,50,10,0.3)' }} />
+    <div className="absolute rounded-full" style={{ width: 14, height: 16, bottom: 38, left: 5, border: '2.5px solid #9a6e38', borderBottom: 'none', background: 'transparent' }} />
+    <div className="absolute rounded-full" style={{ width: 14, height: 16, bottom: 38, right: 5, border: '2.5px solid #9a6e38', borderBottom: 'none', background: 'transparent' }} />
   </div>
 );
 
@@ -77,17 +41,12 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
   const t1Ref = useRef<ReturnType<typeof setTimeout> | null>(null);
   const t2Ref = useRef<ReturnType<typeof setTimeout> | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const productImgRef = useRef<HTMLDivElement>(null);
-  const basketRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const audio = new Audio(GRACIAS_AUDIO_URL);
     audio.preload = 'auto';
     audioRef.current = audio;
-    return () => {
-      audio.pause();
-      audioRef.current = null;
-    };
+    return () => { audio.pause(); audioRef.current = null; };
   }, []);
 
   const triggerAudio = useCallback(() => {
@@ -108,10 +67,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
     setFlyProduct(false);
     if (t1Ref.current) clearTimeout(t1Ref.current);
     if (t2Ref.current) clearTimeout(t2Ref.current);
-    t1Ref.current = setTimeout(() => {
-      setFlyProduct(true);
-      triggerAudio();
-    }, 180);
+    t1Ref.current = setTimeout(() => { setFlyProduct(true); triggerAudio(); }, 180);
     return () => {
       if (t1Ref.current) clearTimeout(t1Ref.current);
       if (t2Ref.current) clearTimeout(t2Ref.current);
@@ -119,32 +75,13 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
     };
   }, [item, triggerAudio]);
 
-  const handleClose = () => {
-    setVisible(false);
-    setTimeout(onClose, 300);
-  };
+  const handleClose = () => { setVisible(false); setTimeout(onClose, 300); };
 
   const getImpactLines = (total: number, name: string): string[] => {
-    if (total < 25) return [
-      t('toast_impact_line1_low', { name }),
-      t('toast_impact_line2_low'),
-      t('toast_impact_line3_low'),
-    ];
-    if (total < 60) return [
-      t('toast_impact_line1_mid', { name }),
-      t('toast_impact_line2_mid'),
-      t('toast_impact_line3_mid'),
-    ];
-    if (total < 100) return [
-      t('toast_impact_line1_high', { name }),
-      t('toast_impact_line2_high'),
-      t('toast_impact_line3_high'),
-    ];
-    return [
-      t('toast_impact_line1_max', { name }),
-      t('toast_impact_line2_max'),
-      t('toast_impact_line3_max'),
-    ];
+    if (total < 25) return [t('toast_impact_line1_low', { name }), t('toast_impact_line2_low'), t('toast_impact_line3_low')];
+    if (total < 60) return [t('toast_impact_line1_mid', { name }), t('toast_impact_line2_mid'), t('toast_impact_line3_mid')];
+    if (total < 100) return [t('toast_impact_line1_high', { name }), t('toast_impact_line2_high'), t('toast_impact_line3_high')];
+    return [t('toast_impact_line1_max', { name }), t('toast_impact_line2_max'), t('toast_impact_line3_max')];
   };
 
   if (!item) return null;
@@ -152,38 +89,21 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
   const impactLines = getImpactLines(cartTotal, producerName);
   const progressPct = Math.min(100, Math.round((cartTotal / 120) * 100));
 
+  // Find producer image from holzen farmers data
+  const producerImg = (item as any).producerImage || null;
+
   return (
     <>
       <style>{`
-        @keyframes toastSlideIn {
-          from { transform: translate(-50%, -50%) scale(0.93); opacity: 0; }
-          to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-        @keyframes toastSlideOut {
-          from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-          to   { transform: translate(-50%, -50%) scale(0.93); opacity: 0; }
-        }
-        @keyframes backdropIn  { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes backdropOut { from { opacity: 1; } to { opacity: 0; } }
-        @keyframes flyToBasket {
-          0%   { transform: translate(0, 0) scale(1); opacity: 1; }
-          60%  { transform: translate(-180px, 60px) scale(0.55); opacity: 0.8; }
-          100% { transform: translate(-200px, 80px) scale(0.1); opacity: 0; }
-        }
-        @keyframes basketReceive {
-          0%   { transform: scale(1) rotate(0deg); }
-          30%  { transform: scale(1.12) rotate(-4deg); }
-          60%  { transform: scale(0.96) rotate(2deg); }
-          100% { transform: scale(1) rotate(0deg); }
-        }
-        @keyframes impactLineIn {
-          from { transform: translateX(12px); opacity: 0; }
-          to   { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes shimmerStripe {
-          0%   { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
+        @keyframes toastSlideIn { from { transform: translate(-50%,-50%) scale(0.93); opacity:0; } to { transform: translate(-50%,-50%) scale(1); opacity:1; } }
+        @keyframes toastSlideOut { from { transform: translate(-50%,-50%) scale(1); opacity:1; } to { transform: translate(-50%,-50%) scale(0.93); opacity:0; } }
+        @keyframes backdropIn  { from { opacity:0; } to { opacity:1; } }
+        @keyframes backdropOut { from { opacity:1; } to { opacity:0; } }
+        @keyframes flyToBasket { 0% { transform:translate(0,0) scale(1); opacity:1; } 60% { transform:translate(-140px,50px) scale(0.55); opacity:0.8; } 100% { transform:translate(-160px,65px) scale(0.1); opacity:0; } }
+        @keyframes basketReceive { 0% { transform:scale(1) rotate(0deg); } 30% { transform:scale(1.15) rotate(-4deg); } 60% { transform:scale(0.96) rotate(2deg); } 100% { transform:scale(1) rotate(0deg); } }
+        @keyframes impactLineIn { from { transform:translateX(12px); opacity:0; } to { transform:translateX(0); opacity:1; } }
+        @keyframes producerPop { from { transform:scale(0.7); opacity:0; } to { transform:scale(1); opacity:1; } }
+        @keyframes goldenShimmer { 0% { background-position:-200% center; } 100% { background-position:200% center; } }
       `}</style>
 
       {/* Backdrop */}
@@ -191,8 +111,8 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
         onClick={handleClose}
         className="fixed inset-0 z-[60]"
         style={{
-          background: 'rgba(10,6,2,0.6)',
-          backdropFilter: 'blur(3px)',
+          background: 'rgba(10,6,2,0.65)',
+          backdropFilter: 'blur(4px)',
           animation: visible ? 'backdropIn 0.3s ease forwards' : 'backdropOut 0.3s ease forwards',
           pointerEvents: visible ? 'auto' : 'none',
         }}
@@ -203,7 +123,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
         className="fixed z-[70]"
         style={{
           top: '50%', left: '50%',
-          width: '100%', maxWidth: 620,
+          width: '100%', maxWidth: 600,
           padding: '0 16px',
           transform: 'translate(-50%, -50%)',
           animation: visible
@@ -214,41 +134,48 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
       >
         <div
           className="relative rounded-2xl overflow-hidden"
-          style={{
-            background: 'linear-gradient(150deg, #1c0f06 0%, #2a1608 100%)',
-            border: '1px solid rgba(201,169,110,0.25)',
-          }}
+          style={{ border: '1px solid rgba(201,169,110,0.35)', boxShadow: '0 24px 60px rgba(0,0,0,0.6)' }}
         >
+          {/* Background image with golden overlay */}
+          <div className="absolute inset-0" style={{ zIndex: 0 }}>
+            <img
+              src="/Holzen/images/process3.jpeg"
+              alt=""
+              className="w-full h-full object-cover object-center"
+              style={{ opacity: 0.55 }}
+            />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(150deg, rgba(28,15,6,0.82) 0%, rgba(42,22,8,0.72) 40%, rgba(20,10,4,0.85) 100%)' }} />
+            {/* Golden shimmer overlay */}
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(201,169,110,0.06) 0%, rgba(245,200,120,0.10) 50%, rgba(201,169,110,0.06) 100%)', backgroundSize: '200% 100%', animation: 'goldenShimmer 4s ease-in-out infinite' }} />
+          </div>
+
           {/* Top stripe */}
-          <div className="h-1.5 w-full flex">
+          <div className="h-1.5 w-full flex relative z-10">
             {['#8B2500','#D4622A','#E8A020','#F5C842','#2E7D32','#66BB6A','#1565C0','#42A5F5','#8B2500','#D4622A','#E8A020','#F5C842','#2E7D32','#66BB6A'].map((c, i) => (
               <div key={i} className="flex-1" style={{ background: c }} />
             ))}
           </div>
 
-          {/* Header bar */}
-          <div className="flex items-center justify-between px-5 pt-4 pb-2">
+          {/* Header */}
+          <div className="flex items-center justify-between px-5 pt-4 pb-2 relative z-10">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-              <span className="text-cream/80 font-sans text-xs tracking-[0.3em] uppercase font-semibold">
+              <span className="font-sans text-xs tracking-[0.3em] uppercase font-semibold" style={{ color: 'rgba(245,230,211,0.85)' }}>
                 {t('toast_added')}
               </span>
             </div>
             <div className="flex items-center gap-1">
               <button
-                onClick={() => {
-                  setVoiceEnabled(v => {
-                    if (v) audioRef.current?.pause();
-                    return !v;
-                  });
-                }}
-                className="w-7 h-7 flex items-center justify-center text-cream/30 hover:text-gold transition-colors cursor-pointer rounded-full"
+                onClick={() => { setVoiceEnabled(v => { if (v) audioRef.current?.pause(); return !v; }); }}
+                className="w-7 h-7 flex items-center justify-center transition-colors cursor-pointer rounded-full"
+                style={{ color: 'rgba(245,230,211,0.35)' }}
               >
                 <i className={voiceEnabled ? 'ri-volume-up-line text-sm' : 'ri-volume-mute-line text-sm'} />
               </button>
               <button
                 onClick={handleClose}
-                className="w-7 h-7 flex items-center justify-center text-cream/40 hover:text-cream transition-colors cursor-pointer rounded-full border border-cream/10"
+                className="w-7 h-7 flex items-center justify-center transition-colors cursor-pointer rounded-full"
+                style={{ color: 'rgba(245,230,211,0.45)', border: '1px solid rgba(245,230,211,0.15)' }}
               >
                 <i className="ri-close-line text-sm" />
               </button>
@@ -256,84 +183,87 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
           </div>
 
           {/* Main body */}
-          <div className="flex items-stretch gap-0 px-5 pb-5">
+          <div className="flex items-stretch gap-0 px-5 pb-5 relative z-10">
 
-            {/* LEFT — basket + flying product */}
-            <div className="flex flex-col items-center justify-center pr-5 flex-shrink-0" style={{ minWidth: 100 }}>
-              {/* Flying product image */}
-              <div className="relative" style={{ height: 100, width: 80 }}>
-                {/* Product thumbnail that flies */}
+            {/* LEFT — producer photo + basket */}
+            <div className="flex flex-col items-center justify-center pr-5 flex-shrink-0" style={{ minWidth: 96 }}>
+
+              {/* Producer photo */}
+              <div
+                className="relative rounded-full overflow-hidden mb-2"
+                style={{
+                  width: 64, height: 64,
+                  border: '2.5px solid rgba(201,169,110,0.6)',
+                  boxShadow: '0 0 18px rgba(201,169,110,0.3)',
+                  animation: flyProduct ? 'producerPop 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' : 'none',
+                }}
+              >
+                {producerImg ? (
+                  <img src={producerImg} alt={producerName} className="w-full h-full object-cover object-top" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-lg font-bold" style={{ background: 'rgba(201,169,110,0.15)', color: '#c9a96e' }}>
+                    {producerName?.charAt(0) || '?'}
+                  </div>
+                )}
+                {/* Gold ring */}
+                <div className="absolute inset-0 rounded-full" style={{ border: '1.5px solid rgba(201,169,110,0.4)' }} />
+              </div>
+              <span className="font-sans text-[9px] font-semibold text-center leading-tight mb-2" style={{ color: 'rgba(201,169,110,0.8)', maxWidth: 80, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {producerName}
+              </span>
+
+              {/* Flying product + basket */}
+              <div className="relative" style={{ height: 72, width: 64 }}>
                 {flyProduct && (
                   <div
-                    ref={productImgRef}
-                    className="absolute top-0 left-1/2 -translate-x-1/2 rounded-xl overflow-hidden border border-gold/30 z-10"
-                    style={{
-                      width: 48, height: 48,
-                      animation: 'flyToBasket 0.7s cubic-bezier(0.4,0,0.6,1) forwards',
-                    }}
+                    className="absolute top-0 left-1/2 -translate-x-1/2 rounded-lg overflow-hidden z-10"
+                    style={{ width: 36, height: 36, border: '1px solid rgba(201,169,110,0.4)', animation: 'flyToBasket 0.7s cubic-bezier(0.4,0,0.6,1) forwards' }}
                   >
                     <img src={item.image} alt={item.name} className="w-full h-full object-cover object-top" />
                   </div>
                 )}
-                {/* Basket */}
                 <div
-                  ref={basketRef}
                   className="absolute bottom-0 left-1/2 -translate-x-1/2"
-                  style={{
-                    animation: flyProduct ? 'basketReceive 0.6s ease 0.55s both' : 'none',
-                  }}
+                  style={{ animation: flyProduct ? 'basketReceive 0.6s ease 0.55s both' : 'none' }}
                 >
                   <SimpleBasket />
                 </div>
               </div>
-              <span className="text-cream/25 font-sans text-[9px] tracking-[0.25em] uppercase mt-2 text-center leading-tight">
+
+              <span className="font-sans text-[8px] tracking-[0.2em] uppercase mt-1 text-center" style={{ color: 'rgba(245,230,211,0.2)' }}>
                 {t('toast_basket_label')}
               </span>
             </div>
 
             {/* Divider */}
-            <div className="w-px bg-gold/10 self-stretch mx-1 flex-shrink-0" />
+            <div className="w-px self-stretch mx-1 flex-shrink-0" style={{ background: 'rgba(201,169,110,0.12)' }} />
 
-            {/* RIGHT — impact content */}
+            {/* RIGHT — impact */}
             <div className="flex-1 pl-5 flex flex-col justify-center gap-3">
-              {/* Eyebrow */}
-              <p className="text-gold/70 font-sans text-[9px] tracking-[0.35em] uppercase font-semibold">
+              <p className="font-sans text-[9px] tracking-[0.35em] uppercase font-semibold" style={{ color: 'rgba(201,169,110,0.7)' }}>
                 {t('toast_impact_eyebrow')}
               </p>
 
-              {/* Impact lines */}
               <ul className="flex flex-col gap-2">
                 {impactLines.map((line, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2.5"
-                    style={{
-                      animation: flyProduct ? `impactLineIn 0.4s ease ${0.3 + i * 0.1}s both` : 'none',
-                    }}
-                  >
-                    <span
-                      className="w-2 h-2 rounded-full flex-shrink-0 mt-1"
-                      style={{ background: i === 0 ? '#c9a96e' : i === 1 ? '#66BB6A' : '#E8A020' }}
-                    />
-                    <span className="text-cream/85 font-sans text-sm leading-snug">{line}</span>
+                  <li key={i} className="flex items-start gap-2.5" style={{ animation: flyProduct ? `impactLineIn 0.4s ease ${0.3 + i * 0.1}s both` : 'none' }}>
+                    <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1" style={{ background: i === 0 ? '#c9a96e' : i === 1 ? '#66BB6A' : '#E8A020' }} />
+                    <span className="font-sans text-sm leading-snug" style={{ color: 'rgba(245,230,211,0.88)' }}>{line}</span>
                   </li>
                 ))}
               </ul>
 
-              {/* Progress bar */}
+              {/* Progress */}
               <div>
-                <div className="w-full h-1.5 rounded-full bg-white/8 overflow-hidden">
+                <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
                   <div
                     className="h-full rounded-full transition-all duration-700"
-                    style={{
-                      width: `${progressPct}%`,
-                      background: 'linear-gradient(90deg, #2E7D32, #c9a96e)',
-                    }}
+                    style={{ width: `${progressPct}%`, background: 'linear-gradient(90deg, #2E7D32, #c9a96e)' }}
                   />
                 </div>
                 <div className="flex justify-between mt-1">
-                  <span className="text-cream/25 font-sans text-[9px]">${cartTotal.toFixed(0)} {t('toast_progress_of')} $120</span>
-                  <span className="text-gold/50 font-sans text-[9px]">{progressPct}%</span>
+                  <span className="font-sans text-[9px]" style={{ color: 'rgba(245,230,211,0.3)' }}>${cartTotal.toFixed(0)} {t('toast_progress_of')} $120</span>
+                  <span className="font-sans text-[9px]" style={{ color: 'rgba(201,169,110,0.5)' }}>{progressPct}%</span>
                 </div>
               </div>
 
@@ -353,7 +283,7 @@ const AndeanBasketToast = ({ item, cartCount, cartTotal, producerName, onClose, 
           </div>
 
           {/* Bottom stripe */}
-          <div className="h-1 w-full flex">
+          <div className="h-1 w-full flex relative z-10">
             {['#F5C842','#E8A020','#D4622A','#8B2500','#42A5F5','#1565C0','#66BB6A','#2E7D32','#F5C842','#E8A020','#D4622A','#8B2500','#42A5F5','#1565C0'].map((c, i) => (
               <div key={i} className="flex-1" style={{ background: c }} />
             ))}
