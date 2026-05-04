@@ -48,27 +48,23 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
         className={`absolute inset-0 transition-opacity duration-500 flex flex-col ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         onClick={onFlip}
       >
-        <div className="relative h-[52%] flex-shrink-0">
-          <img src={p.producer.image} alt={p.producer.name} className="w-full h-full object-cover object-top" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-coffee-900" />
-        </div>
-        <div className="flex-1 bg-coffee-900 px-5 pt-3 pb-4 flex flex-col justify-between overflow-hidden">
-          <div className="flex flex-col overflow-hidden">
-            <div className="font-serif text-sm text-cream mb-0.5">{p.producer.name}</div>
-            <div className="text-gold/70 text-[10px] font-sans tracking-widest uppercase mb-2">{p.producer.location}</div>
-            {p.producer.storyTitle && (
-              <p className="text-gold font-serif text-xs italic mb-1.5">{p.producer.storyTitle}</p>
-            )}
-            <div className="overflow-y-auto flex-1 pr-1 scrollbar-thin">
-              <p className="text-cream/60 text-xs font-sans leading-relaxed">{p.producer.story}</p>
-            </div>
+        <img src={p.producer.image} alt={p.producer.name} className="absolute inset-0 w-full h-full object-cover object-top" />
+        <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/95 via-coffee-900/20 to-transparent" />
+        <div className="relative z-10 mt-auto px-5 pb-5 pt-8 flex flex-col">
+          <div className="font-serif text-sm text-cream mb-0.5">{p.producer.name}</div>
+          <div className="text-gold/80 text-[10px] font-sans tracking-widest uppercase mb-2">{p.producer.location}</div>
+          {p.producer.storyTitle && (
+            <p className="text-gold font-serif text-xs italic mb-1.5">{p.producer.storyTitle}</p>
+          )}
+          <div className="max-h-24 overflow-y-auto pr-1 scrollbar-thin mb-3">
+            <p className="text-cream/85 text-xs font-serif leading-relaxed">{p.producer.story}</p>
           </div>
           <button
             onClick={(e) => {
               e.stopPropagation();
               onAddToCart({ id: p.id, name: p.detailName, priceLabel: p.priceLabel, priceNum: p.priceNum, image: p.image });
             }}
-            className="relative mt-3 w-full overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-bold py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
+            className="relative w-full overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-bold py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
           >
             <span className="relative z-10">{p.ctaLabel}</span>
             <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
