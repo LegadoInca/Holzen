@@ -115,10 +115,10 @@ const Manifesto = () => {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => setActiveTab((p) => (p + 1) % tabs.length), 4500);
-    return () => clearInterval(timer);
-  }, [tabs.length]);
+  // useEffect(() => {
+  //   const timer = setInterval(() => setActiveTab((p) => (p + 1) % tabs.length), 4500);
+  //   return () => clearInterval(timer);
+  // }, [tabs.length]);
 
   
   return (
@@ -132,11 +132,10 @@ const Manifesto = () => {
         src="/Holzen/videos/hero5.mp4"
       />
       <div className="absolute inset-0 bg-coffee-900/45 pointer-events-none" />
-      <div className="relative z-10 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-3 gap-10 items-start">
 
         {/* LEFT */}
-        <div className={`transition-all duration-700 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-          <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4">{t('manifesto_eyebrow')}</p>
+        <div className={`lg:col-span-2 transition-all duration-700 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
           <h2 className="font-serif text-4xl md:text-5xl text-cream leading-tight mb-8">
             {t('manifesto_title').split('\n').map((line, i, arr) => (
               i === arr.length - 1
@@ -183,20 +182,21 @@ const Manifesto = () => {
             </p>
           </blockquote>
 
-          {/* Stats */}
-          <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {stats.map((s) => (
-              <CircleStat
-                key={s.label}
-                val={s.val}
-                prefix={s.prefix}
-                suffix={s.suffix}
-                label={s.label}
-                maxVal={s.maxVal}
-                active={statsVisible}
-              />
-            ))}
-          </div>
+        </div>
+
+        {/* Stats column 2x2 */}
+        <div ref={statsRef} className="grid grid-cols-2 gap-4 lg:sticky lg:top-20">
+          {stats.map((s) => (
+            <CircleStat
+              key={s.label}
+              val={s.val}
+              prefix={s.prefix}
+              suffix={s.suffix}
+              label={s.label}
+              maxVal={s.maxVal}
+              active={statsVisible}
+            />
+          ))}
         </div>
 
       </div>
