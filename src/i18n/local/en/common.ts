@@ -1,6 +1,6 @@
 const en = {
   // Navbar
-  nav_philosophy: 'About Us',
+  nav_philosophy: 'Philosophy',
   nav_catalog: 'Catalog',
   nav_farmers: 'Farmers',
   nav_process: 'Process',
@@ -27,13 +27,13 @@ const en = {
 
   // Manifesto
   manifesto_eyebrow: 'Our Philosophy',
-  manifesto_title: 'We didn\'t design a brand.\nWe connect worlds that had\nnever',
-  manifesto_title_highlight: 'touched.',
+  manifesto_title: 'We do not design a brand; we build the bridge between stories of resilience and the soul of the't design a brand.\nWe connect worlds that had\nnever',
+  manifesto_title_highlight: 'world.',
   manifesto_tab_historia: 'Story',
   manifesto_tab_mision: 'Mission',
   manifesto_tab_impacto: 'Impact',
-  manifesto_historia: 'There is a Peru that cultivates in silence. Women who survived the unimaginable and now plant coffee instead of tears. Men who brought life back to the land after violence took everything from them. Young people who chose dignity over easy money. HOLZEN connects them with people like you, on the other side of the world, who want every euro spent to have real meaning.',
-  manifesto_mision: 'Every cup connects two lives. Yours and the one who planted it.',
+  manifesto_historia: 'There is a Peru that blooms in the silence of its mountains. There, women who turned pain into hope sow coffee where loss once stood, and resilient men give life back to lands that had lost everything. It is a generation of young people who have chosen dignity as their only path. HOLZEN is the bridge between that courage and you. We create this connection so that, on the other side of the ocean, every cup you enjoy transcends the palate and becomes an investment with real meaning. Because choosing this coffee is not just an act of taste — it is a commitment to rebuilding a legacy.',
+  manifesto_mision: 'To inspire purposeful consumption through the excellence of Peruvian coffee. At HOLZEN, we transform the act of enjoying a cup into a meaningful investment, uniting resilient producers with global consumers under a standard of elegance, transparency and human dignity.',
   manifesto_impacto: 'When you buy HOLZEN, you become part of this transformation. Families who lived through the terror of armed conflict chose to stay, plant, and flourish. Every purchase funds education, infrastructure, and dignity in the Peruvian Andes.',
   manifesto_quote: '"You\'re not buying flavor.\nYou\'re buying meaning."',
   manifesto_stat_families: 'Families supported',

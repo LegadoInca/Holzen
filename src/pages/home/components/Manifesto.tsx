@@ -115,10 +115,10 @@ const Manifesto = () => {
     return () => observer.disconnect();
   }, []);
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => setActiveTab((p) => (p + 1) % tabs.length), 4500);
-  //   return () => clearInterval(timer);
-  // }, [tabs.length]);
+  useEffect(() => {
+    const timer = setInterval(() => setActiveTab((p) => (p + 1) % tabs.length), 4500);
+    return () => clearInterval(timer);
+  }, [tabs.length]);
 
   
   return (
@@ -166,7 +166,7 @@ const Manifesto = () => {
             {tabs.map((tab, i) => (
               <p
                 key={tab.key}
-                className={`text-cream/70 font-sans text-sm leading-relaxed transition-all duration-500 ${
+                className={`text-cream/70 font-serif text-sm leading-relaxed transition-all duration-500 ${
                   activeTab === i ? 'opacity-100 block' : 'opacity-0 hidden'
                 }`}
               >

@@ -1,6 +1,6 @@
 const cs = {
   // Navbar
-  nav_philosophy: 'O nás',
+  nav_philosophy: 'Filozofie',
   nav_catalog: 'Katalog',
   nav_farmers: 'Farmáři',
   nav_process: 'Proces',
@@ -27,13 +27,13 @@ const cs = {
 
   // Manifesto
   manifesto_eyebrow: 'Naše filozofie',
-  manifesto_title: 'Nevytvořili jsme značku.\nSpojujeme světy, které se\nnikdy',
-  manifesto_title_highlight: 'nedotkly.',
+  manifesto_title: 'Nenavrhujeme značku; stavíme most mezi příběhy odolnosti a duší',
+  manifesto_title_highlight: 'světa.',
   manifesto_tab_historia: 'Příběh',
   manifesto_tab_mision: 'Mise',
   manifesto_tab_impacto: 'Dopad',
-  manifesto_historia: 'Existuje Peru, které pěstuje v tichu. Ženy, které přežily nepředstavitelné a dnes sázejí kávu místo slz. Muži, kteří vrátili život zemi poté, co jim násilí vzalo vše. Mladí lidé, kteří si vybrali důstojnost místo snadných peněz. HOLZEN je spojuje s lidmi jako vy, na druhé straně světa, kteří chtějí, aby každé utracené euro mělo skutečný smysl.',
-  manifesto_mision: 'Každý šálek spojuje dva životy. Váš a toho, kdo ho zasadil.',
+  manifesto_historia: 'Existuje Peru, které kvete v tichu svých hor. Tam ženy, které proměnily bolest v naději, sejí kávu tam, kde byla ztráta, a odolní muži vracejí život zemím, jež ztratily vše. Je to generace mladých lidí, která si zvolila důstojnost jako jedinou cestu. HOLZEN je most mezi touto odvahou a tebou. Vytváříme toto spojení proto, aby každý šálek, který si na druhé straně oceánu vychutnáš, přesahoval chuť a stával se investicí se skutečným významem. Volba této kávy totiž není jen aktem chuti — je to závazek k obnově odkazu.',
+  manifesto_mision: 'Inspirovat smysluplnou spotřebu prostřednictvím excelence peruánské kávy. V HOLZEN proměňujeme okamžik vychutnávání šálku v investici s významem, spojujíce odolné pěstitele s globálními spotřebiteli pod standardem elegance, transparentnosti a lidské důstojnosti.',
   manifesto_impacto: 'Když kupujete HOLZEN, stáváte se součástí této transformace. Rodiny, které zažily teror ozbrojeného konfliktu, se rozhodly zůstat, sázet a rozkvétat. Každý nákup financuje vzdělání, infrastrukturu a důstojnost v peruánských Andách.',
   manifesto_quote: '"Nekupujete chuť.\nKupujete smysl."',
   manifesto_stat_families: 'Podpořené rodiny',
