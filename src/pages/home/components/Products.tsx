@@ -56,15 +56,16 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
             {p.producer.storyTitle && (
               <p className="text-gold font-serif text-xs italic mb-1.5">{p.producer.storyTitle}</p>
             )}
-          <div className="max-h-24 overflow-y-auto pr-1 scrollbar-thin mb-3">
-            <p className="text-cream/85 text-xs font-sans leading-relaxed">{p.producer.story}</p>
+            <div className="max-h-24 overflow-y-auto pr-1 scrollbar-thin">
+              <p className="text-cream/90 text-xs font-serif leading-relaxed">{p.producer.story}</p>
+            </div>
           </div>
           <button
             onClick={(e) => {
               e.stopPropagation();
               onAddToCart({ id: p.id, name: p.detailName, priceLabel: p.priceLabel, priceNum: p.priceNum, image: p.image });
             }}
-            className="relative w-full overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-bold py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
+            className="relative w-full mt-3 overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-bold py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
           >
             <span className="relative z-10">{p.ctaLabel}</span>
             <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
