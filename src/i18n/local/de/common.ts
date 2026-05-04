@@ -35,7 +35,7 @@ const de = {
   manifesto_historia: "Es gibt ein Peru, das in der Stille seiner Berge erblüht. Dort säen Frauen, die Schmerz in Hoffnung verwandelten, Kaffee, wo einst Verlust war, und widerstandsfähige Männer geben dem Land das Leben zurück, das alles verloren hatte. Es ist eine Generation junger Menschen, die Würde als einzigen Weg gewählt hat. HOLZEN ist die Brücke zwischen diesem Mut und dir. Wir schaffen diese Verbindung, damit jede Tasse, die du auf der anderen Seite des Ozeans genießt, den Gaumen übersteigt und zu einer Investition mit echter Bedeutung wird. Denn diesen Kaffee zu wählen, ist nicht nur ein Akt des Geschmacks — es ist ein Bekenntnis zum Wiederaufbau eines Erbes.",
   manifesto_mision: "Bewussten Konsum durch die Exzellenz des peruanischen Kaffees inspirieren. Bei HOLZEN verwandeln wir das Genießen einer Tasse in eine bedeutungsvolle Investition und verbinden widerstandsfähige Produzenten mit globalen Konsumenten unter einem Standard von Eleganz, Transparenz und menschlicher Würde.",
   manifesto_impacto: 'Wenn du HOLZEN kaufst, wirst du Teil dieser Transformation. Familien, die den Terror des bewaffneten Konflikts erlebt haben, entschieden sich zu bleiben, zu pflanzen und aufzublühen. Jeder Kauf finanziert Bildung, Infrastruktur und Würde in den peruanischen Anden.',
-  manifesto_quote: '"Du kaufst keinen Geschmack.\nDu kaufst Bedeutung."',
+  manifesto_quote: '"Du kaufst keinen Geschmack. Du kaufst Bedeutung."',
   manifesto_stat_families: 'Unterstützte Familien',
   manifesto_stat_children: 'Kinder in Bildung',
   manifesto_stat_donated: 'Gespendet in 2024',

@@ -35,7 +35,7 @@ const cs = {
   manifesto_historia: "Existuje Peru, které kvete v tichu svých hor. Tam ženy, které proměnily bolest v naději, sejí kávu tam, kde byla ztráta, a odolní muži vracejí život zemím, jež ztratily vše. Je to generace mladých lidí, která si zvolila důstojnost jako jedinou cestu. HOLZEN je most mezi touto odvahou a tebou. Vytváříme toto spojení proto, aby každý šálek, který si na druhé straně oceánu vychutnáš, přesahoval chuť a stával se investicí se skutečným významem. Volba této kávy totiž není jen aktem chuti — je to závazek k obnově odkazu.",
   manifesto_mision: "Inspirovat smysluplnou spotřebu prostřednictvím excelence peruánské kávy. V HOLZEN proměňujeme okamžik vychutnávání šálku v investici s významem, spojujíce odolné pěstitele s globálními spotřebiteli pod standardem elegance, transparentnosti a lidské důstojnosti.",
   manifesto_impacto: 'Když kupujete HOLZEN, stáváte se součástí této transformace. Rodiny, které zažily teror ozbrojeného konfliktu, se rozhodly zůstat, sázet a rozkvétat. Každý nákup financuje vzdělání, infrastrukturu a důstojnost v peruánských Andách.',
-  manifesto_quote: '"Nekupujete chuť.\nKupujete smysl."',
+  manifesto_quote: '"Nekupujete chuť. Kupujete smysl."',
   manifesto_stat_families: 'Podpořené rodiny',
   manifesto_stat_children: 'Děti ve vzdělávání',
   manifesto_stat_donated: 'Darováno v roce 2024',

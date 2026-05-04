@@ -35,7 +35,7 @@ const en = {
   manifesto_historia: "There is a Peru that blooms in the silence of its mountains. There, women who turned pain into hope sow coffee where loss once stood, and resilient men give life back to lands that had lost everything. It is a generation of young people who have chosen dignity as their only path. HOLZEN is the bridge between that courage and you. We create this connection so that, on the other side of the ocean, every cup you enjoy transcends the palate and becomes an investment with real meaning. Because choosing this coffee is not just an act of taste — it is a commitment to rebuilding a legacy.",
   manifesto_mision: "To inspire purposeful consumption through the excellence of Peruvian coffee. At HOLZEN, we transform the act of enjoying a cup into a meaningful investment, uniting resilient producers with global consumers under a standard of elegance, transparency and human dignity.",
   manifesto_impacto: 'When you buy HOLZEN, you become part of this transformation. Families who lived through the terror of armed conflict chose to stay, plant, and flourish. Every purchase funds education, infrastructure, and dignity in the Peruvian Andes.',
-  manifesto_quote: '"You\'re not buying flavor.\nYou\'re buying meaning."',
+  manifesto_quote: '"You\'re not buying flavor. You\'re buying meaning."',
   manifesto_stat_families: 'Families supported',
   manifesto_stat_children: 'Children in education',
   manifesto_stat_donated: 'Donated in 2024',
