@@ -208,7 +208,7 @@ const Farmers = () => {
               >
                 <p className="text-gold/70 font-sans text-[10px] tracking-widest uppercase mb-1">{f.location}</p>
                 <h3 className="font-serif text-xl text-cream leading-tight mb-3">{f.name}</h3>
-                <p className="text-cream/75 font-sans text-sm leading-relaxed mb-4">{f.story}</p>
+                <p className="text-cream/75 font-serif text-sm leading-relaxed mb-4">{f.story}</p>
                 <div className="flex items-center gap-2">
                   <i className="ri-user-line text-gold" style={{ fontSize: '13px' }} />
                   <span className="font-serif text-gold font-bold">{f.stat}</span>
