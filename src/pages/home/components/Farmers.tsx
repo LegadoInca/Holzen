@@ -113,7 +113,7 @@ const Farmers = () => {
       />
       <div className="absolute inset-0 bg-coffee-900/35 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:pl-24 lg:pr-12">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           <div>
 
