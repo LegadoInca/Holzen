@@ -115,10 +115,10 @@ const Manifesto = () => {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => setActiveTab((p) => (p + 1) % tabs.length), 4500);
-    return () => clearInterval(timer);
-  }, [tabs.length]);
+  // useEffect(() => {
+  //   const timer = setInterval(() => setActiveTab((p) => (p + 1) % tabs.length), 4500);
+  //   return () => clearInterval(timer);
+  // }, [tabs.length]);
 
   
   return (
