@@ -50,13 +50,13 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
       >
         <img src={p.producer.image} alt={p.producer.name} className="absolute inset-0 w-full h-full object-cover object-top" />
         <div className="relative z-10 mt-auto p-3 flex flex-col">
-          <div className="rounded-2xl p-4 backdrop-blur-md flex flex-col" style={{ background: 'rgba(15,8,3,0.45)', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="rounded-xl p-3 backdrop-blur-md flex flex-col" style={{ background: 'rgba(15,8,3,0.45)', border: '1px solid rgba(255,255,255,0.08)' }}>
             <div className="font-serif text-sm text-cream mb-0.5">{p.producer.name}</div>
             <div className="text-gold/80 text-[10px] font-sans tracking-widest uppercase mb-2">{p.producer.location}</div>
             {p.producer.storyTitle && (
               <p className="text-gold font-serif text-xs italic mb-1.5">{p.producer.storyTitle}</p>
             )}
-            <div className="max-h-24 overflow-y-auto pr-1 scrollbar-thin">
+            <div className="max-h-16 overflow-y-auto pr-1 scrollbar-thin">
               <p className="text-cream/90 text-xs font-serif leading-relaxed">{p.producer.story}</p>
             </div>
           </div>
