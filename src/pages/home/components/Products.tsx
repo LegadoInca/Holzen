@@ -49,15 +49,15 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
         onClick={onFlip}
       >
         <img src={p.producer.image} alt={p.producer.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-        <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/95 via-coffee-900/20 to-transparent" />
-        <div className="relative z-10 mt-auto px-5 pb-5 pt-8 flex flex-col">
-          <div className="font-serif text-sm text-cream mb-0.5">{p.producer.name}</div>
-          <div className="text-gold/80 text-[10px] font-sans tracking-widest uppercase mb-2">{p.producer.location}</div>
-          {p.producer.storyTitle && (
-            <p className="text-gold font-serif text-xs italic mb-1.5">{p.producer.storyTitle}</p>
-          )}
+        <div className="relative z-10 mt-auto p-3 flex flex-col">
+          <div className="rounded-2xl p-4 backdrop-blur-md flex flex-col" style={{ background: 'rgba(15,8,3,0.45)', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <div className="font-serif text-sm text-cream mb-0.5">{p.producer.name}</div>
+            <div className="text-gold/80 text-[10px] font-sans tracking-widest uppercase mb-2">{p.producer.location}</div>
+            {p.producer.storyTitle && (
+              <p className="text-gold font-serif text-xs italic mb-1.5">{p.producer.storyTitle}</p>
+            )}
           <div className="max-h-24 overflow-y-auto pr-1 scrollbar-thin mb-3">
-            <p className="text-cream/85 text-xs font-serif leading-relaxed">{p.producer.story}</p>
+            <p className="text-cream/85 text-xs font-sans leading-relaxed">{p.producer.story}</p>
           </div>
           <button
             onClick={(e) => {
