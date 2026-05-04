@@ -84,14 +84,13 @@ const Farmers = () => {
 
   const handleSelect = (idx: number) => {
     setShowStory(false);
-    startTimer();
     goTo(idx);
   };
 
   const handleStoryToggle = () => {
     setShowStory((v) => {
-      if (!v) stopTimer();
-      else startTimer();
+      // if (!v) stopTimer();
+      // else startTimer();
       return !v;
     });
   };
