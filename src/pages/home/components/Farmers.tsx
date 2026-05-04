@@ -77,10 +77,10 @@ const Farmers = () => {
     if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
   }, []);
 
-  useEffect(() => {
-    startTimer();
-    return () => stopTimer();
-  }, [startTimer, stopTimer]);
+  // useEffect(() => {
+  //   startTimer();
+  //   return () => stopTimer();
+  // }, [startTimer, stopTimer]);
 
   const handleSelect = (idx: number) => {
     setShowStory(false);
