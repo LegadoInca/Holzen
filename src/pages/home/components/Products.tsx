@@ -81,7 +81,7 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
         <div className="relative flex-1">
           <img src={p.image} alt={p.overlayName} className="w-full h-full object-cover object-top" />
           <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/95 via-coffee-900/20 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-5">
+          <div className="absolute bottom-0 left-0 right-0 p-4 max-h-[70%] overflow-y-auto">
             <div className="font-serif text-lg text-cream leading-tight mb-1">{p.overlayName}</div>
             <div className="text-cream/50 text-xs font-sans mb-2">{p.overlayOrigin}</div>
             <div className="flex flex-wrap gap-1 mb-3">
