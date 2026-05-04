@@ -68,15 +68,19 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={() => scrollTo('products')}
-            className="bg-gold hover:bg-gold-light text-coffee-900 font-serif font-semibold px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-colors cursor-pointer whitespace-nowrap"
+            className="relative overflow-hidden bg-gold hover:bg-gold-light text-coffee-900 font-serif font-black px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-colors cursor-pointer whitespace-nowrap group"
+            style={{ boxShadow: '0 0 20px rgba(201,169,110,0.45)' }}
           >
-            {t('hero_cta_primary')}
+            <span className="relative z-10">{t('hero_cta_primary')}</span>
+            <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
           </button>
           <button
             onClick={() => scrollTo('farmers')}
-            className="border border-cream/40 hover:border-cream text-cream hover:bg-cream/5 font-serif px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all cursor-pointer whitespace-nowrap"
+            className="relative overflow-hidden border border-cream/60 hover:border-cream text-cream hover:bg-cream/5 font-serif font-black px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all cursor-pointer whitespace-nowrap group"
+            style={{ boxShadow: '0 0 18px rgba(245,235,210,0.18)' }}
           >
-            {t('hero_cta_secondary')}
+            <span className="relative z-10">{t('hero_cta_secondary')}</span>
+            <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
           </button>
         </div>
       </div>
