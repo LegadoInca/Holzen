@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { farmers } from '../../../mocks/holzen';
+import MapWithPins from './MapWithPins';
 
 const AUTOPLAY_MS = 6500;
 
@@ -112,7 +113,9 @@ const Farmers = () => {
       />
       <div className="absolute inset-0 bg-coffee-900/35 pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl px-6 md:px-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div>
 
         {/* Header */}
         <div className="text-center mb-10">
@@ -283,6 +286,21 @@ const Farmers = () => {
           ))}
         </div>
 
+          </div>
+
+          {/* Right column: Map with pins */}
+          <div className="flex flex-col gap-4 items-center">
+            <div className="relative overflow-hidden inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-xs font-semibold tracking-[0.2em] uppercase cursor-default select-none" style={{ background: 'linear-gradient(135deg, #c2622a 0%, #e07830 50%, #c2622a 100%)', color: '#fff8f0', boxShadow: '0 0 18px rgba(210,100,40,0.35)' }}>
+              <i className="ri-map-pin-line text-sm" />
+              Toca un nombre para conocer al productor
+              <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+            </div>
+            <div className="w-full">
+              <MapWithPins activeName={f.name} />
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <style>{`
