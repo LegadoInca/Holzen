@@ -289,7 +289,7 @@ const Farmers = () => {
           </div>
 
           {/* Right column: Map with pins */}
-          <div className="flex flex-col gap-3 items-center lg:pt-32">
+          <div className="flex flex-col gap-3 items-center lg:pt-32 lg:pl-12">
             <div className="relative overflow-hidden inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-xs font-semibold tracking-[0.2em] uppercase cursor-default select-none" style={{ background: 'linear-gradient(135deg, #c2622a 0%, #e07830 50%, #c2622a 100%)', color: '#fff8f0', boxShadow: '0 0 18px rgba(210,100,40,0.35)' }}>
               <i className="ri-map-pin-line text-sm" />
               Toca un nombre para conocer al productor
