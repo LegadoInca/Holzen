@@ -134,15 +134,15 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
     });
   };
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setActive(null);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
+// useEffect(() => {
+  //   const handler = (e: MouseEvent) => {
+  //     if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+  //       setActive(null);
+  //     }
+  //   };
+  //   document.addEventListener('mousedown', handler);
+  //   return () => document.removeEventListener('mousedown', handler);
+  // }, []);
 
   return (
     <div
