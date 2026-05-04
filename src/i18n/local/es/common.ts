@@ -27,13 +27,13 @@ const es = {
 
   // Manifesto
   manifesto_eyebrow: 'Nuestra Filosofía',
-  manifesto_title: 'No diseñamos una marca; construimos el puente entre historias de resiliencia y el alma del',
-  manifesto_title_highlight: 'mundo.',
+  manifesto_title: "No diseñamos una marca; construimos el puente entre historias de resiliencia y el alma del",
+  manifesto_title_highlight: "mundo.",
   manifesto_tab_historia: 'Historia',
   manifesto_tab_mision: 'Misión',
   manifesto_tab_impacto: 'Impacto',
-  manifesto_historia: 'Existe un Perú que florece en el silencio de sus montañas. Allí, mujeres que transformaron el dolor en esperanza siembran café donde antes hubo pérdida, y hombres resilientes devuelven la vida a tierras que lo habían perdido todo. Es una generación de jóvenes que ha elegido la dignidad como único camino. HOLZEN es el puente entre esa valentía y tú. Creamos esta conexión para que, al otro lado del océano, cada taza que disfrutes trascienda el paladar y se convierta en una inversión con significado real. Porque elegir este café no es solo un acto de gusto, es un compromiso con la reconstrucción de un legado.',
-  manifesto_mision: 'Inspirar un consumo con propósito a través de la excelencia del café peruano. En HOLZEN, transformamos el acto de disfrutar una taza en una inversión con significado, uniendo a productores resilientes con consumidores globales bajo un estándar de elegancia, transparencia y dignidad humana.',
+  manifesto_historia: "Existe un Perú que florece en el silencio de sus montañas. Allí, mujeres que transformaron el dolor en esperanza siembran café donde antes hubo pérdida, y hombres resilientes devuelven la vida a tierras que lo habían perdido todo. Es una generación de jóvenes que ha elegido la dignidad como único camino. HOLZEN es el puente entre esa valentía y tú. Creamos esta conexión para que, al otro lado del océano, cada taza que disfrutes trascienda el paladar y se convierta en una inversión con significado real. Porque elegir este café no es solo un acto de gusto, es un compromiso con la reconstrucción de un legado.",
+  manifesto_mision: "Inspirar un consumo con propósito a través de la excelencia del café peruano. En HOLZEN, transformamos el acto de disfrutar una taza en una inversión con significado, uniendo a productores resilientes con consumidores globales bajo un estándar de elegancia, transparencia y dignidad humana.",
   manifesto_impacto: 'Cuando compras HOLZEN, te conviertes en parte de esta transformación. Familias que vivieron el terror del conflicto armado eligieron quedarse, sembrar y florecer. Cada compra financia educación, infraestructura y dignidad en los Andes peruanos.',
   manifesto_quote: '"No estás comprando sabor.\nEstás comprando significado."',
   manifesto_stat_families: 'Familias apoyadas',
