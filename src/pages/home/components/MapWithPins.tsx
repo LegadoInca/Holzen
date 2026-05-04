@@ -277,14 +277,6 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
         )}
       </div>
 
-      {/* Legend */}
-      <div className="flex items-center justify-center gap-2 mt-3 mb-4">
-        <span className="w-2 h-2 rounded-full bg-gold/70 flex-shrink-0" />
-        <p className="text-cream/35 font-sans text-[10px] tracking-widest uppercase">
-          {mapLegend}
-        </p>
-      </div>
-
       {/* Producer chips */}
       <div className="flex flex-col gap-2">
         <div className="flex justify-center">
