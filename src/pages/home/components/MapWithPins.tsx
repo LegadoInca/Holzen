@@ -149,7 +149,7 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
       ref={containerRef}
       className="relative"
     >
-      <div className="relative w-full select-none" style={{ height: '580px' }}>
+      <div className="relative w-full select-none" style={{ height: '480px' }}>
         <img
           src="/Holzen/images/mapa.png"
           alt="Mapa del Perú"
@@ -277,37 +277,7 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
         )}
       </div>
 
-      {/* Producer chips */}
-      <div className="flex flex-col gap-2">
-        <div className="flex justify-center">
-          <div className="relative overflow-hidden inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-xs font-semibold tracking-[0.2em] uppercase cursor-default select-none" style={{ background: 'linear-gradient(135deg, #c2622a 0%, #e07830 50%, #c2622a 100%)', color: '#fff8f0', boxShadow: '0 0 18px rgba(210,100,40,0.35)' }}>
-            <i className="ri-map-pin-line text-sm" />
-            Toca un nombre para conocer al productor
-            <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          </div>
-        </div>
-        <div className="flex flex-wrap justify-center gap-2 px-2">
-          {mapPins.map((pin) => {
-            const isActive = active === pin.id;
-            return (
-              <button
-                key={pin.id}
-                onClick={() => handlePin(pin.id)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-xs transition-all duration-200 cursor-pointer whitespace-nowrap border"
-                style={{
-                  background: isActive ? 'rgba(201,169,110,0.18)' : 'rgba(255,255,255,0.04)',
-                  borderColor: isActive ? 'rgba(201,169,110,0.6)' : 'rgba(255,255,255,0.1)',
-                  color: isActive ? '#c9a96e' : 'rgba(255,245,230,0.5)',
-                }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: isActive ? '#c9a96e' : 'rgba(201,169,110,0.4)' }} />
-                {pin.name.split(' ')[0]}
-                <span className="text-[9px] opacity-60">{pin.region.split('·')[0].trim()}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+
 
       <style>{`
         @keyframes cardIn {
