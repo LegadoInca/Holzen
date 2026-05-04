@@ -43,34 +43,10 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
         </span>
       </div>
 
-      {/* FRONT */}
+      {/* FRONT — Productor (default) */}
       <div
-        className={`absolute inset-0 transition-opacity duration-500 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`absolute inset-0 transition-opacity duration-500 flex flex-col ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         onClick={onFlip}
-      >
-        <img src={p.image} alt={p.overlayName} className="w-full h-full object-cover object-top" />
-        <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/90 via-coffee-900/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <div className="font-serif text-lg text-cream leading-tight mb-1">{p.overlayName}</div>
-          <div className="text-cream/50 text-xs font-sans mb-2">{p.overlayOrigin}</div>
-          <div className="flex flex-wrap gap-1 mb-3">
-            {p.notes.split(' · ').map((note) => (
-              <span key={note} className="text-[10px] text-gold/80 border border-gold/20 px-2 py-0.5 rounded-full font-sans">
-                {note}
-              </span>
-            ))}
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-gold font-sans text-sm font-semibold">{p.overlayPrice}</span>
-            <span className="text-cream/40 text-[10px] font-sans uppercase tracking-widest">{tapHint}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* BACK */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-500 flex flex-col ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        onClick={onUnflip}
       >
         <div className="relative h-[52%] flex-shrink-0">
           <img src={p.producer.image} alt={p.producer.name} className="w-full h-full object-cover object-top" />
@@ -91,13 +67,48 @@ const ProductCard = ({ p, isFlipped, onFlip, onUnflip, onAddToCart, compact = fa
             onClick={(e) => {
               e.stopPropagation();
               onAddToCart({ id: p.id, name: p.detailName, priceLabel: p.priceLabel, priceNum: p.priceNum, image: p.image });
-              onUnflip();
             }}
             className="relative mt-3 w-full overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-bold py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
           >
             <span className="relative z-10">{p.ctaLabel}</span>
             <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
           </button>
+        </div>
+      </div>
+
+      {/* BACK — Producto (al click) */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-500 flex flex-col ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={onUnflip}
+      >
+        <div className="relative flex-1">
+          <img src={p.image} alt={p.overlayName} className="w-full h-full object-cover object-top" />
+          <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/95 via-coffee-900/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-5">
+            <div className="font-serif text-lg text-cream leading-tight mb-1">{p.overlayName}</div>
+            <div className="text-cream/50 text-xs font-sans mb-2">{p.overlayOrigin}</div>
+            <div className="flex flex-wrap gap-1 mb-3">
+              {p.notes.split(' · ').map((note) => (
+                <span key={note} className="text-[10px] text-gold/80 border border-gold/20 px-2 py-0.5 rounded-full font-sans">
+                  {note}
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-gold font-sans text-sm font-semibold">{p.overlayPrice}</span>
+              <span className="text-cream/40 text-[10px] font-sans uppercase tracking-widest">{tapHint}</span>
+            </div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onAddToCart({ id: p.id, name: p.detailName, priceLabel: p.priceLabel, priceNum: p.priceNum, image: p.image });
+              }}
+              className="relative w-full overflow-hidden bg-gold hover:bg-amber-400 text-coffee-900 font-serif font-bold py-2.5 rounded-full text-sm tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap group"
+            >
+              <span className="relative z-10">{p.ctaLabel}</span>
+              <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
