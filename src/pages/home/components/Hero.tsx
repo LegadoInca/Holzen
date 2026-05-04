@@ -53,28 +53,28 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col items-start justify-center text-left px-6 md:px-16 max-w-4xl">
-        <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-4 opacity-90">
+        <p className="text-gold text-xs tracking-[0.4em] uppercase font-serif mb-4 opacity-90">
           {t('hero_eyebrow')}
         </p>
         <h1 className="font-serif font-black text-[clamp(2.5rem,7vw,5.5rem)] leading-none tracking-[0.15em] text-cream uppercase mb-4">
           HOLZEN
         </h1>
-        <p className="font-serif font-black text-[clamp(1rem,2.7vw,2.3rem)] leading-tight tracking-[0.08em] text-cream uppercase mb-8 whitespace-pre-line">
+        <p className="font-serif font-black text-[clamp(0.85rem,2.3vw,1.9rem)] leading-tight tracking-[0.08em] text-cream uppercase mb-8 whitespace-pre-line">
           {t('hero_subtitle')}
         </p>
-        <p className="max-w-xl text-cream/70 text-sm md:text-base font-sans leading-relaxed mb-10">
+        <p className="max-w-xl text-cream/70 text-sm md:text-base font-serif leading-relaxed mb-10">
           {t('hero_desc')}
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={() => scrollTo('products')}
-            className="bg-gold hover:bg-gold-light text-coffee-900 font-sans font-semibold px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-colors cursor-pointer whitespace-nowrap"
+            className="bg-gold hover:bg-gold-light text-coffee-900 font-serif font-semibold px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-colors cursor-pointer whitespace-nowrap"
           >
             {t('hero_cta_primary')}
           </button>
           <button
             onClick={() => scrollTo('farmers')}
-            className="border border-cream/40 hover:border-cream text-cream hover:bg-cream/5 font-sans px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all cursor-pointer whitespace-nowrap"
+            className="border border-cream/40 hover:border-cream text-cream hover:bg-cream/5 font-serif px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all cursor-pointer whitespace-nowrap"
           >
             {t('hero_cta_secondary')}
           </button>
