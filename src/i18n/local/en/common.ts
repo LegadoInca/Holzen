@@ -1,6 +1,6 @@
 const en = {
   // Navbar
-  nav_philosophy: 'Philosophy',
+  nav_philosophy: 'About Us',
   nav_catalog: 'Catalog',
   nav_farmers: 'Farmers',
   nav_process: 'Process',
