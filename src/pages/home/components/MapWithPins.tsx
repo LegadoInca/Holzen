@@ -19,94 +19,94 @@ interface MapPin {
 const mapPins: MapPin[] = [
   {
     id: 'lucia',
-    region: 'Quillabamba · Cusco',
+    region: 'Canchaque · Piura',
     name: 'Lucía Quispe',
     altitude: '1,200 m.s.n.m',
     storyTitle: 'El renacer de Lucía',
-    story: 'A los 19 años perdió su cosecha entera por una helada. Sin crédito, sin apoyo, decidió aprender sola el proceso natural.',
+    story: "A los 19 años perdió su cosecha entera por una helada en las alturas de Canchaque. Sin crédito ni apoyo, aprendió sola el proceso natural en los cafetales de Huancabamba",
     image: '/Holzen/images/farmer1.jpg',
     familyImage: '/Holzen/images/farmer5.jpg',
-    familyCaption: 'Los hijos de Lucía van a la escuela gracias al café',
+    familyCaption: "Los hijos de Lucía van a la escuela gracias al café",
     stat: '3×', statLabel: 'ingresos en 4 años',
-    x: 42, y: 62,
+    x: 32, y: 14,
   },
   {
     id: 'edilberto',
-    region: 'San Martín · Perú',
+    region: 'Montero · Ayabaca',
     name: 'Edilberto Rojas',
-    altitude: '850 m.s.n.m',
+    altitude: '1,500 m.s.n.m',
     storyTitle: 'El despertar de Edilberto',
-    story: 'Exmilitar que volvió a su tierra con las manos vacías. Convirtió una parcela abandonada en 3 hectáreas de cafetal.',
+    story: "Exmilitar que volvió a Montero con las manos vacías. Convirtió una parcela abandonada en las montañas de Ayabaca en 3 hectáreas de cafetal, trabajando solo de madrugada por dos años",
     image: '/Holzen/images/farmer2.jpeg',
     familyImage: '/Holzen/images/impact1.jpeg',
-    familyCaption: 'Los 4 hijos de Edilberto estudian en la universidad',
+    familyCaption: "Los 4 hijos de Edilberto estudian en la universidad",
     stat: '3 ha', statLabel: 'cultivadas desde cero',
-    x: 52, y: 38,
+    x: 30, y: 12,
   },
   {
     id: 'rosa',
-    region: 'Valle Monzón · Huánuco',
+    region: 'Sicchez · Ayabaca',
     name: 'Rosa Panduro',
-    altitude: '900 m.s.n.m',
+    altitude: '1,800 m.s.n.m',
     storyTitle: 'La fuerza de Rosa',
-    story: 'Madre soltera de tres hijos, heredó una deuda y una parcela descuidada. Hoy exporta directamente a Europa.',
+    story: "Madre soltera de tres hijos en Sicchez, heredó una deuda y una parcela descuidada. Aprendió el secado solar artesanal observando a sus vecinos de Ayabaca",
     image: '/Holzen/images/farmer3.jpeg',
     familyImage: '/Holzen/images/impact3.jpeg',
-    familyCaption: 'Los 3 hijos de Rosa crecen con dignidad y sin deudas',
+    familyCaption: "Los 3 hijos de Rosa crecen con dignidad y sin deudas",
     stat: '100%', statLabel: 'venta directa al exterior',
-    x: 48, y: 48,
+    x: 31, y: 11,
   },
   {
     id: 'segundo',
-    region: 'Jaén · Cajamarca',
+    region: 'S. Miguel · Huancabamba',
     name: 'Segundo Herrera',
     altitude: '1,400 m.s.n.m',
     storyTitle: 'El nuevo comienzo de Segundo',
-    story: 'Creció viendo a su padre vender café a precios de miseria. A los 28 años rompió esa cadena y comenzó a exportar directamente.',
+    story: "Creció viendo a su padre vender café a precios de miseria en San Miguel del Faique. A los 28 años rompió esa cadena: aprendió catación, certificó su finca y comenzó a exportar directamente",
     image: '/Holzen/images/farmer4.jpeg',
     familyImage: '/Holzen/images/farmer5.jpg',
-    familyCaption: 'El padre de Segundo ya no vende a intermediarios',
+    familyCaption: "La familia de Segundo ya no vende a intermediarios",
     stat: '12 países', statLabel: 'destinos de exportación',
-    x: 36, y: 28,
+    x: 33, y: 15,
   },
   {
     id: 'manuel',
-    region: 'Ayacucho · Valle del Pampas',
+    region: 'Chalaco · Morropón',
     name: 'Manuel Ccahuana',
-    altitude: '2,200 m.s.n.m',
+    altitude: '2,000 m.s.n.m',
     storyTitle: 'La resistencia de Manuel',
-    story: 'En los 90, el terrorismo destruyó su comunidad. Hoy, a los 54 años, cultiva café donde antes solo había miedo.',
+    story: "En los 90, la violencia llegó hasta las montañas de Chalaco. Manuel perdió a su padre y a tres vecinos en una semana",
     image: '/Holzen/images/farmer5.jpg',
     familyImage: '/Holzen/images/impact1.jpeg',
-    familyCaption: 'La familia de Manuel vive en paz donde antes hubo miedo',
+    familyCaption: "La familia de Manuel vive en paz donde antes hubo miedo",
     stat: '54 años', statLabel: 'de resistencia',
-    x: 46, y: 56,
+    x: 32, y: 16,
   },
   {
     id: 'rosaquispe',
-    region: 'Cusco · Finca La Esperanza',
+    region: 'Jililí · Ayabaca',
     name: 'Rosa Quispe',
-    altitude: '2,800 m.s.n.m',
+    altitude: '1,950 m.s.n.m',
     storyTitle: 'La esperanza de Rosa',
-    story: 'Escapó de una relación violenta con tres hijos pequeños. Hoy su finca financia la escuela de sus tres hijos.',
+    story: "Rosa escapó de una relación violenta con tres hijos pequeños — Lucía de 4, Ander de 6 y Mateo de 8. Sin dinero ni apoyo, llegó a Jililí con lo puesto",
     image: '/Holzen/images/farmer6.jpg',
     familyImage: '/Holzen/images/impact3.jpeg',
-    familyCaption: 'Lucía, Ander y Mateo van a la escuela cada mañana',
-    stat: '3 hijos', statLabel: 'en la escuela',
-    x: 50, y: 66,
+    familyCaption: "Lucía, Ander y Mateo van a la escuela cada mañana",
+    stat: '3 hijos', statLabel: 'en la escuela gracias al café',
+    x: 29, y: 12,
   },
   {
     id: 'julia',
-    region: 'San Martín · Alto Huallaga',
+    region: 'Pacaipampa · Ayabaca',
     name: 'Julia Flores',
-    altitude: '1,900 m.s.n.m',
+    altitude: '2,100 m.s.n.m',
     storyTitle: 'El orgullo de Julia',
-    story: 'Hace tres años cultivaba coca porque no había otra opción. Hoy cultiva café premium con certificación de origen.',
+    story: "Hace tres años, Julia cultivaba productos sin futuro en Pacaipampa porque no había otra opción. Hoy cultiva café premium con certificación de origen",
     image: '/Holzen/images/farmer7.jpeg',
-    familyImage: 'https:///Holzen/images/farmer5.jpg',
-    familyCaption: 'La hija de Julia sueña con estudiar agronomía',
+    familyImage: '/Holzen/images/impact1.jpeg',
+    familyCaption: "Julia cultiva con dignidad en las alturas de Ayabaca",
     stat: '100%', statLabel: 'café certificado de origen',
-    x: 55, y: 42,
+    x: 30, y: 13,
   },
 ];
 
@@ -134,22 +134,22 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
     });
   };
 
-// useEffect(() => {
-  //   const handler = (e: MouseEvent) => {
-  //     if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-  //       setActive(null);
-  //     }
-  //   };
-  //   document.addEventListener('mousedown', handler);
-  //   return () => document.removeEventListener('mousedown', handler);
-  // }, []);
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setActive(null);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   return (
     <div
       ref={containerRef}
       className="relative"
     >
-      <div className="relative w-full select-none" style={{ height: '480px' }}>
+      <div className="relative w-full select-none" style={{ height: '580px' }}>
         <img
           src="/Holzen/images/mapa.png"
           alt="Mapa del Perú"
