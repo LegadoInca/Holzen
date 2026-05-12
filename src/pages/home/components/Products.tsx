@@ -111,9 +111,6 @@ export default function Products({ onAddToCart }: ProductsProps) {
             </div>
             <div className="font-serif text-lg text-cream leading-tight mb-1">{product.overlayName}</div>
             <div className="text-cream/50 text-xs font-sans mb-3">{product.overlayOrigin}</div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-gold font-sans text-sm font-semibold">{product.overlayPrice}</span>
-            </div>
 
             {/* Orange CTA - {product.ctaLabel} */}
             <button
