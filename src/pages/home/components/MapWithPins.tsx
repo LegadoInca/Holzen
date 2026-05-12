@@ -28,7 +28,7 @@ const mapPins: MapPin[] = [
     familyImage: '/Holzen/images/farmer5.jpg',
     familyCaption: "Los hijos de Lucía van a la escuela gracias al café",
     stat: '3×', statLabel: 'ingresos en 4 años',
-    x: 32, y: 14,
+    x: 24, y: 22,
   },
   {
     id: 'edilberto',
@@ -41,7 +41,7 @@ const mapPins: MapPin[] = [
     familyImage: '/Holzen/images/impact1.jpeg',
     familyCaption: "Los 4 hijos de Edilberto estudian en la universidad",
     stat: '3 ha', statLabel: 'cultivadas desde cero',
-    x: 30, y: 12,
+    x: 20, y: 18,
   },
   {
     id: 'rosa',
@@ -54,7 +54,7 @@ const mapPins: MapPin[] = [
     familyImage: '/Holzen/images/impact3.jpeg',
     familyCaption: "Los 3 hijos de Rosa crecen con dignidad y sin deudas",
     stat: '100%', statLabel: 'venta directa al exterior',
-    x: 31, y: 11,
+    x: 22, y: 19,
   },
   {
     id: 'segundo',
@@ -67,7 +67,7 @@ const mapPins: MapPin[] = [
     familyImage: '/Holzen/images/farmer5.jpg',
     familyCaption: "La familia de Segundo ya no vende a intermediarios",
     stat: '12 países', statLabel: 'destinos de exportación',
-    x: 33, y: 15,
+    x: 26, y: 24,
   },
   {
     id: 'manuel',
@@ -80,7 +80,7 @@ const mapPins: MapPin[] = [
     familyImage: '/Holzen/images/impact1.jpeg',
     familyCaption: "La familia de Manuel vive en paz donde antes hubo miedo",
     stat: '54 años', statLabel: 'de resistencia',
-    x: 32, y: 16,
+    x: 28, y: 26,
   },
   {
     id: 'rosaquispe',
@@ -93,7 +93,7 @@ const mapPins: MapPin[] = [
     familyImage: '/Holzen/images/impact3.jpeg',
     familyCaption: "Lucía, Ander y Mateo van a la escuela cada mañana",
     stat: '3 hijos', statLabel: 'en la escuela gracias al café',
-    x: 29, y: 12,
+    x: 19, y: 20,
   },
   {
     id: 'julia',
@@ -106,7 +106,7 @@ const mapPins: MapPin[] = [
     familyImage: '/Holzen/images/impact1.jpeg',
     familyCaption: "Julia cultiva con dignidad en las alturas de Ayabaca",
     stat: '100%', statLabel: 'café certificado de origen',
-    x: 30, y: 13,
+    x: 21, y: 17,
   },
 ];
 
