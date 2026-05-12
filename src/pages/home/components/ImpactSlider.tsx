@@ -23,7 +23,7 @@ const impactCards: ImpactCard[] = [
   {
     icon: 'ri-money-dollar-circle-line',
     image: '/Holzen/images/product5.jpeg',
-    getValue: (n) => `$${(n * 2.8).toFixed(0)}`,
+    getValue: () => '',
     label: 'USD directos al productor',
     sublabel: (n) => n <= 10 ? 'paga un día de trabajo' : n <= 40 ? 'cubre una semana de servicios' : 'financia un mes completo',
   },
