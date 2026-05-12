@@ -341,32 +341,6 @@ const ContactSection = () => {
                 ))}
               </div>
 
-              {/* Pay mode toggle */}
-              <div className="grid grid-cols-2 gap-2 bg-white/5 rounded-xl p-1 border border-cream/10">
-                <button onClick={() => handleModeSwitch('monthly')} className={`py-2.5 rounded-lg text-sm font-sans font-semibold transition-all cursor-pointer whitespace-nowrap ${payMode === 'monthly' ? 'bg-gold text-coffee-900' : 'text-cream/50 hover:text-cream'}`}>{t('contact_monthly')}</button>
-                <button onClick={() => handleModeSwitch('annual')} className={`py-2.5 rounded-lg text-sm font-sans font-semibold transition-all cursor-pointer whitespace-nowrap ${payMode === 'annual' ? 'bg-gold text-coffee-900' : 'text-cream/50 hover:text-cream'}`}>{t('contact_annual')}</button>
-              </div>
-
-              {/* Amount grid */}
-              <div className="grid grid-cols-3 gap-2">
-                {amounts.map((a) => (
-                  <button key={a} onClick={() => setAmount(a)} className={`py-2.5 md:py-3 rounded-xl text-sm font-sans font-semibold border transition-all cursor-pointer whitespace-nowrap ${amount === a ? 'bg-gold/20 border-gold text-gold' : 'border-cream/15 bg-white/5 text-cream/60 hover:border-cream/30 hover:text-cream'}`}>
-                    ${a}
-                  </button>
-                ))}
-              </div>
-
-              {/* Impact */}
-              <div className="rounded-xl border border-gold/20 bg-gold/5 p-3 md:p-4 flex gap-3 items-start">
-                <div className="w-5 h-5 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <i className="ri-seedling-line text-gold text-sm" />
-                </div>
-                <div>
-                  <div className="text-gold text-[10px] tracking-widest uppercase font-sans mb-1">{t('contact_impact_label')}</div>
-                  <p className="text-cream/70 text-xs font-sans leading-relaxed">{t('contact_impact_with', { amount, name: selectedFarmer.name, impact: impactText })}</p>
-                </div>
-              </div>
-
               {/* Certificate */}
               <div
                 className="relative rounded-xl border border-cream/10 bg-white/5 p-3 md:p-4 flex items-center justify-between group cursor-default"
