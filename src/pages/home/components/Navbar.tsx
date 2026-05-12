@@ -102,6 +102,18 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
                 Empresas
               </Link>
             </li>
+            <li className="flex items-center gap-2 animate-flag-float">
+              <img
+                src="https://flagcdn.com/w40/pe.png"
+                alt="Peru"
+                className="w-9 h-6 rounded-sm object-cover shadow-sm"
+              />
+              <img
+                src="https://flagcdn.com/w40/de.png"
+                alt="Germany"
+                className="w-9 h-6 rounded-sm object-cover shadow-sm"
+              />
+            </li>
           </ul>
 
           <div className="flex items-center gap-3">

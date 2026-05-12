@@ -36,9 +36,14 @@ export default {
             '0%': { transform: 'translateX(-150%) skewX(-20deg)' },
             '100%': { transform: 'translateX(250%) skewX(-20deg)' },
           },
+          'flag-float': {
+            '0%, 100%': { transform: 'rotate(-8deg) scale(1.05)' },
+            '50%': { transform: 'rotate(8deg) scale(0.95)' },
+          },
         },
         animation: {
           shimmer: 'shimmer 2.2s ease-in-out infinite',
+          'flag-float': 'flag-float 2s ease-in-out infinite',
         },
       },
     },
