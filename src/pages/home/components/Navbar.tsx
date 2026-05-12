@@ -109,8 +109,8 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
                 className="w-9 h-6 rounded-sm object-cover shadow-sm"
               />
               <img
-                src="https://flagcdn.com/w40/de.png"
-                alt="Germany"
+                src="https://flagcdn.com/w40/cz.png"
+                alt="Czech Republic"
                 className="w-9 h-6 rounded-sm object-cover shadow-sm"
               />
             </li>
@@ -149,7 +149,7 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               )}
             </div>
 
-            {/* Flags — mobile only, always visible */}
+            {/* Flags — mobile, always visible */}
             <div className="md:hidden flex items-center gap-1.5 animate-flag-float">
               <img
                 src="https://flagcdn.com/w40/pe.png"
@@ -157,8 +157,8 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
                 className="w-6 h-4 rounded-sm object-cover shadow-sm"
               />
               <img
-                src="https://flagcdn.com/w40/de.png"
-                alt="Germany"
+                src="https://flagcdn.com/w40/cz.png"
+                alt="Czech Republic"
                 className="w-6 h-4 rounded-sm object-cover shadow-sm"
               />
             </div>
