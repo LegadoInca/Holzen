@@ -63,10 +63,20 @@ export default function Products({ onAddToCart }: ProductsProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/50 via-coffee-900/5 to-transparent" />
 
-          {/* Stock badge */}
-          <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-sans font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full animate-pulse shadow-lg whitespace-nowrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
-            {getStockLabel(product.stock, t)}
+          {/* Stock badge + Stars */}
+          <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5 items-start">
+            <div className="flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-sans font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full animate-pulse shadow-lg whitespace-nowrap">
+              <span className="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
+              {getStockLabel(product.stock, t)}
+            </div>
+            <div className="flex items-center gap-1 bg-coffee-900/70 backdrop-blur-sm border border-gold/40 px-2 py-1 rounded-full">
+              <div className="flex items-center gap-0.5">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <i key={star} className={`ri-star-${star <= Math.round(product.rating) ? 'fill' : 'line'} text-gold text-[10px]`} />
+                ))}
+              </div>
+              <span className="text-cream/80 text-[9px] font-sans ml-1">({product.rating.toFixed(1)})</span>
+            </div>
           </div>
 
           {/* Farmer avatar circle - top right */}

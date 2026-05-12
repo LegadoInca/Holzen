@@ -32,6 +32,7 @@ export interface Product {
   id: string;
   tag: string;
   stock: number;
+  rating: number;
   overlayName: string;
   overlayOrigin: string;
   overlayPrice: string;
@@ -51,6 +52,7 @@ export const products: Product[] = [
     id: 'chuncho',
     tag: 'Variedad Nativa',
     stock: 3,
+    rating: 4.9,
     overlayName: 'Caturra del Cusco',
     overlayOrigin: 'Quillabamba, Cusco · 1,200 msnm',
     overlayPrice: 'desde $7.10 / kg',
@@ -80,6 +82,7 @@ export const products: Product[] = [
     id: 'bourbon',
     tag: 'Microlote',
     stock: 5,
+    rating: 4.8,
     overlayName: 'Bourbon Rojo Natural',
     overlayOrigin: 'San Martín, Perú · 1,600 msnm',
     overlayPrice: 'desde $6.40 / kg',
@@ -93,7 +96,7 @@ export const products: Product[] = [
       { label: 'Humedad', value: '\u2264 7%' },
       { label: 'Precio', value: '$6.40 / kg' },
     ],
-    image: '/Holzen/images/product2.jpeg',
+    image: '/Holzen/images/product2.jpg',
     priceNum: 24,
     priceLabel: '$24.00/kg',
     ctaLabel: 'Quiero beber su café',
@@ -109,6 +112,7 @@ export const products: Product[] = [
     id: 'monzon',
     tag: 'Selección Especial',
     stock: 2,
+    rating: 5.0,
     overlayName: 'Monzón Heritage',
     overlayOrigin: 'Valle Monzón, Huánuco · 900 msnm',
     overlayPrice: 'desde $6.30 / kg',
@@ -122,7 +126,7 @@ export const products: Product[] = [
       { label: 'Humedad', value: '\u2264 7.5%' },
       { label: 'Precio', value: '$6.30 / kg' },
     ],
-    image: '/Holzen/images/product3.jpeg',
+    image: '/Holzen/images/product3.jpg',
     priceNum: 22,
     priceLabel: '$22.00/kg',
     ctaLabel: 'Quiero beber su café',
@@ -138,6 +142,7 @@ export const products: Product[] = [
     id: 'geisha',
     tag: 'Alta Gama',
     stock: 4,
+    rating: 4.9,
     overlayName: 'Geisha de Jaén',
     overlayOrigin: 'Jaén, Cajamarca · 1,800 msnm',
     overlayPrice: 'desde $10.00 / kg',
@@ -151,7 +156,7 @@ export const products: Product[] = [
       { label: 'Humedad', value: '\u2264 6.5%' },
       { label: 'Precio', value: '$10.00 / kg' },
     ],
-    image: '/Holzen/images/product4.jpeg',
+    image: '/Holzen/images/product4.jpg',
     priceNum: 38,
     priceLabel: '$38.00/kg',
     ctaLabel: 'Quiero beber su café',
@@ -167,6 +172,7 @@ export const products: Product[] = [
     id: 'pampas',
     tag: 'Resistencia',
     stock: 6,
+    rating: 4.7,
     overlayName: 'Pampas Alto',
     overlayOrigin: 'Ayacucho · 2,200 msnm',
     overlayPrice: 'desde $7.70 / kg',
@@ -196,6 +202,7 @@ export const products: Product[] = [
     id: 'esperanza',
     tag: 'Origen Directo',
     stock: 3,
+    rating: 5.0,
     overlayName: 'La Esperanza',
     overlayOrigin: 'Cusco · Finca La Esperanza · 2,800 msnm',
     overlayPrice: 'desde $9.10 / kg',
@@ -209,7 +216,7 @@ export const products: Product[] = [
       { label: 'Humedad', value: '\u2264 6.8%' },
       { label: 'Precio', value: '$9.10 / kg' },
     ],
-    image: '/Holzen/images/product6.jpeg',
+    image: '/Holzen/images/product6.jpg',
     priceNum: 34,
     priceLabel: '$34.00/kg',
     ctaLabel: 'Quiero beber su café',
