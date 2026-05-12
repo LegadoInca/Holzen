@@ -5,7 +5,7 @@ const FARMERS = [
   {
     id: 'lucia',
     name: 'Lucía Quispe',
-    region: 'Cusco',
+    region: 'Canchaque',
     role: 'Productora de café Chuncho',
     need: 'Necesita: Tanques de fermentación artesanal',
     progress: 68,
@@ -23,7 +23,7 @@ const FARMERS = [
   {
     id: 'edilberto',
     name: 'Edilberto Rojas',
-    region: 'San Martín',
+    region: 'Montero',
     role: 'Productor de Bourbon Natural',
     need: 'Necesita: Camas africanas de secado solar',
     progress: 45,
@@ -41,7 +41,7 @@ const FARMERS = [
   {
     id: 'rosa',
     name: 'Rosa Panduro',
-    region: 'Huánuco',
+    region: 'Sicchez',
     role: 'Productora de Honey Amarillo',
     need: 'Necesita: Secadora solar portátil',
     progress: 20,
