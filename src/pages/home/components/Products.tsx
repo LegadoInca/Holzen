@@ -163,7 +163,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
   };
 
   return (
-    <>    <section id="products" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden" data-product-shop>
+    <section id="products" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden" data-product-shop>
       <div className="absolute inset-0">
         <img
           alt="background"
