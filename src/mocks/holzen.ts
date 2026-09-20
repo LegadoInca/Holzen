@@ -1,7 +1,7 @@
 export const heroSlides = [
   {
     type: 'video' as const,
-    src: '/Holzen/videos/hero4.mp4',
+    src: '/Holzen/videos/hero5.mp4',
   },
   {
     type: 'video' as const,

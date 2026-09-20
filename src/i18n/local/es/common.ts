@@ -8,7 +8,7 @@ const es = {
 
   // Hero
   hero_eyebrow: 'Café de Especialidad · Perú',
-  hero_subtitle: 'Este no es\nsolo café.\nEs una segunda\noportunidad.',
+  hero_subtitle: 'Este no es solo café,\nEs una segunda oportunidad.',
   hero_desc: 'Café de origen único, cultivado en los valles más puros de los Andes peruanos. Procesado a mano, secado con sol, entregado con propósito.',
   hero_cta_primary: 'GENERAR IMPACTO',
   hero_cta_secondary: 'Nuestros Productores',

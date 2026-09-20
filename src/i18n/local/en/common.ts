@@ -8,7 +8,7 @@ const en = {
 
   // Hero
   hero_eyebrow: 'Specialty Coffee · Peru',
-  hero_subtitle: 'This is not\njust coffee.\nIt\'s a second\nchance.',
+  hero_subtitle: 'This is not just coffee,\nIt\'s a second chance.',
   hero_desc: 'Single-origin coffee, grown in the purest valleys of the Peruvian Andes. Hand-processed, sun-dried, delivered with purpose.',
   hero_cta_primary: 'MAKE AN IMPACT',
   hero_cta_secondary: 'Our Farmers',

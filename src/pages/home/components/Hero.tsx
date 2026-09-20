@@ -15,7 +15,7 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(next, 5500);
+    const timer = setInterval(next, 9000);
     return () => clearInterval(timer);
   }, [next]);
 

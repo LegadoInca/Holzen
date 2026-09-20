@@ -8,7 +8,7 @@ const cs = {
 
   // Hero
   hero_eyebrow: 'Specialty káva · Peru',
-  hero_subtitle: 'Toto není\njen káva.\nJe to druhá\nšance.',
+  hero_subtitle: 'Toto není jen káva,\nJe to druhá šance.',
   hero_desc: 'Káva z jedinečného původu, pěstovaná v nejčistších údolích peruánských And. Ručně zpracovaná, sušená na slunci, dodaná s účelem.',
   hero_cta_primary: 'VYTVOŘIT DOPAD',
   hero_cta_secondary: 'Naši farmáři',

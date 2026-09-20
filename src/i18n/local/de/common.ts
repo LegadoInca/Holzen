@@ -8,7 +8,7 @@ const de = {
 
   // Hero
   hero_eyebrow: 'Spezialitätenkaffee · Peru',
-  hero_subtitle: 'Das ist nicht\nnur Kaffee.\nEs ist eine zweite\nChance.',
+  hero_subtitle: 'Das ist nicht nur Kaffee,\nEs ist eine zweite Chance.',
   hero_desc: 'Kaffee aus einzigartiger Herkunft, angebaut in den reinsten Tälern der peruanischen Anden. Handverarbeitet, sonnengetrocknet, mit Sinn geliefert.',
   hero_cta_primary: 'WIRKUNG ERZIELEN',
   hero_cta_secondary: 'Unsere Bauern',
