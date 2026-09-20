@@ -78,7 +78,7 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               HOLZEN
             </span>
             <span className="block text-[10px] tracking-[0.15em] text-gold font-sans font-light">
-              by Legado Inca
+              by Salkantay Andino
             </span>
           </button>
 

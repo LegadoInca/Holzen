@@ -84,7 +84,7 @@ const Hero = () => {
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 500,
                 fontSize: 'clamp(1rem,2vw,1.5rem)',
-                color: '#0D0D0C',
+                color: '#FFFFFF',
               }}
             >
               coffee Peru

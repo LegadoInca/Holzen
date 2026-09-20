@@ -101,7 +101,7 @@ const en = {
   footer_farmers: 'Farmers',
   footer_process: 'Process',
   footer_contact: 'Contact',
-  footer_copyright: '© 2025 HOLZEN · Legado Inca. All rights reserved.',
+  footer_copyright: '© 2025 HOLZEN · Salkantay Andino. All rights reserved.',
 
   // Reviews
   reviews_eyebrow: 'Voices from the World',
@@ -305,10 +305,10 @@ const en = {
   emp_docs_item2: 'Lab analysis',
   emp_docs_item3: 'EUDR certificate',
   emp_docs_item4: 'Commercial invoice and packing list',
-  emp_footer_subtitle: 'Business · by Legado Inca',
+  emp_footer_subtitle: 'Business · by Salkantay Andino',
   emp_footer_store: 'Individual store',
   emp_footer_farmers: 'Farmers',
-  emp_footer_copyright: '© 2025 HOLZEN · Legado Inca. All rights reserved.',
+  emp_footer_copyright: '© 2025 HOLZEN · Salkantay Andino. All rights reserved.',
   emp_adoption_impact_text: 'With ${{amount}} for {{name}}: {{impact}}',
   emp_adoption_submit: 'GENERATE IMPACT',
 };

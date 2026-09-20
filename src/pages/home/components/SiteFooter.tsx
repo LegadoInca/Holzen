@@ -19,7 +19,7 @@ const SiteFooter = () => {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-gold/10">
         <div>
           <div className="font-serif text-xl font-bold tracking-[0.2em] text-cream uppercase">HOLZEN</div>
-          <div className="text-[10px] tracking-[0.15em] text-gold font-sans mb-4">by Legado Inca</div>
+          <div className="text-[10px] tracking-[0.15em] text-gold font-sans mb-4">by Salkantay Andino</div>
           <p className="text-cream/50 text-xs font-sans leading-relaxed whitespace-pre-line">{t('footer_tagline')}</p>
         </div>
         <div>

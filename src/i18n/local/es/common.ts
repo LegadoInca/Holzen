@@ -101,7 +101,7 @@ const es = {
   footer_farmers: 'Productores',
   footer_process: 'Proceso',
   footer_contact: 'Contacto',
-  footer_copyright: '© 2025 HOLZEN · Legado Inca. Todos los derechos reservados.',
+  footer_copyright: '© 2025 HOLZEN · Salkantay Andino. Todos los derechos reservados.',
 
   // Reviews
   reviews_eyebrow: 'Voces del Mundo',
@@ -314,10 +314,10 @@ const es = {
   emp_docs_item2: 'Análisis de laboratorio',
   emp_docs_item3: 'Certificado EUDR',
   emp_docs_item4: 'Factura comercial y packing list',
-  emp_footer_subtitle: 'Empresas · by Legado Inca',
+  emp_footer_subtitle: 'Empresas · by Salkantay Andino',
   emp_footer_store: 'Tienda individual',
   emp_footer_farmers: 'Productores',
-  emp_footer_copyright: '© 2025 HOLZEN · Legado Inca. Todos los derechos reservados.',
+  emp_footer_copyright: '© 2025 HOLZEN · Salkantay Andino. Todos los derechos reservados.',
   emp_adoption_impact_text: 'Con ${{amount}} para {{name}}: {{impact}}',
   emp_adoption_submit: 'GENERAR IMPACTO',
 };
