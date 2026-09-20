@@ -182,9 +182,9 @@ export default function Products({ onAddToCart }: ProductsProps) {
 
       <div className="relative max-w-6xl mx-auto">
         <div className="mb-10 md:mb-14">
-          <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-3">{t('products_eyebrow')}</p>
-          <h2 className="font-serif text-3xl md:text-5xl text-cream leading-tight mb-3 font-bold">{t('products_title_line1')}<br /><em className="text-gold italic">{t('products_title_line2')}</em></h2>
-          <p className="text-cream/60 font-sans text-sm max-w-lg leading-relaxed">{t('products_desc')}</p>
+          <p className="text-coffee-900 text-xs tracking-[0.4em] uppercase font-sans mb-3">{t('products_eyebrow')}</p>
+          <h2 className="font-serif text-3xl md:text-5xl text-cream leading-tight mb-3 font-bold">{t('products_title_line1')}<br /><em className="text-coffee-600 italic">{t('products_title_line2')}</em></h2>
+          <p className="text-black font-sans text-sm max-w-lg leading-relaxed">{t('products_desc')}</p>
         </div>
 
         {/* Desktop grid */}
