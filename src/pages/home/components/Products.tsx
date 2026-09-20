@@ -175,10 +175,9 @@ export default function Products({ onAddToCart }: ProductsProps) {
         <img
           alt="background"
           className="w-full h-full object-cover object-center"
-          src="/Holzen/images/products-bg.jpeg"
+          src="/Holzen/images/fondos.jpeg"
         />
-        <div className="absolute inset-0 bg-coffee-900/60"></div>
-        <div className="absolute inset-0 bg-amber-900/20"></div>
+        <div className="absolute inset-0 bg-coffee-900/25"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto">
