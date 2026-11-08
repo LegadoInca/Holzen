@@ -1,6 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { heroSlides } from '../../../mocks/holzen';
+
+// ─────────────────────────────────────────────────────────────
+// Imagen única del hero.
+// Cuando tengas la foto final, súbela a public/images/ y cambia solo esta línea.
+// Medida recomendada: 1920 × 1080 px (16:9), JPG/WebP, idealmente < 400 KB.
+// Sujeto a la DERECHA; la mitad izquierda debe ser tranquila/oscura (ahí va el texto).
+// ─────────────────────────────────────────────────────────────
+const HERO_IMAGE = '/Holzen/images/hero1.jpg';
+
+const LIME = '#BBDA1F';
+const INK = '#0D0D0C';
 
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -8,128 +17,96 @@ const scrollTo = (id: string) => {
 
 const Hero = () => {
   const { t } = useTranslation();
-  const [current, setCurrent] = useState(0);
-
-  const next = useCallback(() => {
-    setCurrent((c) => (c + 1) % heroSlides.length);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(next, 9000);
-    return () => clearInterval(timer);
-  }, [next]);
 
   return (
-    <section id="hero" className="relative w-full h-screen min-h-[600px] overflow-hidden">
-      {/* Slides */}
-      {heroSlides.map((slide, idx) => (
-        <div
-          key={idx}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            idx === current ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          {slide.type === 'video' ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src={slide.src} type="video/mp4" />
-            </video>
-          ) : (
-            <img
-              src={slide.src}
-              alt=""
-              className="w-full h-full object-cover object-top"
-            />
-          )}
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-coffee-900/50 via-coffee-900/30 to-coffee-900/70" />
-        </div>
-      ))}
+    <section
+      id="hero"
+      className="relative w-full overflow-hidden mt-16 h-[calc(100vh-4rem)] min-h-[560px]"
+      style={{ background: INK }}
+    >
+      {/* Foto única en blanco y negro (quita el filter si prefieres la foto a color) */}
+      <img
+        src={HERO_IMAGE}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ objectPosition: '68% 35%', filter: 'grayscale(1) contrast(1.08)' }}
+      />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-start justify-center text-left px-6 md:px-16 max-w-4xl">
-        <p className="text-gold text-xs tracking-[0.4em] uppercase font-serif mb-4 opacity-90">
+      {/* Oscurecido lateral para que el texto lima se lea (como la referencia) */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.60) 36%, rgba(0,0,0,0.14) 68%, rgba(0,0,0,0) 100%)',
+        }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 40%)' }}
+      />
+      {/* Sombra suave abajo a la derecha: asegura que la descripción se lea sobre cualquier foto */}
+      <div
+        className="absolute inset-0 hidden md:block"
+        style={{ background: 'radial-gradient(ellipse 55% 50% at 84% 80%, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0) 72%)' }}
+      />
+      <div className="absolute inset-0 bg-black/30 md:hidden" />
+
+      {/* Contenido */}
+      <div className="relative z-10 h-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col">
+        <div className="flex-1 flex items-center pt-[6vh]">
+          <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
+            {/* Titular + botones */}
+            <div className="max-w-3xl">
+              <h1
+                className="whitespace-pre-line"
+                style={{
+                  fontFamily: "'Inter', system-ui, sans-serif",
+                  fontWeight: 600,
+                  fontSize: 'clamp(2.1rem, 5vw, 4.25rem)',
+                  lineHeight: 1.03,
+                  letterSpacing: '-0.025em',
+                  color: LIME,
+                  margin: '0 0 1.75rem',
+                }}
+              >
+                {t('hero_subtitle')}
+              </h1>
+
+              <div className="flex flex-wrap gap-3">
+                <button
+                  onClick={() => scrollTo('products')}
+                  className="inline-flex items-center rounded-full px-6 py-2.5 text-sm font-medium tracking-wide uppercase whitespace-nowrap cursor-pointer transition-all duration-200 hover:bg-white hover:border-white"
+                  style={{ background: LIME, border: `1px solid ${LIME}`, color: INK }}
+                >
+                  {t('hero_cta_primary')}
+                </button>
+                <button
+                  onClick={() => scrollTo('farmers')}
+                  className="inline-flex items-center rounded-full px-6 py-2.5 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer transition-all duration-200 hover:!bg-[#BBDA1F] hover:!text-[#0D0D0C]"
+                  style={{ background: 'transparent', border: `1px solid ${LIME}`, color: LIME }}
+                >
+                  {t('hero_cta_secondary')}
+                </button>
+              </div>
+            </div>
+
+            {/* Descripción, pequeña y a la derecha */}
+            <p
+              className="md:max-w-[22rem] text-[13px] leading-[1.5]"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", color: LIME, textShadow: '0 1px 10px rgba(0,0,0,0.7)' }}
+            >
+              {t('hero_desc')}
+            </p>
+          </div>
+        </div>
+
+        {/* Pie pequeño */}
+        <p
+          className="pb-5 md:pb-6 text-[11px] tracking-[0.18em] uppercase"
+          style={{ fontFamily: "'Inter', system-ui, sans-serif", color: LIME, opacity: 0.85 }}
+        >
           {t('hero_eyebrow')}
         </p>
-        <h1 className="leading-none mb-4">
-          <span
-            style={{
-              display: 'block',
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 800,
-              fontSize: 'clamp(2.5rem,7vw,5.5rem)',
-              color: '#36FF0F',
-              letterSpacing: '-0.01em',
-              lineHeight: 1,
-            }}
-          >
-            holzen
-          </span>
-          <span
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              marginTop: '0.5rem',
-            }}
-          >
-            <span style={{ width: '3rem', height: '2px', backgroundColor: '#36FF0F', display: 'inline-block' }} />
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 500,
-                fontSize: 'clamp(1rem,2vw,1.5rem)',
-                color: '#FFFFFF',
-              }}
-            >
-              coffee Peru
-            </span>
-          </span>
-        </h1>
-        <p className="font-serif font-black text-[clamp(0.85rem,2.3vw,1.9rem)] leading-tight tracking-[0.08em] text-cream uppercase mb-8 whitespace-pre-line">
-          {t('hero_subtitle')}
-        </p>
-        <p className="max-w-xl text-cream/70 text-sm md:text-base font-serif leading-relaxed mb-10">
-          {t('hero_desc')}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <button
-            onClick={() => scrollTo('products')}
-            className="relative overflow-hidden bg-gold hover:bg-gold-light text-coffee-900 font-serif font-black px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-colors cursor-pointer whitespace-nowrap group"
-            style={{ boxShadow: '0 0 20px rgba(201,169,110,0.45)' }}
-          >
-            <span className="relative z-10">{t('hero_cta_primary')}</span>
-            <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-          </button>
-          <button
-            onClick={() => scrollTo('farmers')}
-            className="relative overflow-hidden border border-cream/60 hover:border-cream text-cream hover:bg-cream/5 font-serif font-black px-8 py-3.5 rounded-full text-sm tracking-widest uppercase transition-all cursor-pointer whitespace-nowrap group"
-            style={{ boxShadow: '0 0 18px rgba(245,235,210,0.18)' }}
-          >
-            <span className="relative z-10">{t('hero_cta_secondary')}</span>
-            <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          </button>
-        </div>
-      </div>
-
-      {/* Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-        {heroSlides.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrent(idx)}
-            className={`transition-all duration-300 rounded-full cursor-pointer ${
-              idx === current
-                ? 'w-8 h-2 bg-gold'
-                : 'w-2 h-2 bg-cream/30 hover:bg-cream/60'
-            }`}
-          />
-        ))}
       </div>
     </section>
   );

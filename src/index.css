@@ -7,8 +7,8 @@ html {
 }
 
 body {
-  background-color: #0F0500;
-  color: #F5E6D0;
+  background-color: #F7F4EA;
+  color: #0D0D0C;
   font-family: 'Inter', system-ui, sans-serif;
   margin: 0;
 }
@@ -21,7 +21,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1C0A00;
+  background: #EDE8D8;
 }
 ::-webkit-scrollbar-thumb {
   background: #C8A96E;

@@ -51,7 +51,7 @@ const HomePage = () => {
   const totalAmount = cartItems.reduce((a, i) => a + i.priceNum * i.qty, 0);
 
   return (
-    <div className="min-h-screen bg-coffee-900">
+    <div className="min-h-screen bg-[#F7F4EA]">
       <Navbar cartCount={totalCount} onCartOpen={() => setCartOpen(true)} />
       <CartPanel isOpen={cartOpen} onClose={() => setCartOpen(false)} items={cartItems} onRemove={handleRemove} onQtyChange={handleQtyChange} />
       <AndeanBasketToast
