@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 // Imagen única del hero.
 // Cuando tengas la foto final, súbela a public/images/ y cambia solo esta línea.
 // Medida recomendada: 1920 × 1080 px (16:9), JPG/WebP, idealmente < 400 KB.
+// La foto se muestra a color, tal cual (sin filtro).
 // Sujeto a la DERECHA; la mitad izquierda debe ser tranquila/oscura (ahí va el texto).
 // ─────────────────────────────────────────────────────────────
-const HERO_IMAGE = '/Holzen/images/hero1.jpg';
+const HERO_IMAGE = '/Holzen/images/hero.png';
+const LOGO = '/Holzen/images/holzen-logo.png';
 
 const LIME = '#BBDA1F';
 const INK = '#0D0D0C';
@@ -24,12 +26,12 @@ const Hero = () => {
       className="relative w-full overflow-hidden mt-16 h-[calc(100vh-4rem)] min-h-[560px]"
       style={{ background: INK }}
     >
-      {/* Foto única en blanco y negro (quita el filter si prefieres la foto a color) */}
+      {/* Foto única, a color */}
       <img
         src={HERO_IMAGE}
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: '68% 35%', filter: 'grayscale(1) contrast(1.08)' }}
+        style={{ objectPosition: '68% 35%' }}
       />
 
       {/* Oscurecido lateral para que el texto lima se lea (como la referencia) */}
@@ -57,12 +59,18 @@ const Hero = () => {
           <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
             {/* Titular + botones */}
             <div className="max-w-3xl">
+              <img
+                src={LOGO}
+                alt="Holzen coffee"
+                className="h-14 md:h-16 w-auto block mb-6 md:mb-7"
+                style={{ filter: 'drop-shadow(0 0 2px rgba(255,255,255,0.95)) drop-shadow(0 0 7px rgba(255,255,255,0.45))' }}
+              />
               <h1
                 className="whitespace-pre-line"
                 style={{
                   fontFamily: "'Inter', system-ui, sans-serif",
                   fontWeight: 600,
-                  fontSize: 'clamp(2.1rem, 5vw, 4.25rem)',
+                  fontSize: 'clamp(1.8rem, 4.1vw, 3.5rem)',
                   lineHeight: 1.03,
                   letterSpacing: '-0.025em',
                   color: LIME,

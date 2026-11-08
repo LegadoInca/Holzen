@@ -110,7 +110,18 @@ const mapPins: MapPin[] = [
   },
 ];
 
-const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?: string }) => {
+const MapWithPins = ({
+  activeName,
+  hintText,
+  onSelect,
+  visibleNames,
+}: {
+  activeName?: string;
+  hintText?: string;
+  onSelect?: (name: string) => void;
+  visibleNames?: string[];
+}) => {
+  const pins = visibleNames ? mapPins.filter((p) => visibleNames.includes(p.name)) : mapPins;
   const [active, setActive] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -124,14 +135,17 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
   const [cardTab, setCardTab] = useState<'producer' | 'family'>('producer');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const activePin = mapPins.find(p => p.id === (active ?? hovered));
+  const activePin = pins.find(p => p.id === (active ?? hovered));
 
   const handlePin = (id: string) => {
-    setActive(prev => {
-      if (prev === id) return null;
-      setCardTab('producer');
-      return id;
-    });
+    if (active === id) {
+      setActive(null);
+      return;
+    }
+    setCardTab('producer');
+    setActive(id);
+    const pin = pins.find((p) => p.id === id);
+    if (pin) onSelect?.(pin.name);
   };
 
   useEffect(() => {
@@ -158,7 +172,7 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
           draggable={false}
         />
 
-        {mapPins.map((pin) => {
+        {pins.map((pin) => {
           const isActive = active === pin.id;
           const isHov = hovered === pin.id;
           return (
@@ -188,7 +202,8 @@ const MapWithPins = ({ activeName, hintText }: { activeName?: string; hintText?:
                 className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-sans text-[9px] tracking-widest uppercase transition-all duration-300 pointer-events-none"
                 style={{
                   bottom: isActive ? '-22px' : '-18px',
-                  color: isActive ? '#c9a96e' : 'rgba(255,245,230,0.6)',
+                  color: isActive ? '#0D0D0C' : 'rgba(13,13,12,0.72)',
+                  fontWeight: isActive ? 700 : 500,
                   fontSize: isActive ? '9px' : '8px',
                 }}
               >
