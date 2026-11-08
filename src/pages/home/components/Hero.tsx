@@ -8,7 +8,8 @@ import { useTranslation } from 'react-i18next';
 // Sujeto a la DERECHA; la mitad izquierda debe ser tranquila/oscura (ahí va el texto).
 // ─────────────────────────────────────────────────────────────
 const HERO_IMAGE = '/Holzen/images/hero.png';
-const LOGO = '/Holzen/images/holzen-logo.png';
+// Logo del hero: versión con "coffee" en blanco (el navbar usa holzen-logo.png)
+const LOGO = '/Holzen/images/holzen-logo-coffee-blanco.png';
 
 const LIME = '#BBDA1F';
 const INK = '#0D0D0C';
