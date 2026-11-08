@@ -193,19 +193,11 @@ export default function Products({ onAddToCart }: ProductsProps) {
       data-product-shop
     >
       <div className="relative max-w-6xl mx-auto">
-        {/* Encabezado: título + pastilla a la izquierda, descripción a la derecha */}
-        <div className="grid md:grid-cols-[1.25fr_1fr] gap-6 md:gap-14 items-start mb-10 md:mb-14">
-          <div>
-            <h2
-              className="text-3xl md:text-5xl"
-              style={{ fontFamily: sans, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.03, color: INK }}
-            >
-              {t('products_title_line1')}
-              <br />
-              <em className="italic" style={{ fontWeight: 500 }}>{t('products_title_line2')}</em>
-            </h2>
+        {/* Encabezado: pastilla arriba; debajo título (izquierda) y descripción (derecha) */}
+        <div className="mb-10 md:mb-14">
+          <div className="mb-6 md:mb-8">
             <span
-              className="inline-flex items-center gap-2.5 mt-6 rounded-full px-5 py-2.5 text-sm font-medium cursor-default select-none"
+              className="inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-sm font-medium cursor-default select-none"
               style={{ background: INK, color: '#fff', fontFamily: sans }}
             >
               {t('products_eyebrow')}
@@ -214,12 +206,22 @@ export default function Products({ onAddToCart }: ProductsProps) {
               </span>
             </span>
           </div>
-          <p
-            className="text-sm md:text-[15px] leading-relaxed max-w-md md:pt-2"
-            style={{ fontFamily: sans, color: 'rgba(13,13,12,0.72)' }}
-          >
-            {t('products_desc')}
-          </p>
+          <div className="grid md:grid-cols-[1.25fr_1fr] gap-6 md:gap-14 items-start">
+            <h2
+              className="text-3xl md:text-5xl"
+              style={{ fontFamily: sans, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.03, color: INK }}
+            >
+              {t('products_title_line1')}
+              <br />
+              <em className="italic" style={{ fontWeight: 500 }}>{t('products_title_line2')}</em>
+            </h2>
+            <p
+              className="text-sm md:text-[15px] leading-relaxed max-w-md md:pt-2"
+              style={{ fontFamily: sans, color: 'rgba(13,13,12,0.72)' }}
+            >
+              {t('products_desc')}
+            </p>
+          </div>
         </div>
 
         {/* Escritorio: 4 tarjetas con alturas alternadas */}
