@@ -106,20 +106,20 @@ const StatCircle = ({ stat, animate }: { stat: StatItem; animate: boolean }) => 
     <div className="flex flex-col items-center gap-2">
       <div className="relative w-16 h-16 md:w-24 md:h-24">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r={RADIUS} fill="none" stroke="rgba(201,169,78,0.15)" strokeWidth="5" />
+          <circle cx="50" cy="50" r={RADIUS} fill="none" stroke="rgba(13,13,12,0.10)" strokeWidth="5" />
           <circle
-            cx="50" cy="50" r={RADIUS} fill="none" stroke="#c9a96e" strokeWidth="5"
+            cx="50" cy="50" r={RADIUS} fill="none" stroke="#0D0D0C" strokeWidth="5"
             strokeLinecap="round" strokeDasharray={CIRC} strokeDashoffset={offset}
             style={{ transition: 'stroke-dashoffset 0.05s linear' }}
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-serif text-xs md:text-lg font-bold text-gold leading-none">
-            {animate ? stat.display.replace(/\d+/, String(count)) : '0'}
+          <span className="font-sans text-xs md:text-lg font-bold text-[#0D0D0C] leading-none">
+            {animate ? (stat.end >= 1000 ? stat.display.replace(/[\d.]+/, (count / 1000).toFixed(1)) : stat.display.replace(/\d+/, String(count))) : '0'}
           </span>
         </div>
       </div>
-      <div className="text-[8px] md:text-[9px] text-cream/40 font-sans uppercase tracking-[0.15em] text-center leading-tight">
+      <div className="text-[8px] md:text-[9px] text-[#0D0D0C]/50 font-sans uppercase tracking-[0.15em] text-center leading-tight">
         {t(stat.labelKey)}
       </div>
     </div>
@@ -216,22 +216,28 @@ const ContactSection = () => {
 
   return (
     <>
-      <section id="contact" className="relative py-14 md:py-20 px-4 md:px-6 overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0">
-          <video autoPlay muted loop playsInline src="/Holzen/videos/hero4.mp4" className="w-full h-full object-cover object-center" />
-          <div className="absolute inset-0 bg-coffee-900/80" />
-          <div className="absolute inset-0 bg-amber-950/30" />
-        </div>
-
+      <section
+        id="contact"
+        className="relative py-14 md:py-20 px-4 md:px-6 overflow-hidden"
+        style={{ background: '#F7F4EA', borderTop: '1px solid rgba(13,13,12,0.08)' }}
+      >
         <div className="relative max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8 md:mb-12">
-            <p className="text-gold text-xs tracking-[0.4em] uppercase font-sans mb-3">{t('contact_eyebrow')}</p>
-            <h2 className="font-serif text-3xl md:text-5xl text-cream leading-tight mb-3">
-              {t('contact_title')} <em className="text-gold italic">{t('contact_title_highlight')}</em>
+            <p
+              className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] uppercase font-sans font-semibold mb-3"
+              style={{ color: '#0D0D0C' }}
+            >
+              <span className="inline-block w-2 h-2 rounded-full" style={{ background: '#BBDA1F' }} />
+              {t('contact_eyebrow')}
+            </p>
+            <h2
+              className="text-3xl md:text-5xl mb-3"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.025em', lineHeight: 1.05, color: '#0D0D0C' }}
+            >
+              {t('contact_title')} <em className="italic" style={{ fontWeight: 500 }}>{t('contact_title_highlight')}</em>
             </h2>
-            <p className="text-cream/50 font-sans text-sm italic">
+            <p className="font-sans text-sm italic" style={{ color: 'rgba(13,13,12,0.55)' }}>
               &ldquo;{t('contact_subtitle').replace(/^"|"$/g, '')}&rdquo;
             </p>
           </div>
@@ -239,7 +245,7 @@ const ContactSection = () => {
           {/* Stats — mobile */}
           <div
             ref={statsRef}
-            className="rounded-xl border border-cream/10 bg-white/5 px-2 py-4 grid grid-cols-4 gap-1 mb-6 lg:hidden"
+            className="rounded-2xl border border-black/10 bg-white px-2 py-4 grid grid-cols-4 gap-1 mb-6 lg:hidden"
           >
             {STATS.map((s) => (
               <StatCircle key={s.labelKey} stat={s} animate={statsVisible} />
@@ -268,7 +274,7 @@ const ContactSection = () => {
 
               {/* Farmer selector */}
               <div>
-                <p className="text-gold/70 text-[10px] tracking-[0.3em] uppercase font-sans mb-3">{t('contact_choose_farmer')}</p>
+                <p className="text-[#0D0D0C]/60 text-[10px] tracking-[0.3em] uppercase font-sans mb-3">{t('contact_choose_farmer')}</p>
                 <div className="flex flex-col gap-2.5">
                   {FARMERS.map((f) => (
                     <button
@@ -279,7 +285,7 @@ const ContactSection = () => {
                       onMouseMove={(e) => setTooltipPos({ x: e.clientX, y: e.clientY })}
                       onMouseLeave={() => setHoveredFarmer(null)}
                       className={`w-full text-left rounded-xl p-3 md:p-4 border transition-all duration-300 cursor-pointer ${
-                        selectedFarmer.id === f.id ? 'border-gold/60 bg-gold/10' : 'border-cream/10 bg-white/5 hover:border-cream/20'
+                        selectedFarmer.id === f.id ? 'border-[#0D0D0C] bg-white shadow-md' : 'border-black/10 bg-white/60 hover:border-black/30'
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -291,26 +297,26 @@ const ContactSection = () => {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-serif text-sm text-cream font-semibold">{f.name}</span>
-                            <span className="text-[10px] bg-gold/20 text-gold px-2 py-0.5 rounded-full font-sans whitespace-nowrap">{f.region}</span>
+                            <span className="font-sans text-sm text-[#0D0D0C] font-semibold">{f.name}</span>
+                            <span className="text-[10px] bg-[#0D0D0C] text-[#BBDA1F] px-2 py-0.5 rounded-full font-sans whitespace-nowrap">{f.region}</span>
                           </div>
-                          <div className="text-cream/50 text-xs font-sans mt-0.5 truncate">{f.role}</div>
-                          <div className="text-gold/70 text-[10px] font-sans mt-0.5 flex items-center gap-1">
+                          <div className="text-[#0D0D0C]/55 text-xs font-sans mt-0.5 truncate">{f.role}</div>
+                          <div className="text-[#0D0D0C]/60 text-[10px] font-sans mt-0.5 flex items-center gap-1">
                             <i className="ri-tools-line flex-shrink-0" />
                             <span className="truncate">{f.need}</span>
                           </div>
                         </div>
                         {selectedFarmer.id === f.id && (
-                          <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center rounded-full bg-gold text-coffee-900">
+                          <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center rounded-full bg-[#26E237] text-[#0D0D0C]">
                             <i className="ri-check-line text-xs" />
                           </div>
                         )}
                       </div>
                       <div className="mt-2.5">
-                        <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                          <div className="h-full bg-gold rounded-full transition-all duration-500" style={{ width: `${f.progress}%` }} />
+                        <div className="w-full h-1 bg-black/10 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#0D0D0C] rounded-full transition-all duration-500" style={{ width: `${f.progress}%` }} />
                         </div>
-                        <div className="text-[10px] text-cream/30 font-sans mt-1 text-right">
+                        <div className="text-[10px] text-[#0D0D0C]/45 font-sans mt-1 text-right">
                           {f.progress}% · {t('contact_adopters_count', { n: f.adopters })}
                         </div>
                       </div>
@@ -320,22 +326,22 @@ const ContactSection = () => {
               </div>
 
               {/* Newsletter — desktop only */}
-              <div className="hidden lg:block rounded-xl border border-cream/10 bg-white/5 p-5">
-                <div className="font-serif text-base text-cream mb-1">{t('contact_newsletter_title')}</div>
-                <p className="text-cream/40 text-xs font-sans mb-4">{t('contact_newsletter_desc')}</p>
-                <input type="email" placeholder={t('contact_newsletter_email')} className="w-full bg-white/5 border border-cream/15 rounded-lg px-4 py-2.5 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50 mb-3" />
-                <button className="relative overflow-hidden w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer whitespace-nowrap group">
+              <div className="hidden lg:block rounded-2xl border border-black/10 bg-white p-5">
+                <div className="font-sans text-base text-[#0D0D0C] mb-1">{t('contact_newsletter_title')}</div>
+                <p className="text-[#0D0D0C]/50 text-xs font-sans mb-4">{t('contact_newsletter_desc')}</p>
+                <input type="email" placeholder={t('contact_newsletter_email')} className="w-full bg-[#F7F4EA] border border-black/15 rounded-lg px-4 py-2.5 text-[#0D0D0C] text-sm font-sans placeholder-black/40 focus:outline-none focus:border-[#0D0D0C] mb-3" />
+                <button className="relative overflow-hidden w-full bg-[#0D0D0C] hover:bg-[#26E237] text-white hover:text-[#0D0D0C] font-sans font-bold py-2.5 rounded-full text-sm transition-colors cursor-pointer whitespace-nowrap group">
                   <span className="relative z-10">{t('contact_newsletter_btn')}</span>
                   <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 </button>
-                <p className="text-cream/25 text-[10px] font-sans mt-2 text-center">{t('contact_newsletter_privacy')}</p>
+                <p className="text-[#0D0D0C]/40 text-[10px] font-sans mt-2 text-center">{t('contact_newsletter_privacy')}</p>
               </div>
             </div>
 
             {/* RIGHT COLUMN */}
             <div className="flex flex-col gap-3 md:gap-4">
               {/* Stats — desktop only */}
-              <div ref={statsDesktopRef} className="hidden lg:grid rounded-xl border border-cream/10 bg-white/5 px-4 py-5 grid-cols-4 gap-2">
+              <div ref={statsDesktopRef} className="hidden lg:grid rounded-2xl border border-black/10 bg-white px-4 py-5 grid-cols-4 gap-2">
                 {STATS.map((s) => (
                   <StatCircle key={s.labelKey} stat={s} animate={statsVisible} />
                 ))}
@@ -343,20 +349,20 @@ const ContactSection = () => {
 
               {/* Certificate */}
               <div
-                className="relative rounded-xl border border-cream/10 bg-white/5 p-3 md:p-4 flex items-center justify-between group cursor-default"
+                className="relative rounded-2xl border border-black/10 bg-white p-3 md:p-4 flex items-center justify-between group cursor-default"
                 onMouseEnter={() => setShowCert(true)}
                 onMouseLeave={() => setShowCert(false)}
               >
                 <div className="flex gap-3 items-center min-w-0">
                   <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
-                    <i className="ri-award-line text-gold text-base" />
+                    <i className="ri-award-line text-[#0D0D0C] text-base" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-cream text-xs font-sans font-semibold">{t('contact_cert_title')}</div>
-                    <div className="text-cream/40 text-[10px] font-sans truncate">{t('contact_cert_desc')}</div>
+                    <div className="text-[#0D0D0C] text-xs font-sans font-semibold">{t('contact_cert_title')}</div>
+                    <div className="text-[#0D0D0C]/50 text-[10px] font-sans truncate">{t('contact_cert_desc')}</div>
                   </div>
                 </div>
-                <i className="ri-eye-line text-gold/50 group-hover:text-gold text-base flex-shrink-0 ml-2 transition-colors" />
+                <i className="ri-eye-line text-[#0D0D0C]/40 group-hover:text-[#0D0D0C] text-base flex-shrink-0 ml-2 transition-colors" />
 
                 {showCert && (
                   <div className="absolute bottom-full right-0 mb-3 z-50 w-[92vw] max-w-[480px] pointer-events-none">
@@ -416,18 +422,18 @@ const ContactSection = () => {
 
               {/* Form */}
               {submitted ? (
-                <div className="rounded-xl border border-gold/30 bg-gold/10 p-6 text-center">
-                  <i className="ri-heart-fill text-gold text-2xl mb-2 block" />
-                  <div className="font-serif text-lg text-cream mb-1">{t('contact_success_title')}</div>
-                  <p className="text-cream/50 text-xs font-sans">{t('contact_success_desc')}</p>
+                <div className="rounded-xl border border-black/10 bg-white p-6 text-center">
+                  <i className="ri-heart-fill text-[#0D0D0C] text-2xl mb-2 block" />
+                  <div className="font-sans text-lg text-[#0D0D0C] mb-1">{t('contact_success_title')}</div>
+                  <p className="text-[#0D0D0C]/55 text-xs font-sans">{t('contact_success_desc')}</p>
                 </div>
               ) : (
                 <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-3">
-                  <input type="text" name="name" placeholder={t('contact_name_placeholder')} value={name} onChange={(e) => setName(e.target.value)} required className="w-full bg-white/5 border border-cream/15 rounded-xl px-4 py-3 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50" />
-                  <input type="email" name="email" placeholder={t('contact_email_placeholder')} value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full bg-white/5 border border-cream/15 rounded-xl px-4 py-3 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50" />
-                  <button type="submit" disabled={submitting} className="relative overflow-hidden w-full disabled:opacity-60 font-sans font-bold py-3.5 rounded-xl text-sm tracking-wide cursor-pointer whitespace-nowrap flex items-center justify-center gap-2" style={{ background: 'linear-gradient(135deg, #c2622a 0%, #e07830 50%, #c2622a 100%)', color: '#fff8f0', boxShadow: '0 0 20px rgba(210,100,40,0.3)' }}>
+                  <input type="text" name="name" placeholder={t('contact_name_placeholder')} value={name} onChange={(e) => setName(e.target.value)} required className="w-full bg-white border border-black/15 rounded-xl px-4 py-3 text-[#0D0D0C] text-sm font-sans placeholder-black/40 focus:outline-none focus:border-[#0D0D0C]" />
+                  <input type="email" name="email" placeholder={t('contact_email_placeholder')} value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full bg-white border border-black/15 rounded-xl px-4 py-3 text-[#0D0D0C] text-sm font-sans placeholder-black/40 focus:outline-none focus:border-[#0D0D0C]" />
+                  <button type="submit" disabled={submitting} className="relative overflow-hidden w-full disabled:opacity-60 font-sans font-bold py-3.5 rounded-full text-sm tracking-wide cursor-pointer whitespace-nowrap flex items-center justify-center gap-2" style={{ background: '#26E237', color: '#0D0D0C', boxShadow: '0 8px 22px rgba(38,226,55,0.35)' }}>
                     <span className="relative z-10 flex items-center gap-2">
-                      <i className="ri-heart-fill text-white/90 text-lg animate-pulse" />
+                      <i className="ri-heart-fill text-[#0D0D0C] text-lg animate-pulse" />
                       {submitting ? t('contact_submitting') : t('contact_submit', { amount, period })}
                     </span>
                     <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
@@ -436,11 +442,11 @@ const ContactSection = () => {
               )}
 
               {/* Newsletter — mobile only */}
-              <div className="lg:hidden rounded-xl border border-cream/10 bg-white/5 p-4">
-                <div className="font-serif text-sm text-cream mb-1">{t('contact_newsletter_title')}</div>
-                <p className="text-cream/40 text-xs font-sans mb-3">{t('contact_newsletter_desc_short')}</p>
-                <input type="email" placeholder={t('contact_newsletter_email')} className="w-full bg-white/5 border border-cream/15 rounded-lg px-4 py-2.5 text-cream text-sm font-sans placeholder-cream/30 focus:outline-none focus:border-gold/50 mb-2.5" />
-                <button className="relative overflow-hidden w-full bg-gold hover:bg-amber-400 text-coffee-900 font-sans font-bold py-2.5 rounded-lg text-sm transition-colors cursor-pointer whitespace-nowrap group">
+              <div className="lg:hidden rounded-2xl border border-black/10 bg-white p-4">
+                <div className="font-sans text-sm text-[#0D0D0C] mb-1">{t('contact_newsletter_title')}</div>
+                <p className="text-[#0D0D0C]/50 text-xs font-sans mb-3">{t('contact_newsletter_desc_short')}</p>
+                <input type="email" placeholder={t('contact_newsletter_email')} className="w-full bg-[#F7F4EA] border border-black/15 rounded-lg px-4 py-2.5 text-[#0D0D0C] text-sm font-sans placeholder-black/40 focus:outline-none focus:border-[#0D0D0C] mb-2.5" />
+                <button className="relative overflow-hidden w-full bg-[#0D0D0C] hover:bg-[#26E237] text-white hover:text-[#0D0D0C] font-sans font-bold py-2.5 rounded-full text-sm transition-colors cursor-pointer whitespace-nowrap group">
                   <span className="relative z-10">{t('contact_newsletter_btn')}</span>
                   <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 </button>

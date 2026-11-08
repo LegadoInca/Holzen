@@ -197,7 +197,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
         <div className="grid md:grid-cols-[1.25fr_1fr] gap-6 md:gap-14 items-start mb-10 md:mb-14">
           <div>
             <h2
-              className="text-4xl md:text-6xl"
+              className="text-3xl md:text-5xl"
               style={{ fontFamily: sans, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.03, color: INK }}
             >
               {t('products_title_line1')}

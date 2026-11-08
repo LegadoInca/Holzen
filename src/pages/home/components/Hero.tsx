@@ -70,7 +70,7 @@ const Hero = () => {
                 style={{
                   fontFamily: "'Inter', system-ui, sans-serif",
                   fontWeight: 600,
-                  fontSize: 'clamp(1.5rem, 3.4vw, 2.85rem)',
+                  fontSize: 'clamp(1.35rem, 3.05vw, 2.55rem)',
                   lineHeight: 1.03,
                   letterSpacing: '-0.025em',
                   color: LIME,
