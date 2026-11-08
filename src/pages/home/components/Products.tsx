@@ -7,6 +7,11 @@ interface ProductsProps {
   onAddToCart: (item: Omit<CartItem, 'qty'>) => void;
 }
 
+const INK = '#0D0D0C';
+const GREEN = '#26E237'; // el verde de Holzen
+const VISIBLE_COUNT = 4; // por ahora mostramos solo 4 productos
+const sans = "'Inter', system-ui, sans-serif";
+
 const getStockLabel = (stock: number, t: (key: string, opts?: Record<string, unknown>) => string) => {
   if (stock === 1) return t('products_stock_last');
   if (stock <= 3) return t('products_stock_few', { n: stock });
@@ -15,6 +20,7 @@ const getStockLabel = (stock: number, t: (key: string, opts?: Record<string, unk
 
 export default function Products({ onAddToCart }: ProductsProps) {
   const { t } = useTranslation();
+  const shown = products.slice(0, VISIBLE_COUNT);
   const [flipped, setFlipped] = useState<Record<string, boolean>>({});
   const [mobileIdx, setMobileIdx] = useState(0);
   const touchStartX = useRef<number | null>(null);
@@ -31,7 +37,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) {
-      if (diff > 0) setMobileIdx((i) => Math.min(i + 1, products.length - 1));
+      if (diff > 0) setMobileIdx((i) => Math.min(i + 1, shown.length - 1));
       else setMobileIdx((i) => Math.max(i - 1, 0));
     }
     touchStartX.current = null;
@@ -47,192 +53,224 @@ export default function Products({ onAddToCart }: ProductsProps) {
     });
   }, [onAddToCart]);
 
-  const ProductCard = ({ product, height = 'h-[520px]' }: { product: typeof products[0]; height?: string }) => {
+  // Tarjeta: foto redondeada (alturas alternadas) + texto debajo, como la referencia
+  const renderCard = (product: typeof products[0], idx: number, mobile = false) => {
     const isFlipped = flipped[product.id];
-    return (
-      <div className={`relative rounded-xl overflow-hidden ${height} flex-shrink-0 w-full`}>
-        {/* Front: Product */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-500 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-        >
-          {/* Product image */}
-          <img
-            alt={product.overlayName}
-            className="w-full h-full object-cover object-top bg-stone-800"
-            src={product.image}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/50 via-coffee-900/5 to-transparent" />
+    const tall = mobile ? true : idx % 2 === 0;
+    const ratio = mobile ? '4 / 5' : tall ? '2 / 3' : '1 / 1.05';
 
-          {/* Stock badge + Stars */}
-          <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5 items-start">
-            <div className="flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-sans font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full animate-pulse shadow-lg whitespace-nowrap">
-              <span className="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
-              {getStockLabel(product.stock, t)}
-            </div>
-            <div className="flex items-center gap-1 bg-coffee-900/70 backdrop-blur-sm border border-gold/40 px-2 py-1 rounded-full">
-              <div className="flex items-center gap-0.5">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <i key={star} className={`ri-star-${star <= Math.round(product.rating) ? 'fill' : 'line'} text-gold text-[10px]`} />
-                ))}
+    return (
+      <article key={product.id} className="w-full">
+        <div
+          className="relative overflow-hidden rounded-2xl"
+          style={{ aspectRatio: ratio, background: '#d9d6cc' }}
+          onTouchStart={mobile ? handleTouchStart : undefined}
+          onTouchEnd={mobile ? handleTouchEnd : undefined}
+        >
+          {/* Frente: producto */}
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          >
+            <img alt={product.overlayName} className="w-full h-full object-cover object-top" src={product.image} />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />
+
+            {/* Stock + estrellas */}
+            <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5 items-start">
+              <div className="flex items-center gap-1.5 bg-red-600 text-white text-[9px] font-sans font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full animate-pulse shadow-lg whitespace-nowrap">
+                <span className="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
+                {getStockLabel(product.stock, t)}
               </div>
-              <span className="text-cream/80 text-[9px] font-sans ml-1">({product.rating.toFixed(1)})</span>
+              <div className="flex items-center gap-1 bg-black/55 backdrop-blur-sm px-2 py-1 rounded-full">
+                <div className="flex items-center gap-0.5">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <i key={star} className={`ri-star-${star <= Math.round(product.rating) ? 'fill' : 'line'} text-[10px]`} style={{ color: '#F5C84B' }} />
+                  ))}
+                </div>
+                <span className="text-white/85 text-[9px] font-sans ml-1">({product.rating.toFixed(1)})</span>
+              </div>
+            </div>
+
+            {/* Avatar del productor */}
+            <div className="absolute top-3 right-3 z-20 flex flex-col items-end">
+              <span
+                className="text-[8px] tracking-[0.14em] uppercase font-sans font-bold mb-1.5 px-2.5 py-1 rounded-full whitespace-nowrap shadow-lg animate-pulse"
+                style={{ background: GREEN, color: INK }}
+              >
+                Haz click aquí
+              </span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFlip(product.id);
+                }}
+                className="relative w-16 h-16 rounded-full overflow-hidden border-2 shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                style={{ borderColor: GREEN }}
+              >
+                <img alt={product.producer.name} className="w-full h-full object-cover object-top bg-stone-800" src={product.producer.image} />
+                <span className="absolute inset-0 rounded-full border animate-ping" style={{ borderColor: GREEN }} />
+              </button>
             </div>
           </div>
 
-          {/* Farmer avatar circle - top right */}
-          <div className="absolute top-3 right-3 z-20 flex flex-col items-end">
-            <span className="text-[9px] tracking-[0.14em] uppercase text-coffee-900 font-sans font-bold mb-1.5 bg-gold px-2.5 py-1 rounded-full whitespace-nowrap border border-gold shadow-lg shadow-gold/40 animate-pulse">
-              Haz click aquí
-            </span>
+          {/* Reverso: historia del productor */}
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+          >
+            <img alt={product.producer.name} className="w-full h-full object-cover object-top bg-stone-800" src={product.producer.image} />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 toggleFlip(product.id);
               }}
-              className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-gold shadow-lg shadow-gold/40 cursor-pointer hover:scale-105 transition-transform"
+              className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/45 text-white/85 hover:bg-black/65 transition-colors cursor-pointer"
             >
-              <img
-                alt={product.producer.name}
-                className="w-full h-full object-cover object-top bg-stone-800"
-                src={product.producer.image}
-              />
-              <span className="absolute inset-0 rounded-full border border-gold animate-ping" />
+              <i className="ri-close-line text-lg" />
             </button>
-          </div>
 
-          {/* Bottom info */}
-          <div className="absolute bottom-0 left-0 right-0 p-5">
-            <div className="flex flex-wrap gap-1.5 mb-2">
-              {product.notes.split(' · ').map((note) => (
-                <span key={note} className="text-[10px] text-gold/80 border border-gold/20 bg-coffee-900/40 backdrop-blur-sm px-2 py-0.5 rounded-full font-sans">
-                  {note}
-                </span>
-              ))}
+            <div className={`absolute bottom-0 left-0 right-0 bg-black/55 backdrop-blur-md ${tall ? 'p-4' : 'p-3'}`}>
+              <div className="mb-0.5">
+                <h3 className="text-sm text-white leading-tight" style={{ fontFamily: sans, fontWeight: 700 }}>{product.producer.name}</h3>
+                <p className="text-white/60 text-[9px] font-sans tracking-widest uppercase">{product.producer.location}</p>
+              </div>
+              <p className={`${tall ? 'text-xs mb-1.5' : 'text-[11px] mb-1'} italic`} style={{ fontFamily: sans, color: '#BBDA1F' }}>{product.producer.storyTitle}</p>
+              <div className={`${tall ? 'max-h-[110px] mb-3' : 'max-h-[52px] mb-2'} overflow-y-auto pr-1`}>
+                <p className={`text-white/75 ${tall ? 'text-[11px]' : 'text-[10px]'} font-sans leading-relaxed`}>{product.producer.story}</p>
+              </div>
+              <button
+                onClick={(e) => { e.stopPropagation(); handleAdd(product); }}
+                className={`relative w-full overflow-hidden font-sans font-bold ${tall ? 'py-2.5' : 'py-2'} rounded-full text-[10px] tracking-[0.15em] uppercase transition-transform hover:-translate-y-0.5 cursor-pointer whitespace-nowrap`}
+                style={{ background: GREEN, color: INK }}
+              >
+                <span className="relative z-10">{product.ctaLabel}</span>
+                <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/45 to-transparent" />
+              </button>
             </div>
-            <div className="font-serif text-lg text-cream leading-tight mb-1">{product.overlayName}</div>
-            <div className="text-cream/50 text-xs font-sans mb-3">{product.overlayOrigin}</div>
-
-            {/* Orange CTA - {product.ctaLabel} */}
-            <button
-              onClick={(e) => { e.stopPropagation(); handleAdd(product); }}
-              className="relative w-full overflow-hidden bg-[#F97316] hover:bg-orange-500 text-white font-sans font-bold py-2.5 rounded-full text-[10px] tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap shadow-lg shadow-orange-900/30"
-            >
-              <span className="relative z-10">{product.ctaLabel}</span>
-              <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-            </button>
           </div>
         </div>
 
-        {/* Back: Farmer story */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-500 ${isFlipped ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        >
-          {/* Farmer image */}
-          <img
-            alt={product.producer.name}
-            className="w-full h-full object-cover object-top bg-stone-800"
-            src={product.producer.image}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
-
-          {/* Close button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleFlip(product.id);
-            }}
-            className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white/80 hover:bg-black/60 transition-colors cursor-pointer"
+        {/* Texto debajo de la foto */}
+        <div className="mt-4">
+          <h3
+            className="text-lg md:text-[19px] leading-tight"
+            style={{ fontFamily: sans, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}
           >
-            <i className="ri-close-line text-lg" />
-          </button>
+            {product.overlayName}
+          </h3>
+          <p className="mt-1 text-xs font-sans" style={{ color: 'rgba(13,13,12,0.55)' }}>{product.overlayOrigin}</p>
 
-          {/* Bottom story panel */}
-          <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-md p-5">
-            <div className="mb-0.5">
-              <h3 className="font-serif text-base text-cream leading-tight">{product.producer.name}</h3>
-              <p className="text-gold/70 text-[10px] font-sans tracking-widest uppercase">{product.producer.location}</p>
-            </div>
-            <p className="text-gold font-serif text-xs italic mb-1.5">{product.producer.storyTitle}</p>
-            <div className="max-h-[100px] overflow-y-auto pr-1 mb-3">
-              <p className="text-cream/70 text-xs font-sans leading-relaxed">{product.producer.story}</p>
-            </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); handleAdd(product); }}
-              className="relative w-full overflow-hidden bg-[#F97316] hover:bg-orange-500 text-white font-sans font-bold py-2.5 rounded-full text-[10px] tracking-[0.15em] uppercase transition-colors cursor-pointer whitespace-nowrap shadow-lg shadow-orange-900/30"
-            >
-              <span className="relative z-10">{product.ctaLabel}</span>
-              <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-            </button>
+          <div className="flex flex-wrap gap-1.5 mt-3">
+            {product.notes.split(' · ').map((note) => (
+              <span
+                key={note}
+                className="text-[10px] font-sans px-2 py-0.5 rounded-full"
+                style={{ color: 'rgba(13,13,12,0.65)', border: '1px solid rgba(13,13,12,0.16)' }}
+              >
+                {note}
+              </span>
+            ))}
           </div>
+
+          <button
+            onClick={(e) => { e.stopPropagation(); handleAdd(product); }}
+            className="mt-4 inline-flex items-center gap-1.5 text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:opacity-60 transition-opacity whitespace-nowrap"
+            style={{ fontFamily: sans, fontWeight: 700, color: INK, textDecoration: 'underline', textUnderlineOffset: '5px', textDecorationThickness: '2px' }}
+          >
+            {product.ctaLabel}
+            <i className="ri-arrow-right-up-line text-sm" />
+          </button>
         </div>
-      </div>
+      </article>
     );
   };
 
   return (
-    <section id="products" className="relative py-16 md:py-20 px-4 md:px-6 overflow-hidden" data-product-shop>
-      <div className="absolute inset-0">
-        <img
-          alt="background"
-          className="w-full h-full object-cover object-center"
-          src="/Holzen/images/fondos.jpeg"
-        />
-        <div className="absolute inset-0 bg-coffee-900/25"></div>
-      </div>
-
+    <section
+      id="products"
+      className="relative py-14 md:py-20 px-4 md:px-6 overflow-hidden"
+      style={{ background: '#F7F4EA', borderTop: '1px solid rgba(13,13,12,0.08)' }}
+      data-product-shop
+    >
       <div className="relative max-w-6xl mx-auto">
-        <div className="mb-10 md:mb-14">
-          <p className="text-coffee-900 text-xs tracking-[0.4em] uppercase font-sans mb-3">{t('products_eyebrow')}</p>
-          <h2 className="font-serif text-3xl md:text-5xl text-cream leading-tight mb-3 font-bold">{t('products_title_line1')}<br /><em className="text-coffee-600 italic">{t('products_title_line2')}</em></h2>
-          <p className="text-black font-sans text-sm max-w-lg leading-relaxed">{t('products_desc')}</p>
+        {/* Encabezado: título + pastilla a la izquierda, descripción a la derecha */}
+        <div className="grid md:grid-cols-[1.25fr_1fr] gap-6 md:gap-14 items-start mb-10 md:mb-14">
+          <div>
+            <h2
+              className="text-4xl md:text-6xl"
+              style={{ fontFamily: sans, fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.03, color: INK }}
+            >
+              {t('products_title_line1')}
+              <br />
+              <em className="italic" style={{ fontWeight: 500 }}>{t('products_title_line2')}</em>
+            </h2>
+            <span
+              className="inline-flex items-center gap-2.5 mt-6 rounded-full px-5 py-2.5 text-sm font-medium cursor-default select-none"
+              style={{ background: INK, color: '#fff', fontFamily: sans }}
+            >
+              {t('products_eyebrow')}
+              <span className="w-3.5 h-3.5 rounded-full border-2 border-white/85 inline-flex items-center justify-center">
+                <span className="w-1 h-1 rounded-full bg-white" />
+              </span>
+            </span>
+          </div>
+          <p
+            className="text-sm md:text-[15px] leading-relaxed max-w-md md:pt-2"
+            style={{ fontFamily: sans, color: 'rgba(13,13,12,0.72)' }}
+          >
+            {t('products_desc')}
+          </p>
         </div>
 
-        {/* Desktop grid */}
-        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        {/* Escritorio: 4 tarjetas con alturas alternadas */}
+        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12 items-start">
+          {shown.map((product, idx) => renderCard(product, idx))}
         </div>
 
-        {/* Mobile carousel */}
+        {/* Móvil: carrusel */}
         <div className="sm:hidden">
-          <ProductCard product={products[mobileIdx]} height="h-[420px]" />
-          <div className="flex items-center justify-between mt-5 px-1">
+          {renderCard(shown[mobileIdx], mobileIdx, true)}
+          <div className="flex items-center justify-between mt-6 px-1">
             <button
               disabled={mobileIdx === 0}
               onClick={() => setMobileIdx((p) => Math.max(0, p - 1))}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-cream/20 text-cream/50 disabled:opacity-20 cursor-pointer"
+              className="w-9 h-9 flex items-center justify-center rounded-full disabled:opacity-25 cursor-pointer"
+              style={{ border: '1px solid rgba(13,13,12,0.25)', color: INK }}
             >
               <i className="ri-arrow-left-s-line text-lg"></i>
             </button>
             <div className="flex gap-1.5">
-              {products.map((_, idx) => (
+              {shown.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setMobileIdx(idx)}
-                  className={`rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === mobileIdx ? 'w-6 h-3 bg-gold' : 'w-3 h-3 bg-cream/25'
-                  }`}
+                  className="rounded-full transition-all duration-300 cursor-pointer"
+                  style={{
+                    width: idx === mobileIdx ? 24 : 10,
+                    height: 10,
+                    background: idx === mobileIdx ? INK : 'rgba(13,13,12,0.2)',
+                  }}
                 />
               ))}
             </div>
             <button
-              disabled={mobileIdx === products.length - 1}
-              onClick={() => setMobileIdx((p) => Math.min(products.length - 1, p + 1))}
-              className="w-9 h-9 flex items-center justify-center rounded-full border border-cream/20 text-cream/50 disabled:opacity-20 cursor-pointer"
+              disabled={mobileIdx === shown.length - 1}
+              onClick={() => setMobileIdx((p) => Math.min(shown.length - 1, p + 1))}
+              className="w-9 h-9 flex items-center justify-center rounded-full disabled:opacity-25 cursor-pointer"
+              style={{ border: '1px solid rgba(13,13,12,0.25)', color: INK }}
             >
               <i className="ri-arrow-right-s-line text-lg"></i>
             </button>
           </div>
-          <p className="text-center text-cream/30 text-[10px] font-sans mt-3 tracking-widest">
-            {t('products_mobile_counter', { current: mobileIdx + 1, total: products.length })}
+          <p className="text-center text-[10px] font-sans mt-3 tracking-widest" style={{ color: 'rgba(13,13,12,0.4)' }}>
+            {t('products_mobile_counter', { current: mobileIdx + 1, total: shown.length })}
           </p>
         </div>
 
-        <p className="text-center text-cream/30 text-xs font-sans mt-8 tracking-widest uppercase hidden sm:block">
+        <p className="text-center text-xs font-sans mt-12 tracking-widest uppercase hidden sm:block" style={{ color: 'rgba(13,13,12,0.4)' }}>
           {t('products_footer_note')}
         </p>
       </div>
     </section>
-    );
+  );
 }
