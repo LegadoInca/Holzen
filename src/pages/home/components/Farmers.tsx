@@ -4,7 +4,7 @@ import { farmers } from '../../../mocks/holzen';
 import MapWithPins from './MapWithPins';
 
 const INK = '#0D0D0C';
-const GREEN = '#18CB0D'; // el verde del logo de Holzen
+const GREEN = '#26E237'; // el verde de Holzen
 
 // Productores que NO se muestran (nos quedamos con 6). Para cambiar a quién ocultas,
 // solo cambia el nombre en esta lista.
@@ -131,7 +131,7 @@ const Farmers = () => {
                           background: GREEN,
                           color: INK,
                           fontFamily: "'Inter', system-ui, sans-serif",
-                          boxShadow: '0 6px 16px rgba(24,203,13,0.38)',
+                          boxShadow: '0 6px 16px rgba(38,226,55,0.38)',
                         }}
                       >
                         <span className="relative z-10 inline-flex items-center gap-1.5">

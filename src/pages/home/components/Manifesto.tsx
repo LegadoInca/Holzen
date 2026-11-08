@@ -65,7 +65,7 @@ const CircleStat = ({
             style={{ transition: active ? 'stroke-dashoffset 1.4s cubic-bezier(0.16,1,0.3,1)' : 'none' }}
           />
         </svg>
-        <span className="font-serif text-gold font-bold relative z-10" style={{ fontSize: '1.5rem' }}>
+        <span className="text-gold relative z-10" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.02em', fontSize: '1.5rem' }}>
           {prefix}{count}{suffix}
         </span>
       </div>
@@ -136,27 +136,35 @@ const Manifesto = () => {
 
         {/* LEFT */}
         <div className={`lg:col-span-2 transition-all duration-700 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-          <h2 className="font-serif text-4xl md:text-5xl text-cream leading-tight mb-8">
+          <h2
+            className="text-4xl md:text-5xl text-cream mb-8"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.06 }}
+          >
             {t('manifesto_title').split('\n').map((line, i, arr) => (
               i === arr.length - 1
-                ? <span key={i}>{line} <em className="text-gold italic">{t('manifesto_title_highlight')}</em></span>
+                ? <span key={i}>{line} <em className="text-gold italic" style={{ fontWeight: 500 }}>{t('manifesto_title_highlight')}</em></span>
                 : <span key={i}>{line}<br /></span>
             ))}
           </h2>
 
-          {/* Tab switcher */}
-          <div className="flex gap-1 bg-coffee-800 rounded-full p-1 mb-6 w-fit">
+          {/* Tab switcher — minimalista */}
+          <div className="flex gap-7 mb-7 w-fit" style={{ borderBottom: '1px solid rgba(245,230,208,0.14)' }}>
             {tabs.map((tab, i) => (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(i)}
-                className={`px-4 py-1.5 rounded-full text-xs tracking-widest uppercase font-sans transition-all duration-300 cursor-pointer whitespace-nowrap ${
-                  activeTab === i
-                    ? 'bg-gold text-coffee-900 font-semibold'
-                    : 'text-cream/50 hover:text-cream'
-                }`}
+                className="relative pb-3 text-[11px] tracking-[0.22em] uppercase transition-colors duration-300 cursor-pointer whitespace-nowrap"
+                style={{
+                  fontFamily: "'Inter', system-ui, sans-serif",
+                  fontWeight: activeTab === i ? 600 : 500,
+                  color: activeTab === i ? '#F5E6D0' : 'rgba(245,230,208,0.45)',
+                }}
               >
                 {tab.label}
+                <span
+                  className="absolute left-0 right-0 -bottom-px h-[2px] rounded-full bg-gold transition-all duration-300"
+                  style={{ opacity: activeTab === i ? 1 : 0, transform: activeTab === i ? 'scaleX(1)' : 'scaleX(0.4)' }}
+                />
               </button>
             ))}
           </div>
@@ -166,7 +174,8 @@ const Manifesto = () => {
             {tabs.map((tab, i) => (
               <p
                 key={tab.key}
-                className={`text-cream/70 font-serif text-sm leading-relaxed transition-all duration-500 ${
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                className={`text-cream/70 text-[15px] leading-[1.75] transition-all duration-500 ${
                   activeTab === i ? 'opacity-100 block' : 'opacity-0 hidden'
                 }`}
               >
@@ -177,7 +186,7 @@ const Manifesto = () => {
 
           {/* Quote */}
           <blockquote className="border-l-2 border-gold pl-5 mb-10">
-            <p className="font-serif italic text-cream/90 text-lg leading-relaxed whitespace-pre-line">
+            <p className="italic text-cream/90 text-lg leading-relaxed whitespace-pre-line" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}>
               {t('manifesto_quote')}
             </p>
           </blockquote>

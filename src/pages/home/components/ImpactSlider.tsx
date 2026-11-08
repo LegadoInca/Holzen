@@ -177,59 +177,56 @@ const ImpactSlider = () => {
   const voice = voices[voiceIdx];
 
   return (
-    <section className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden">
-      <div className="absolute inset-0" style={{zIndex:0}}>
-        <img src="/Holzen/images/process3.jpeg" alt="" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(26,13,5,0.72) 0%, rgba(18,10,3,0.78) 100%)' }} />
-      </div>
-      {/* Subtle top border */}
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.3), transparent)', zIndex:2 }} />
+    <section
+      className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden"
+      style={{ background: '#F7F4EA', borderTop: '1px solid rgba(13,13,12,0.08)' }}
+    >
 
       <div className="max-w-5xl mx-auto" style={{position:'relative', zIndex:10}}>
 
         {/* Header */}
         <div className="flex items-start justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <h3 className="font-serif text-xl md:text-2xl leading-tight" style={{color:'#F5E6D0'}}>Tu Impacto Real</h3>
-            <p className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full font-sans text-xs font-semibold text-white cursor-default select-none" style={{ background: 'linear-gradient(90deg, #c2622a, #e07830)', boxShadow: '0 0 10px rgba(210,100,40,0.45)' }}>
-              <i className="ri-drag-move-line text-white/80 text-xs" />
+            <h3 className="text-2xl md:text-4xl leading-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.025em', color: '#0D0D0C' }}>Tu Impacto Real</h3>
+            <p className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full font-sans text-xs font-semibold cursor-default select-none" style={{ background: '#0D0D0C', color: '#BBDA1F' }}>
+              <i className="ri-drag-move-line text-xs" />
               Mueve el slider y descubre el impacto de cada compra
             </p>
           </div>
-          <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold/20 bg-gold/10">
-            <i className="ri-seedling-line text-xs" style={{color:'#C8A96E'}} />
-            <span className="font-sans text-[10px] tracking-widest uppercase font-semibold" style={{color:'#C8A96E'}}>Café Peruano</span>
+          <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-black/15 bg-white/60">
+            <i className="ri-seedling-line text-xs" style={{color:'#0D0D0C'}} />
+            <span className="font-sans text-[10px] tracking-widest uppercase font-semibold" style={{color:'#0D0D0C'}}>Café Peruano</span>
           </div>
         </div>
 
         {/* Counter display */}
         <div className="text-center mb-5">
           <div className="flex items-baseline justify-center gap-2">
-            <span className="font-serif text-5xl md:text-6xl leading-none" style={{ fontVariantNumeric: 'tabular-nums', color:'#C8A96E' }}>
+            <span className="text-5xl md:text-6xl leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color:'#0D0D0C' }}>
               {sliderVal}
             </span>
-            <span className="font-sans text-base md:text-lg" style={{color:'rgba(245,230,208,0.6)'}}>productos</span>
+            <span className="font-sans text-base md:text-lg" style={{color:'rgba(13,13,12,0.6)'}}>productos</span>
           </div>
-          <p className="font-sans text-[9px] tracking-[0.35em] uppercase mt-1" style={{color:'rgba(245,230,208,0.4)'}}>Unidades seleccionadas</p>
+          <p className="font-sans text-[9px] tracking-[0.35em] uppercase mt-1" style={{color:'rgba(13,13,12,0.45)'}}>Unidades seleccionadas</p>
         </div>
 
         {/* Slider track */}
         <div className="relative mb-7 px-2" onMouseDown={onMouseDown} onTouchStart={onTouchStart}>
-          <div ref={trackRef} className="relative h-1.5 rounded-full cursor-pointer" style={{ background: 'rgba(255,255,255,0.08)' }}>
+          <div ref={trackRef} className="relative h-1.5 rounded-full cursor-pointer" style={{ background: 'rgba(13,13,12,0.12)' }}>
             {/* Fill */}
-            <div className="absolute left-0 top-0 h-full rounded-full" style={{ width: `${pct}%`, background: 'linear-gradient(90deg, #c2622a, #e07830)' }} />
+            <div className="absolute left-0 top-0 h-full rounded-full" style={{ width: `${pct}%`, background: '#0D0D0C' }} />
             {/* Thumb */}
             <div
-              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-2 border-white cursor-grab active:cursor-grabbing flex items-center justify-center"
-              style={{ left: `${pct}%`, background: 'linear-gradient(135deg, #c2622a, #e07830)', boxShadow: '0 0 12px rgba(210,100,40,0.6)' }}
+              className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-2 border-[#0D0D0C] cursor-grab active:cursor-grabbing flex items-center justify-center"
+              style={{ left: `${pct}%`, background: '#BBDA1F', boxShadow: '0 2px 8px rgba(13,13,12,0.3)' }}
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-white/80" />
+              <div className="w-1.5 h-1.5 rounded-full bg-[#0D0D0C]" />
             </div>
           </div>
           {/* Tick marks */}
           <div className="flex justify-between mt-2 px-0">
             {[1, 25, 50, 75, 100].map((v) => (
-              <span key={v} className="font-sans text-[9px]" style={{color:'rgba(245,230,208,0.25)'}}>{v}</span>
+              <span key={v} className="font-sans text-[9px]" style={{color:'rgba(13,13,12,0.4)'}}>{v}</span>
             ))}
           </div>
         </div>
@@ -245,14 +242,15 @@ const ImpactSlider = () => {
               <img src={card.image} alt={card.label} className="w-full h-full object-cover object-center" />
               <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,5,2,0.3) 0%, rgba(10,5,2,0.82) 100%)' }} />
               {/* Icon */}
-              <div className="absolute top-2.5 left-2.5 w-6 h-6 flex items-center justify-center rounded-full" style={{ background: 'rgba(194,98,42,0.75)' }}>
-                <i className={`${card.icon} text-white text-xs`} />
+              <div className="absolute top-2.5 left-2.5 w-6 h-6 flex items-center justify-center rounded-full" style={{ background: '#BBDA1F' }}>
+                <i className={`${card.icon} text-xs`} style={{ color: '#0D0D0C' }} />
               </div>
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-2.5">
                 <div
-                  className="font-serif text-xl text-white leading-none font-bold mb-0.5"
+                  className="text-xl text-white leading-none font-bold mb-0.5"
                   style={{
+                    fontFamily: "'Inter', system-ui, sans-serif",
                     fontVariantNumeric: 'tabular-nums',
                     display: 'inline-block',
                     animation: bouncing ? 'numBounce 0.35s cubic-bezier(0.36,0.07,0.19,0.97) both' : 'none',
@@ -261,7 +259,7 @@ const ImpactSlider = () => {
                   {card.getValue(sliderVal)}
                 </div>
                 <div className="font-sans text-[9px] leading-tight mb-1" style={{color:'rgba(245,230,208,0.8)'}}>{card.label}</div>
-                <div className="text-[8px] font-sans italic" style={{ color: '#e07830' }}>{card.sublabel(sliderVal)}</div>
+                <div className="text-[8px] font-sans italic" style={{ color: '#BBDA1F' }}>{card.sublabel(sliderVal)}</div>
               </div>
             </div>
           ))}
@@ -269,16 +267,17 @@ const ImpactSlider = () => {
 
         {/* Divider */}
         <div className="flex items-center gap-3 mb-5">
-          <div className="flex-1 h-px" style={{ background: 'rgba(201,169,110,0.15)' }} />
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase font-semibold" style={{color:'rgba(200,169,110,0.5)'}}>Voces del campo</span>
-          <div className="flex-1 h-px" style={{ background: 'rgba(201,169,110,0.15)' }} />
+          <div className="flex-1 h-px" style={{ background: 'rgba(13,13,12,0.12)' }} />
+          <span className="font-sans text-[9px] tracking-[0.35em] uppercase font-semibold" style={{color:'rgba(13,13,12,0.5)'}}>Voces del campo</span>
+          <div className="flex-1 h-px" style={{ background: 'rgba(13,13,12,0.12)' }} />
         </div>
 
         {/* Voice card */}
         <div
           className="rounded-xl overflow-hidden relative"
           style={{
-            border: '1px solid rgba(201,169,110,0.18)',
+            background: '#17100A',
+            border: '1px solid rgba(13,13,12,0.10)',
             opacity: voiceFade ? 1 : 0,
             transition: 'opacity 0.22s ease',
           }}
@@ -301,25 +300,25 @@ const ImpactSlider = () => {
           <div className="relative z-10 flex flex-col sm:flex-row gap-4 items-start p-4 md:p-5">
             {/* Left: photo + stat */}
             <div className="flex sm:flex-col items-center gap-3 flex-shrink-0">
-              <div className="w-14 h-14 rounded-full overflow-hidden border-2 flex-shrink-0" style={{ borderColor: 'rgba(201,169,110,0.5)' }}>
+              <div className="w-14 h-14 rounded-full overflow-hidden border-2 flex-shrink-0" style={{ borderColor: '#BBDA1F' }}>
                 <img src={voice.image} alt={voice.name} className="w-full h-full object-cover object-top" />
               </div>
               <div className="text-center">
-                <div className="font-serif text-lg font-bold leading-none" style={{color:'#C8A96E'}}>{voice.years}</div>
+                <div className="text-lg font-bold leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif", color:'#BBDA1F' }}>{voice.years}</div>
                 <div className="font-sans text-[8px] leading-tight mt-0.5 max-w-[60px]" style={{color:'rgba(245,230,208,0.5)'}}>{voice.yearsLabel}</div>
               </div>
             </div>
 
             {/* Right: quote + name */}
             <div className="flex-1 min-w-0">
-              <i className="ri-double-quotes-l text-2xl leading-none block mb-1" style={{color:'rgba(200,169,110,0.4)'}} />
-              <p className="font-serif text-sm leading-relaxed italic mb-3" style={{color:'rgba(245,230,208,0.9)'}}>
+              <i className="ri-double-quotes-l text-2xl leading-none block mb-1" style={{color:'rgba(187,218,31,0.6)'}} />
+              <p className="text-sm leading-relaxed italic mb-3" style={{ fontFamily: "'Inter', system-ui, sans-serif", color:'rgba(245,230,208,0.92)' }}>
                 {voice.quote}
               </p>
               <div className="flex items-end justify-between gap-3 flex-wrap">
                 <div>
                   <div className="font-sans text-sm font-semibold" style={{color:'#F5E6D0'}}>{voice.name}</div>
-                  <div className="font-sans text-[10px] mt-0.5" style={{color:'rgba(200,169,110,0.7)'}}>{voice.role}</div>
+                  <div className="font-sans text-[10px] mt-0.5" style={{color:'rgba(187,218,31,0.9)'}}>{voice.role}</div>
                   <div className="font-sans text-[9px] flex items-center gap-1 mt-0.5" style={{color:'rgba(245,230,208,0.4)'}}>
                     <i className="ri-map-pin-line text-[9px]" />
                     {voice.location}
@@ -332,8 +331,8 @@ const ImpactSlider = () => {
                     e.preventDefault();
                     document.getElementById('farmers')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-[10px] font-semibold text-white whitespace-nowrap cursor-pointer transition-all hover:brightness-110"
-                  style={{ background: 'linear-gradient(90deg, #c2622a, #e07830)', boxShadow: '0 0 10px rgba(210,100,40,0.4)' }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-sans text-[10px] font-semibold whitespace-nowrap cursor-pointer transition-all hover:brightness-110"
+                  style={{ background: '#BBDA1F', color: '#0D0D0C', boxShadow: '0 4px 12px rgba(187,218,31,0.35)' }}
                 >
                   <i className="ri-user-heart-line text-xs" />
                   Ver más historias
@@ -351,8 +350,8 @@ const ImpactSlider = () => {
                   style={{
                     width: voiceIdx === i ? 7 : 5,
                     height: voiceIdx === i ? 7 : 5,
-                    background: voiceIdx === i ? '#c2622a' : 'rgba(201,169,110,0.3)',
-                    boxShadow: voiceIdx === i ? '0 0 6px rgba(194,98,42,0.6)' : 'none',
+                    background: voiceIdx === i ? '#BBDA1F' : 'rgba(255,255,255,0.3)',
+                    boxShadow: voiceIdx === i ? '0 0 6px rgba(187,218,31,0.6)' : 'none',
                   }}
                 />
               ))}
@@ -363,7 +362,7 @@ const ImpactSlider = () => {
       </div>
 
       {/* Subtle bottom border */}
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(201,169,110,0.2), transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(13,13,12,0.08)' }} />
     </section>
   );
 };
