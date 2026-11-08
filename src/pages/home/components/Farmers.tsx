@@ -92,9 +92,7 @@ const Farmers = () => {
                           style={{
                             aspectRatio: '3 / 4',
                             background: '#d9d6cc',
-                            boxShadow: selected
-                              ? `0 0 0 3px ${GREEN}, 0 14px 30px rgba(13,13,12,0.28)`
-                              : '0 0 0 3px transparent',
+                            boxShadow: selected ? '0 14px 30px rgba(13,13,12,0.28)' : 'none',
                             transition: 'box-shadow 0.35s ease',
                           }}
                         >
@@ -171,7 +169,7 @@ const Farmers = () => {
                   <div className="grid md:grid-cols-[210px_1fr] gap-5 md:gap-7 p-5 md:p-7">
                     <div
                       className="relative overflow-hidden rounded-md w-full max-w-[210px] mx-auto md:mx-0"
-                      style={{ aspectRatio: '3 / 4', background: '#d9d6cc', boxShadow: `0 0 0 3px ${GREEN}` }}
+                      style={{ aspectRatio: '3 / 4', background: '#d9d6cc' }}
                     >
                       <img
                         src={f.image}

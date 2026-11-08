@@ -62,15 +62,14 @@ const Hero = () => {
               <img
                 src={LOGO}
                 alt="Holzen coffee"
-                className="h-14 md:h-16 w-auto block mb-6 md:mb-7"
-                style={{ filter: 'drop-shadow(0 0 2px rgba(255,255,255,0.95)) drop-shadow(0 0 7px rgba(255,255,255,0.45))' }}
+                className="h-24 md:h-36 w-auto block mb-6 md:mb-8"
               />
               <h1
                 className="whitespace-pre-line"
                 style={{
                   fontFamily: "'Inter', system-ui, sans-serif",
                   fontWeight: 600,
-                  fontSize: 'clamp(1.8rem, 4.1vw, 3.5rem)',
+                  fontSize: 'clamp(1.5rem, 3.4vw, 2.85rem)',
                   lineHeight: 1.03,
                   letterSpacing: '-0.025em',
                   color: LIME,
