@@ -39,7 +39,7 @@ export const reviews: Review[] = [
   {
     id: 'r4',
     stars: 5,
-    text: '"Objednal jsem si Bourbon Natural a byl jsem nadšený. Chuť je komplexní, s tóny švestky a hořké čokolády. Ale co mě opravdu dojalo, byl příběh Edilberta. Tohle není jen káva — je to změna."',
+    text: '"Objednal jsem si Bourbon Natural a byl jsem nadšený. Chuť je komplexní, s tóny švestky a hořké čokolády. Ale co mě opravdu dojalo, byl příběh Juliany. Tohle není jen káva — je to změna."',
     name: 'Tomáš Novák',
     location: 'Praha, Česká republika',
     avatar: '/Holzen/images/avatar4.jpg',
