@@ -45,11 +45,11 @@ const impactCards: ImpactCard[] = [
 
 const voices = [
   {
-    name: 'Lucía Quispe',
-    role: 'Productora de café Chuncho',
+    name: 'Beltran',
+    role: 'Productor de café',
     location: 'Quillabamba, Cusco',
-    quote: 'Perdí todo en una noche por una helada. Pero esa noche también me enseñó que yo era más fuerte que mi miedo. Hoy entreno a otras mujeres de mi comunidad.',
-    image: '/Holzen/images/farmer1.jpg',
+    quote: 'Perdí todo en una noche por una helada. Pero esa noche también me enseñó que yo era más fuerte que mi miedo. Hoy entreno a otros productores de mi comunidad.',
+    image: '/Holzen/images/beltran.png',
     years: 4,
     yearsLabel: 'años cultivando',
   },

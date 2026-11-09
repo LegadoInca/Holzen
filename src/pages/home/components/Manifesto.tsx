@@ -1,6 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
+// Íconos de los 4 contadores, en el mismo orden que `stats`
+// Texto de la pestaña "Historia" (se muestra en el idioma activo)
+const HISTORIA_TEXT: Record<string, string> = {
+  es: 'Donde alguna vez hubo pérdida, hoy nace café, esperanza y futuro. HOLZEN conecta la resiliencia de productores peruanos con quienes buscan algo más que un gran café: una experiencia con origen, propósito y un legado que trasciende cada taza.',
+  en: 'Where there was once loss, coffee, hope and a future are born today. HOLZEN connects the resilience of Peruvian producers with those who seek more than a great coffee: an experience with origin, purpose, and a legacy that transcends every cup.',
+  de: 'Wo einst Verlust war, entstehen heute Kaffee, Hoffnung und Zukunft. HOLZEN verbindet die Widerstandskraft peruanischer Produzenten mit Menschen, die mehr suchen als einen großartigen Kaffee: ein Erlebnis mit Herkunft, Sinn und einem Vermächtnis, das jede Tasse überdauert.',
+  cs: 'Tam, kde kdysi byla ztráta, dnes vzniká káva, naděje a budoucnost. HOLZEN spojuje odolnost peruánských pěstitelů s těmi, kdo hledají víc než skvělou kávu: zážitek s původem, smyslem a odkazem, který přesahuje každý šálek.',
+};
+
+const STAT_ICONS = ['ri-group-line', 'ri-graduation-cap-line', 'ri-hand-heart-line', 'ri-user-3-line'];
+
 const useCountUp = (target: number, active: boolean, duration = 1400) => {
   const [val, setVal] = useState(0);
   useEffect(() => {
@@ -20,36 +31,28 @@ const useCountUp = (target: number, active: boolean, duration = 1400) => {
 };
 
 const CircleStat = ({
-  val, prefix = '', suffix, label, maxVal, active,
+  val, prefix = '', suffix, label, maxVal, active, icon,
 }: {
-  val: number; prefix?: string; suffix: string; label: string; maxVal: number; active: boolean;
+  val: number; prefix?: string; suffix: string; label: string; maxVal: number; active: boolean; icon: string;
 }) => {
   const count = useCountUp(val, active);
-  const size = 110;
-  const stroke = 5;
+  const size = 96;
+  const stroke = 3;
   const r = (size - stroke) / 2;
   const circ = 2 * Math.PI * r;
   const progress = active ? Math.min(val / maxVal, 1) : 0;
   const dash = circ * progress;
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div
-        className="relative flex items-center justify-center rounded-xl border border-cream/10"
-        style={{ width: size + 24, height: size + 24, background: 'rgba(30,18,10,0.55)' }}
-      >
-        <svg
-          width={size}
-          height={size}
-          className="absolute"
-          style={{ transform: 'rotate(-90deg)' }}
-        >
+    <div className="flex flex-col items-center text-center">
+      <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+        <svg width={size} height={size} className="absolute" style={{ transform: 'rotate(-90deg)' }}>
           <circle
             cx={size / 2}
             cy={size / 2}
             r={r}
             fill="none"
-            stroke="rgba(201,169,110,0.15)"
+            stroke="rgba(201,169,110,0.22)"
             strokeWidth={stroke}
           />
           <circle
@@ -65,11 +68,18 @@ const CircleStat = ({
             style={{ transition: active ? 'stroke-dashoffset 1.4s cubic-bezier(0.16,1,0.3,1)' : 'none' }}
           />
         </svg>
-        <span className="text-gold relative z-10" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.02em', fontSize: '1.5rem' }}>
-          {prefix}{count}{suffix}
-        </span>
+        <i className={`${icon} relative z-10`} style={{ color: '#c9a96e', fontSize: '2rem' }} />
       </div>
-      <p className="text-cream/55 font-sans text-[10px] tracking-widest uppercase text-center leading-tight max-w-[100px]">
+      <p
+        className="text-cream mt-4 leading-none"
+        style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 700, letterSpacing: '-0.02em', fontSize: '2rem', fontVariantNumeric: 'tabular-nums' }}
+      >
+        {prefix}{count}{suffix}
+      </p>
+      <p
+        className="text-cream/70 mt-2 leading-snug max-w-[140px]"
+        style={{ fontFamily: "'Inter', system-ui, sans-serif", fontSize: '0.9rem' }}
+      >
         {label}
       </p>
     </div>
@@ -77,7 +87,7 @@ const CircleStat = ({
 };
 
 const Manifesto = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
@@ -85,7 +95,7 @@ const Manifesto = () => {
   const statsRef = useRef<HTMLDivElement>(null);
 
   const tabs = [
-    { key: 'historia', label: t('manifesto_tab_historia'), content: t('manifesto_historia') },
+    { key: 'historia', label: t('manifesto_tab_historia'), content: HISTORIA_TEXT[(i18n.language || 'es').slice(0, 2)] ?? t('manifesto_historia') },
     { key: 'mision', label: t('manifesto_tab_mision'), content: t('manifesto_mision') },
     { key: 'impacto', label: t('manifesto_tab_impacto'), content: t('manifesto_impacto') },
   ];
@@ -194,10 +204,11 @@ const Manifesto = () => {
         </div>
 
         {/* Stats column 2x2 */}
-        <div ref={statsRef} className="grid grid-cols-2 gap-4 lg:sticky lg:top-20">
-          {stats.map((s) => (
+        <div ref={statsRef} className="grid grid-cols-2 gap-x-6 gap-y-10 lg:sticky lg:top-20">
+          {stats.map((s, idx) => (
             <CircleStat
               key={s.label}
+              icon={STAT_ICONS[idx]}
               val={s.val}
               prefix={s.prefix}
               suffix={s.suffix}

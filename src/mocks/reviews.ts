@@ -12,7 +12,7 @@ export const reviews: Review[] = [
   {
     id: 'r1',
     stars: 5,
-    text: '"Pedí el Chuncho Washed y fue una revelación. Nunca pensé que un café pudiera tener notas tan claras de jazmín y fruta roja. Saber que detrás hay una historia real de Lucía lo hace todo más especial."',
+    text: '"Pedí el Chuncho Washed y fue una revelación. Nunca pensé que un café pudiera tener notas tan claras de jazmín y fruta roja. Saber que detrás hay una historia real de Beltran lo hace todo más especial."',
     name: 'Fiona Hernández',
     location: 'Ciudad de México, México',
     avatar: '/Holzen/images/avatar1.jpg',

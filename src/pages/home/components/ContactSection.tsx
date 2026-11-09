@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 
 const FARMERS = [
   {
-    id: 'lucia',
-    name: 'Lucía Quispe',
-    region: 'Canchaque',
-    role: 'Productora de café Chuncho',
+    id: 'beltran',
+    name: 'Beltran',
+    region: 'Quillabamba',
+    role: 'Productor de café',
     need: 'Necesita: Tanques de fermentación artesanal',
     progress: 68,
     adopters: 14,
-    image: '/Holzen/images/farmer1.jpg',
+    image: '/Holzen/images/beltran.png',
     impact: {
-      30: 'Financias 2 días de secado solar artesanal de su café Chuncho.',
+      30: 'Financias 2 días de secado solar artesanal de su café.',
       40: 'Cubres una semana completa de fermentación controlada.',
       60: 'Financias el análisis de laboratorio de su lote mensual.',
       80: 'Cubres el empaque GrainPro de un saco de 60 kg.',

@@ -1,7 +1,7 @@
 export const heroSlides = [
   {
     type: 'video' as const,
-    src: '/Holzen/videos/hero5.mp4',
+    src: '/Holzen/videos/hero4.mp4',
   },
   {
     type: 'video' as const,
@@ -71,11 +71,11 @@ export const products: Product[] = [
     priceLabel: '$28.00/kg',
     ctaLabel: 'Quiero beber su café',
     producer: {
-      name: 'Lucía Quispe',
-      location: 'Canchaque, Huancabamba',
-      storyTitle: 'El renacer de Lucía',
-      story: 'A los 19 años, una helada arrasó con toda su cosecha en una sola noche. Sin crédito, sin seguro, sin nadie que la respaldara, Lucía decidió no rendirse. Aprendió sola el proceso de lavado observando a sus vecinos y leyendo lo que encontraba. Tres años después, su Caturra Washed es el más solicitado por tostadoras especializadas en Alemania y Países Bajos. Hoy entrena a otras mujeres de su comunidad. "Perdí todo en una noche. Pero esa noche también me enseñó que yo era más fuerte que mi miedo."',
-      image: '/Holzen/images/farmer1.jpg',
+      name: 'Beltran',
+      location: 'Quillabamba, Cusco',
+      storyTitle: 'El renacer de Beltran',
+      story: 'A los 19 años, una helada arrasó con toda su cosecha en una sola noche. Sin crédito, sin seguro, sin nadie que lo respaldara, Beltran decidió no rendirse. Aprendió solo el proceso de lavado observando a sus vecinos y leyendo lo que encontraba. Tres años después, su Caturra Washed es el más solicitado por tostadoras especializadas en Alemania y Países Bajos. Hoy entrena a otros productores de su comunidad. "Perdí todo en una noche. Pero esa noche también me enseñó que yo era más fuerte que mi miedo."',
+      image: '/Holzen/images/beltran.png',
     },
   },
   {
@@ -244,12 +244,12 @@ export interface Farmer {
 
 export const farmers: Farmer[] = [
   {
-    tag: 'Canchaque · Piura',
+    tag: 'Quillabamba · Cusco',
     tagIcon: 'ri-seedling-line',
-    name: 'Lucía Quispe',
-    location: 'Canchaque · 1,200 msnm',
-    story: "A los 19 años perdió su cosecha entera por una helada en las alturas de Canchaque. Sin crédito ni apoyo, aprendió sola el proceso natural en los cafetales de Huancabamba. Hoy su Caturra piurano es el más buscado por tostadoras europeas.",
-    image: '/Holzen/images/farmer1.jpg',
+    name: 'Beltran',
+    location: 'Quillabamba · 1,200 msnm',
+    story: "A los 19 años perdió su cosecha entera por una helada en las alturas de Quillabamba. Sin crédito ni apoyo, aprendió solo el proceso natural en los cafetales de Cusco. Hoy su café cusqueño es el más buscado por tostadoras europeas.",
+    image: '/Holzen/images/beltran.png',
     index: '01',
     stat: '3×',
     statLabel: 'ingresos en 4 años',

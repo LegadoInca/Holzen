@@ -31,8 +31,8 @@ const b2bProducts = [
       { label: 'Saco 30 kg', price: 27.00, unit: 'saco', minQty: 1 },
       { label: 'Saco 60 kg', price: 25.50, unit: 'saco', minQty: 1 },
     ],
-    producer: 'Lucía Quispe',
-    producerImg: '/Holzen/images/farmer1.jpg',
+    producer: 'Beltran',
+    producerImg: '/Holzen/images/beltran.png',
     badge: 'Más pedido',
   },
   {
@@ -122,14 +122,14 @@ const b2bProducts = [
 ───────────────────────────────────────────── */
 const CORPORATE_FARMERS = [
   {
-    id: 'lucia',
-    name: 'Lucía Quispe',
+    id: 'beltran',
+    name: 'Beltran',
     region: 'Cusco',
-    role: 'Productora de café Chuncho',
+    role: 'Productor de café',
     need: 'Necesita: Tanques de fermentación artesanal',
     progress: 68,
     adopters: 3,
-    image: '/Holzen/images/farmer1.jpg',
+    image: '/Holzen/images/beltran.png',
     impact: {
       500: 'Financia el análisis de laboratorio mensual + empaque GrainPro de 2 sacos de 60 kg.',
       700: 'Cubre la certificación EUDR anual de su finca + transporte al puerto de exportación.',

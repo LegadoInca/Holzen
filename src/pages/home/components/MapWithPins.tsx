@@ -18,17 +18,17 @@ interface MapPin {
 
 const mapPins: MapPin[] = [
   {
-    id: 'lucia',
-    region: 'Canchaque · Piura',
-    name: 'Lucía Quispe',
+    id: 'beltran',
+    region: 'Quillabamba · Cusco',
+    name: 'Beltran',
     altitude: '1,200 m.s.n.m',
-    storyTitle: 'El renacer de Lucía',
-    story: "A los 19 años perdió su cosecha entera por una helada en las alturas de Canchaque. Sin crédito ni apoyo, aprendió sola el proceso natural en los cafetales de Huancabamba",
-    image: '/Holzen/images/farmer1.jpg',
+    storyTitle: 'El renacer de Beltran',
+    story: "A los 19 años perdió su cosecha entera por una helada en las alturas de Quillabamba. Sin crédito ni apoyo, aprendió solo el proceso natural en los cafetales de Cusco",
+    image: '/Holzen/images/beltran.png',
     familyImage: '/Holzen/images/farmer5.jpg',
-    familyCaption: "Los hijos de Lucía van a la escuela gracias al café",
+    familyCaption: "Los hijos de Beltran van a la escuela gracias al café",
     stat: '3×', statLabel: 'ingresos en 4 años',
-    x: 30, y: 38,
+    x: 68, y: 71,
   },
   {
     id: 'edilberto',
