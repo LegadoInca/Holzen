@@ -48,7 +48,7 @@ export const reviews: Review[] = [
   {
     id: 'r5',
     stars: 5,
-    text: '"Der Honey Amarillo ist einfach unglaublich. Pfirsich, Karamell, süßes Holz — ich habe noch nie so einen komplexen Kaffee getrunken. Und zu wissen, dass Rosa damit ihre Kinder ernährt, macht jeden Schluck bedeutsamer."',
+    text: '"Der Honey Amarillo ist einfach unglaublich. Pfirsich, Karamell, süßes Holz — ich habe noch nie so einen komplexen Kaffee getrunken. Und zu wissen, dass Edgar damit seine Kinder ernährt, macht jeden Schluck bedeutsamer."',
     name: 'Klaus Weber',
     location: 'München, Deutschland',
     avatar: '/Holzen/images/avatar5.jpeg',
