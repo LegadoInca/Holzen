@@ -30,6 +30,8 @@ export interface Producer {
 
 export interface Product {
   id: string;
+  /** id del productor (para buscar sus textos traducidos en i18n: prod_<id>_...) */
+  producerId: string;
   tag: string;
   stock: number;
   rating: number;
@@ -50,6 +52,7 @@ export interface Product {
 export const products: Product[] = [
   {
     id: 'chuncho',
+    producerId: 'beltran',
     tag: 'Variedad Nativa',
     stock: 3,
     rating: 4.9,
@@ -80,6 +83,7 @@ export const products: Product[] = [
   },
   {
     id: 'bourbon',
+    producerId: 'juliana',
     tag: 'Microlote',
     stock: 5,
     rating: 4.8,
@@ -110,6 +114,7 @@ export const products: Product[] = [
   },
   {
     id: 'monzon',
+    producerId: 'edgar',
     tag: 'Selección Especial',
     stock: 2,
     rating: 5.0,
@@ -132,7 +137,7 @@ export const products: Product[] = [
     ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Edgar Cardenas',
-      location: 'Sicchez, Ayabaca',
+      location: 'Quellouno, Cusco',
       storyTitle: 'La fuerza de Edgar',
       story: 'Padre soltero de tres hijos, heredó una deuda y una parcela que nadie quería tocar. Sin dinero para pagar jornaleros, aprendió el secado solar artesanal observando a sus vecinos durante meses. Hoy produce uno de los cafés Honey más complejos del Perú, sin intermediarios, exportando directamente a Europa. Cada saco lleva su nombre. "Nadie me regaló nada. Pero tampoco nadie me quitó las ganas."',
       image: '/Holzen/images/edgar.png',
@@ -140,6 +145,7 @@ export const products: Product[] = [
   },
   {
     id: 'geisha',
+    producerId: 'yormis',
     tag: 'Alta Gama',
     stock: 4,
     rating: 4.9,
@@ -162,7 +168,7 @@ export const products: Product[] = [
     ctaLabel: 'Quiero beber su café',
     producer: {
       name: 'Yormis Vigoria',
-      location: 'S. Miguel, Huancabamba',
+      location: 'Quellouno, Cusco',
       storyTitle: 'La ruptura de Yormis',
       story: 'Creció viendo a su padre entregar sacos de café a intermediarios que pagaban lo mínimo y se llevaban lo máximo. A los 28 años decidió que esa cadena terminaba con él. Aprendió catación de forma autodidacta, certificó su finca con estándares internacionales y comenzó a exportar directamente. Hoy su Geisha Washed llega a Japón, Suecia y Dinamarca con su nombre impreso en el saco. "Mi padre nunca supo a quién le vendía. Yo sí sé a quién le vendo."',
       image: '/Holzen/images/yormis.png',
@@ -170,6 +176,7 @@ export const products: Product[] = [
   },
   {
     id: 'pampas',
+    producerId: 'manuel',
     tag: 'Resistencia',
     stock: 6,
     rating: 4.7,
@@ -200,6 +207,7 @@ export const products: Product[] = [
   },
   {
     id: 'esperanza',
+    producerId: 'rosaq',
     tag: 'Origen Directo',
     stock: 3,
     rating: 5.0,
@@ -231,6 +239,8 @@ export const products: Product[] = [
 ];
 
 export interface Farmer {
+  /** id del productor (para buscar sus textos traducidos en i18n: prod_<id>_...) */
+  id: string;
   tag: string;
   tagIcon: string;
   name: string;
@@ -244,6 +254,7 @@ export interface Farmer {
 
 export const farmers: Farmer[] = [
   {
+    id: 'beltran',
     tag: 'Quillabamba · Cusco',
     tagIcon: 'ri-seedling-line',
     name: 'Beltran',
@@ -255,6 +266,7 @@ export const farmers: Farmer[] = [
     statLabel: 'ingresos en 4 años',
   },
   {
+    id: 'juliana',
     tag: 'Quellouno · Cusco',
     tagIcon: 'ri-seedling-line',
     name: 'Juliana Avalos Lopez',
@@ -266,28 +278,31 @@ export const farmers: Farmer[] = [
     statLabel: 'cultivadas desde cero',
   },
   {
-    tag: 'Sicchez · Ayabaca',
+    id: 'edgar',
+    tag: 'Quellouno · Cusco',
     tagIcon: 'ri-seedling-line',
     name: 'Edgar Cardenas',
-    location: 'Sicchez · 1,800 msnm',
-    story: "Padre soltero de tres hijos en Sicchez, heredó una deuda y una parcela descuidada. Aprendió el secado solar artesanal observando a sus vecinos de Ayabaca. Hoy produce uno de los cafés naturales más complejos del Perú, sin intermediarios.",
+    location: 'Quellouno · 1,800 msnm',
+    story: "Padre soltero de tres hijos en Quellouno, heredó una deuda y una parcela descuidada. Aprendió el secado solar artesanal observando a sus vecinos de Quellouno. Hoy produce uno de los cafés naturales más complejos del Perú, sin intermediarios.",
     image: '/Holzen/images/edgar.png',
     index: '03',
     stat: '100%',
     statLabel: 'venta directa al exterior',
   },
   {
-    tag: 'S. Miguel · Huancabamba',
+    id: 'yormis',
+    tag: 'Quellouno · Cusco',
     tagIcon: 'ri-seedling-line',
     name: 'Yormis Vigoria',
-    location: 'San Miguel · 1,400 msnm',
-    story: "Creció viendo a su padre vender café a precios de miseria en San Miguel del Faique. A los 28 años rompió esa cadena: aprendió catación, certificó su finca y comenzó a exportar directamente. Hoy su café piurano llega a Japón y Suecia con su nombre en el saco.",
+    location: 'Quellouno · 1,400 msnm',
+    story: "Creció viendo a su padre vender café a precios de miseria en Quellouno. A los 28 años rompió esa cadena: aprendió catación, certificó su finca y comenzó a exportar directamente. Hoy su café cusqueño llega a Japón y Suecia con su nombre en el saco.",
     image: '/Holzen/images/yormis.png',
     index: '04',
     stat: '12 países',
     statLabel: 'destinos de exportación',
   },
   {
+    id: 'manuel',
     tag: 'Chalaco · Morropón',
     tagIcon: 'ri-seedling-line',
     name: 'Manuel Ccahuana',
@@ -299,6 +314,7 @@ export const farmers: Farmer[] = [
     statLabel: 'de resistencia',
   },
   {
+    id: 'rosaq',
     tag: 'Jililí · Ayabaca',
     tagIcon: 'ri-seedling-line',
     name: 'Rosa Quispe',
@@ -310,6 +326,7 @@ export const farmers: Farmer[] = [
     statLabel: 'en la escuela gracias al café',
   },
   {
+    id: 'julia',
     tag: 'Pacaipampa · Ayabaca',
     tagIcon: 'ri-seedling-line',
     name: 'Julia Flores',

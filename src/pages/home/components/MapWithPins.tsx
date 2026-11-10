@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface MapPin {
   id: string;
@@ -45,29 +46,29 @@ const mapPins: MapPin[] = [
   },
   {
     id: 'edgar',
-    region: 'Sicchez · Ayabaca',
+    region: 'Quellouno · Cusco',
     name: 'Edgar Cardenas',
     altitude: '1,800 m.s.n.m',
     storyTitle: 'La fuerza de Edgar',
-    story: "Padre soltero de tres hijos en Sicchez, heredó una deuda y una parcela descuidada. Aprendió el secado solar artesanal observando a sus vecinos de Ayabaca",
+    story: "Padre soltero de tres hijos en Quellouno, heredó una deuda y una parcela descuidada. Aprendió el secado solar artesanal observando a sus vecinos de Quellouno",
     image: '/Holzen/images/edgar.png',
     familyImage: '/Holzen/images/impact3.jpeg',
     familyCaption: "Los 3 hijos de Edgar crecen con dignidad y sin deudas",
     stat: '100%', statLabel: 'venta directa al exterior',
-    x: 28, y: 34,
+    x: 72, y: 59.5,
   },
   {
     id: 'yormis',
-    region: 'S. Miguel · Huancabamba',
+    region: 'Quellouno · Cusco',
     name: 'Yormis Vigoria',
     altitude: '1,400 m.s.n.m',
     storyTitle: 'El nuevo comienzo de Yormis',
-    story: "Creció viendo a su padre vender café a precios de miseria en San Miguel del Faique. A los 28 años rompió esa cadena: aprendió catación, certificó su finca y comenzó a exportar directamente",
+    story: "Creció viendo a su padre vender café a precios de miseria en Quellouno. A los 28 años rompió esa cadena: aprendió catación, certificó su finca y comenzó a exportar directamente",
     image: '/Holzen/images/yormis.png',
     familyImage: '/Holzen/images/farmer5.jpg',
     familyCaption: "La familia de Yormis ya no vende a intermediarios",
     stat: '12 países', statLabel: 'destinos de exportación',
-    x: 32, y: 40,
+    x: 63, y: 61.5,
   },
   {
     id: 'manuel',
@@ -83,7 +84,7 @@ const mapPins: MapPin[] = [
     x: 34, y: 42,
   },
   {
-    id: 'rosaquispe',
+    id: 'rosaq',
     region: 'Jililí · Ayabaca',
     name: 'Rosa Quispe',
     altitude: '1,950 m.s.n.m',
@@ -121,7 +122,14 @@ const MapWithPins = ({
   onSelect?: (name: string) => void;
   visibleNames?: string[];
 }) => {
+  const { t } = useTranslation();
   const pins = visibleNames ? mapPins.filter((p) => visibleNames.includes(p.name)) : mapPins;
+  // Etiqueta del pin: el pueblo; si varios productores comparten pueblo, los siguientes muestran su nombre
+  const townOf = (pin: MapPin) => pin.region.split('·')[0].trim();
+  const pinLabel = (pin: MapPin) => {
+    const first = pins.find((q) => townOf(q) === townOf(pin));
+    return first && first.id !== pin.id ? pin.name.split(' ')[0] : townOf(pin);
+  };
   const [active, setActive] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -166,7 +174,7 @@ const MapWithPins = ({
       <div className="relative w-full select-none" style={{ height: '580px' }}>
         <img
           src="/Holzen/images/mapa.png"
-          alt="Mapa del Perú"
+          alt={t('map_alt')}
           className="w-full h-full object-contain object-center"
           style={{ filter: 'drop-shadow(0 0 40px rgba(201,169,110,0.15))' }}
           draggable={false}
@@ -207,7 +215,7 @@ const MapWithPins = ({
                   fontSize: isActive ? '9px' : '8px',
                 }}
               >
-                {pin.region.split('·')[0].trim()}
+                {pinLabel(pin)}
               </span>
             </button>
           );
@@ -233,7 +241,7 @@ const MapWithPins = ({
             <div className="relative w-full" style={{ height: '148px' }}>
               <img
                 src={cardTab === 'producer' ? activePin.image : activePin.familyImage}
-                alt={cardTab === 'producer' ? activePin.name : 'Familia'}
+                alt={cardTab === 'producer' ? activePin.name : t('map_tab_family')}
                 className="w-full h-full object-cover object-top transition-opacity duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
@@ -241,7 +249,7 @@ const MapWithPins = ({
               {/* Tag top-left */}
               <div className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[8px] font-sans font-semibold tracking-widest uppercase"
                 style={{ background: 'rgba(194,98,42,0.85)', color: '#fff8f0' }}>
-                {cardTab === 'producer' ? 'Productor' : 'Su familia'}
+                {cardTab === 'producer' ? t('map_tab_producer') : t('map_tab_family')}
               </div>
 
               {/* Close */}
@@ -255,7 +263,7 @@ const MapWithPins = ({
               {/* Story title over photo bottom */}
               <div className="absolute bottom-0 left-0 right-0 px-3 pb-2">
                 <p className="font-serif text-cream text-[11px] leading-tight font-semibold">
-                  {activePin.storyTitle}
+                  {t(`prod_${activePin.id}_title`)}
                 </p>
               </div>
             </div>
@@ -266,7 +274,7 @@ const MapWithPins = ({
               <h4 className="font-serif text-cream text-sm leading-tight">{activePin.name}</h4>
               {cardTab === 'family' && (
                 <p className="text-cream/55 font-sans text-[9px] leading-snug mt-1.5 italic">
-                  {activePin.familyCaption}
+                  {t(`prod_${activePin.id}_family`)}
                 </p>
               )}
             </div>
@@ -278,14 +286,14 @@ const MapWithPins = ({
                 className="flex-1 py-1.5 font-sans text-[9px] tracking-widest uppercase transition-colors cursor-pointer"
                 style={{ color: cardTab === 'producer' ? '#c9a96e' : 'rgba(255,245,230,0.35)', borderBottom: cardTab === 'producer' ? '1.5px solid #c9a96e' : '1.5px solid transparent' }}
               >
-                Productor
+                {t('map_tab_producer')}
               </button>
               <button
                 onClick={() => setCardTab('family')}
                 className="flex-1 py-1.5 font-sans text-[9px] tracking-widest uppercase transition-colors cursor-pointer"
                 style={{ color: cardTab === 'family' ? '#c9a96e' : 'rgba(255,245,230,0.35)', borderBottom: cardTab === 'family' ? '1.5px solid #c9a96e' : '1.5px solid transparent' }}
               >
-                Su familia
+                {t('map_tab_family')}
               </button>
             </div>
           </div>

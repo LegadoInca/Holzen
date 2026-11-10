@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { farmers } from '../../../mocks/holzen';
 import MapWithPins from './MapWithPins';
+import { fmtAlt } from '../../../i18n/helpers';
 
 const INK = '#0D0D0C';
 const GREEN = '#26E237'; // el verde de Holzen
@@ -118,7 +119,7 @@ const Farmers = () => {
                             {farmer.tag}
                           </p>
                           <p className="mt-1 text-xs font-sans leading-snug" style={{ color: 'rgba(13,13,12,0.62)' }}>
-                            <span style={{ fontWeight: 700, color: INK }}>{farmer.stat}</span> {farmer.statLabel}
+                            <span style={{ fontWeight: 700, color: INK }}>{t(`prod_${farmer.id}_stat`)}</span> {t(`prod_${farmer.id}_statlabel`)}
                           </p>
                         </div>
                       </button>
@@ -135,7 +136,7 @@ const Farmers = () => {
                         }}
                       >
                         <span className="relative z-10 inline-flex items-center gap-1.5">
-                          {t('farmers_know_story', { defaultValue: 'Conocer su historia' })}
+                          {t('farmers_know_story')}
                           <i className="ri-arrow-right-up-line" />
                         </span>
                         <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/45 to-transparent" />
@@ -200,17 +201,17 @@ const Farmers = () => {
                         {f.name}
                       </h3>
                       <p className="mt-1.5 text-[11px] tracking-[0.16em] uppercase font-sans" style={{ color: 'rgba(13,13,12,0.5)' }}>
-                        {f.location}
+                        {fmtAlt(f.location, t)}
                       </p>
 
                       <p className="mt-5 text-[15px] leading-relaxed font-sans" style={{ color: 'rgba(13,13,12,0.82)' }}>
-                        {f.story}
+                        {t(`prod_${f.id}_story`)}
                       </p>
 
                       <div className="mt-5 flex items-center gap-2">
                         <i className="ri-user-line" style={{ fontSize: '15px', color: INK }} />
-                        <span className="text-lg font-bold" style={{ color: INK, fontFamily: "'Inter', system-ui, sans-serif" }}>{f.stat}</span>
-                        <span className="text-xs font-sans" style={{ color: 'rgba(13,13,12,0.55)' }}>{f.statLabel}</span>
+                        <span className="text-lg font-bold" style={{ color: INK, fontFamily: "'Inter', system-ui, sans-serif" }}>{t(`prod_${f.id}_stat`)}</span>
+                        <span className="text-xs font-sans" style={{ color: 'rgba(13,13,12,0.55)' }}>{t(`prod_${f.id}_statlabel`)}</span>
                       </div>
 
                       <button
@@ -235,7 +236,7 @@ const Farmers = () => {
               style={{ background: INK, color: '#BBDA1F' }}
             >
               <i className="ri-map-pin-line text-sm" />
-              Toca un nombre para conocer al productor
+              {t('farmers_map_hint')}
             </div>
             <div className="w-full">
               <MapWithPins

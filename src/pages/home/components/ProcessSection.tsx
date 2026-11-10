@@ -4,6 +4,17 @@ import { processSteps } from '../../../mocks/holzen';
 
 const ProcessSection = () => {
   const { t } = useTranslation();
+  // Los textos de cada paso salen de i18n (process_s<n>_title / _subtitle / _desc / _tag1 / _tag2)
+  const steps = processSteps.map((s) => {
+    const n = Number(s.n);
+    return {
+      ...s,
+      title: t(`process_s${n}_title`),
+      subtitle: t(`process_s${n}_subtitle`),
+      desc: t(`process_s${n}_desc`),
+      tags: [t(`process_s${n}_tag1`), t(`process_s${n}_tag2`)],
+    };
+  });
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
@@ -30,7 +41,7 @@ const ProcessSection = () => {
 
         {/* DESKTOP — Horizontal accordion timeline */}
         <div className="hidden md:flex gap-2 h-[480px]">
-          {processSteps.map((step, idx) => {
+          {steps.map((step, idx) => {
             const isHovered = hovered === idx;
             const isAnyHovered = hovered !== null;
 
@@ -154,7 +165,7 @@ const ProcessSection = () => {
 
         {/* Timeline connector bar — desktop */}
         <div className="hidden md:flex items-center gap-2 mt-5">
-          {processSteps.map((step, idx) => (
+          {steps.map((step, idx) => (
             <div key={step.n} className="flex items-center flex-1">
               <div
                 className="w-2.5 h-2.5 rounded-full flex-shrink-0 transition-all duration-300"
@@ -164,12 +175,12 @@ const ProcessSection = () => {
                   transform: hovered === idx ? 'scale(1.5)' : 'scale(1)',
                 }}
               />
-              {idx < processSteps.length - 1 && (
+              {idx < steps.length - 1 && (
                 <div
                   className="flex-1 h-[1px] mx-1 transition-all duration-500"
                   style={{
                     background: hovered !== null && idx < hovered
-                      ? `linear-gradient(90deg, ${step.color}, ${processSteps[idx + 1].color})`
+                      ? `linear-gradient(90deg, ${step.color}, ${steps[idx + 1].color})`
                       : 'rgba(255,255,255,0.1)',
                   }}
                 />
@@ -179,7 +190,7 @@ const ProcessSection = () => {
         </div>
 
         <div className="hidden md:flex justify-between mt-2">
-          {processSteps.map((step, idx) => (
+          {steps.map((step, idx) => (
             <div key={step.n} className="flex-1 text-center">
               <span
                 className="font-sans text-[9px] tracking-widest uppercase transition-colors duration-300"
@@ -193,7 +204,7 @@ const ProcessSection = () => {
 
         {/* MOBILE — stacked cards */}
         <div className="md:hidden flex flex-col gap-4">
-          {processSteps.map((step) => (
+          {steps.map((step) => (
             <div key={step.n} className="relative rounded-2xl overflow-hidden h-[220px]">
               <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover object-center" />
               <div

@@ -41,7 +41,7 @@ const FARMERS = [
   {
     id: 'edgar',
     name: 'Edgar Cardenas',
-    region: 'Sicchez',
+    region: 'Quellouno',
     role: 'Productor de Honey Amarillo',
     need: 'Necesita: Secadora solar portátil',
     progress: 20,
@@ -127,7 +127,7 @@ const StatCircle = ({ stat, animate }: { stat: StatItem; animate: boolean }) => 
 };
 
 const ContactSection = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedFarmer, setSelectedFarmer] = useState(FARMERS[0]);
   const [payMode, setPayMode] = useState<'monthly' | 'annual'>('monthly');
   const [amount, setAmount] = useState(30);
@@ -164,9 +164,10 @@ const ContactSection = () => {
     setAmount(mode === 'monthly' ? 30 : 200);
   };
 
-  const impactText =
-    selectedFarmer.impact[amount as keyof typeof selectedFarmer.impact] ??
-    `Con $${amount} apoyas directamente a ${selectedFarmer.name} y su familia.`;
+  const impactKey = `prod_${selectedFarmer.id}_imp${amount}`;
+  const impactText = i18n.exists(impactKey)
+    ? t(impactKey)
+    : t('contact_impact_fallback', { amount, name: selectedFarmer.name });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -264,7 +265,7 @@ const ContactSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/90 via-transparent to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-3">
                         <div className="font-serif text-sm text-cream font-bold">{hoveredFarmer.name}</div>
-                        <div className="text-cream/60 text-[10px] font-sans mt-0.5">{hoveredFarmer.role}</div>
+                        <div className="text-cream/60 text-[10px] font-sans mt-0.5">{t(`prod_${hoveredFarmer.id}_role`)}</div>
                         <span className="inline-block mt-1.5 text-[9px] bg-gold/30 text-gold px-2 py-0.5 rounded-full font-sans">{hoveredFarmer.region}</span>
                       </div>
                     </div>
@@ -300,10 +301,10 @@ const ContactSection = () => {
                             <span className="font-sans text-sm text-[#0D0D0C] font-semibold">{f.name}</span>
                             <span className="text-[10px] bg-[#0D0D0C] text-[#BBDA1F] px-2 py-0.5 rounded-full font-sans whitespace-nowrap">{f.region}</span>
                           </div>
-                          <div className="text-[#0D0D0C]/55 text-xs font-sans mt-0.5 truncate">{f.role}</div>
+                          <div className="text-[#0D0D0C]/55 text-xs font-sans mt-0.5 truncate">{t(`prod_${f.id}_role`)}</div>
                           <div className="text-[#0D0D0C]/60 text-[10px] font-sans mt-0.5 flex items-center gap-1">
                             <i className="ri-tools-line flex-shrink-0" />
-                            <span className="truncate">{f.need}</span>
+                            <span className="truncate">{t(`prod_${f.id}_need`)}</span>
                           </div>
                         </div>
                         {selectedFarmer.id === f.id && (
@@ -490,7 +491,7 @@ const ContactSection = () => {
                 {/* Info */}
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <div className="font-serif text-base text-cream font-bold leading-tight">{mobilePreview.name}</div>
-                  <div className="text-cream/60 text-[10px] font-sans mt-0.5 mb-2">{mobilePreview.role}</div>
+                  <div className="text-cream/60 text-[10px] font-sans mt-0.5 mb-2">{t(`prod_${mobilePreview.id}_role`)}</div>
                   <span className="inline-block text-[9px] bg-gold/30 text-gold px-2 py-0.5 rounded-full font-sans border border-gold/20">
                     {mobilePreview.region}
                   </span>

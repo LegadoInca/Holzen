@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { fmtAlt } from '../../i18n/helpers';
 import { farmers, products } from '@/mocks/holzen';
 
 /* ─────────────────────────────────────────────
@@ -18,6 +19,13 @@ interface CartItem {
 /* ─────────────────────────────────────────────
    B2B PRODUCT DATA (precios por caja / kilo mayor)
 ───────────────────────────────────────────── */
+// Etiquetas de formato -> clave de traducción
+const FMT_KEYS: Record<string, string> = {
+  'Caja 5 kg': 'b2b_fmt_box5',
+  'Saco 30 kg': 'b2b_fmt_sack30',
+  'Saco 60 kg': 'b2b_fmt_sack60',
+};
+
 const b2bProducts = [
   {
     id: 'chuncho-b2b',
@@ -158,7 +166,7 @@ const CORPORATE_FARMERS = [
   {
     id: 'edgar',
     name: 'Edgar Cardenas',
-    region: 'Huánuco',
+    region: 'Cusco',
     role: 'Productor de Honey Amarillo',
     need: 'Necesita: Secadora solar portátil',
     progress: 20,
@@ -391,11 +399,11 @@ const B2BCatalog = () => {
                 {p.badge && (
                   <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-gold text-coffee-900 text-[10px] font-sans font-bold tracking-widest uppercase px-2.5 py-1 rounded-full whitespace-nowrap">
                     <i className="ri-star-fill text-[9px]" />
-                    {p.badge}
+                    {p.badge === 'Más pedido' ? t('b2b_badge_top') : p.badge}
                   </div>
                 )}
                 <div className="absolute top-3 right-3 z-20">
-                  <span className="text-[10px] tracking-widest uppercase text-gold font-sans border border-gold/50 bg-coffee-900/60 backdrop-blur-sm px-2.5 py-1 rounded-full whitespace-nowrap">{p.tag}</span>
+                  <span className="text-[10px] tracking-widest uppercase text-gold font-sans border border-gold/50 bg-coffee-900/60 backdrop-blur-sm px-2.5 py-1 rounded-full whitespace-nowrap">{t(`ptag_${p.id.replace('-b2b', '')}`)}</span>
                 </div>
 
                 {/* FRONT */}
@@ -404,9 +412,9 @@ const B2BCatalog = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-coffee-900/95 via-coffee-900/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5">
                     <div className="font-serif text-lg text-cream leading-tight mb-1">{p.name}</div>
-                    <div className="text-cream/50 text-xs font-sans mb-2">{p.origin}</div>
+                    <div className="text-cream/50 text-xs font-sans mb-2">{fmtAlt(p.origin, t)}</div>
                     <div className="flex flex-wrap gap-1 mb-3">
-                      {p.notes.split(' · ').map((note) => (
+                      {t(`notes_${p.id.replace('-b2b', '')}`).split(' · ').map((note) => (
                         <span key={note} className="text-[10px] text-gold/80 border border-gold/20 px-2 py-0.5 rounded-full font-sans">{note}</span>
                       ))}
                     </div>
@@ -436,7 +444,7 @@ const B2BCatalog = () => {
                         onClick={(e) => { e.stopPropagation(); setSelectedFormat((prev) => ({ ...prev, [p.id]: i })); }}
                         className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg border text-sm font-sans transition-all cursor-pointer ${(selectedFormat[p.id] ?? 0) === i ? 'border-gold bg-gold/15 text-gold' : 'border-cream/15 text-cream/60 hover:border-cream/30'}`}
                       >
-                        <span className="font-semibold">{f.label}</span>
+                        <span className="font-semibold">{t(FMT_KEYS[f.label] ?? f.label)}</span>
                         <span className="text-xs">${f.price.toFixed(2)} / kg</span>
                       </button>
                     ))}
@@ -524,12 +532,12 @@ const B2BFarmers = () => {
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <div className="font-serif text-2xl text-cream mb-1">{f.name}</div>
-              <div className="text-gold/70 font-sans text-xs tracking-widest uppercase mb-3">{f.location}</div>
-              <p className="text-cream/70 font-sans text-sm leading-relaxed mb-4">{f.story}</p>
+              <div className="text-gold/70 font-sans text-xs tracking-widest uppercase mb-3">{fmtAlt(f.location, t)}</div>
+              <p className="text-cream/70 font-sans text-sm leading-relaxed mb-4">{t(`prod_${f.id}_story`)}</p>
               <div className="flex items-center gap-2">
                 <i className="ri-user-line text-gold text-sm" />
-                <span className="font-serif text-gold font-bold">{f.stat}</span>
-                <span className="text-cream/40 font-sans text-xs">{f.statLabel}</span>
+                <span className="font-serif text-gold font-bold">{t(`prod_${f.id}_stat`)}</span>
+                <span className="text-cream/40 font-sans text-xs">{t(`prod_${f.id}_statlabel`)}</span>
               </div>
             </div>
           </div>
@@ -561,11 +569,11 @@ const B2BFarmers = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="font-serif text-sm text-cream font-semibold">{farmer.name}</div>
-                  <div className="text-cream/40 text-[10px] font-sans truncate">{farmer.location}</div>
+                  <div className="text-cream/40 text-[10px] font-sans truncate">{fmtAlt(farmer.location, t)}</div>
                 </div>
                 <div className="text-right flex-shrink-0">
-                  <div className="font-serif text-sm text-gold font-bold">{farmer.stat}</div>
-                  <div className="text-cream/30 text-[9px] font-sans">{farmer.statLabel}</div>
+                  <div className="font-serif text-sm text-gold font-bold">{t(`prod_${farmer.id}_stat`)}</div>
+                  <div className="text-cream/30 text-[9px] font-sans">{t(`prod_${farmer.id}_statlabel`)}</div>
                 </div>
                 {cur === i && <i className="ri-check-line text-gold flex-shrink-0" />}
               </button>
@@ -588,28 +596,28 @@ const B2BProcess = () => {
       n: '01', icon: 'ri-plant-line',
       title: t('emp_process_step1_title'),
       desc: t('emp_process_step1_desc'),
-      tags: ['100% Manual', 'GPS trazado'],
+      tags: [t('process_s1_tag1'), t('b2b_tag_gps')],
       image: '/Holzen/images/process1.jpeg',
     },
     {
       n: '02', icon: 'ri-flask-line',
       title: t('emp_process_step2_title'),
       desc: t('emp_process_step2_desc'),
-      tags: ['48-72 horas', 'Fermentación'],
+      tags: [t('process_s2_tag1'), t('process_s2_tag2')],
       image: '/Holzen/images/process2.jpeg',
     },
     {
       n: '03', icon: 'ri-sun-line',
       title: t('emp_process_step3_title'),
       desc: t('emp_process_step3_desc'),
-      tags: ['7-10 días', '≤7% humedad'],
+      tags: [t('process_s3_tag1'), t('process_s3_tag2')],
       image: '/Holzen/images/process3.jpeg',
     },
     {
       n: '04', icon: 'ri-shield-check-line',
       title: t('emp_process_step4_title'),
       desc: t('emp_process_step4_desc'),
-      tags: ['Cert. EUDR', 'GrainPro'],
+      tags: [t('process_s4_tag1'), t('process_s4_tag2')],
       image: '/Holzen/images/process4.jpeg',
     },
   ];
@@ -819,7 +827,7 @@ const B2BImpact = () => {
    B2B ADOPTION
 ───────────────────────────────────────────── */
 const B2BAdoption = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedFarmer, setSelectedFarmer] = useState(CORPORATE_FARMERS[0]);
   const [payMode, setPayMode] = useState<'monthly' | 'annual'>('monthly');
   const [amount, setAmount] = useState(500);
@@ -836,9 +844,10 @@ const B2BAdoption = () => {
     setAmount(mode === 'monthly' ? 500 : 700);
   };
 
-  const impactText =
-    selectedFarmer.impact[amount as keyof typeof selectedFarmer.impact] ??
-    `Con $${amount} tu empresa apoya directamente a ${selectedFarmer.name} y su comunidad.`;
+  const impactKey = `prod_${selectedFarmer.id}_b${amount}`;
+  const impactText = i18n.exists(impactKey)
+    ? t(impactKey)
+    : t('b2b_impact_fallback', { amount, name: selectedFarmer.name });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -935,10 +944,10 @@ const B2BAdoption = () => {
                         <span className="font-serif text-sm text-cream font-semibold">{f.name}</span>
                         <span className="text-[10px] bg-gold/20 text-gold px-2 py-0.5 rounded-full font-sans whitespace-nowrap">{f.region}</span>
                       </div>
-                      <div className="text-cream/50 text-xs font-sans mt-0.5 truncate">{f.role}</div>
+                      <div className="text-cream/50 text-xs font-sans mt-0.5 truncate">{t(`prod_${f.id}_role`)}</div>
                       <div className="text-gold/70 text-[10px] font-sans mt-0.5 flex items-center gap-1">
                         <i className="ri-tools-line flex-shrink-0" />
-                        <span className="truncate">{f.need}</span>
+                        <span className="truncate">{t(`prod_${f.id}_need`)}</span>
                       </div>
                     </div>
                     {selectedFarmer.id === f.id && (
@@ -998,7 +1007,7 @@ const B2BAdoption = () => {
               </div>
               <div>
                 <div className="text-gold text-[10px] tracking-widest uppercase font-sans mb-1">{t('emp_adoption_impact_label')}</div>
-                <p className="text-cream/70 text-xs font-sans leading-relaxed">Con ${amount} para {selectedFarmer.name}: {impactText}</p>
+                <p className="text-cream/70 text-xs font-sans leading-relaxed">{t('emp_adoption_impact_text', { amount, name: selectedFarmer.name, impact: impactText })}</p>
               </div>
             </div>
 

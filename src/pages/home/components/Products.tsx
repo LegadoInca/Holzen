@@ -2,6 +2,7 @@ import { useState, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { products } from '@/mocks/holzen';
 import { CartItem } from '../types';
+import { fmtAlt } from '../../../i18n/helpers';
 
 interface ProductsProps {
   onAddToCart: (item: Omit<CartItem, 'qty'>) => void;
@@ -46,12 +47,12 @@ export default function Products({ onAddToCart }: ProductsProps) {
   const handleAdd = useCallback((p: typeof products[0]) => {
     onAddToCart({
       id: p.id,
-      name: p.detailName,
+      name: t(`detail_${p.id}`),
       priceLabel: p.priceLabel,
       priceNum: p.priceNum,
       image: p.image,
     });
-  }, [onAddToCart]);
+  }, [onAddToCart, t]);
 
   // Tarjeta: foto redondeada (alturas alternadas) + texto debajo, como la referencia
   const renderCard = (product: typeof products[0], idx: number, mobile = false) => {
@@ -96,7 +97,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
                 className="text-[8px] tracking-[0.14em] uppercase font-sans font-bold mb-1.5 px-2.5 py-1 rounded-full whitespace-nowrap shadow-lg animate-pulse"
                 style={{ background: GREEN, color: INK }}
               >
-                Haz click aquí
+                {t('catalog_click_here')}
               </span>
               <button
                 onClick={(e) => {
@@ -134,16 +135,16 @@ export default function Products({ onAddToCart }: ProductsProps) {
                 <h3 className="text-sm text-white leading-tight" style={{ fontFamily: sans, fontWeight: 700 }}>{product.producer.name}</h3>
                 <p className="text-white/60 text-[9px] font-sans tracking-widest uppercase">{product.producer.location}</p>
               </div>
-              <p className={`${tall ? 'text-xs mb-1.5' : 'text-[11px] mb-1'} italic`} style={{ fontFamily: sans, color: '#BBDA1F' }}>{product.producer.storyTitle}</p>
+              <p className={`${tall ? 'text-xs mb-1.5' : 'text-[11px] mb-1'} italic`} style={{ fontFamily: sans, color: '#BBDA1F' }}>{t(`prod_${product.producerId}_ptitle`)}</p>
               <div className={`${tall ? 'max-h-[110px] mb-3' : 'max-h-[52px] mb-2'} overflow-y-auto pr-1`}>
-                <p className={`text-white/75 ${tall ? 'text-[11px]' : 'text-[10px]'} font-sans leading-relaxed`}>{product.producer.story}</p>
+                <p className={`text-white/75 ${tall ? 'text-[11px]' : 'text-[10px]'} font-sans leading-relaxed`}>{t(`prod_${product.producerId}_pstory`)}</p>
               </div>
               <button
                 onClick={(e) => { e.stopPropagation(); handleAdd(product); }}
                 className={`relative w-full overflow-hidden font-sans font-bold ${tall ? 'py-2.5' : 'py-2'} rounded-full text-[10px] tracking-[0.15em] uppercase transition-transform hover:-translate-y-0.5 cursor-pointer whitespace-nowrap`}
                 style={{ background: GREEN, color: INK }}
               >
-                <span className="relative z-10">{product.ctaLabel}</span>
+                <span className="relative z-10">{t('catalog_cta')}</span>
                 <span className="absolute top-0 bottom-0 w-1/3 animate-shimmer bg-gradient-to-r from-transparent via-white/45 to-transparent" />
               </button>
             </div>
@@ -158,10 +159,10 @@ export default function Products({ onAddToCart }: ProductsProps) {
           >
             {product.overlayName}
           </h3>
-          <p className="mt-1 text-xs font-sans" style={{ color: 'rgba(13,13,12,0.55)' }}>{product.overlayOrigin}</p>
+          <p className="mt-1 text-xs font-sans" style={{ color: 'rgba(13,13,12,0.55)' }}>{fmtAlt(product.overlayOrigin, t)}</p>
 
           <div className="flex flex-wrap gap-1.5 mt-3">
-            {product.notes.split(' · ').map((note) => (
+            {t(`notes_${product.id}`).split(' · ').map((note) => (
               <span
                 key={note}
                 className="text-[10px] font-sans px-2 py-0.5 rounded-full"
@@ -177,7 +178,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
             className="mt-4 inline-flex items-center gap-1.5 text-[11px] tracking-[0.12em] uppercase cursor-pointer hover:opacity-60 transition-opacity whitespace-nowrap"
             style={{ fontFamily: sans, fontWeight: 700, color: INK, textDecoration: 'underline', textUnderlineOffset: '5px', textDecorationThickness: '2px' }}
           >
-            {product.ctaLabel}
+            {t('catalog_cta')}
             <i className="ri-arrow-right-up-line text-sm" />
           </button>
         </div>

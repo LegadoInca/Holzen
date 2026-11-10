@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const SLIDER_MIN = 1;
 const SLIDER_MAX = 100;
@@ -8,8 +9,10 @@ interface ImpactCard {
   icon: string;
   image: string;
   getValue: (n: number) => string;
-  label: string;
-  sublabel: (n: number) => string;
+  /** clave i18n del título de la tarjeta */
+  labelKey: string;
+  /** clave i18n de la frase que cambia según el valor del slider */
+  sublabelKey: (n: number) => string;
 }
 
 const impactCards: ImpactCard[] = [
@@ -17,72 +20,42 @@ const impactCards: ImpactCard[] = [
     icon: 'ri-group-line',
     image: '/Holzen/images/impact1.jpeg',
     getValue: (n) => String(Math.max(1, Math.round(n / 12))),
-    label: 'Familias productoras beneficiadas',
-    sublabel: (n) => n <= 10 ? 'una pequeña familia apoyada' : n <= 40 ? 'varias familias esta semana' : 'comunidad entera impactada',
+    labelKey: 'impact_c1_label',
+    sublabelKey: (n) => (n <= 10 ? 'impact_c1_s1' : n <= 40 ? 'impact_c1_s2' : 'impact_c1_s3'),
   },
   {
     icon: 'ri-money-dollar-circle-line',
     image: '/Holzen/images/product5.jpeg',
     getValue: () => '',
-    label: 'USD directos al productor',
-    sublabel: (n) => n <= 10 ? 'paga un día de trabajo' : n <= 40 ? 'cubre una semana de servicios' : 'financia un mes completo',
+    labelKey: 'impact_c2_label',
+    sublabelKey: (n) => (n <= 10 ? 'impact_c2_s1' : n <= 40 ? 'impact_c2_s2' : 'impact_c2_s3'),
   },
   {
     icon: 'ri-book-open-line',
     image: '/Holzen/images/impact3.jpeg',
     getValue: (n) => String(Math.max(1, Math.round(n / 18))),
-    label: 'Niños con educación apoyada',
-    sublabel: (n) => n <= 15 ? 'un mes de clases garantizado' : n <= 50 ? 'varios niños en la escuela' : 'toda una aula beneficiada',
+    labelKey: 'impact_c3_label',
+    sublabelKey: (n) => (n <= 15 ? 'impact_c3_s1' : n <= 50 ? 'impact_c3_s2' : 'impact_c3_s3'),
   },
   {
     icon: 'ri-plant-line',
     image: '/Holzen/images/product1.jpeg',
     getValue: (n) => String(Math.max(1, Math.round(n * 1.4))),
-    label: 'Plantas de café preservadas',
-    sublabel: (n) => n <= 10 ? 'un pequeño jardín preservado' : n <= 40 ? 'parcela activa mantenida' : 'hectárea completa protegida',
+    labelKey: 'impact_c4_label',
+    sublabelKey: (n) => (n <= 10 ? 'impact_c4_s1' : n <= 40 ? 'impact_c4_s2' : 'impact_c4_s3'),
   },
 ];
 
+// Voces del campo: rol, cita y "años de…" salen de i18n (prod_<id>_role / _voice / _yl)
 const voices = [
-  {
-    name: 'Beltran',
-    role: 'Productor de café',
-    location: 'Quillabamba, Cusco',
-    quote: 'Perdí todo en una noche por una helada. Pero esa noche también me enseñó que yo era más fuerte que mi miedo. Hoy entreno a otros productores de mi comunidad.',
-    image: '/Holzen/images/beltran.png',
-    years: 4,
-    yearsLabel: 'años cultivando',
-  },
-  {
-    name: 'Juliana Avalos Lopez',
-    role: 'Productora de café Geisha',
-    location: 'Quellouno, Cusco',
-    quote: 'Mis hijos no van a heredar deudas. Van a heredar dignidad. Cada saco que exporto es una promesa que les cumplo.',
-    image: '/Holzen/images/juliana.png',
-    years: 6,
-    yearsLabel: 'años de cafetal',
-  },
-  {
-    name: 'Edgar Cardenas',
-    role: 'Productor de Honey Amarillo',
-    location: 'Valle Monzón, Huánuco',
-    quote: 'Nadie me regaló nada. Pero tampoco nadie me quitó las ganas. Aprendí solo, observando. Hoy mis hijos me ven trabajar y saben que rendirse no es una opción.',
-    image: '/Holzen/images/edgar.png',
-    years: 3,
-    yearsLabel: 'años exportando',
-  },
-  {
-    name: 'Manuel Ccahuana',
-    role: 'Productor Typica Natural',
-    location: 'Ayacucho, Valle del Pampas',
-    quote: 'Sembrar aquí donde todo fue destruido es mi forma de decir: seguimos vivos. Cada cosecha es un acto de resistencia y de paz.',
-    image: '/Holzen/images/farmer5.jpg',
-    years: 8,
-    yearsLabel: 'años de resistencia',
-  },
+  { id: 'beltran', name: 'Beltran', location: 'Quillabamba, Cusco', image: '/Holzen/images/beltran.png', years: 4 },
+  { id: 'juliana', name: 'Juliana Avalos Lopez', location: 'Quellouno, Cusco', image: '/Holzen/images/juliana.png', years: 6 },
+  { id: 'edgar', name: 'Edgar Cardenas', location: 'Quellouno, Cusco', image: '/Holzen/images/edgar.png', years: 3 },
+  { id: 'manuel', name: 'Manuel Ccahuana', location: 'Ayacucho, Valle del Pampas', image: '/Holzen/images/farmer5.jpg', years: 8 },
 ];
 
 const ImpactSlider = () => {
+  const { t } = useTranslation();
   // Inject numBounce keyframe
   useEffect(() => {
     const id = 'impact-slider-styles';
@@ -187,15 +160,15 @@ const ImpactSlider = () => {
         {/* Header */}
         <div className="flex items-start justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <h3 className="text-2xl md:text-4xl leading-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.025em', color: '#0D0D0C' }}>Tu Impacto Real</h3>
+            <h3 className="text-2xl md:text-4xl leading-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.025em', color: '#0D0D0C' }}>{t('impact_title')}</h3>
             <p className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full font-sans text-xs font-semibold cursor-default select-none" style={{ background: '#0D0D0C', color: '#BBDA1F' }}>
               <i className="ri-drag-move-line text-xs" />
-              Mueve el slider y descubre el impacto de cada compra
+              {t('impact_hint')}
             </p>
           </div>
           <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-black/15 bg-white/60">
             <i className="ri-seedling-line text-xs" style={{color:'#0D0D0C'}} />
-            <span className="font-sans text-[10px] tracking-widest uppercase font-semibold" style={{color:'#0D0D0C'}}>Café Peruano</span>
+            <span className="font-sans text-[10px] tracking-widest uppercase font-semibold" style={{color:'#0D0D0C'}}>{t('impact_badge')}</span>
           </div>
         </div>
 
@@ -205,9 +178,9 @@ const ImpactSlider = () => {
             <span className="text-5xl md:text-6xl leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 600, letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums', color:'#0D0D0C' }}>
               {sliderVal}
             </span>
-            <span className="font-sans text-base md:text-lg" style={{color:'rgba(13,13,12,0.6)'}}>productos</span>
+            <span className="font-sans text-base md:text-lg" style={{color:'rgba(13,13,12,0.6)'}}>{t('impact_unit')}</span>
           </div>
-          <p className="font-sans text-[9px] tracking-[0.35em] uppercase mt-1" style={{color:'rgba(13,13,12,0.45)'}}>Unidades seleccionadas</p>
+          <p className="font-sans text-[9px] tracking-[0.35em] uppercase mt-1" style={{color:'rgba(13,13,12,0.45)'}}>{t('impact_selected')}</p>
         </div>
 
         {/* Slider track */}
@@ -239,7 +212,7 @@ const ImpactSlider = () => {
               className="relative rounded-xl overflow-hidden"
               style={{ height: 130 }}
             >
-              <img src={card.image} alt={card.label} className="w-full h-full object-cover object-center" />
+              <img src={card.image} alt={t(card.labelKey)} className="w-full h-full object-cover object-center" />
               <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,5,2,0.3) 0%, rgba(10,5,2,0.82) 100%)' }} />
               {/* Icon */}
               <div className="absolute top-2.5 left-2.5 w-6 h-6 flex items-center justify-center rounded-full" style={{ background: '#BBDA1F' }}>
@@ -258,8 +231,8 @@ const ImpactSlider = () => {
                 >
                   {card.getValue(sliderVal)}
                 </div>
-                <div className="font-sans text-[9px] leading-tight mb-1" style={{color:'rgba(245,230,208,0.8)'}}>{card.label}</div>
-                <div className="text-[8px] font-sans italic" style={{ color: '#BBDA1F' }}>{card.sublabel(sliderVal)}</div>
+                <div className="font-sans text-[9px] leading-tight mb-1" style={{color:'rgba(245,230,208,0.8)'}}>{t(card.labelKey)}</div>
+                <div className="text-[8px] font-sans italic" style={{ color: '#BBDA1F' }}>{t(card.sublabelKey(sliderVal))}</div>
               </div>
             </div>
           ))}
@@ -268,7 +241,7 @@ const ImpactSlider = () => {
         {/* Divider */}
         <div className="flex items-center gap-3 mb-5">
           <div className="flex-1 h-px" style={{ background: 'rgba(13,13,12,0.12)' }} />
-          <span className="font-sans text-[9px] tracking-[0.35em] uppercase font-semibold" style={{color:'rgba(13,13,12,0.5)'}}>Voces del campo</span>
+          <span className="font-sans text-[9px] tracking-[0.35em] uppercase font-semibold" style={{color:'rgba(13,13,12,0.5)'}}>{t('impact_voices')}</span>
           <div className="flex-1 h-px" style={{ background: 'rgba(13,13,12,0.12)' }} />
         </div>
 
@@ -305,7 +278,7 @@ const ImpactSlider = () => {
               </div>
               <div className="text-center">
                 <div className="text-lg font-bold leading-none" style={{ fontFamily: "'Inter', system-ui, sans-serif", color:'#BBDA1F' }}>{voice.years}</div>
-                <div className="font-sans text-[8px] leading-tight mt-0.5 max-w-[60px]" style={{color:'rgba(245,230,208,0.5)'}}>{voice.yearsLabel}</div>
+                <div className="font-sans text-[8px] leading-tight mt-0.5 max-w-[60px]" style={{color:'rgba(245,230,208,0.5)'}}>{t(`prod_${voice.id}_yl`)}</div>
               </div>
             </div>
 
@@ -313,12 +286,12 @@ const ImpactSlider = () => {
             <div className="flex-1 min-w-0">
               <i className="ri-double-quotes-l text-2xl leading-none block mb-1" style={{color:'rgba(187,218,31,0.6)'}} />
               <p className="text-sm leading-relaxed italic mb-3" style={{ fontFamily: "'Inter', system-ui, sans-serif", color:'rgba(245,230,208,0.92)' }}>
-                {voice.quote}
+                {t(`prod_${voice.id}_voice`)}
               </p>
               <div className="flex items-end justify-between gap-3 flex-wrap">
                 <div>
                   <div className="font-sans text-sm font-semibold" style={{color:'#F5E6D0'}}>{voice.name}</div>
-                  <div className="font-sans text-[10px] mt-0.5" style={{color:'rgba(187,218,31,0.9)'}}>{voice.role}</div>
+                  <div className="font-sans text-[10px] mt-0.5" style={{color:'rgba(187,218,31,0.9)'}}>{t(`prod_${voice.id}_role`)}</div>
                   <div className="font-sans text-[9px] flex items-center gap-1 mt-0.5" style={{color:'rgba(245,230,208,0.4)'}}>
                     <i className="ri-map-pin-line text-[9px]" />
                     {voice.location}
@@ -335,7 +308,7 @@ const ImpactSlider = () => {
                   style={{ background: '#BBDA1F', color: '#0D0D0C', boxShadow: '0 4px 12px rgba(187,218,31,0.35)' }}
                 >
                   <i className="ri-user-heart-line text-xs" />
-                  Ver más historias
+                  {t('impact_more')}
                 </a>
               </div>
             </div>
