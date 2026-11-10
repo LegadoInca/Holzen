@@ -10,6 +10,8 @@ interface ProductsProps {
 
 const INK = '#0D0D0C';
 const GREEN = '#26E237'; // el verde de Holzen
+// Productos SIN círculo clickeable del productor ni "Haz click aquí": la frase del productor va abajo, centrada, sobre la foto del producto
+const PHRASE_ON_IMAGE = ['chuncho'];
 // Productos cuya tarjeta (al girarla) muestra solo el nombre, la frase representativa y el botón, sin la historia larga
 const HIDE_LONG_STORY = ['chuncho', 'bourbon', 'monzon'];
 const VISIBLE_COUNT = 4; // por ahora mostramos solo 4 productos
@@ -60,6 +62,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
   const renderCard = (product: typeof products[0], idx: number, mobile = false) => {
     const isFlipped = flipped[product.id];
     const hideStory = HIDE_LONG_STORY.includes(product.id);
+    const phraseOnImage = PHRASE_ON_IMAGE.includes(product.id);
     const tall = mobile ? true : idx % 2 === 0;
     const ratio = mobile ? '4 / 5' : tall ? '2 / 3' : '1 / 1.05';
 
@@ -94,7 +97,8 @@ export default function Products({ onAddToCart }: ProductsProps) {
               </div>
             </div>
 
-            {/* Avatar del productor */}
+            {/* Avatar del productor (se oculta si la frase va sobre la imagen) */}
+            {!phraseOnImage && (
             <div className="absolute top-3 right-3 z-20 flex flex-col items-end">
               <span
                 className="text-[8px] tracking-[0.14em] uppercase font-sans font-bold mb-1.5 px-2.5 py-1 rounded-full whitespace-nowrap shadow-lg animate-pulse"
@@ -114,6 +118,20 @@ export default function Products({ onAddToCart }: ProductsProps) {
                 <span className="absolute inset-0 rounded-full border animate-ping" style={{ borderColor: GREEN }} />
               </button>
             </div>
+            )}
+
+            {/* Frase del productor: abajo, centrada, sobre la foto del producto */}
+            {phraseOnImage && (
+              <>
+                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                <p
+                  className="absolute left-0 right-0 bottom-4 px-4 text-center text-sm italic"
+                  style={{ fontFamily: sans, color: '#BBDA1F', textShadow: '0 1px 8px rgba(0,0,0,0.65)' }}
+                >
+                  {t(`prod_${product.producerId}_ptitle`)}
+                </p>
+              </>
+            )}
           </div>
 
           {/* Reverso: historia del productor */}
