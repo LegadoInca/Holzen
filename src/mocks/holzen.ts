@@ -69,7 +69,7 @@ export const products: Product[] = [
       { label: 'Humedad', value: '\u2264 7%' },
       { label: 'Precio', value: '$7.10 / kg' },
     ],
-    image: '/Holzen/images/product1.jpeg',
+    image: '/Holzen/images/product1.png',
     priceNum: 28,
     priceLabel: '$28.00/kg',
     ctaLabel: 'Quiero beber su café',

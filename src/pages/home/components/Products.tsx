@@ -10,6 +10,8 @@ interface ProductsProps {
 
 const INK = '#0D0D0C';
 const GREEN = '#26E237'; // el verde de Holzen
+// Productos cuya tarjeta (al girarla) muestra solo el nombre, la frase representativa y el botón, sin la historia larga
+const HIDE_LONG_STORY = ['chuncho', 'bourbon', 'monzon'];
 const VISIBLE_COUNT = 4; // por ahora mostramos solo 4 productos
 const sans = "'Inter', system-ui, sans-serif";
 
@@ -57,6 +59,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
   // Tarjeta: foto redondeada (alturas alternadas) + texto debajo, como la referencia
   const renderCard = (product: typeof products[0], idx: number, mobile = false) => {
     const isFlipped = flipped[product.id];
+    const hideStory = HIDE_LONG_STORY.includes(product.id);
     const tall = mobile ? true : idx % 2 === 0;
     const ratio = mobile ? '4 / 5' : tall ? '2 / 3' : '1 / 1.05';
 
@@ -135,10 +138,12 @@ export default function Products({ onAddToCart }: ProductsProps) {
                 <h3 className="text-sm text-white leading-tight" style={{ fontFamily: sans, fontWeight: 700 }}>{product.producer.name}</h3>
                 <p className="text-white/60 text-[9px] font-sans tracking-widest uppercase">{product.producer.location}</p>
               </div>
-              <p className={`${tall ? 'text-xs mb-1.5' : 'text-[11px] mb-1'} italic`} style={{ fontFamily: sans, color: '#BBDA1F' }}>{t(`prod_${product.producerId}_ptitle`)}</p>
-              <div className={`${tall ? 'max-h-[110px] mb-3' : 'max-h-[52px] mb-2'} overflow-y-auto pr-1`}>
-                <p className={`text-white/75 ${tall ? 'text-[11px]' : 'text-[10px]'} font-sans leading-relaxed`}>{t(`prod_${product.producerId}_pstory`)}</p>
-              </div>
+              <p className={`${hideStory ? 'text-sm mb-3' : tall ? 'text-xs mb-1.5' : 'text-[11px] mb-1'} italic`} style={{ fontFamily: sans, color: '#BBDA1F' }}>{t(`prod_${product.producerId}_ptitle`)}</p>
+              {!hideStory && (
+                <div className={`${tall ? 'max-h-[110px] mb-3' : 'max-h-[52px] mb-2'} overflow-y-auto pr-1`}>
+                  <p className={`text-white/75 ${tall ? 'text-[11px]' : 'text-[10px]'} font-sans leading-relaxed`}>{t(`prod_${product.producerId}_pstory`)}</p>
+                </div>
+              )}
               <button
                 onClick={(e) => { e.stopPropagation(); handleAdd(product); }}
                 className={`relative w-full overflow-hidden font-sans font-bold ${tall ? 'py-2.5' : 'py-2'} rounded-full text-[10px] tracking-[0.15em] uppercase transition-transform hover:-translate-y-0.5 cursor-pointer whitespace-nowrap`}

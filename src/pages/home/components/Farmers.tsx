@@ -70,7 +70,7 @@ const Farmers = () => {
 
             <div className="relative">
               {/* Grilla 3 arriba + 3 abajo */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-9">
+              <div className={`grid grid-cols-2 sm:grid-cols-3 gap-x-5 gap-y-9 transition-opacity duration-300 ${showStory ? 'md:opacity-0 md:pointer-events-none' : ''}`}>
                 {shown.map((farmer, idx) => {
                   const selected = idx === cur;
                   return (
@@ -148,7 +148,7 @@ const Farmers = () => {
 
               {/* Historia del productor (se abre con el botón verde) */}
               <div
-                className="fixed inset-0 z-[70] md:absolute md:inset-0 md:z-30 p-3 md:p-0 flex items-center justify-center bg-black/50 md:bg-[#F7F4EA]/[0.97] md:backdrop-blur-md md:rounded-2xl"
+                className="fixed inset-0 z-[70] md:absolute md:inset-0 md:z-30 p-3 md:p-0 flex items-center justify-center bg-black/50 md:bg-transparent"
                 style={{
                   opacity: showStory ? 1 : 0,
                   pointerEvents: showStory ? 'auto' : 'none',
