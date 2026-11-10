@@ -11,7 +11,7 @@ interface ProductsProps {
 const INK = '#0D0D0C';
 const GREEN = '#26E237'; // el verde de Holzen
 // Productos SIN círculo clickeable del productor ni "Haz click aquí": la frase del productor va abajo, centrada, sobre la foto del producto
-const PHRASE_ON_IMAGE = ['chuncho'];
+const PHRASE_ON_IMAGE = ['chuncho', 'bourbon'];
 // Productos cuya tarjeta (al girarla) muestra solo el nombre, la frase representativa y el botón, sin la historia larga
 const HIDE_LONG_STORY = ['chuncho', 'bourbon', 'monzon'];
 const VISIBLE_COUNT = 4; // por ahora mostramos solo 4 productos
