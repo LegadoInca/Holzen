@@ -346,7 +346,7 @@ const CSS =
   ".cbh-nav button{display:flex;align-items:center;gap:10px;justify-content:flex-end;background:none;border:0;padding:5px 0;cursor:pointer;color:inherit;font:inherit}" +
   ".cbh-nav .cbh-tick{display:block;height:1px;width:14px;background:currentColor;opacity:.45;transition:width .4s cubic-bezier(.2,.8,.2,1),opacity .3s,background-color .3s}" +
   ".cbh-nav button[aria-current=step] .cbh-tick{width:34px;opacity:1;background:var(--cbh-lime)}" +
-  "@container cbh (orientation: portrait){.cbh-pour{top:11cqh!important;right:-12cqw!important;width:100cqw!important;transform:none!important}.cbh-left{left:7cqw!important;right:7cqw!important;top:auto!important;bottom:10cqh!important;max-width:none!important}" +
+  "@container cbh (orientation: portrait){.cbh-pour{top:9cqh!important;bottom:auto!important;right:-14cqw!important;width:118cqw!important;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 24%,#000 76%,transparent 100%)!important;mask-image:linear-gradient(to bottom,transparent 0%,#000 24%,#000 76%,transparent 100%)!important}.cbh-left{left:7cqw!important;right:7cqw!important;top:auto!important;bottom:10cqh!important;max-width:none!important}" +
   ".cbh-steps{gap:5cqw!important;bottom:7cqh!important}}" +
   "@container cbh (max-width: 720px){.cbh-hide-sm{display:none!important}}"
 
@@ -613,7 +613,8 @@ export default function CoffeeBeanHero({
       const proj = perspective(fov, W / H, Math.max(0.05, dist - 8), dist + 8)
       const vp = multiply(proj, lookAt(eye, [0, 0, 0]))
       const float = moving ? Math.sin(time * 1.1) * 0.04 : 0
-      const bob = transScale(0, float, 0, 0.6 + 0.4 * intro)
+      const beanVis = 1 - smoothstep(2.25, 2.8, coord)
+      const bob = transScale(0, float, 0, (0.6 + 0.4 * intro) * Math.max(beanVis, 0.0001))
       const model = multiply(bob, multiply(rotY(k.spin + spin + px * 0.4 + (1 - intro) * -1.2), multiply(rotX(py * 0.08), rotZ(k.roll))))
       // tueste: verde solo en portada; ya tostado desde "origen"
       const roastK = smoothstep(0.3, 0.95, coord)
@@ -623,6 +624,7 @@ export default function CoffeeBeanHero({
       const gr = k.size * minDim * 1.6
       glow.style.transform = "translate(" + (gx - gr).toFixed(1) + "px," + (gy - gr).toFixed(1) + "px)"
       glow.style.width = glow.style.height = (gr * 2).toFixed(1) + "px"
+      glow.style.opacity = String(beanVis)
 
       if (gl && prog) {
         const g = gl
@@ -639,7 +641,7 @@ export default function CoffeeBeanHero({
         g.uniform3f(loc.u_gold, GOLD[0], GOLD[1], GOLD[2])
         g.uniform1f(loc.u_roastK, roastK)
         g.uniformMatrix4fv(loc.u_model, false, model)
-        g.drawElements(g.TRIANGLES, mesh.index.length, g.UNSIGNED_SHORT, 0)
+        if (beanVis > 0.01) g.drawElements(g.TRIANGLES, mesh.index.length, g.UNSIGNED_SHORT, 0)
 
         // granos que orbitan en la escena "proceso"
         const sat = smoothstep(0, 1, clamp01(1.4 - Math.abs(coord - 2) * 1.5))
@@ -794,9 +796,13 @@ export default function CoffeeBeanHero({
             {...sc(3, "fade", 0.2)}
             className="cbh-pour pointer-events-none absolute"
             style={{
-              opacity: 0, right: "-2cqw", top: "50%", transform: "translateY(-50%)", width: "52cqw", aspectRatio: "16 / 9",
-              WebkitMaskImage: "radial-gradient(ellipse 50% 52% at 50% 50%, #000 58%, transparent 100%)",
-              maskImage: "radial-gradient(ellipse 50% 52% at 50% 50%, #000 58%, transparent 100%)",
+              opacity: 0, right: 0, bottom: 0, width: "min(64cqw, 112cqh)", aspectRatio: "16 / 9",
+              // solo se difuminan arriba (el chorro sale de la oscuridad) y a la izquierda;
+              // la taza llega completa hasta el borde inferior
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 26%), linear-gradient(to right, transparent 0%, #000 18%)",
+              maskImage: "linear-gradient(to bottom, transparent 0%, #000 26%), linear-gradient(to right, transparent 0%, #000 18%)",
+              WebkitMaskComposite: "source-in",
+              maskComposite: "intersect",
             }}
           >
             <video
