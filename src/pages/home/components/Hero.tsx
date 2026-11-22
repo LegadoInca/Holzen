@@ -1,19 +1,23 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 
 // ─────────────────────────────────────────────────────────────
-// Hero con video controlado por scroll ("Del grano a la taza").
-// El video avanza y retrocede según el scroll mientras el hero queda fijo.
-// Los MP4 están codificados con un keyframe por cuadro (-g 1) para que el
-// salto de cuadro sea fluido; si cambias el video, recodifícalo igual:
-//   ffmpeg -i in.mp4 -an -vf scale=1600:-2 -c:v libx264 -crf 24 -g 1 -pix_fmt yuv420p -movflags +faststart out.mp4
+// Hero con secuencia de cuadros controlada por scroll ("Del grano a la taza").
+// El video se exportó como imágenes WebP (public/hero-frames/) y se dibuja en
+// un <canvas>: es mucho más fluido que adelantar un <video> con el scroll.
+// Para cambiar el video, regenera los cuadros:
+//   ffmpeg -i video.mp4 -vf scale=1600:-2 -c:v libwebp -quality 72 public/hero-frames/desktop/%03d.webp
+//   ffmpeg -i video.mp4 -vf scale=900:-2  -c:v libwebp -quality 68 public/hero-frames/mobile/%03d.webp
+// y actualiza FRAME_COUNT.
 // ─────────────────────────────────────────────────────────────
-const HERO_VIDEO = '/Holzen/videos/del-grano-a-la-taza.mp4';
-const HERO_VIDEO_MOBILE = '/Holzen/videos/del-grano-a-la-taza-mobile.mp4';
-const HERO_POSTER = '/Holzen/images/hero-video-poster.jpg';
-// Largo del recorrido de scroll del hero (más alto = video más lento)
-const SCROLL_LENGTH = '320vh';
+const FRAME_COUNT = 156;
+const frameUrl = (dir: 'desktop' | 'mobile', i: number) =>
+  `/Holzen/hero-frames/${dir}/${String(i + 1).padStart(3, '0')}.webp`;
+// Largo del recorrido de scroll del hero (más bajo = video más rápido)
+const SCROLL_LENGTH = '240vh';
+// Parte del scroll que ocupa el video; el resto es para mostrar el texto
+const VIDEO_END = 0.78;
 // Logo del hero: versión con "coffee" en blanco (el navbar usa holzen-logo.png)
 const LOGO = '/Holzen/images/holzen-logo-coffee-blanco.png';
 
@@ -28,42 +32,82 @@ const Hero = () => {
   const { t } = useTranslation();
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const targetTime = useRef(0);
-  const [src, setSrc] = useState(HERO_VIDEO);
-
-  useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) setSrc(HERO_VIDEO_MOBILE);
-  }, []);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const framesRef = useRef<HTMLImageElement[]>([]);
+  const target = useRef(0);   // cuadro objetivo según el scroll
+  const current = useRef(0);  // cuadro mostrado (interpolado)
+  const drawn = useRef(-1);
 
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
 
-  // Progreso del scroll → segundo del video
   useMotionValueEvent(scrollYProgress, 'change', (p) => {
-    const v = videoRef.current;
-    if (v && v.duration) targetTime.current = p * (v.duration - 0.05);
+    target.current = Math.min(p / VIDEO_END, 1) * (FRAME_COUNT - 1);
   });
 
-  // Interpolación suave hacia el cuadro objetivo (evita saltos bruscos)
+  // Dibuja el cuadro más cercano ya cargado, tipo "object-cover"
+  const draw = (index: number) => {
+    const canvas = canvasRef.current;
+    const frames = framesRef.current;
+    if (!canvas || !frames.length) return;
+    let i = index;
+    while (i > 0 && !(frames[i]?.complete && frames[i].naturalWidth)) i--;
+    const img = frames[i];
+    if (!img?.complete || !img.naturalWidth) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const cw = canvas.width, ch = canvas.height;
+    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+    const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
+    ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+    drawn.current = index;
+  };
+
+  // Precarga de cuadros + tamaño del canvas
+  useEffect(() => {
+    const dir = window.matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop';
+    const frames: HTMLImageElement[] = [];
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const img = new Image();
+      img.decoding = 'async';
+      img.src = frameUrl(dir, i);
+      if (i === 0) img.onload = () => draw(0);
+      frames.push(img);
+    }
+    framesRef.current = frames;
+
+    const resize = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.clientWidth * dpr;
+      canvas.height = canvas.clientHeight * dpr;
+      draw(Math.round(current.current));
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  }, []);
+
+  // Bucle de animación: interpolación suave hacia el cuadro objetivo
   useEffect(() => {
     if (reduceMotion) return;
     let raf = 0;
     const tick = () => {
-      const v = videoRef.current;
-      if (v && v.readyState >= 1) {
-        const diff = targetTime.current - v.currentTime;
-        if (Math.abs(diff) > 0.01 && !v.seeking) v.currentTime += diff * 0.2;
-      }
+      current.current += (target.current - current.current) * 0.25;
+      const idx = Math.round(current.current);
+      if (idx !== drawn.current) draw(idx);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [reduceMotion]);
 
-  // El texto se desvanece y sube al empezar el scroll; las sombras se aclaran para lucir el video
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.18], [0, -60]);
-  const shadeOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0.25]);
+  // Al inicio solo el video; el titular, botones y sombras aparecen al final
+  const reveal = reduceMotion ? [0, 0.001] : [VIDEO_END - 0.12, VIDEO_END + 0.08];
+  const contentOpacity = useTransform(scrollYProgress, reveal, [0, 1]);
+  const contentY = useTransform(scrollYProgress, reveal, [50, 0]);
+  const contentEvents = useTransform(contentOpacity, (o) => (o > 0.5 ? 'auto' : 'none'));
+  const shadeOpacity = useTransform(scrollYProgress, reveal, [0, 1]);
   const hintOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
 
   return (
@@ -74,18 +118,8 @@ const Hero = () => {
       style={{ background: INK, height: reduceMotion ? '100vh' : SCROLL_LENGTH }}
     >
       <div className="sticky top-0 h-screen min-h-[600px] w-full overflow-hidden">
-      {/* Video controlado por scroll */}
-      <video
-        ref={videoRef}
-        key={src}
-        src={src}
-        poster={HERO_POSTER}
-        muted
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+      {/* Secuencia de cuadros controlada por scroll */}
+      <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 w-full h-full" />
 
       <motion.div className="absolute inset-0" style={{ opacity: shadeOpacity }}>
 
@@ -117,7 +151,7 @@ const Hero = () => {
       {/* Contenido */}
       <motion.div
         className="relative z-10 h-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col"
-        style={{ opacity: contentOpacity, y: contentY }}
+        style={{ opacity: contentOpacity, y: contentY, pointerEvents: contentEvents }}
       >
         <div className="flex-1 flex items-center pt-[10vh]">
           <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
