@@ -219,13 +219,13 @@ type Key = { spin: number; el: number; size: number; ox: number; oy: number; rol
 const KEYS: Key[] = [
   { spin: 0.5, el: 34, size: 0.46, ox: 0, oy: 0.24, roll: 0.3 },
   { spin: 1.9, el: 72, size: 0.42, ox: 0.42, oy: 0.0, roll: 0.1 },
-  { spin: 3.0, el: 28, size: 0.2, ox: 0, oy: 0.22, roll: -0.25 },
+  { spin: 3.0, el: 28, size: 0.34, ox: 0, oy: 0.14, roll: -0.25 },
   { spin: 3.7, el: 56, size: 0.17, ox: 0.04, oy: 0.1, roll: 0.22 },
 ]
 const KEYS_TALL: Partial<Key>[] = [
   { size: 0.42, oy: 0.3 },
   { size: 0.42, ox: 0, oy: 0.4 },
-  { size: 0.28, oy: 0.28 },
+  { size: 0.34, oy: 0.26 },
   { size: 0.2, ox: -0.5, oy: 0.66 },
 ]
 const SCENES = KEYS.length
@@ -243,8 +243,8 @@ const keyAt = (coord: number, tall: boolean): Key => {
 // granos satélite de la escena "proceso"
 const SATS = Array.from({ length: 9 }, (_, i) => {
   const a = (i / 9) * Math.PI * 2
-  const r = 2.3 + (i % 3) * 0.45
-  return { a, r, y: Math.sin(i * 2.1) * 0.7, s: 0.32 + (i % 4) * 0.05, rx: i * 1.7, ry: i * 0.9 }
+  const r = 1.75 + (i % 3) * 0.32
+  return { a, r, y: Math.sin(i * 2.1) * 0.45, s: 0.4 + (i % 4) * 0.06, rx: i * 1.7, ry: i * 0.9 }
 })
 
 const VERT = `
@@ -869,7 +869,7 @@ export default function CoffeeBeanHero({
           </div>
           <div className="cbh-steps absolute flex justify-center" style={{ left: "6cqw", right: "6cqw", bottom: "9cqh", gap: "6cqw" }}>
             {copy.steps.map((s, i) => (
-              <div key={s} {...sc(2, "clip", 0.15 + i * 0.15)} className="text-center" style={hidden}>
+              <div key={i} {...sc(2, "clip", 0.15 + i * 0.15)} className="text-center" style={hidden}>
                 <div style={{ ...sans, fontSize: 11, letterSpacing: "0.3em", color: lime, marginBottom: 6 }}>{String(i + 1).padStart(2, "0")}</div>
                 <div style={{ ...display, fontSize: "min(3.6cqw, 5.2cqh)", lineHeight: 1, fontStyle: "italic" }}>{s}</div>
               </div>
