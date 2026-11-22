@@ -1,13 +1,19 @@
 import { useTranslation } from 'react-i18next';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 
 // ─────────────────────────────────────────────────────────────
-// Imagen única del hero.
-// Cuando tengas la foto final, súbela a public/images/ y cambia solo esta línea.
-// Medida recomendada: 1920 × 1080 px (16:9), JPG/WebP, idealmente < 400 KB.
-// La foto se muestra a color, tal cual (sin filtro).
-// Sujeto a la DERECHA; la mitad izquierda debe ser tranquila/oscura (ahí va el texto).
+// Hero con video controlado por scroll ("Del grano a la taza").
+// El video avanza y retrocede según el scroll mientras el hero queda fijo.
+// Los MP4 están codificados con un keyframe por cuadro (-g 1) para que el
+// salto de cuadro sea fluido; si cambias el video, recodifícalo igual:
+//   ffmpeg -i in.mp4 -an -vf scale=1600:-2 -c:v libx264 -crf 24 -g 1 -pix_fmt yuv420p -movflags +faststart out.mp4
 // ─────────────────────────────────────────────────────────────
-const HERO_IMAGE = '/Holzen/images/hero.png';
+const HERO_VIDEO = '/Holzen/videos/del-grano-a-la-taza.mp4';
+const HERO_VIDEO_MOBILE = '/Holzen/videos/del-grano-a-la-taza-mobile.mp4';
+const HERO_POSTER = '/Holzen/images/hero-video-poster.jpg';
+// Largo del recorrido de scroll del hero (más alto = video más lento)
+const SCROLL_LENGTH = '320vh';
 // Logo del hero: versión con "coffee" en blanco (el navbar usa holzen-logo.png)
 const LOGO = '/Holzen/images/holzen-logo-coffee-blanco.png';
 
@@ -20,20 +26,68 @@ const scrollTo = (id: string) => {
 
 const Hero = () => {
   const { t } = useTranslation();
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const targetTime = useRef(0);
+  const [src, setSrc] = useState(HERO_VIDEO);
+
+  useEffect(() => {
+    if (window.matchMedia('(max-width: 767px)').matches) setSrc(HERO_VIDEO_MOBILE);
+  }, []);
+
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end end'] });
+
+  // Progreso del scroll → segundo del video
+  useMotionValueEvent(scrollYProgress, 'change', (p) => {
+    const v = videoRef.current;
+    if (v && v.duration) targetTime.current = p * (v.duration - 0.05);
+  });
+
+  // Interpolación suave hacia el cuadro objetivo (evita saltos bruscos)
+  useEffect(() => {
+    if (reduceMotion) return;
+    let raf = 0;
+    const tick = () => {
+      const v = videoRef.current;
+      if (v && v.readyState >= 1) {
+        const diff = targetTime.current - v.currentTime;
+        if (Math.abs(diff) > 0.01 && !v.seeking) v.currentTime += diff * 0.2;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [reduceMotion]);
+
+  // El texto se desvanece y sube al empezar el scroll; las sombras se aclaran para lucir el video
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.18], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.18], [0, -60]);
+  const shadeOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0.25]);
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
 
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden h-screen min-h-[600px]"
-      style={{ background: INK }}
+      ref={sectionRef}
+      className="relative w-full"
+      style={{ background: INK, height: reduceMotion ? '100vh' : SCROLL_LENGTH }}
     >
-      {/* Foto única, a color */}
-      <img
-        src={HERO_IMAGE}
-        alt=""
+      <div className="sticky top-0 h-screen min-h-[600px] w-full overflow-hidden">
+      {/* Video controlado por scroll */}
+      <video
+        ref={videoRef}
+        key={src}
+        src={src}
+        poster={HERO_POSTER}
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ objectPosition: '68% 35%' }}
       />
+
+      <motion.div className="absolute inset-0" style={{ opacity: shadeOpacity }}>
 
       {/* Oscurecido lateral para que el texto lima se lea (como la referencia) */}
       <div
@@ -58,9 +112,13 @@ const Hero = () => {
         style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 24%)' }}
       />
       <div className="absolute inset-0 bg-black/30 md:hidden" />
+      </motion.div>
 
       {/* Contenido */}
-      <div className="relative z-10 h-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col">
+      <motion.div
+        className="relative z-10 h-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col"
+        style={{ opacity: contentOpacity, y: contentY }}
+      >
         <div className="flex-1 flex items-center pt-[10vh]">
           <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
             {/* Titular + botones */}
@@ -120,6 +178,23 @@ const Hero = () => {
         >
           {t('hero_eyebrow')}
         </p>
+      </motion.div>
+
+      {/* Indicador de scroll */}
+      {!reduceMotion && (
+        <motion.div
+          className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+          style={{ opacity: hintOpacity }}
+        >
+          <span className="text-[10px] tracking-[0.3em] uppercase" style={{ color: LIME }}>Scroll</span>
+          <motion.span
+            className="block w-px h-8"
+            style={{ background: LIME, transformOrigin: 'top' }}
+            animate={{ scaleY: [0, 1, 0], y: [0, 0, 16] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </motion.div>
+      )}
       </div>
     </section>
   );
