@@ -46,6 +46,8 @@ export type CoffeeBeanHeroProps = {
   cream?: string
   lime?: string
   gold?: string
+  /** Parte inferior de la última pantalla que se recorta (la sección siguiente sube sobre ella). */
+  tailCut?: string
   /** Alturas de pantalla de scroll por escena (más bajo = más rápido). */
   sceneScroll?: number
   className?: string
@@ -346,7 +348,7 @@ const CSS =
   ".cbh-nav button{display:flex;align-items:center;gap:10px;justify-content:flex-end;background:none;border:0;padding:5px 0;cursor:pointer;color:inherit;font:inherit}" +
   ".cbh-nav .cbh-tick{display:block;height:1px;width:14px;background:currentColor;opacity:.45;transition:width .4s cubic-bezier(.2,.8,.2,1),opacity .3s,background-color .3s}" +
   ".cbh-nav button[aria-current=step] .cbh-tick{width:34px;opacity:1;background:var(--cbh-lime)}" +
-  "@container cbh (orientation: portrait){.cbh-pour{top:2cqh!important;bottom:auto!important;right:-2cqw!important;width:106cqw!important;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 80%,transparent 100%)!important;mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 80%,transparent 100%)!important}.cbh-left{left:7cqw!important;right:7cqw!important;top:auto!important;bottom:10cqh!important;max-width:none!important}" +
+  "@container cbh (orientation: portrait){.cbh-pour{top:-3cqh!important;bottom:auto!important;right:0!important;width:88cqw!important;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 80%,transparent 100%),linear-gradient(to right,transparent 0%,#000 24%)!important;mask-image:linear-gradient(to bottom,transparent 0%,#000 20%,#000 80%,transparent 100%),linear-gradient(to right,transparent 0%,#000 24%)!important}.cbh-left{left:7cqw!important;right:7cqw!important;top:auto!important;bottom:19cqh!important;max-width:none!important}" +
   ".cbh-steps{gap:5cqw!important;bottom:7cqh!important}}" +
   "@container cbh (max-width: 720px){.cbh-hide-sm{display:none!important}}"
 
@@ -373,6 +375,7 @@ export default function CoffeeBeanHero({
   lime = "#BBDA1F",
   gold = "#C8A96E",
   sceneScroll = 0.75,
+  tailCut = "16svh",
   className = "",
 }: CoffeeBeanHeroProps) {
   const rootRef = React.useRef<HTMLElement | null>(null)
@@ -772,7 +775,7 @@ export default function CoffeeBeanHero({
       id={id}
       ref={rootRef}
       className={"relative w-full " + className}
-      style={{ height: "calc(100svh * " + (1 + (SCENES - 1) * sceneScroll).toFixed(3) + ")", background: ink }}
+      style={{ height: "calc(100svh * " + (1 + (SCENES - 1) * sceneScroll).toFixed(3) + ")", background: ink, marginBottom: "calc(-1 * " + tailCut + ")" }}
     >
       <style>{CSS}</style>
       <div
@@ -796,11 +799,13 @@ export default function CoffeeBeanHero({
             {...sc(3, "fade", 0.2)}
             className="cbh-pour pointer-events-none absolute"
             style={{
-              opacity: 0, right: 0, bottom: 0, width: "min(64cqw, 92cqh)", aspectRatio: "16 / 13",
+              opacity: 0, right: 0, bottom: "calc(" + tailCut + " - 2cqh)", width: "min(62cqw, 80cqh)", aspectRatio: "16 / 13",
               // solo se difuminan arriba (el chorro sale de la oscuridad) y a la izquierda;
               // la taza llega completa hasta el borde inferior
-              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 20%), linear-gradient(to right, transparent 0%, #000 18%)",
-              maskImage: "linear-gradient(to bottom, transparent 0%, #000 20%), linear-gradient(to right, transparent 0%, #000 18%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, #000 22%, #000 86%, transparent 100%), linear-gradient(to right, transparent 0%, #000 30%, #000 94%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, transparent 0%, #000 22%, #000 86%, transparent 100%), linear-gradient(to right, transparent 0%, #000 30%, #000 94%, transparent 100%)",
+              // "lighten": donde el video es más oscuro que el fondo, manda el fondo → sin recuadro
+              mixBlendMode: "lighten",
               WebkitMaskComposite: "source-in",
               maskComposite: "intersect",
             }}
@@ -879,7 +884,7 @@ export default function CoffeeBeanHero({
 
         {/* ============================ 3 · final ============================ */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="cbh-left absolute" style={{ left: "6cqw", top: "52%", transform: "translateY(-50%)", maxWidth: "46cqw" }}>
+          <div className="cbh-left absolute" style={{ left: "6cqw", top: "calc(52% - " + tailCut + " / 2)", transform: "translateY(-50%)", maxWidth: "46cqw" }}>
             {logo && (
               <img {...sc(3, "rise", 0)} src={logo} alt="Holzen coffee" className="block w-auto" style={{ ...hidden, height: "min(14cqh, 130px)", marginBottom: "3cqh" }} />
             )}
