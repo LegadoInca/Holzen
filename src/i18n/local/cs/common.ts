@@ -13,6 +13,16 @@ const cs = {
   hero_cta_primary: 'VYTVOŘIT DOPAD',
   hero_cta_secondary: 'Naši farmáři',
 
+  // Hero (grano 3D)
+  bean_origin_label: 'Původ',
+  bean_origin_title: 'Jedno zrno.\nJedna rodina.',
+  bean_origin_meta: 'Severní peruánské Andy · 1 200–1 800 m n. m.',
+  bean_process_label: 'Od zrna do šálku',
+  bean_step1: 'Ručně sbíráno',
+  bean_step2: 'Sušeno na slunci',
+  bean_step3: 'Pomalu praženo',
+  bean_scroll: 'Posuňte',
+
   // Products
   products_eyebrow: 'Katalog',
   products_title_line1: 'Nekupuj kávu',

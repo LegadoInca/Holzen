@@ -1,16 +1,13 @@
 import { useTranslation } from 'react-i18next';
+import CoffeeBeanHero from '@/components/ui/coffee-bean-hero';
 
 // ─────────────────────────────────────────────────────────────
-// Video de fondo del hero ("Del grano a la taza"), en bucle y sin sonido.
-// Para cambiarlo, sube el MP4 a public/videos/ y cambia estas líneas.
+// Hero: grano de café 3D (WebGL) controlado por scroll.
+// 4 escenas: portada → origen → proceso (el grano se tuesta) → titular + botones.
+// Velocidad del scroll: prop `sceneScroll` (más bajo = más rápido).
 // ─────────────────────────────────────────────────────────────
-const HERO_VIDEO = '/Holzen/videos/del-grano-a-la-taza.mp4';
-const HERO_POSTER = '/Holzen/images/hero-video-poster.jpg';
 // Logo del hero: versión con "coffee" en blanco (el navbar usa holzen-logo.png)
 const LOGO = '/Holzen/images/holzen-logo-coffee-blanco.png';
-
-const LIME = '#BBDA1F';
-const INK = '#0D0D0C';
 
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -20,115 +17,27 @@ const Hero = () => {
   const { t } = useTranslation();
 
   return (
-    <section
+    <CoffeeBeanHero
       id="hero"
-      className="relative w-full overflow-hidden h-screen min-h-[600px]"
-      style={{ background: INK }}
-    >
-      {/* Video de fondo en bucle */}
-      <video
-        src={HERO_VIDEO}
-        poster={HERO_POSTER}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-
-      <div className="absolute inset-0">
-
-
-      {/* Oscurecido lateral para que el texto lima se lea (como la referencia) */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.60) 36%, rgba(0,0,0,0.14) 68%, rgba(0,0,0,0) 100%)',
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0) 40%)' }}
-      />
-      {/* Sombra suave abajo a la derecha: asegura que la descripción se lea sobre cualquier foto */}
-      <div
-        className="absolute inset-0 hidden md:block"
-        style={{ background: 'radial-gradient(ellipse 55% 50% at 84% 80%, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0) 72%)' }}
-      />
-      {/* Degradado arriba: el navbar transparente se lee sobre cualquier foto */}
-      <div
-        className="absolute inset-0"
-        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 24%)' }}
-      />
-      <div className="absolute inset-0 bg-black/30 md:hidden" />
-      </div>
-
-      {/* Contenido */}
-      <div className="relative z-10 h-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col">
-        <div className="flex-1 flex items-center pt-[10vh]">
-          <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
-            {/* Titular + botones */}
-            <div className="max-w-3xl">
-              <img
-                src={LOGO}
-                alt="Holzen coffee"
-                className="h-24 md:h-36 w-auto block mb-6 md:mb-8"
-              />
-              <h1
-                className="whitespace-pre-line"
-                style={{
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  fontWeight: 600,
-                  fontSize: 'clamp(1.5rem, 3.4vw, 2.85rem)',
-                  lineHeight: 1.03,
-                  letterSpacing: '-0.025em',
-                  color: LIME,
-                  margin: '0 0 1.75rem',
-                }}
-              >
-                {t('hero_subtitle')}
-              </h1>
-
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => scrollTo('products')}
-                  className="inline-flex items-center rounded-full px-6 py-2.5 text-sm font-medium tracking-wide uppercase whitespace-nowrap cursor-pointer transition-all duration-200 hover:bg-white hover:border-white"
-                  style={{ background: LIME, border: `1px solid ${LIME}`, color: INK }}
-                >
-                  {t('hero_cta_primary')}
-                </button>
-                <button
-                  onClick={() => scrollTo('farmers')}
-                  className="inline-flex items-center rounded-full px-6 py-2.5 text-sm font-medium tracking-wide whitespace-nowrap cursor-pointer transition-all duration-200 hover:!bg-[#BBDA1F] hover:!text-[#0D0D0C]"
-                  style={{ background: 'transparent', border: `1px solid ${LIME}`, color: LIME }}
-                >
-                  {t('hero_cta_secondary')}
-                </button>
-              </div>
-            </div>
-
-            {/* Descripción, pequeña y a la derecha */}
-            <p
-              className="md:max-w-[22rem] text-[13px] leading-[1.5]"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", color: LIME, textShadow: '0 1px 10px rgba(0,0,0,0.7)' }}
-            >
-              {t('hero_desc')}
-            </p>
-          </div>
-        </div>
-
-        {/* Pie pequeño */}
-        <p
-          className="pb-5 md:pb-6 text-[11px] tracking-[0.18em] uppercase"
-          style={{ fontFamily: "'Inter', system-ui, sans-serif", color: LIME, opacity: 0.85 }}
-        >
-          {t('hero_eyebrow')}
-        </p>
-      </div>
-    </section>
+      logo={LOGO}
+      sceneScroll={0.75}
+      onPrimary={() => scrollTo('products')}
+      onSecondary={() => scrollTo('farmers')}
+      copy={{
+        eyebrow: t('hero_eyebrow'),
+        word: 'HOLZEN',
+        desc: t('hero_desc'),
+        scroll: t('bean_scroll'),
+        originLabel: t('bean_origin_label'),
+        originTitle: t('bean_origin_title'),
+        originMeta: t('bean_origin_meta'),
+        processLabel: t('bean_process_label'),
+        steps: [t('bean_step1'), t('bean_step2'), t('bean_step3')],
+        title: t('hero_subtitle'),
+        ctaPrimary: t('hero_cta_primary'),
+        ctaSecondary: t('hero_cta_secondary'),
+      }}
+    />
   );
 };
 

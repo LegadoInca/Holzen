@@ -13,6 +13,16 @@ const es = {
   hero_cta_primary: 'GENERAR IMPACTO',
   hero_cta_secondary: 'Nuestros Productores',
 
+  // Hero (grano 3D)
+  bean_origin_label: 'Origen',
+  bean_origin_title: 'Un grano.\nUna familia.',
+  bean_origin_meta: 'Andes del norte del Perú · 1,200–1,800 msnm',
+  bean_process_label: 'Del grano a la taza',
+  bean_step1: 'Cosecha a mano',
+  bean_step2: 'Secado al sol',
+  bean_step3: 'Tostado lento',
+  bean_scroll: 'Desliza',
+
   // Products
   products_eyebrow: 'Catálogo',
   products_title_line1: 'No compres café',

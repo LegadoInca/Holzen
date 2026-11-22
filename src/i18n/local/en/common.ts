@@ -13,6 +13,16 @@ const en = {
   hero_cta_primary: 'MAKE AN IMPACT',
   hero_cta_secondary: 'Our Farmers',
 
+  // Hero (grano 3D)
+  bean_origin_label: 'Origin',
+  bean_origin_title: 'One bean.\nOne family.',
+  bean_origin_meta: 'Northern Peruvian Andes · 1,200–1,800 masl',
+  bean_process_label: 'From bean to cup',
+  bean_step1: 'Hand-picked',
+  bean_step2: 'Sun-dried',
+  bean_step3: 'Slow-roasted',
+  bean_scroll: 'Scroll',
+
   // Products
   products_eyebrow: 'Catalog',
   products_title_line1: 'Don\'t buy coffee',

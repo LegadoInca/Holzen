@@ -13,6 +13,16 @@ const de = {
   hero_cta_primary: 'WIRKUNG ERZIELEN',
   hero_cta_secondary: 'Unsere Bauern',
 
+  // Hero (grano 3D)
+  bean_origin_label: 'Herkunft',
+  bean_origin_title: 'Eine Bohne.\nEine Familie.',
+  bean_origin_meta: 'Nordperuanische Anden · 1.200–1.800 m ü. M.',
+  bean_process_label: 'Von der Bohne zur Tasse',
+  bean_step1: 'Handgepflückt',
+  bean_step2: 'Sonnengetrocknet',
+  bean_step3: 'Langsam geröstet',
+  bean_scroll: 'Scrollen',
+
   // Products
   products_eyebrow: 'Katalog',
   products_title_line1: 'Kauf keinen Kaffee',
