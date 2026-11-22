@@ -40,12 +40,18 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 10);
-      // Mientras el hero está detrás del navbar, la barra es transparente
-      setOnHero(window.scrollY < window.innerHeight - 90);
+      // Mientras el hero (que ahora es más alto por el scroll del video) está
+      // detrás del navbar, la barra es transparente
+      const hero = document.getElementById('hero');
+      setOnHero(hero ? hero.getBoundingClientRect().bottom > 90 : window.scrollY < window.innerHeight - 90);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -83,9 +89,13 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: onHero ? 'transparent' : 'rgba(247,244,234,0.96)',
-          backdropFilter: onHero ? 'none' : 'blur(8px)',
-          WebkitBackdropFilter: onHero ? 'none' : 'blur(8px)',
+          // Sobre el hero: velo oscuro suave para leer el menú sobre cuadros claros.
+          // Fuera del hero: vidrio translúcido que deja ver el degradado de las secciones.
+          background: onHero
+            ? 'linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 100%)'
+            : 'rgba(255,255,255,0.55)',
+          backdropFilter: onHero ? 'none' : 'blur(14px) saturate(1.4)',
+          WebkitBackdropFilter: onHero ? 'none' : 'blur(14px) saturate(1.4)',
           borderBottom: onHero ? '1px solid transparent' : '1px solid rgba(13,13,12,0.08)',
           boxShadow: scrolled && !onHero ? '0 8px 24px rgba(13,13,12,0.07)' : 'none',
         }}
