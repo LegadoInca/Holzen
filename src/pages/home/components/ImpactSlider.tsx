@@ -1,3 +1,4 @@
+import { GradientBackground } from '@/components/ui/jade-sky';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -152,8 +153,9 @@ const ImpactSlider = () => {
   return (
     <section
       className="relative py-10 md:py-14 px-4 md:px-6 overflow-hidden"
-      style={{ background: '#F7F4EA', borderTop: '1px solid rgba(13,13,12,0.08)' }}
+      style={{ background: '#CFE9F0', borderTop: '1px solid rgba(13,13,12,0.08)' }}
     >
+      <div className="pointer-events-none absolute inset-0"><GradientBackground /></div>
 
       <div className="max-w-5xl mx-auto" style={{position:'relative', zIndex:10}}>
 

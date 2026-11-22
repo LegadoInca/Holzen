@@ -1,3 +1,4 @@
+import { GradientBackground } from '@/components/ui/jade-sky';
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { reviews } from '@/mocks/reviews';
@@ -47,8 +48,9 @@ const Reviews = () => {
     <section
       id="reviews"
       className="relative py-14 md:py-20 px-4 md:px-6 overflow-hidden"
-      style={{ background: '#F7F4EA', borderTop: '1px solid rgba(13,13,12,0.08)' }}
+      style={{ background: '#CFE9F0', borderTop: '1px solid rgba(13,13,12,0.08)' }}
     >
+      <div className="pointer-events-none absolute inset-0"><GradientBackground /></div>
       <div className="relative max-w-6xl mx-auto">
         {/* Encabezado */}
         <div className="text-center mb-10 md:mb-14">

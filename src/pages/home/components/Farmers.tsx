@@ -1,3 +1,4 @@
+import { GradientBackground } from '@/components/ui/jade-sky';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { farmers } from '../../../mocks/holzen';
@@ -44,7 +45,8 @@ const Farmers = () => {
   const counter = `${String(cur + 1).padStart(2, '0')} / ${String(shown.length).padStart(2, '0')}`;
 
   return (
-    <section id="farmers" className="relative w-full overflow-hidden py-12 md:py-16" style={{ background: '#F7F4EA' }}>
+    <section id="farmers" className="relative w-full overflow-hidden py-12 md:py-16" style={{ background: '#CFE9F0' }}>
+      <div className="pointer-events-none absolute inset-0"><GradientBackground /></div>
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 lg:pl-32 lg:pr-12">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
           {/* ───────── Columna izquierda: encabezado + grilla de productores ───────── */}
