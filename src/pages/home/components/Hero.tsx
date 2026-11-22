@@ -20,6 +20,9 @@ const Hero = () => {
     <CoffeeBeanHero
       id="hero"
       logo={LOGO}
+      textureFront="/Holzen/images/bean/front.webp"
+      textureBack="/Holzen/images/bean/back.webp"
+      wordColor="#26E237"
       sceneScroll={0.75}
       onPrimary={() => scrollTo('products')}
       onSecondary={() => scrollTo('farmers')}

@@ -1,4 +1,5 @@
 import * as React from "react"
+import { BEAN_PROFILE } from "./coffee-bean-profile"
 
 /**
  * CoffeeBeanHero — hero controlado por scroll con un grano de café 3D
@@ -28,6 +29,12 @@ export type CoffeeBeanHeroCopy = {
 export type CoffeeBeanHeroProps = {
   copy: CoffeeBeanHeroCopy
   logo?: string
+  /** Foto del lado plano (con la hendidura), sin fondo, alineada horizontalmente. */
+  textureFront?: string
+  /** Foto del lomo redondeado. */
+  textureBack?: string
+  /** Color de la palabra de portada. */
+  wordColor?: string
   onPrimary?: () => void
   onSecondary?: () => void
   id?: string
@@ -108,43 +115,51 @@ const hexToLinear = (hex: string): V3 => {
 
 // #region el grano
 /**
- * Grano de café: elipsoide con el eje largo en X, la cara plana hacia +Y y,
- * sobre ella, la hendidura en forma de S que recorre el grano de punta a punta.
+ * Grano de café con la silueta exacta de la foto real (BEAN_PROFILE): eje largo
+ * en X, cara plana con la hendidura hacia +Y, lomo redondeado hacia -Y.
  */
-const RL = 1.0 // semieje largo
-const RW = 0.56 // alto (cara plana → lomo)
-const RD = 0.72 // ancho
+const RL = 1.0
+const P = BEAN_PROFILE
+const lerpProfile = (arr: readonly number[], x: number) => {
+  const f = Math.min(Math.max((x + 1) / 2, 0), 1) * (arr.length - 1)
+  const i = Math.min(Math.floor(f), arr.length - 2)
+  const t = f - i
+  return arr[i] + (arr[i + 1] - arr[i]) * t
+}
+const HW_MAX = Math.max(...P.top.map((t, i) => (P.bot[i] - t) / 2))
+const FRONT_H = 0.34 // alto de la cara plana (relativo al ancho)
+const BACK_H = 0.62 // alto del lomo
 
 const beanPoint = (u: number, v: number): { p: V3; occ: number } => {
   const sv = Math.sin(v)
-  const cv = Math.cos(v)
   const su = Math.sin(u)
   const cu = Math.cos(u)
-  // pequeñas irregularidades para que no parezca una píldora
-  const wob = 1 + 0.025 * Math.sin(3 * u + 1.3) * sv + 0.015 * Math.sin(5 * v + 2.1)
-  const x = RL * cv * wob
-  let y = RW * sv * su * wob
-  const z = RD * sv * cu * wob
+  const x = RL * Math.cos(v)
+  const top = lerpProfile(P.top, x)
+  const bot = lerpProfile(P.bot, x)
+  const close = 1 - Math.pow(1 - sv, 6) // cierra las puntas
+  const hw = ((bot - top) / 2) * close
+  const zc = (bot + top) / 2
+  const hN = Math.pow(Math.max(hw, 0) / HW_MAX, 0.7) * HW_MAX
+  const z = zc + hw * cu
+  let y = su * hN * (su > 0 ? FRONT_H / HW_MAX * 0.95 : BACK_H / HW_MAX * 0.95) * HW_MAX
   let occ = 0
   if (su > 0) {
-    // aplanar la cara frontal con continuidad suave
-    y *= 1 - 0.5 * su
-    // hendidura en S
-    const t = x / RL
-    const cz = 0.09 * Math.sin(t * Math.PI * 1.15)
-    const d = (z - cz) / 0.075
-    const taper = Math.max(0, 1 - Math.pow(Math.abs(t), 3.2))
-    const face = Math.min(1, su * 2.2)
+    // hendidura: sigue la línea medida en la foto
+    const cz = lerpProfile(P.crease, x)
+    const d = (z - cz) / 0.04
+    const taper = Math.max(0, 1 - Math.pow(Math.abs(x), 6))
+    const face = Math.min(1, su * 2.5)
     const g = Math.exp(-d * d) * taper * face
-    y -= 0.2 * g
+    y -= 0.085 * g
     occ = g
   }
   return { p: [x, y, z], occ }
 }
 
 const buildBean = () => {
-  const U = 96
-  const V = 64
+  const U = 128
+  const V = 96
   const data: number[] = []
   const idx: number[] = []
   const e = 0.002
@@ -156,8 +171,8 @@ const buildBean = () => {
       const pu = sub(beanPoint(u + e, v).p, beanPoint(u - e, v).p)
       const pv = sub(beanPoint(u, v + e).p, beanPoint(u, v - e).p)
       let n = norm(cross(pu, pv))
-      if (!Number.isFinite(n[0]) || Math.hypot(...pu) < 1e-6) n = norm(p)
-      if (dot(n, p) < 0) n = [-n[0], -n[1], -n[2]]
+      if (!Number.isFinite(n[0]) || Math.hypot(...pu) < 1e-7) n = [Math.sign(p[0]) || 1, 0, 0]
+      if (dot(n, [p[0], p[1], p[2] - (P.zmin + P.zmax) / 2]) < 0) n = [-n[0], -n[1], -n[2]]
       data.push(p[0], p[1], p[2], n[0], n[1], n[2], occ)
     }
   }
@@ -201,7 +216,7 @@ const KEYS: Key[] = [
   { spin: 0.5, el: 34, size: 0.46, ox: 0, oy: 0.24, roll: 0.3 },
   { spin: 1.9, el: 72, size: 0.42, ox: 0.42, oy: 0.0, roll: 0.1 },
   { spin: 3.0, el: 28, size: 0.2, ox: 0, oy: 0.22, roll: -0.25 },
-  { spin: 4.2, el: 24, size: 0.4, ox: 0.46, oy: -0.02, roll: 0.45 },
+  { spin: 3.7, el: 56, size: 0.44, ox: 0.46, oy: -0.02, roll: 0.22 },
 ]
 const KEYS_TALL: Partial<Key>[] = [
   { size: 0.42, oy: 0.3 },
@@ -235,53 +250,87 @@ attribute float a_occ;
 uniform mat4 u_vp;
 uniform mat4 u_model;
 uniform vec2 u_offset;
+uniform vec2 u_zr;
 varying vec3 v_n;
+varying vec3 v_ln;
 varying vec3 v_w;
+varying vec2 v_uv;
 varying float v_occ;
 void main() {
   vec4 w = u_model * vec4(a_pos, 1.0);
   v_w = w.xyz;
   v_n = (u_model * vec4(a_nrm, 0.0)).xyz;
+  v_ln = a_nrm;
+  v_uv = vec2((a_pos.x + 1.0) * 0.5, (a_pos.z - u_zr.x) / (u_zr.y - u_zr.x));
   v_occ = a_occ;
   gl_Position = u_vp * w;
   gl_Position.xy += u_offset * gl_Position.w;
 }
 `
 
-// Grano tostado: difuso cálido, brillo aceitoso que crece con el tueste,
-// hendidura oscurecida y un filo lima de la marca en los bordes.
+// La foto real es el color base (proyectada arriba y abajo); su luminancia da
+// el relieve fino (poros, arrugas). El tueste lleva de grano verde a la foto.
 const FRAG = `
 precision highp float;
+uniform mat4 u_model;
 uniform vec3 u_eye;
-uniform vec3 u_raw;
-uniform vec3 u_roast;
 uniform vec3 u_rim;
 uniform vec3 u_gold;
 uniform float u_roastK;
+uniform sampler2D u_front;
+uniform sampler2D u_back;
+uniform vec2 u_texel;
+uniform float u_ready;
 varying vec3 v_n;
+varying vec3 v_ln;
 varying vec3 v_w;
+varying vec2 v_uv;
 varying float v_occ;
+float lum(vec3 c) { return dot(c, vec3(0.3, 0.55, 0.15)); }
+vec3 tex(sampler2D t, vec2 uv) { return pow(texture2D(t, uv).rgb, vec3(2.2)); }
 float studio(vec3 r) {
-  float key = pow(max(dot(r, normalize(vec3(-0.45, 0.85, 0.35))), 0.0), 18.0) * 2.4;
-  float strip = smoothstep(0.6, 0.85, r.x) * smoothstep(-0.6, 0.3, r.y) * 0.9;
-  float hz = exp(-abs(r.y - 0.05) * 8.0) * 0.25;
+  float key = pow(max(dot(r, normalize(vec3(-0.45, 0.85, 0.35))), 0.0), 22.0) * 2.2;
+  float strip = smoothstep(0.62, 0.86, r.x) * smoothstep(-0.6, 0.3, r.y) * 0.7;
+  float hz = exp(-abs(r.y - 0.05) * 8.0) * 0.2;
   return key + strip + hz;
 }
 void main() {
-  vec3 n = normalize(v_n);
+  vec2 uvF = v_uv;
+  vec2 uvB = vec2(v_uv.x, 1.0 - v_uv.y);
+  float wF = smoothstep(-0.3, 0.3, normalize(v_ln).y);
+  vec3 cF = tex(u_front, uvF);
+  vec3 cB = tex(u_back, uvB);
+  vec3 alb = mix(cB, cF, wF);
+  // relieve desde la foto
+  float hF0 = lum(cF), hB0 = lum(cB);
+  float du = mix(lum(tex(u_back, uvB + vec2(u_texel.x, 0.0))) - hB0, lum(tex(u_front, uvF + vec2(u_texel.x, 0.0))) - hF0, wF);
+  float dv = mix(-(lum(tex(u_back, uvB + vec2(0.0, u_texel.y))) - hB0), lum(tex(u_front, uvF + vec2(0.0, u_texel.y))) - hF0, wF);
+  vec3 ln = normalize(v_ln);
+  vec3 T = normalize(vec3(1.0, 0.0, 0.0) - ln * ln.x);
+  vec3 B = normalize(vec3(0.0, 0.0, 1.0) - ln * ln.z);
+  float bump = 9.0 * u_ready;
+  ln = normalize(ln - (T * du + B * dv) * bump * (1.0 - 0.7 * v_occ));
+  vec3 n = normalize((u_model * vec4(ln, 0.0)).xyz);
   vec3 v = normalize(u_eye - v_w);
   if (dot(n, v) < 0.0) n = -n;
   vec3 r = reflect(-v, n);
-  vec3 base = mix(u_raw, u_roast, u_roastK);
-  float gloss = mix(0.25, 1.0, u_roastK);
-  float occ = 1.0 - 0.8 * v_occ;
+
+  // tueste: verde → canela → tostado (la foto)
+  float l = lum(alb);
+  vec3 raw = mix(vec3(0.10, 0.12, 0.06), vec3(0.46, 0.47, 0.29), clamp(l * 4.0, 0.0, 1.0));
+  vec3 cinn = mix(vec3(0.16, 0.08, 0.03), vec3(0.62, 0.38, 0.16), clamp(l * 4.0, 0.0, 1.0));
+  float k = u_roastK;
+  vec3 base = k < 0.5 ? mix(raw, cinn, k * 2.0) : mix(cinn, alb, k * 2.0 - 1.0);
+  base = mix(vec3(0.2, 0.1, 0.05), base, u_ready);
+
+  float occ = 1.0 - 0.55 * v_occ;
   float dif = max(dot(n, normalize(vec3(-0.35, 0.8, 0.55))), 0.0);
   float back = max(dot(n, normalize(vec3(0.6, -0.2, -0.7))), 0.0);
-  vec3 col = base * (0.1 + 1.05 * dif + 0.25 * back) * occ;
-  float e = studio(r);
-  col += vec3(1.0, 0.85, 0.68) * pow(e, 1.6) * 0.45 * gloss * occ;
+  vec3 col = base * (0.22 + 1.1 * dif + 0.3 * back) * occ;
+  float gloss = mix(0.15, 0.75, k) * smoothstep(0.004, 0.04, l);
+  col += vec3(1.0, 0.86, 0.7) * pow(studio(r), 1.5) * 0.3 * gloss * occ;
   float fr = pow(1.0 - max(dot(n, v), 0.0), 3.0);
-  col += (u_gold * 0.45 + u_rim * 0.08) * fr;
+  col += (u_gold * 0.16 + u_rim * 0.03) * fr;
   col = col / (1.0 + col);
   col = pow(col, vec3(1.0 / 2.2));
   gl_FragColor = vec4(col, 1.0);
@@ -306,6 +355,9 @@ const SANS = "'Inter', system-ui, sans-serif"
 export default function CoffeeBeanHero({
   copy,
   logo,
+  textureFront = "/images/bean/front.webp",
+  textureBack = "/images/bean/back.webp",
+  wordColor = "#26E237",
   onPrimary,
   onSecondary,
   id,
@@ -332,8 +384,8 @@ export default function CoffeeBeanHero({
     return () => mq.removeEventListener("change", sync)
   }, [])
 
-  const look = React.useRef({ reduced, lime })
-  look.current = { reduced, lime }
+  const look = React.useRef({ reduced, lime, textureFront, textureBack })
+  look.current = { reduced, lime, textureFront, textureBack }
 
   React.useEffect(() => {
     const root = rootRef.current
@@ -349,6 +401,9 @@ export default function CoffeeBeanHero({
     let vbo: WebGLBuffer | null = null
     let ibo: WebGLBuffer | null = null
     const loc: Record<string, WebGLUniformLocation | null> = {}
+    const textures: (WebGLTexture | null)[] = []
+    let texSize: [number, number] = [1024, 512]
+    let readyAt = -1
 
     const initGL = () => {
       gl = canvas.getContext("webgl", { alpha: true, antialias: true, premultipliedAlpha: true }) as WebGLRenderingContext | null
@@ -386,8 +441,43 @@ export default function CoffeeBeanHero({
       attr("a_pos", 3, 0)
       attr("a_nrm", 3, 3)
       attr("a_occ", 1, 6)
-      for (const n of ["u_vp", "u_model", "u_offset", "u_eye", "u_raw", "u_roast", "u_rim", "u_gold", "u_roastK"])
+      for (const n of ["u_vp", "u_model", "u_offset", "u_zr", "u_eye", "u_rim", "u_gold", "u_roastK", "u_front", "u_back", "u_texel", "u_ready"])
         loc[n] = g.getUniformLocation(prog, n)
+      // texturas de la foto real (placeholder de 1px hasta que cargan)
+      const mkTex = (unit: number, url: string, onReady: () => void) => {
+        const tx = g.createTexture()
+        g.activeTexture(g.TEXTURE0 + unit)
+        g.bindTexture(g.TEXTURE_2D, tx)
+        g.texImage2D(g.TEXTURE_2D, 0, g.RGBA, 1, 1, 0, g.RGBA, g.UNSIGNED_BYTE, new Uint8Array([90, 45, 20, 255]))
+        const img = new Image()
+        img.onload = () => {
+          if (!gl) return
+          g.activeTexture(g.TEXTURE0 + unit)
+          g.bindTexture(g.TEXTURE_2D, tx)
+          g.texImage2D(g.TEXTURE_2D, 0, g.RGBA, g.RGBA, g.UNSIGNED_BYTE, img)
+          g.generateMipmap(g.TEXTURE_2D)
+          g.texParameteri(g.TEXTURE_2D, g.TEXTURE_MIN_FILTER, g.LINEAR_MIPMAP_LINEAR)
+          g.texParameteri(g.TEXTURE_2D, g.TEXTURE_MAG_FILTER, g.LINEAR)
+          g.texParameteri(g.TEXTURE_2D, g.TEXTURE_WRAP_S, g.CLAMP_TO_EDGE)
+          g.texParameteri(g.TEXTURE_2D, g.TEXTURE_WRAP_T, g.CLAMP_TO_EDGE)
+          texSize = [img.naturalWidth, img.naturalHeight]
+          onReady()
+        }
+        img.src = url
+        textures.push(tx)
+      }
+      g.texParameteri(g.TEXTURE_2D, g.TEXTURE_MIN_FILTER, g.LINEAR)
+      let loaded = 0
+      const done = () => {
+        loaded++
+        if (loaded === 2) readyAt = performance.now()
+      }
+      mkTex(0, look.current.textureFront, done)
+      g.texParameteri(g.TEXTURE_2D, g.TEXTURE_MIN_FILTER, g.LINEAR)
+      mkTex(1, look.current.textureBack, done)
+      g.texParameteri(g.TEXTURE_2D, g.TEXTURE_MIN_FILTER, g.LINEAR)
+      g.uniform1i(loc.u_front, 0)
+      g.uniform1i(loc.u_back, 1)
       g.enable(g.DEPTH_TEST)
       g.clearColor(0, 0, 0, 0)
       return true
@@ -458,8 +548,6 @@ export default function CoffeeBeanHero({
     stage.addEventListener("pointerdown", onDown)
     window.addEventListener("pointerup", onUp)
 
-    const RAW = hexToLinear("#A7A57C")
-    const ROAST = hexToLinear("#5A3018")
     const GOLD = hexToLinear(gold)
 
     let raf = 0
@@ -530,8 +618,9 @@ export default function CoffeeBeanHero({
         g.uniformMatrix4fv(loc.u_vp, false, vp)
         g.uniform2f(loc.u_offset, k.ox, k.oy)
         g.uniform3f(loc.u_eye, eye[0], eye[1], eye[2])
-        g.uniform3f(loc.u_raw, RAW[0], RAW[1], RAW[2])
-        g.uniform3f(loc.u_roast, ROAST[0], ROAST[1], ROAST[2])
+        g.uniform2f(loc.u_zr, P.zmin, P.zmax)
+        g.uniform2f(loc.u_texel, 1.5 / texSize[0], 1.5 / texSize[1])
+        g.uniform1f(loc.u_ready, readyAt < 0 ? 0 : clamp01((now - readyAt) / 500))
         g.uniform3f(loc.u_rim, rim[0], rim[1], rim[2])
         g.uniform3f(loc.u_gold, GOLD[0], GOLD[1], GOLD[2])
         g.uniform1f(loc.u_roastK, roastK)
@@ -634,9 +723,10 @@ export default function CoffeeBeanHero({
         g.deleteBuffer(vbo)
         g.deleteBuffer(ibo)
         g.deleteProgram(prog)
+        textures.forEach((t) => g.deleteTexture(t))
       }
     }
-  }, [copy.word, gold])
+  }, [copy.word, gold, textureFront, textureBack])
 
   const jump = (i: number) => {
     const root = rootRef.current
@@ -687,7 +777,7 @@ export default function CoffeeBeanHero({
           <div
             ref={wordRef}
             className="absolute whitespace-nowrap"
-            style={{ ...sans, left: "50%", top: "70%", transform: "translate(-50%, -50%)", fontSize: "min(20cqw, 30cqh)", lineHeight: 1, fontWeight: 600, letterSpacing: "-0.04em" }}
+            style={{ ...sans, left: "50%", top: "70%", transform: "translate(-50%, -50%)", fontSize: "min(20cqw, 30cqh)", lineHeight: 1, fontWeight: 600, letterSpacing: "-0.04em", color: wordColor }}
             aria-hidden
           >
             {Array.from(copy.word).map((c, i) => (
