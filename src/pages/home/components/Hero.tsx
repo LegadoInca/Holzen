@@ -24,7 +24,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative w-full overflow-hidden mt-16 h-[calc(100vh-4rem)] min-h-[560px]"
+      className="relative w-full overflow-hidden h-screen min-h-[600px]"
       style={{ background: INK }}
     >
       {/* Foto única, a color */}
@@ -52,11 +52,16 @@ const Hero = () => {
         className="absolute inset-0 hidden md:block"
         style={{ background: 'radial-gradient(ellipse 55% 50% at 84% 80%, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0) 72%)' }}
       />
+      {/* Degradado arriba: el navbar transparente se lee sobre cualquier foto */}
+      <div
+        className="absolute inset-0"
+        style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 24%)' }}
+      />
       <div className="absolute inset-0 bg-black/30 md:hidden" />
 
       {/* Contenido */}
       <div className="relative z-10 h-full max-w-[1400px] mx-auto px-5 md:px-10 flex flex-col">
-        <div className="flex-1 flex items-center pt-[6vh]">
+        <div className="flex-1 flex items-center pt-[10vh]">
           <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-12">
             {/* Titular + botones */}
             <div className="max-w-3xl">
@@ -70,7 +75,7 @@ const Hero = () => {
                 style={{
                   fontFamily: "'Inter', system-ui, sans-serif",
                   fontWeight: 600,
-                  fontSize: 'clamp(1.35rem, 3.05vw, 2.55rem)',
+                  fontSize: 'clamp(1.5rem, 3.4vw, 2.85rem)',
                   lineHeight: 1.03,
                   letterSpacing: '-0.025em',
                   color: LIME,

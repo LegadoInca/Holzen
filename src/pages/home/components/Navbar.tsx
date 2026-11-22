@@ -22,11 +22,13 @@ const INK = '#0D0D0C';
 const LIME = '#BBDA1F';
 const PAPER = '#F7F4EA';
 const LOGO = '/Holzen/images/holzen-logo.png';
+const LOGO_HERO = '/Holzen/images/holzen-logo-coffee-blanco.png';
 const WA_LINK = 'https://wa.me/51XXXXXXXXX?text=Hola,%20me%20interesa%20el%20café%20HOLZEN';
 
 const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
+  const [onHero, setOnHero] = useState(true);
   const [mobOpen, setMobOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [mobileLangOpen, setMobileLangOpen] = useState(false);
@@ -36,7 +38,12 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
   const currentLang = LANGUAGES.find((l) => l.code === i18n.language) ?? LANGUAGES[0];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+      // Mientras el hero está detrás del navbar, la barra es transparente
+      setOnHero(window.scrollY < window.innerHeight - 90);
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -62,6 +69,9 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
     { key: 'contact', label: t('nav_contact') },
   ];
 
+  const fg = onHero ? '#FFFFFF' : INK;
+  const fgLine = onHero ? 'rgba(255,255,255,0.45)' : 'rgba(13,13,12,0.25)';
+
   const changeLanguage = (code: string) => {
     i18n.changeLanguage(code);
     setLangOpen(false);
@@ -71,33 +81,46 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300"
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: 'rgba(247,244,234,0.96)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          borderBottom: '1px solid rgba(13,13,12,0.08)',
-          boxShadow: scrolled ? '0 8px 24px rgba(13,13,12,0.07)' : 'none',
+          background: onHero ? 'transparent' : 'rgba(247,244,234,0.96)',
+          backdropFilter: onHero ? 'none' : 'blur(8px)',
+          WebkitBackdropFilter: onHero ? 'none' : 'blur(8px)',
+          borderBottom: onHero ? '1px solid transparent' : '1px solid rgba(13,13,12,0.08)',
+          boxShadow: scrolled && !onHero ? '0 8px 24px rgba(13,13,12,0.07)' : 'none',
         }}
       >
-        <div className="max-w-7xl mx-auto px-5 md:px-6 h-16 flex items-center justify-between gap-4">
+        <div className="max-w-[1500px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between gap-4">
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="cursor-pointer flex-shrink-0"
             aria-label="Holzen coffee"
           >
-            <img src={LOGO} alt="Holzen coffee" className="h-9 md:h-10 w-auto block" />
+            <img
+              src={onHero ? LOGO_HERO : LOGO}
+              alt="Holzen coffee"
+              className="h-10 md:h-12 w-auto block"
+            />
           </button>
 
           {/* Links centrados */}
-          <ul className="hidden md:flex items-center gap-6 lg:gap-8">
+          <ul
+            className="hidden md:flex items-center gap-5 lg:gap-7 px-6 lg:px-8 h-12 rounded-full"
+            style={{
+              background: onHero ? 'rgba(13,13,12,0.38)' : 'rgba(13,13,12,0.92)',
+              backdropFilter: 'blur(14px)',
+              WebkitBackdropFilter: 'blur(14px)',
+              border: '1px solid rgba(255,255,255,0.10)',
+              transition: 'background 300ms',
+            }}
+          >
             {links.map((l) => (
               <li key={l.key}>
                 <button
                   onClick={() => scrollTo(l.key)}
-                  className="hover:opacity-55 transition-opacity text-[13px] lg:text-sm font-medium cursor-pointer whitespace-nowrap"
-                  style={{ color: INK, fontFamily: "'Inter', system-ui, sans-serif" }}
+                  className="hover:opacity-60 transition-opacity text-[13px] lg:text-sm font-medium cursor-pointer whitespace-nowrap"
+                  style={{ color: '#fff', fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
                   {l.label}
                 </button>
@@ -106,8 +129,8 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
             <li>
               <Link
                 to="/empresas"
-                className="flex items-center gap-1.5 text-[13px] lg:text-sm font-medium whitespace-nowrap px-4 py-1.5 rounded-full transition-all duration-200 hover:!bg-[#0D0D0C] hover:!text-white"
-                style={{ color: INK, border: `1px solid ${INK}`, fontFamily: "'Inter', system-ui, sans-serif" }}
+                className="flex items-center gap-1.5 text-[13px] lg:text-sm font-medium whitespace-nowrap px-4 py-1.5 rounded-full transition-all duration-200 hover:!bg-[#BBDA1F] hover:!border-[#BBDA1F] hover:!text-[#0D0D0C]"
+                style={{ color: '#fff', border: '1px solid rgba(255,255,255,0.55)', fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 <i className="ri-building-2-line text-sm" />
                 Empresas
@@ -117,12 +140,12 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               <img
                 src="https://flagcdn.com/w40/pe.png"
                 alt="Peru"
-                className="w-9 h-6 rounded-sm object-cover shadow-sm"
+                className="w-8 h-[22px] rounded-sm object-cover shadow-sm"
               />
               <img
                 src="https://flagcdn.com/w40/cz.png"
                 alt="Czech Republic"
-                className="w-9 h-6 rounded-sm object-cover shadow-sm"
+                className="w-8 h-[22px] rounded-sm object-cover shadow-sm"
               />
             </li>
           </ul>
@@ -132,8 +155,8 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
             <div ref={langRef} className="relative hidden md:block">
               <button
                 onClick={() => setLangOpen((v) => !v)}
-                className="flex items-center gap-1.5 hover:border-black transition-colors text-xs tracking-widest uppercase font-semibold px-3 py-1.5 rounded-full cursor-pointer whitespace-nowrap"
-                style={{ color: INK, border: '1px solid rgba(13,13,12,0.25)', fontFamily: "'Inter', system-ui, sans-serif" }}
+                className="flex items-center gap-1.5 transition-colors text-xs tracking-widest uppercase font-semibold px-3 py-1.5 rounded-full cursor-pointer whitespace-nowrap"
+                style={{ color: fg, border: `1px solid ${fgLine}`, fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 <span>{currentLang.flag}</span>
                 <span>{currentLang.code.toUpperCase()}</span>
@@ -184,7 +207,7 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               <button
                 onClick={() => setMobileLangOpen((v) => !v)}
                 className="flex items-center gap-1 text-xs px-2.5 py-1.5 rounded-full cursor-pointer whitespace-nowrap"
-                style={{ color: INK, border: '1px solid rgba(13,13,12,0.25)', fontFamily: "'Inter', system-ui, sans-serif" }}
+                style={{ color: fg, border: `1px solid ${fgLine}`, fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 <span className="text-sm">{currentLang.flag}</span>
                 <span className="tracking-widest uppercase font-semibold">{currentLang.code.toUpperCase()}</span>
@@ -222,7 +245,11 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="hidden md:flex items-center gap-2 text-sm font-semibold px-5 py-2 rounded-full whitespace-nowrap transition-colors duration-200 hover:!bg-[#BBDA1F] hover:!text-[#0D0D0C]"
-              style={{ background: INK, color: '#fff', fontFamily: "'Inter', system-ui, sans-serif" }}
+              style={{
+                background: onHero ? '#fff' : INK,
+                color: onHero ? INK : '#fff',
+                fontFamily: "'Inter', system-ui, sans-serif",
+              }}
             >
               <i className="ri-whatsapp-line" />
               WhatsApp
@@ -233,7 +260,7 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               className="relative w-9 h-9 flex items-center justify-center cursor-pointer"
               aria-label="Carrito"
             >
-              <i className="ri-shopping-bag-line text-xl" style={{ color: INK }} />
+              <i className="ri-shopping-bag-line text-xl" style={{ color: fg }} />
               {cartCount > 0 && (
                 <span
                   className="absolute -top-1 -right-1 w-5 h-5 text-[10px] font-bold rounded-full flex items-center justify-center"
@@ -249,7 +276,7 @@ const Navbar = ({ cartCount, onCartOpen }: NavbarProps) => {
               onClick={() => setMobOpen(true)}
               aria-label="Menú"
             >
-              <i className="ri-menu-line text-xl" style={{ color: INK }} />
+              <i className="ri-menu-line text-xl" style={{ color: fg }} />
             </button>
           </div>
         </div>
