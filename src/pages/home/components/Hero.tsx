@@ -23,6 +23,9 @@ const Hero = () => {
       textureFront="/Holzen/images/bean/front.webp"
       textureBack="/Holzen/images/bean/back.webp"
       wordColor="#26E237"
+      pourVideo="/Holzen/videos/del-grano-pour.mp4"
+      pourVideoMobile="/Holzen/videos/del-grano-pour-mobile.mp4"
+      pourPoster="/Holzen/images/pour-poster.jpg"
       sceneScroll={0.75}
       onPrimary={() => scrollTo('products')}
       onSecondary={() => scrollTo('farmers')}

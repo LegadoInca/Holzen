@@ -33,6 +33,10 @@ export type CoffeeBeanHeroProps = {
   textureFront?: string
   /** Foto del lomo redondeado. */
   textureBack?: string
+  /** Video en bucle de la escena final (chorro de café en la taza). */
+  pourVideo?: string
+  pourVideoMobile?: string
+  pourPoster?: string
   /** Color de la palabra de portada. */
   wordColor?: string
   onPrimary?: () => void
@@ -216,13 +220,13 @@ const KEYS: Key[] = [
   { spin: 0.5, el: 34, size: 0.46, ox: 0, oy: 0.24, roll: 0.3 },
   { spin: 1.9, el: 72, size: 0.42, ox: 0.42, oy: 0.0, roll: 0.1 },
   { spin: 3.0, el: 28, size: 0.2, ox: 0, oy: 0.22, roll: -0.25 },
-  { spin: 3.7, el: 56, size: 0.44, ox: 0.46, oy: -0.02, roll: 0.22 },
+  { spin: 3.7, el: 56, size: 0.17, ox: 0.04, oy: 0.1, roll: 0.22 },
 ]
 const KEYS_TALL: Partial<Key>[] = [
   { size: 0.42, oy: 0.3 },
   { size: 0.42, ox: 0, oy: 0.4 },
   { size: 0.28, oy: 0.28 },
-  { size: 0.38, ox: 0, oy: 0.46 },
+  { size: 0.2, ox: -0.5, oy: 0.66 },
 ]
 const SCENES = KEYS.length
 const HOLD = 0.34
@@ -342,7 +346,7 @@ const CSS =
   ".cbh-nav button{display:flex;align-items:center;gap:10px;justify-content:flex-end;background:none;border:0;padding:5px 0;cursor:pointer;color:inherit;font:inherit}" +
   ".cbh-nav .cbh-tick{display:block;height:1px;width:14px;background:currentColor;opacity:.45;transition:width .4s cubic-bezier(.2,.8,.2,1),opacity .3s,background-color .3s}" +
   ".cbh-nav button[aria-current=step] .cbh-tick{width:34px;opacity:1;background:var(--cbh-lime)}" +
-  "@container cbh (orientation: portrait){.cbh-left{left:7cqw!important;right:7cqw!important;top:auto!important;bottom:10cqh!important;max-width:none!important}" +
+  "@container cbh (orientation: portrait){.cbh-pour{top:11cqh!important;right:-12cqw!important;width:100cqw!important;transform:none!important}.cbh-left{left:7cqw!important;right:7cqw!important;top:auto!important;bottom:10cqh!important;max-width:none!important}" +
   ".cbh-steps{gap:5cqw!important;bottom:7cqh!important}}" +
   "@container cbh (max-width: 720px){.cbh-hide-sm{display:none!important}}"
 
@@ -358,6 +362,9 @@ export default function CoffeeBeanHero({
   textureFront = "/images/bean/front.webp",
   textureBack = "/images/bean/back.webp",
   wordColor = "#26E237",
+  pourVideo,
+  pourVideoMobile,
+  pourPoster,
   onPrimary,
   onSecondary,
   id,
@@ -370,6 +377,8 @@ export default function CoffeeBeanHero({
 }: CoffeeBeanHeroProps) {
   const rootRef = React.useRef<HTMLElement | null>(null)
   const stageRef = React.useRef<HTMLDivElement | null>(null)
+  const pourRef = React.useRef<HTMLVideoElement | null>(null)
+  const [pourSrc, setPourSrc] = React.useState<string | undefined>(undefined)
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
   const glowRef = React.useRef<HTMLDivElement | null>(null)
   const wordRef = React.useRef<HTMLDivElement | null>(null)
@@ -383,6 +392,11 @@ export default function CoffeeBeanHero({
     mq.addEventListener("change", sync)
     return () => mq.removeEventListener("change", sync)
   }, [])
+
+  React.useEffect(() => {
+    if (!pourVideo) return
+    setPourSrc(window.matchMedia("(max-width: 767px)").matches && pourVideoMobile ? pourVideoMobile : pourVideo)
+  }, [pourVideo, pourVideoMobile])
 
   const look = React.useRef({ reduced, lime, textureFront, textureBack })
   look.current = { reduced, lime, textureFront, textureBack }
@@ -601,8 +615,8 @@ export default function CoffeeBeanHero({
       const float = moving ? Math.sin(time * 1.1) * 0.04 : 0
       const bob = transScale(0, float, 0, 0.6 + 0.4 * intro)
       const model = multiply(bob, multiply(rotY(k.spin + spin + px * 0.4 + (1 - intro) * -1.2), multiply(rotX(py * 0.08), rotZ(k.roll))))
-      // tueste: verde en portada/origen, café brillante desde "proceso"
-      const roastK = smoothstep(0.9, 2.0, coord)
+      // tueste: verde solo en portada; ya tostado desde "origen"
+      const roastK = smoothstep(0.3, 0.95, coord)
 
       const gx = (0.5 + k.ox / 2) * W
       const gy = (0.5 - k.oy / 2) * H
@@ -669,6 +683,14 @@ export default function CoffeeBeanHero({
           s.transform = "translateY(" + ((1 - q) * 34 * dir).toFixed(1) + "px)"
           s.filter = q > 0.995 ? "" : "blur(" + ((1 - q) * 8).toFixed(1) + "px)"
         }
+      }
+
+      // el video del chorro solo corre cuando su escena está a la vista
+      const pv = pourRef.current
+      if (pv) {
+        const show = reveal(coord, 3, 0.2) > 0
+        if (show && pv.paused) pv.play().catch(() => {})
+        else if (!show && !pv.paused) pv.pause()
       }
 
       // la palabra de portada se abre letra por letra y se desvanece
@@ -767,6 +789,29 @@ export default function CoffeeBeanHero({
           className="pointer-events-none absolute left-0 top-0 rounded-full"
           style={{ background: "radial-gradient(closest-side, " + gold + "38, " + gold + "10 50%, transparent 100%)", willChange: "transform" }}
         />
+        {pourVideo && (
+          <div
+            {...sc(3, "fade", 0.2)}
+            className="cbh-pour pointer-events-none absolute"
+            style={{
+              opacity: 0, right: "-2cqw", top: "50%", transform: "translateY(-50%)", width: "52cqw", aspectRatio: "16 / 9",
+              WebkitMaskImage: "radial-gradient(ellipse 50% 52% at 50% 50%, #000 58%, transparent 100%)",
+              maskImage: "radial-gradient(ellipse 50% 52% at 50% 50%, #000 58%, transparent 100%)",
+            }}
+          >
+            <video
+              ref={pourRef}
+              src={pourSrc}
+              poster={pourPoster}
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden
+              className="block h-full w-full object-cover"
+            />
+          </div>
+        )}
         <canvas ref={canvasRef} aria-hidden className="absolute inset-0 block" style={{ width: "100%", height: "100%" }} />
 
         {/* ============================ 0 · portada ============================ */}
